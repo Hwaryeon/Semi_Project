@@ -90,21 +90,17 @@ public class FundingDao {
 			pstmt.setInt(2, p.getUser_id());
 			pstmt.setString(3, p.getP_name());
 			pstmt.setString(4, p.getContent());
-			pstmt.setInt(5, Integer.parseInt(p.getcAmount()));
-			pstmt.setString(6, p.getFeeType());
-			
+			pstmt.setInt(5, p.getOpenDate());
+			pstmt.setInt(6, Integer.parseInt(p.getcAmount()));
+			pstmt.setString(7, p.getFeeType());
 			
 			result = pstmt.executeUpdate();
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
 			close(pstmt);
 		}
-		
-		
-		
 		return result;
 	}
 

@@ -356,7 +356,7 @@ layout_community .tbl_list .tbl .tbl_row {
 }
 
 #registText{
-	    float: right;
+	float: right;
     display: inline-block;
     width: 88px;
     height: 27px;
@@ -366,6 +366,7 @@ layout_community .tbl_list .tbl .tbl_row {
     line-height: 24px;
     text-align: center;
     margin-top: 31%;
+    border-radius: 12px;
 }
 
 #registText a{

@@ -21,7 +21,7 @@
 </style>
 </head>
 <body>
-    <div class="outer">
+    <div id="outer" class="outer">
     <br><br>
     <p>iCrowd | 사업자등록번호 : 851-87-00622 | 서울 강남 제2014-01호  |  대표자 : 김정태  </p>
     <p> 서울특별시 강남구 테헤란로14길 6 남도빌딩 | 1544-9970 | iCrowd_admin@icrowd.com  </p>

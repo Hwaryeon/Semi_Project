@@ -30,21 +30,21 @@ public class WriteFundingServlet extends HttpServlet {
 		String feeType = request.getParameter("feeType");		// 수수료
 		String text = request.getParameter("mainText");			// 펀딩 내용
 		String cAmount = request.getParameter("cAmount");
+		String openDate = request.getParameter("openDate"); 	// 오픈 기간
 		
 		/*System.out.println(title);
 		System.out.println(closeType);
 		System.out.println(feeType);
 		System.out.println(text);
-		System.out.println(cAmount);*/
+		System.out.println(cAmount);
+		System.out.println(openDate);*/
 		
-		int user = 999; 	// 임시로 넣어놈
 		
-		Product p = new Product(closeType, user, title, feeType, text, cAmount);
+		int user = 999; 	// 유저 아이디 임시로 넣어놈
+		
+		Product p = new Product(closeType, user, title, feeType, text, Integer.parseInt(openDate), cAmount);
 		
 		int result = new FundingService().insertFunding(p);
-		
-		
-		
 		
 		if(result > 0){
 			System.out.println("등록성공");

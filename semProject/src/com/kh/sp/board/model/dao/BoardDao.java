@@ -406,7 +406,11 @@ public class BoardDao {
 		
 		try {
 			
+			System.out.println("오류1");
+			
 			for(int i=0; i < fileList.size(); i++){
+				
+				System.out.println("오류2");
 				
 				System.out.println("fileList " + i + " : " + fileList.get(i));
 				
@@ -428,6 +432,8 @@ public class BoardDao {
 				result += pstmt.executeUpdate();
 				
 			}
+			
+			System.out.println("오류3");
 			
 			
 		} catch (SQLException e) {

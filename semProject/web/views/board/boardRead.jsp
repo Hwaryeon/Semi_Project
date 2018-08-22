@@ -274,7 +274,7 @@
 		
 								<div class="field_foot_btn">
 									<a onclick="allBoard();" class="link_list">목록</a>
-									<button onclick="updateBoard();" id="save" class="link_list">수정</button>
+									<button style="margin-left: 30px;"onclick="updateBoard();" id="save" class="link_list">수정</button>
 								</div>
 								<script>
 								function allBoard(){

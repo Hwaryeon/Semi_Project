@@ -104,8 +104,63 @@
     -webkit-appearance: radio;
 }
 
+.radio-list li{position:relative; font-size:13px; color:#000; border:1px solid #e2e2e2; background:#fbfbfb; padding:6px 10px; margin-bottom:-1px;}
+.radio-list li.active{font-weight:bold;}
+.radio-list li label span{display:inline-block; width:12px; height:12px; background:url(<%=request.getContextPath()%>/images/common/radio_btn_off.gif) 0 0 no-repeat; vertical-align:middle; margin-right:10px;}
+.radio-list li.active span{background:url(<%=request.getContextPath()%>/images/common/radio_btn_on.gif) 0 0 no-repeat;}
+.radio-list li label input{position:absolute; top:11px; left:10px; width:12px; height:12px; opacity:0; -webkit-filter:alpha(opacity=0); filter:alpha(opacity=0);}
+
+.radio-list1 li{position:relative; font-size:13px; color:#000; border:1px solid #e2e2e2; background:#fbfbfb; padding:6px 10px; margin-bottom:-1px;}
+.radio-list1 li.active{font-weight:bold;}
+.radio-list1 li label span{display:inline-block; width:12px; height:12px; background:url(<%=request.getContextPath()%>/images/common/radio_btn_off.gif) 0 0 no-repeat; vertical-align:middle; margin-right:10px;}
+.radio-list1 li.active span{background:url(<%=request.getContextPath()%>/images/common/radio_btn_on.gif) 0 0 no-repeat;}
+.radio-list1 li label input{position:absolute; top:11px; left:10px; width:12px; height:12px; opacity:0; -webkit-filter:alpha(opacity=0); filter:alpha(opacity=0);}
+ 
+
+
 
 </style>
+
+<script>
+$(document).ready(function(){
+	 
+    $(".radio-list li label").click(function(){
+ 
+        var list = $(".radio-list li");
+        var thisList = $(this).parent("li");
+        var checkRadio = $(this).children("input").is(":checked"); //체크유무 (체크면 true, 아니면 false)
+        
+        if ( checkRadio == true ) {
+            list.removeClass("active");
+            thisList.addClass("active");
+        }else{
+            list.removeClass("active");
+            thisList.removeClass("active");
+        }
+        
+    });
+    
+    $(".radio-list1 li label").click(function(){
+    	 
+        var list = $(".radio-list1 li");
+        var thisList = $(this).parent("li");
+        var checkRadio = $(this).children("input").is(":checked"); //체크유무 (체크면 true, 아니면 false)
+        
+        if ( checkRadio == true ) {
+            list.removeClass("active");
+            thisList.addClass("active");
+        }else{
+            list.removeClass("active");
+            thisList.removeClass("active");
+        }
+        
+    });
+ 
+})
+
+
+
+</script>
 
 </head>
 <body>
@@ -132,7 +187,7 @@
 						<div class="detailview_wrap">
 							<div class="field_tit">
 								<div class="title1">펀딩 제목</div>
-								<div class="title2">
+								<div class="title2" style="border: 1.2px solid black;">
 
 									<input type="text" style="width: 100%; color: #8C8C8C;"
 										name="fundingTitle" id="fundingTitle" value="" />
@@ -162,20 +217,50 @@
 							<div class="notice">
 								<div class="notice1">마감방식 선택</div>
 								<div class="notice2">
-									<input type="radio" style="width: 16px; height: 16px;"
+									<%-- <input type="radio" style="width: 16px; height: 16px;"
 										name="closeType" id="closeTypea" value="<%=productType1.getpCode() %>" /> <%=productType1.getpName() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<input type="radio" style="width: 16px; height: 16px;"
 										name="closeType" id="closeTypeb" value="<%=productType2.getpCode() %>" /> <%=productType2.getpName() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<input type="radio" style="width: 16px; height: 16px;"
 										name="closeType" id="closeTypec" value="<%=productType3.getpCode() %>" /> <%=productType3.getpName() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									 --%>
+									 
+									<ul class="radio-list">
+							    <li class="active" style="float:left;">
+							        <label style="cursor:pointer;">
+							            <span></span>
+							            <input type="radio" name="closeType" id="closeTypea" 
+							            	value="<%=productType1.getpCode() %>" checked="checked" />
+							            	<%=productType1.getpName() %>
+							        </label>
+							    </li>
+							    <li style="float:left;">
+							        <label style="cursor:pointer;">
+							            <span></span>
+							            <input type="radio" name="closeType" id="closeTypeb" value="<%=productType2.getpCode() %>" />
+							            	<%=productType2.getpName() %>
+							        </label>
+							    </li>
+							    <li style="float:left;">
+							        <label style="cursor:pointer;">
+							            <span></span>
+							            <input type="radio" name="closeType" id="closeTypec" value="<%=productType3.getpCode() %>" />
+							            	<%=productType3.getpName() %>
+							        </label>
+							    </li>
+							</ul>
+									
+									
 									
 								</div>
 							</div>
 
+							<br>
+
 							<div class="boardType">
 								<div class="type1">수수료</div>
 								<div class="type2">
-									<label><input type="radio"
+									<!-- <label><input type="radio"
 										style="width: 16px; height: 16px;" name="feeType"
 										id="feeTypea" value="1" />&nbsp;1%</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<label><input type="radio"
@@ -189,7 +274,42 @@
 										id="feeTyped" value="4" />&nbsp;4%</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<label><input type="radio"
 										style="width: 16px; height: 16px;" name="feeType"
-										id="feeTypee" value="5" />&nbsp;5%</label>
+										id="feeTypee" value="5" />&nbsp;5%</label> -->
+									<ul class="radio-list1">
+							    <li class="active" style="float:left;">
+							        <label style="cursor:pointer;">
+							            <span></span>
+							            <input type="radio" name="feeType" id="feeTypea" 
+							            	value="1" checked="checked" />1%
+							        </label>
+							    </li>
+							    <li style="float:left;">
+							        <label style="cursor:pointer;">
+							            <span></span>
+							            <input type="radio" name="feeType" id="feeTypeb" value="2" />2%
+							        </label>
+							    </li>
+							    <li style="float:left;">
+							        <label style="cursor:pointer;">
+							            <span></span>
+							            <input type="radio" name="feeType" id="feeTypec" value="3"/>3%
+							        </label>
+							    </li>
+							    <li style="float:left;">
+							        <label style="cursor:pointer;">
+							            <span></span>
+							            <input type="radio" name="feeType" id="feeTyped" value="4" />4%
+							        </label>
+							    </li>
+							    <li style="float:left;">
+							        <label style="cursor:pointer;">
+							            <span></span>
+							            <input type="radio" name="feeType" id="feeTypee" value="5"/>5%
+							        </label>
+							    </li>
+							</ul>	
+										
+										
 								</div>
 							</div>
 							
@@ -199,11 +319,19 @@
 							
 							<div class="type1">마감 금액</div>
 								<label>
-									<input type="number" id="cAmount" name="cAmount" min="10000" max="1000000000" value="100000" step="100000" style="text-align: right;width: 188px;">
+									<input type="number" id="cAmount" name="cAmount" min="10000" value="100000" step="100000" style="text-align: right;width: 188px;border: 1px solid black;">
+								</label>
+							</div>
+							
+							<div class="boardType" style="margin-bottom:0px;">
+							<div class="type1">오픈기간</div>
+								<label>
+									<input type="number" id="openDate" name="openDate" 
+									min="1" value="30" max="90" step="1" style="text-align: right;width: 188px;border: 1px solid black;">
 								</label>
 							</div>
 
-
+							
 
 
 							<div class="field_content article_intro">

@@ -107,6 +107,7 @@
     color: #fff;
     line-height: 51px;
     text-align: center;
+    border-radius: 12px;
 }
 
 .layout_community .detailview_wrap .siblings_post dt {

@@ -320,7 +320,7 @@ $(document).ready(function(){
 
 							<div class="field_foot_btn">
 								<a onclick="allBoard();" class="link_list">목록</a>
-								<button style="margin-left: 40px;" onclick="insertBoard();" id="save" class="link_list">등록</button>
+								<button style="margin-left: 30px;" onclick="insertBoard();" id="save" class="link_list">등록</button>
 								<!-- <a onclick="insertBoard2();"> test</a> -->
 							</div>
 						</div>

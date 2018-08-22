@@ -10,6 +10,7 @@ public class Product implements Serializable{
 	private String p_name;
 	private String feeType;	// 수수료
 	private String content;
+	private int openDate;
 	private String cAmount ;
 	private String p_prepar;
 	private String p_intro;
@@ -17,13 +18,14 @@ public class Product implements Serializable{
 	
 	public Product(){}
 
-	public Product(String p_code, int user_id, String p_name, String feeType, String content, String cAmount) {
+	public Product(String p_code, int user_id, String p_name, String feeType, String content, int openDate, String cAmount) {
 		super();
 		this.p_code = p_code;
 		this.user_id = user_id;
 		this.p_name = p_name;
 		this.feeType = feeType;
 		this.content = content;
+		this.openDate = openDate;
 		this.cAmount = cAmount;
 	}
 	
@@ -122,13 +124,22 @@ public class Product implements Serializable{
 		this.p_plan = p_plan;
 	}
 
+	
+	public int getOpenDate() {
+		return openDate;
+	}
+
+	public void setOpenDate(int openDate) {
+		this.openDate = openDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [p_id=" + p_id + ", p_code=" + p_code + ", user_id=" + user_id + ", p_name=" + p_name
-				+ ", feeType=" + feeType + ", content=" + content + ", cAmount=" + cAmount + ", p_prepar=" + p_prepar
-				+ ", p_intro=" + p_intro + ", p_plan=" + p_plan + "]";
+				+ ", feeType=" + feeType + ", content=" + content + ", openDate=" + openDate + ", cAmount=" + cAmount
+				+ ", p_prepar=" + p_prepar + ", p_intro=" + p_intro + ", p_plan=" + p_plan + "]";
 	}
-	
+
 
 	
 	

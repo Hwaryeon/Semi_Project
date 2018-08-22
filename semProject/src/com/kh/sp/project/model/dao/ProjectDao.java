@@ -125,15 +125,14 @@ public class ProjectDao {
 			pstmt.setInt(1, fileList.get(i).getPid());
 			pstmt.setString(2, fileList.get(i).getOriginName());
 			pstmt.setString(3, fileList.get(i).getChangeName());
-			
+			pstmt.setString(4, fileList.get(i).getFilePath());
 			
 			int level = 0;
 			if(i == 0) level = 0;
 			else level = 1;
 			
-			pstmt.setInt(4, level);
-			pstmt.setString(5, fileList.get(i).getFilePath());
-			result += pstmt.executeUpdate();
+			pstmt.setInt(5, level);
+			result = pstmt.executeUpdate();
 			System.out.println("result : "+result);
 		}
 	} catch (SQLException e) {

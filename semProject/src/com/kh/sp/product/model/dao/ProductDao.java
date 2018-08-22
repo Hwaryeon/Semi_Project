@@ -48,19 +48,17 @@ public class ProductDao {
 				hmap = new HashMap<String, Object>();
 				
 				
-				hmap.put("applicationDate", rset.getDate("application_date"));
-				hmap.put("processingDate",rset.getDate("processing_date"));
-				hmap.put("projectPlan",rset.getString("project_plan"));
-				hmap.put("projectIntroduction",rset.getString("project_introduction"));
-				hmap.put("projectPreparation",rset.getString("project_preparation"));
+				hmap.put("projectPlan",rset.getString("P_PLAN"));
+				hmap.put("projectIntroduction",rset.getString("P_INTRODUCTION"));
+				hmap.put("projectPreparation",rset.getString("P_PREPARATION"));
 				hmap.put("intro",rset.getString("intro"));
 				hmap.put("originName", rset.getString("origin_name"));
 				hmap.put("uploadDate",rset.getDate("upload_date"));
 				hmap.put("fileLevel", rset.getInt("file_level"));
-				hmap.put("filePath",rset.getString("filepath"));
+				hmap.put("filePath",rset.getString("FILE_PATH"));
 				hmap.put("bid",rset.getInt("bid"));
 				hmap.put("changeName", rset.getString("change_name"));
-				hmap.put("pid", rset.getInt("pid"));
+				hmap.put("pid", rset.getInt("P_ID"));
 				
 				list.add(hmap);
 				System.out.println(hmap.get("bid"));

@@ -9,7 +9,7 @@ ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 <meta charset="UTF-8">
 <title>Main Page</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="css/main/style.css">
+<!-- <link rel="stylesheet" href="css/main/style.css"> -->
 
 <!-- <!-- 합쳐지고 최소화된 최신 CSS
 <link rel="stylesheet" href="/hp/css/bootstrap.min.css">
@@ -18,18 +18,12 @@ ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 합쳐지고 최소화된 최신 자바스크립트
 <script src="/hp/js/bootstrap.min.js"></script> --> 
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 
-<link href="https://fonts.googleapis.com/css?family=Sunflower:300"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Limelight|Sunflower:300"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Limelight|Sunflower:300" rel="stylesheet">
 
 <%-- <script src="<%=request.getContextPath()%>/js/common/jquery.js"></script> --%>
 
@@ -993,13 +987,13 @@ margin-top: 100px;
 							</ul>
 					</div>
 		</div>
-		<br><br><br><br><br><br><br><br><br><br><br><br>
-		<br><br><br><br><br><br><br><br>
+
+		<br>
 		
 		<a style="display: scroll; position: fixed; bottom: 8%; right: 3%;"
 			href="#" title="맨 위로"> <img src="images/common/top.PNG"></a> <a
 			style="display: scroll; position: fixed; bottom: 5%; right: 3%;"
-			href="#footer" title="맨 아래로"> <img src="images/common/bottom.PNG"></a>
+			href="#outer" title="맨 아래로"> <img src="images/common/bottom.PNG"></a>
 
 
 	</div>
@@ -1014,6 +1008,6 @@ margin-top: 100px;
 	
 	
 	</script>
-
+	<%@ include file="/views/common/footer.jsp" %>
 </body>
 </html>
