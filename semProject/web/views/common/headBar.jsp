@@ -7,12 +7,11 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>  -->
 <script src="<%=request.getContextPath()%>/js/common/scroll.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main/style.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/qna/qna.css">
 <style>
 .headr-wrap {
 	width: 100%;
@@ -28,7 +27,7 @@
 
 .headr-wrap h1 {
 	float: left;
-	margin-left: 8%;
+	margin-left: 6%;
 }
 
 .headr-wrap .lg {
@@ -40,8 +39,8 @@
 
 .headr-wrap .gnb-menu {
 	display: inline-block;
-    margin-left: -2%;
-    width: 65%;
+    margin-left: 2%;
+    width: 62%;
     height: 100%;
     vertical-align: top;
 }
@@ -169,7 +168,7 @@
 	<div >
 		<div class="headr-wrap" id="headr-wrap" style="width:1600px;max-height:87px;">
 
-			<h1 class="lg" ><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/common/logo.png" width="100" height="200" style="height:50px;"></a></h1>
+			<h1 class="lg" ><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/common/logo.png" width="100" height="200" ></a></h1>
 			<div class="gnb-menu">
 				<ul>
 					<li><a href="<%=request.getContextPath()%>/SelectList.tn">투자하기</a></li>

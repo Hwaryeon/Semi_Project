@@ -19,6 +19,9 @@ int endPage = pi.getEndPage();
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<!-- 상단바 온오프 -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 <title>커뮤니티</title>
 	
 

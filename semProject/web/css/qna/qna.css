@@ -5,7 +5,7 @@
 }
 
 #omcWrap{
-	margin-top: 87px;	
+	    margin-top: 26px;	
 }
 
 blockquote, body, button, code, dd, div, dl, dt, fieldset, figure, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, select, td, textarea, th, ul {
@@ -31,7 +31,6 @@ body {
 .head_guide {
     width: 100%;
     padding: 3.4% 0;
-    background: url(../../images/qna/bg_guide.png) no-repeat 50% 0;
    background-color:lightgray;
     background-size: cover;
 }

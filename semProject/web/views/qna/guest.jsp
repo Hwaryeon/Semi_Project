@@ -13,7 +13,7 @@
 	content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
 <meta name="naver-site-verification"
 	content="9cf6afa832a16b3ba913b7d07418de0d0c349d38" />
-
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <link rel="stylesheet" type="text/css" href="../../css/qna/qna.css">
 <link rel="stylesheet" type="text/css" href="../../css/qna/guest.css">
 <style>
