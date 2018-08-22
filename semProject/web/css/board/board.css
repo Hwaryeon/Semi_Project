@@ -1,0 +1,437 @@
+
+#omcContainer {
+    background-color: #f7f7f7;
+}
+
+article, aside, figcaption, figure, footer, header, main, nav, section {
+    display: block;
+}
+
+*, :after, :before, article, aside, div, footer, header, main, nav, section {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+blockquote, body, button, code, dd, div, dl, dt, fieldset, figure, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, select, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: block;
+}
+
+body {
+    min-width: 320px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: Spoqa Han Sans,Apple SD Gothic Neo,Malgun Gothic,Dotum,Hevetica,Arial,sans-serif;
+    background-color: #fff;
+    color: #303030;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+}
+
+#mContent.layout_community {
+    padding-top: 0;
+    background-color: #fff;
+}
+
+#mContent, .cont_main #mContent {
+    padding-top: 60px;
+}
+
+#mContent {
+    min-height: 600px;
+    padding-bottom: 60px;
+}
+
+.layout_community .head_banner {
+    height: 225px;
+    text-align: center;
+    background-color: #ebebe9;
+    position: relative;
+    overflow: hidden;
+}
+
+.layout_community .head_banner .hero img {
+    max-width: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: top;
+}
+
+fieldset, img {
+    border: 0 none;
+}
+
+.layout_community .head_banner .layer {
+    position: absolute;
+    top: 62px;
+    right: 0;
+    left: 0;
+}
+
+.layout_community .head_banner .layer .tit_comm {
+    margin-bottom: 9px;
+    font-size: 1.875em;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 1.625em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    font-family: Spoqa Han Sans,Apple SD Gothic Neo,Malgun Gothic,Dotum,Hevetica,Arial,sans-serif;
+    word-break: keep-all;
+}
+
+.layout_community .head_banner .layer .txt_comm {
+    font-size: 1.25em;
+}
+
+.layout_community .select_cate {
+    height: 81px;
+    line-height: 6;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    background-color: #f7f7f7;
+}
+
+.layout_community .select_cate .btn_select {
+    display: none;
+    width: 100%;
+    height: 42px;
+    margin-bottom: 20px;
+    padding: 0 42px 0 20px;
+    border: 1px solid #d6d6d6;
+    border-radius: 5px;
+    background-color: #fff;
+    background-image: url(/omc/asset/images/ico_down.png);
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+    color: #80c72d;
+    text-align: left;
+    cursor: pointer;
+}
+
+button, input, select, textarea {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    
+}
+
+button, input, keygen, select, textarea {
+    font-family: Spoqa Han Sans,Apple SD Gothic Neo,Malgun Gothic,Dotum,Hevetica,Arial,sans-serif;
+}
+
+button, input, select, textarea {
+    font-size: 16px;
+    /* vertical-align: middle; */
+    border: 0;
+    outline: 0;
+}
+
+.layout_community .select_cate .menu_list {
+    display: inline-block;
+    font-size: 1.375em;
+    padding-top: 24px;
+}
+
+dl, li, menu, ol, ul {
+    list-style: none;
+}
+
+.layout_community .cont_comm {
+    border: 0;
+}
+
+.cont_comm {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 60px 20px 40px;
+    border: 1px solid #d6d6d6;
+    background-color: #fff;
+}
+
+.layout_community .cont_comm .box_comm {
+    max-width: 900px;
+}
+
+.cont_comm .box_comm {
+    width: 100%;
+    max-width: 732px;
+    margin: 0 auto;
+}
+
+.layout_community .search_field {
+    margin-bottom: 20px;
+}
+
+.screen_out {
+    overflow: hidden;
+    position: absolute;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+.layout_community .search_field .search_group {
+    float: right;
+}
+
+.layout_community .search_field .input_txt {
+    display: block;
+    float: left;
+    width: 194px;
+    height: 40px;
+    padding: 5px 10px;
+    border: 1px solid #e1e1e1;
+    font-size: .875em;
+    color: #303030;
+}
+
+.layout_community .search_field .cell_btn {
+    float: left;
+}
+
+.layout_community .search_field .btn_search {
+    width: 70px;
+    height: 40px;
+    margin-left: 10px;
+    background-color: #999;
+    color: #fff;
+}
+
+.layout_community .search_field:after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.layout_community .tbl_list .tbl {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+
+.layout_community .tbl_list .tbl .head_group {
+    background-color: #fff;
+    font-size: 1.125em;
+    line-height: 15px;
+    color: #999;
+}
+
+.layout_community .tbl_list .tbl .tbl_cell:first-child {
+    width: 10.444%;
+}
+
+.layout_community .tbl_list .tbl .tbl_cell:nth-child(2) {
+    width: 65.5555%;
+}
+
+.layout_community .tbl_list .tbl .tbl_cell:nth-child(3) {
+    width: 13.333%;
+}
+
+.layout_community .tbl_list .tbl .tbl_cell {
+    display: table-cell;
+    padding: 24px 0;
+}
+
+.layout_community .tbl_list .tbl .body_group {
+    font-size: .9375em;
+    color: #777;
+}
+
+.layout_community .tbl_list .tbl .body_group.important .cell_num {
+    color: #80c72d;
+}
+
+.layout_community .tbl_list .tbl .body_group .tbl_cell {
+    border-top: 1px solid #d6d6d6;
+}
+
+.layout_community .tbl_list .tbl .tbl_cell:first-child {
+    width: 10.444%;
+}
+
+.layout_community .tbl_list .tbl .tbl_cell {
+    display: table-cell;
+    padding: 24px 0;
+}
+
+.layout_community .tbl_list .tbl .body_group .tbl_cell:nth-child(2) {
+    text-align: left;
+}
+
+.layout_community .tbl_list .tbl .body_group .tbl_cell {
+    border-top: 1px solid #d6d6d6;
+}
+
+.layout_community .tbl_list .tbl .tbl_cell:nth-child(2) {
+    width: 65.5555%;
+}
+
+
+.layout_community .tbl_list .tbl .body_group.important .cell_tit a {
+    color: #303030;
+}
+
+a, a:active, a:hover {
+    text-decoration: none;
+}
+
+.paging_comm {
+    margin: 40px 0;
+    text-align: center;
+    margin-top: 335px;
+}
+
+.paging_comm a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin: 0 2px;
+    border: 1px solid #d6d6d6;
+    font-size: .75em;
+    line-height: 32px;
+    color: #999;
+    text-align: center;
+    vertical-align: top;
+    cursor:pointer;
+}
+
+.layout_community .paging_comm .on {
+    border-color: #80c72d;
+    color: #80c72d;
+}
+
+.paging_comm .on {
+    border-color: #80c72d;
+    color: #80c72d;
+}
+
+.layout_community .select_cate .menu_list:after {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+}
+
+
+.layout_community .tbl_list .tbl .tbl_row {
+    display: table;
+    width: 100%;
+}
+
+layout_community .tbl_list .tbl .tbl_row {
+    display: table;
+    width: 100%;
+}
+
+
+.layout_community .tbl_list .tbl .body_group .tbl_cell a {
+    color: #777;
+}
+
+#registText{
+	    float: right;
+    display: inline-block;
+    width: 88px;
+    height: 27px;
+    font-size: 1em;
+    background-color: #f88b46;
+    color: #fff;
+    line-height: 24px;
+    text-align: center;
+    margin-top: 31%;
+}
+
+#registText a{
+
+	color:white;
+
+}
+
+	#insertFileDiv file{
+		width: 300px;
+   		float: left;
+	}
+	
+.file_input label, .button-delete-file {
+    position:relative;
+    cursor:pointer;
+    display:inline-block;
+    vertical-align:middle;
+    overflow:hidden;
+    width:100px;
+    height:30px;
+    background:#777;
+    color:#fff;
+    text-align:center;
+    line-height:30px;
+}
+.file_input label input {
+    position:absolute;
+    width:0;
+    height:0;
+    overflow:hidden;
+}
+.file_input input[type=text] {
+    vertical-align:middle;
+    display:inline-block;
+    width:400px;
+    height:28px;
+    line-height:28px;
+    font-size:11px;
+    padding:0;
+    border:0;
+    border:1px solid #777;
+}
+
+#testFile{
+	position: relative;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    width: 168px;
+    height: 30px;
+    background: #777;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+	cursor:pointer;
+	font-size:15px;
+}
+
+.layer{
+	color: #000000a3;
+    font-size: 20px;
+    font-weight: 400;
+
+}
+
+
+

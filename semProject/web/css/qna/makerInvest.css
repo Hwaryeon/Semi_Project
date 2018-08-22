@@ -1,0 +1,96 @@
+
+.guide_article .tit_guide {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    font-size: 1.875em;
+    color: #000;
+    font-weight: 400;
+}
+
+.guide_article .tit_guide .label_support {
+    background-color: #80c72d;
+}
+
+.guide_article .tit_guide .label_stock, .guide_article .tit_guide .label_support {
+    display: inline-block;
+    width: 9%;
+    height: 30px;
+    margin: .8% 10px 0 0;
+    line-height: 30px;
+    text-align: center;
+    font-size: .563em;
+    color: #fff;
+    font-weight: 400;
+    vertical-align: top;
+}
+
+.guide_article .box_guide .list_guide li .tit_list {
+    margin-bottom: 10px;
+    color: #48494a;
+    font-size: 1.125em;
+}
+
+.box_accor .tit_list {
+    display: block;
+    position: relative;
+    padding: 2% 5% 2% 2%;
+    color: #48494a;
+    font-size: 1em;
+}
+
+.box_accor {
+    border-top: 1px solid #48494a;
+}
+
+.box_accor .tit_list{
+	font-size:20px;
+}
+
+.guide_article .tit_guide .label_stock {
+    background-color: #05a7e2;
+}
+
+.guide_article .box_guide .txt_prepare {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-top: 30px;
+    padding-left: 64px;
+    font-size: .875em;
+    color: #48494a;
+}
+
+.guide_article .box_guide .txt_prepare .label_prepare {
+    display: inline;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 8px;
+    height: 21px;
+    border-radius: 5px;
+    line-height: 21px;
+    text-align: center;
+    background-color: #999;
+    color: #fff;
+}
+
+.guide_article .box_guide .link_go {
+    display: inline-block;
+    height: 35px;
+    margin: 15px 0;
+    line-height: 35px;
+    padding: 0 15px;
+    color: #fff;
+    background-color: #777;
+    font-size: .75em;
+}
+
+.guide_article .box_guide .txt_import {
+    display: block;
+    padding-left: 14px!important;
+    margin-left: 10px;
+    color: #f66;
+    text-indent: -10px;
+    font-size: 1em;
+}

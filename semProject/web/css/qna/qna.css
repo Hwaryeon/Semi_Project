@@ -1,0 +1,671 @@
+*, :after, :before, article, aside, div, footer, header, main, nav, section {
+    /*-webkit-*/box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#omcWrap{
+	margin-top: 87px;	
+}
+
+blockquote, body, button, code, dd, div, dl, dt, fieldset, figure, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, select, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+body {
+    min-width: 320px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: Spoqa Han Sans,Apple SD Gothic Neo,Malgun Gothic,Dotum,Hevetica,Arial,sans-serif;
+    background-color: #fff;
+    color: #303030;
+    /*-webkit-*/text-size-adjust: none;
+    -ms-text-size-adjust: none;
+}
+
+#omcContainer {
+     background-color: #f7f7f7; 
+}
+
+.head_guide {
+    width: 100%;
+    padding: 3.4% 0;
+    background: url(../../images/qna/bg_guide.png) no-repeat 50% 0;
+   background-color:lightgray;
+    background-size: cover;
+}
+
+@media only screen and (max-width: 1024px)
+.guide_nav .inner {
+    padding: 0;
+    border: 0 none;
+    border-top: 1px solid #d6d6d6;
+}
+
+@media only screen and (max-width: 1024px)
+.guide_nav .list_nav_guide {
+    margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 1024px)
+#mContent.guide_cont {
+    padding: 0;
+}
+
+@media only screen and (max-width: 1024px)
+.guide_nav .list_nav_guide .link_cont {
+    padding: 10px 0;
+    font-size: .875em;
+}
+
+@media only screen and (max-width: 1024px)
+.guide_nav .list_nav_guide .list_sub {
+    display: none;
+    position: absolute;
+    top: 43px;
+    left: 25%;
+    width: 50%;
+    margin: 0;
+}
+
+@media only screen and (max-width: 1024px)
+.guide_nav .list_nav_guide:after {
+    display: block;
+    visibility: hidden;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    clear: both;
+    content: "";
+}
+
+@media only screen and (max-width: 1024px)
+.guide_nav .list_nav_guide .list_sub li .link_sub {
+    display: block;
+    height: 40px;
+    font-size: .875em;
+    line-height: 40px;
+}
+
+@media only screen and (max-width: 1024px)
+.guide_nav .list_nav_guide .list_sub li {
+    width: 50%;
+    padding: 0 20px;
+}
+
+a {
+    color: #303030;
+}
+.guide_nav .list_nav_guide .lnb_depth .link_depth {
+    font-size: .875em;
+    color: #999;
+}
+a:/*-webkit-*/any-link {
+    color: /*-webkit-*/link;
+    cursor: pointer;
+   /*  text-decoration: underline; */
+}
+
+.guide_nav .list_nav_guide .link_cont {
+    display: block;
+    padding: 5px 0;
+    border-bottom: 1px solid #d6d6d6;
+    font-size: 1.125em;
+    color: #333;
+}
+
+a, a:active, a:hover {
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 1024px)
+.guide_nav .list_nav_guide li {
+    float: left;
+    width: 33.3333%;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+dl, li, menu, ol, ul {
+    list-style: none;
+}
+
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    /*-webkit-*/margin-before: 1em;
+    /*-webkit-*/margin-after: 1em;
+    /*-webkit-*/margin-start: 0px;
+    /*-webkit-*/margin-end: 0px;
+    /*-webkit-*/padding-start: 40px;
+}
+.inner {
+    max-width: 1224px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.guide_nav .inner {
+    padding: 40px;
+    border: 1px solid #d6d6d6;
+    background-color: #fff;
+}
+
+
+#mContent, .cont_main #mContent {
+    padding-top: 60px;
+}
+
+#mContent {
+    min-height: 600px;
+    padding-bottom: 60px;
+}
+
+body {
+    min-width: 320px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: Spoqa Han Sans,Apple SD Gothic Neo,Malgun Gothic,Dotum,Hevetica,Arial,sans-serif;
+    background-color: #fff;
+    color: #303030;
+    /*-webkit-*/text-size-adjust: none;
+    -ms-text-size-adjust: none;
+}
+
+.head_guide .wrap_txt {
+    max-width: 1224px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 12px;
+}
+
+.head_guide .wrap_txt .sub_txt {
+    font-size: 1em;
+    color: #fff;
+    line-height: 1.5em;
+}
+
+.head_guide .wrap_txt:after {
+    display: block;
+    visibility: hidden;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    clear: both;
+    content: "";
+}
+
+.guide_cont {
+    max-width: 1224px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.guide_nav {
+    float: left;
+    width: 25%;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+.screen_out {
+    overflow: hidden;
+    position: absolute;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+h3 {
+    font-size: 1.25em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    font-family: Spoqa Han Sans,Apple SD Gothic Neo,Malgun Gothic,Dotum,Hevetica,Arial,sans-serif;
+    word-break: keep-all;
+}
+
+
+@media only screen and (max-width: 1024px)
+.guide_article {
+    float: none;
+    width: 100%;
+    padding: 0;
+}
+
+.guide_article {
+    float: left;
+    width: 75%;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+article, aside, figcaption, figure, footer, header, main, nav, section {
+    display: block;
+}
+
+
+@media only screen and (max-width: 1024px)
+.guide_article .inner {
+    padding: 30px 20px;
+    border-left: 0 none;
+    border-right: 0 none;
+}
+
+.guide_article .inner {
+    padding: 70px 80px;
+    border: 1px solid #d6d6d6;
+    background-color: #fff;
+}
+
+.inner {
+    max-width: 1224px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.guide_article .box_guide {
+    margin-bottom: 4.7%;
+}
+
+@media only screen and (max-width: 640px)
+.guide_article .box_guide .tit_box {
+    padding-bottom: 9px;
+    font-size: 1em;
+}
+.guide_article .box_guide .tit_box {
+    display: block;
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #8f8f8f;
+    font-size: 1.25em;
+    color: #000;
+    font-weight: 400;
+}
+
+@media only screen and (max-width: 640px)
+.guide_article .box_guide .txt_desc {
+    padding-top: 20px;
+    font-size: .875em;
+    line-height: 1.375em;
+}
+
+.guide_article .box_guide .txt_desc {
+    padding-top: 24px;
+    font-size: 1em;
+    color: #48494a;
+    line-height: 1.5em;
+}
+
+.guide_article .box_guide .wrap_img {
+    display: block;
+    margin: 15px 0;
+    text-align: center;
+}
+
+@media only screen and (max-width: 640px)
+.guide_article .box_guide .list_guide {
+    margin-bottom: 20px;
+}
+
+.guide_article .box_guide .list_guide {
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 640px)
+.guide_article .box_guide .list_guide li {
+    line-height: 1.375em;
+}
+
+@media only screen and (max-width: 640px)
+.guide_article .box_guide .list_guide>li {
+    margin-top: 20px;
+}
+
+.guide_article .box_guide .list_guide li {
+    line-height: 1.75em;
+    word-break: keep-all;
+}
+
+.guide_article .box_guide .list_guide>li {
+    margin-top: 33px;
+}
+
+.guide_article .box_guide:last-of-type .tit_box {
+    border-bottom: 0 none;
+}
+
+@media only screen and (max-width: 640px)
+.guide_article .box_guide .tit_box {
+    padding-bottom: 9px;
+    font-size: 1em;
+}
+
+.guide_article .box_guide .tit_box {
+    display: block;
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #8f8f8f;
+    font-size: 1.25em;
+    color: #000;
+    font-weight: 400;
+}
+
+.faq_cont .list_accor {
+    border-bottom: 1px solid #48494a;
+}
+
+.list_accor {
+    width: 100%;
+    border-top: 1px solid #48494a;
+}
+
+.list_accor li {
+    border-bottom: 1px solid #d6d6d6;
+}
+
+@media only screen and (max-width: 640px)
+.list_accor li .tit_accor {
+    padding: 3.5% 11% 3.5% 0;
+    font-size: .875em;
+}
+
+.list_accor li .tit_accor {
+    display: block;
+    position: relative;
+    padding: 2% 5% 2% 2%;
+    color: #777;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+address, caption, cite, code, dfn, em, var {
+    font-style: normal;
+    font-weight: 400;
+}
+
+.list_accor li .tit_accor .txt_cate {
+    color: #48494a;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 640px)
+.list_accor li .tit_accor:after {
+    width: 11.5px;
+    height: 7px;
+    margin-top: -3.5px;
+    /* background: url(/omc/asset/images/sprites_m/m_ico_down.png) no-repeat 0 0; */
+    background-size: 100% auto;
+}
+
+.list_accor li .tit_accor:after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    width: 17px;
+    height: 10px;
+    margin-top: -5px;
+    background: url(/omc/asset/images/sprites_pc/ico_down.png) no-repeat 0 0;
+    content: "";
+}
+
+@media only screen and (max-width: 640px)
+.list_accor li .cont_accor {
+    padding: 6% 5.2%;
+    display: none;
+    padding: 3% 5.2%;
+    font-size: .75em;
+    line-height: 1.5em;
+}
+.list_accor li .cont_accor {
+    display: none;
+    padding: 3% 5.2%;
+    background-color: #f7f7f7;
+    color: #777;
+    font-size: .875em;
+}
+
+.tit_down:hover .cont_accor {
+    display: table;
+}
+
+.tit_down:hover {
+	background:#c4e3be;
+}
+
+.guide_nav .list_nav_guide>li {
+    margin-bottom: 30px;
+}
+
+.guide_nav .list_nav_guide .list_sub {
+    margin-top: 10px;
+}
+
+
+
+
+.guide_top {
+    max-width: 1224px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.guide_top .search_area {
+    margin-bottom: 28px;
+}
+.search_form {
+    position: relative;
+    width: 44%;
+    margin: 0 auto;
+}
+fieldset, img {
+    border: 0 none;
+}
+.search_form .tit_search {
+    margin-bottom: 20px;
+    font-size: 1.875em;
+    text-align: center;
+}
+.tf_comm {
+    display: block;
+    position: relative;
+}
+
+.search_form .tf_comm .placehoder {
+    padding: 3% 10px;
+    font-size: 1em;
+}
+.tf_comm .placehoder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+    font-size: .875em;
+    color: #999;
+    cursor: text;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+.search_form .tf_comm .tf_cont {
+    width: 100%;
+    padding: 3.2% 10px;
+    text-align: center;
+}
+.tf_comm .tf_cont {
+    display: block;
+    padding: 5px 10px;
+    border: 1px solid #e1e1e1;
+    font-size: .875em;
+    color: #303030;
+}
+.search_form .tf_comm .btn_search {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 11%;
+    height: 95%;
+    background-color: #fff;
+}
+.search_form .tf_comm .btn_search .ico_comm {
+    width: 26px;
+    height: 28px;
+    background-position: -909px -882px;
+}
+.ico_comm {
+    display: inline-block;
+    overflow: hidden;
+    background-image: url(../../images/qna/search.png);
+    vertical-align: middle;
+    text-indent: -9999px;
+}
+.faq_panel {
+    position: relative;
+}
+.faq_panel .tit_faq, .faq_panel .tit_target {
+    height: 39px;
+    font-weight: 400;
+    line-height: 39px;
+}
+.faq_panel .tit_faq {
+    font-size: 1.25em;
+    color: #000;
+}
+.faq_panel .on .tit_target {
+    z-index: 1;
+    height: 40px;
+    border-color: #8f8f8f;
+    border-bottom: 0 none;
+    background-color: #fff;
+    color: #8f8f8f;
+}
+.faq_guest .tit_target {
+    right: 114px;
+}
+.faq_panel .tit_target {
+    position: absolute;
+    top: 0;
+    width: 115px;
+    border: 1px solid #ccc;
+    font-size: .875em;
+    background-color: #e1e1e1;
+    color: #777;
+    text-align: center;
+}
+
+.faq_panel .on .list_top5 {
+    display: block;
+}
+.faq_panel .list_top5 {
+    display: none;
+    border-top: 1px solid #8f8f8f;
+    border-bottom: 1px solid #8f8f8f;
+    background-color: #fff;
+}
+.faq_panel .list_top5 li:first-child {
+    border-top: 0 none;
+}
+.faq_panel .list_top5 li {
+    padding: 12px 0;
+    border-top: 1px solid #d6d6d6;
+}
+.faq_host .tit_target {
+    right: 0;
+}
+.guide_links {
+    overflow: hidden;
+    margin-top: 70px;
+    border-right: 1px solid #e1e1e1;
+}
+.guide_links li {
+    float: left;
+    width: 33.333%;
+    border-left: 1px solid #e1e1e1;
+    text-align: center;
+}
+.guide_links .tit_common {
+    background: url(../../images/qna/guideMain1.PNG) no-repeat 50% 65px;
+}
+.guide_links .tit_guest {
+    background: url(../../images/qna/guideMain2.PNG) no-repeat 50% 65px;
+}
+.guide_links .tit_host {
+    background: url(../../images/qna/guideMain3.PNG) no-repeat 50% 65px;
+}
+.guide_links strong {
+    display: block;
+    padding-bottom: 210px;
+    font-weight: 400;
+    font-size: 1.25em;
+    line-height: 1.2;
+}
+.guide_links a {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: .875em;
+    background-color: #777;
+    color: #fff;
+}
+
+.faq_panel .label_support {
+    background-color: #80c72d;
+}
+.faq_panel .label_stock {
+    background-color: #05a7e2;
+}
+
+.faq_panel .label_stock, .faq_panel .label_support {
+    display: inline-block;
+    width: 8.745%;
+    height: 30px;
+    margin-right: 5px;
+    font-size: .875em;
+    line-height: 30px;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.faq_panel .on .tit_target {
+    z-index: 1;
+    height: 40px;
+    border-color: #8f8f8f;
+    border-bottom: 0 none;
+    background-color: #fff;
+    color: #8f8f8f;
+}
+.faq_panel .on .tit_target:after {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    width: 38px;
+    height: 2px;
+    margin-left: -19px;
+    background-color: #f88b46;
+    content: "";
+}
+
+
+
+
+
+
+
+
+
+
+
+

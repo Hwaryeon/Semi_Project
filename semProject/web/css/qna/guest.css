@@ -1,0 +1,47 @@
+.guide_article .tit_guide {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    font-size: 1.875em;
+    color: #000;
+    font-weight: 400;
+}
+
+.guide_article .tit_guide .label_support {
+    background-color: #80c72d;
+}
+
+.guide_article .tit_guide .label_stock, .guide_article .tit_guide .label_support {
+    display: inline-block;
+    width: 9%;
+    height: 30px;
+    margin: .8% 10px 0 0;
+    line-height: 30px;
+    text-align: center;
+    font-size: .563em;
+    color: #fff;
+    font-weight: 400;
+    vertical-align: top;
+}
+
+.guide_article .box_guide .list_guide li .tit_list {
+    margin-bottom: 10px;
+    color: #48494a;
+    font-size: 1.125em;
+}
+
+.box_accor .tit_list {
+    display: block;
+    position: relative;
+    padding: 2% 5% 2% 2%;
+    color: #48494a;
+    font-size: 1em;
+}
+
+.box_accor {
+    border-top: 1px solid #48494a;
+}
+
+.box_accor .tit_list{
+	font-size:20px;
+}
