@@ -228,6 +228,135 @@ public class FundingDao {
 		
 		return pList;
 	}
+
+	public ArrayList<Product> mainFundingList(Connection con) {
+		ArrayList<Product> pList = new ArrayList<Product>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		Product p = null;
+		
+		String query = prop.getProperty("mainFundingList");
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()){
+				p = new Product();
+				
+				p.setP_id(rset.getInt("p_id"));
+				p.setP_code(rset.getInt("p_code")+"");
+				p.setUser_id(rset.getInt("user_id"));
+				p.setP_name(rset.getString("p_name"));
+				p.setOpenDate(Math.round(rset.getInt("(r.END_DATE-sysdate)")));
+				p.setcAmount(rset.getInt("CLOSING_AMOUNT")+"");
+				p.setP_intro(rset.getString("intro"));
+				p.setOpenDate(rset.getInt("(r.END_DATE-sysdate)"));
+				p.setCorporate_name(rset.getString("CORPORATE_NAME"));
+				p.setOrigin_name(rset.getString("ORIGIN_NAME"));
+				p.setChange_name(rset.getString("CHANGE_NAME"));
+				p.setFile_path(rset.getString("FILE_PATH"));
+				
+				pList.add(p);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(stmt);
+			close(rset);
+		}
+		
+		
+		return pList;
+	}
+
+	public ArrayList<Product> hotFundingList(Connection con) {
+		ArrayList<Product> pList = new ArrayList<Product>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		Product p = null;
+		
+		String query = prop.getProperty("hotFundingList");
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()){
+				p = new Product();
+				
+				p.setP_id(rset.getInt("p_id"));
+				p.setP_code(rset.getInt("p_code")+"");
+				p.setUser_id(rset.getInt("user_id"));
+				p.setP_name(rset.getString("p_name"));
+				p.setOpenDate(Math.round(rset.getInt("(r.END_DATE-sysdate)")));
+				p.setcAmount(rset.getInt("CLOSING_AMOUNT")+"");
+				p.setP_intro(rset.getString("intro"));
+				p.setOpenDate(rset.getInt("(r.END_DATE-sysdate)"));
+				p.setCorporate_name(rset.getString("CORPORATE_NAME"));
+				p.setOrigin_name(rset.getString("ORIGIN_NAME"));
+				p.setChange_name(rset.getString("CHANGE_NAME"));
+				p.setFile_path(rset.getString("FILE_PATH"));
+				
+				pList.add(p);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(stmt);
+			close(rset);
+		}
+		
+		
+		return pList;
+	}
+
+	public ArrayList<Product> closeFundingList(Connection con) {
+		ArrayList<Product> pList = new ArrayList<Product>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		Product p = null;
+		
+		String query = prop.getProperty("closeFundingList");
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()){
+				p = new Product();
+				
+				p.setP_id(rset.getInt("p_id"));
+				p.setP_code(rset.getInt("p_code")+"");
+				p.setUser_id(rset.getInt("user_id"));
+				p.setP_name(rset.getString("p_name"));
+				p.setOpenDate(Math.round(rset.getInt("(r.END_DATE-sysdate)")));
+				p.setcAmount(rset.getInt("CLOSING_AMOUNT")+"");
+				p.setP_intro(rset.getString("intro"));
+				p.setOpenDate(rset.getInt("(r.END_DATE-sysdate)"));
+				p.setCorporate_name(rset.getString("CORPORATE_NAME"));
+				p.setOrigin_name(rset.getString("ORIGIN_NAME"));
+				p.setChange_name(rset.getString("CHANGE_NAME"));
+				p.setFile_path(rset.getString("FILE_PATH"));
+				
+				pList.add(p);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(stmt);
+			close(rset);
+		}
+		
+		
+		return pList;
+	}
 	
 	
 	

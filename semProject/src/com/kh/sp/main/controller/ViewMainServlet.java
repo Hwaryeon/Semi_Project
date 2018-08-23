@@ -29,11 +29,17 @@ public class ViewMainServlet extends HttpServlet {
 		ArrayList<Board> list = new MainService().startMain();
 		 
 		ArrayList<Product> newFList = new FundingService().newFundingList();
-		
+		ArrayList<Product> mainFList = new FundingService().mainFundingList();
+		ArrayList<Product> hotFList = new FundingService().hotFundingList();
+		ArrayList<Product> closeFList = new FundingService().closeFundingList();
 		
 		if(list.size() > 0){
 			request.setAttribute("list", list);
 			request.setAttribute("newFList", newFList);
+			request.setAttribute("mainFList", mainFList);
+			request.setAttribute("hotFList", hotFList);
+			request.setAttribute("closeFList", closeFList);
+			
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			
 		}else{
