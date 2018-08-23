@@ -30,6 +30,7 @@ body {
   } 
 th, td {
    text-align: center;
+   font-size:14px;
 }
 select{
     color:black;
@@ -65,7 +66,7 @@ select{
 <div id="text">
 <div id="container">
    <ul class="nav nav-tabs">
-				<li role="presentation" class="active"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;가입자 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;가입자 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 				
    </ul>
    <br>

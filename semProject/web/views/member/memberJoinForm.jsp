@@ -114,7 +114,8 @@ p, label {
 	</div>
 
 	<div class="container">
-		<h2>이메일 회원가입</h2>
+		<h2 style="font-size:30px">이메일 회원가입</h2>
+		<br>
 		<form class="form-joinMember" action="memberJoinForm2.jsp" method="post" onsubmit='return validate();'>
 
 			<span id="reauth-email" class="reauth-email"></span>
@@ -133,10 +134,10 @@ p, label {
 				<tr>
 					<td colspan="3">
 						<div id="hidden1">
-							<label>인증번호가 메일로 발송 되었습니다.</label>
+							<label style="font-size:14px">인증번호가 메일로 발송 되었습니다.</label>
 						</div>
 						<div id="hidden2">
-							<label>이미 가입된 계정입니다. 로그인 해주세요.</label>
+							<label style="font-size:14px">이미 가입된 계정입니다. 로그인 해주세요.</label>
 						</div>
 						<input type="hidden" id="authenticationNum">
 					</td>
@@ -147,7 +148,7 @@ p, label {
 				</tr>
 			</table>
 			<div id="hidden3">
-							<label>인증 번호가 일치하지 않습니다. 확인해주세요.</label>
+							<label style="font-size:14px">인증 번호가 일치하지 않습니다. 확인해주세요.</label>
 			</div>
 			<button class="form-control btn btn-primary" type="submit">인증하기</button>
 
@@ -155,7 +156,7 @@ p, label {
 		<!-- /form -->
 		
 		<hr>
-		<h2>간편 회원가입</h2>
+		<h2 style="font-size:30px">간편 회원가입</h2>
 		
 		<div class="social-login" align="center">
 			<div class="naver" align="center">
@@ -166,9 +167,9 @@ p, label {
 		</div>
 		<br>
 		<div class="bottom-message">
-			<p>
+			<p style="font-size:14px;color:rgba(0, 0, 0, 0.54);">
 				이미 계정이 있으신가요?<br>
-				<a href="<%=request.getContextPath() %>/loginForm.jsp">기존 계정으로 로그인</a>
+				<a href="loginForm.jsp" style="color:#428bca;">기존 계정으로 로그인</a>
 			</p>
 		</div>
 	</div>

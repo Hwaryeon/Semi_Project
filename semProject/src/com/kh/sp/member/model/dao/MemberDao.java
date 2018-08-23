@@ -56,17 +56,17 @@ private Properties prop = new Properties();
 				loginUser.setUserName(rset.getString("user_name"));
 				loginUser.setNickName(rset.getString("nick_name"));
 				loginUser.setPhone(rset.getString("phone"));
-				loginUser.setAddress(rset.getString("address"));
 				loginUser.setInvestorGrade(rset.getString("investor_grade"));
+				loginUser.setInvestmentLimit(rset.getString("investor_limit"));
 				loginUser.setBusinessLicenseNo(rset.getString("business_license_no"));
 				loginUser.setCorporateName(rset.getString("corporate_name"));
 				loginUser.setCorporateRegistrationNo(rset.getString("corporate_registration_no"));
-				loginUser.setAddress(rset.getString("address"));
 				loginUser.setUserClass(rset.getString("user_class"));
 				loginUser.setEnrollDate(rset.getDate("enroll_date"));
 				loginUser.setStatus(rset.getString("status"));
 				loginUser.setPwdStatus(rset.getString("pwd_status"));
 				loginUser.setPlatformId(rset.getString("platform_id"));
+				loginUser.setGradingStatus("grading_status");
                  
 				System.out.println(loginUser);
 			}
@@ -139,17 +139,17 @@ private Properties prop = new Properties();
 				m.setUserName(rset.getString("user_name"));
 				m.setNickName(rset.getString("nick_name"));
 				m.setPhone(rset.getString("phone"));
-				m.setAddress(rset.getString("address"));
 				m.setInvestorGrade(rset.getString("investor_grade"));
+				m.setInvestmentLimit(rset.getString("investor_limit"));
 				m.setBusinessLicenseNo(rset.getString("business_license_no"));
 				m.setCorporateName(rset.getString("corporate_name"));
 				m.setCorporateRegistrationNo(rset.getString("corporate_registration_no"));
-				m.setAddress(rset.getString("address"));
 				m.setUserClass(rset.getString("user_class"));
 				m.setEnrollDate(rset.getDate("enroll_date"));
 				m.setStatus(rset.getString("status"));
 				m.setPwdStatus(rset.getString("pwd_status"));
 				m.setPlatformId(rset.getString("platform_id"));
+				m.setGradingStatus("grading_status");
 			}
 			
 			
@@ -241,17 +241,17 @@ private Properties prop = new Properties();
 				loginUser.setUserName(rset.getString("user_name"));
 				loginUser.setNickName(rset.getString("nick_name"));
 				loginUser.setPhone(rset.getString("phone"));
-				loginUser.setAddress(rset.getString("address"));
 				loginUser.setInvestorGrade(rset.getString("investor_grade"));
+				loginUser.setInvestmentLimit(rset.getString("investor_limit"));
 				loginUser.setBusinessLicenseNo(rset.getString("business_license_no"));
 				loginUser.setCorporateName(rset.getString("corporate_name"));
 				loginUser.setCorporateRegistrationNo(rset.getString("corporate_registration_no"));
-				loginUser.setAddress(rset.getString("address"));
 				loginUser.setUserClass(rset.getString("user_class"));
 				loginUser.setEnrollDate(rset.getDate("enroll_date"));
 				loginUser.setStatus(rset.getString("status"));
 				loginUser.setPwdStatus(rset.getString("pwd_status"));
 				loginUser.setPlatformId(rset.getString("platform_id"));
+				loginUser.setGradingStatus("grading_status");
 			}
 			
 		} catch (SQLException e) {
@@ -289,17 +289,17 @@ private Properties prop = new Properties();
 				m.setUserName(rset.getString("user_name"));
 				m.setNickName(rset.getString("nick_name"));
 				m.setPhone(rset.getString("phone"));
-				m.setAddress(rset.getString("address"));
 				m.setInvestorGrade(rset.getString("investor_grade"));
+				m.setInvestmentLimit(rset.getString("investor_limit"));
 				m.setBusinessLicenseNo(rset.getString("business_license_no"));
 				m.setCorporateName(rset.getString("corporate_name"));
 				m.setCorporateRegistrationNo(rset.getString("corporate_registration_no"));
-				m.setAddress(rset.getString("address"));
 				m.setUserClass(rset.getString("user_class"));
 				m.setEnrollDate(rset.getDate("enroll_date"));
 				m.setStatus(rset.getString("status"));
 				m.setPwdStatus(rset.getString("pwd_status"));
 				m.setPlatformId(rset.getString("platform_id"));
+				m.setGradingStatus("grading_status");
 			}
 			
 		} catch (SQLException e) {
@@ -335,17 +335,17 @@ private Properties prop = new Properties();
 				m.setUserName(rset.getString("user_name"));
 				m.setNickName(rset.getString("nick_name"));
 				m.setPhone(rset.getString("phone"));
-				m.setAddress(rset.getString("address"));
 				m.setInvestorGrade(rset.getString("investor_grade"));
+				m.setInvestmentLimit(rset.getString("investor_limit"));
 				m.setBusinessLicenseNo(rset.getString("business_license_no"));
 				m.setCorporateName(rset.getString("corporate_name"));
 				m.setCorporateRegistrationNo(rset.getString("corporate_registration_no"));
-				m.setAddress(rset.getString("address"));
 				m.setUserClass(rset.getString("user_class"));
 				m.setEnrollDate(rset.getDate("enroll_date"));
 				m.setStatus(rset.getString("status"));
 				m.setPwdStatus(rset.getString("pwd_status"));
 				m.setPlatformId(rset.getString("platform_id"));
+				m.setGradingStatus(rset.getString("grading_status"));
 			}
 			
 		} catch (SQLException e) {
@@ -381,17 +381,17 @@ private Properties prop = new Properties();
 				m.setUserName(rset.getString("user_name"));
 				m.setNickName(rset.getString("nick_name"));
 				m.setPhone(rset.getString("phone"));
-				m.setAddress(rset.getString("address"));
 				m.setInvestorGrade(rset.getString("investor_grade"));
+				m.setInvestmentLimit(rset.getString("investor_limit"));
 				m.setBusinessLicenseNo(rset.getString("business_license_no"));
 				m.setCorporateName(rset.getString("corporate_name"));
 				m.setCorporateRegistrationNo(rset.getString("corporate_registration_no"));
-				m.setAddress(rset.getString("address"));
 				m.setUserClass(rset.getString("user_class"));
 				m.setEnrollDate(rset.getDate("enroll_date"));
 				m.setStatus(rset.getString("status"));
 				m.setPwdStatus(rset.getString("pwd_status"));
 				m.setPlatformId(rset.getString("platform_id"));
+				m.setGradingStatus(rset.getString("grading_status"));
 			}
 			
 		} catch (SQLException e) {
@@ -427,17 +427,17 @@ private Properties prop = new Properties();
 				m.setUserName(rset.getString("user_name"));
 				m.setNickName(rset.getString("nick_name"));
 				m.setPhone(rset.getString("phone"));
-				m.setAddress(rset.getString("address"));
 				m.setInvestorGrade(rset.getString("investor_grade"));
+				m.setInvestmentLimit(rset.getString("investor_limit"));
 				m.setBusinessLicenseNo(rset.getString("business_license_no"));
 				m.setCorporateName(rset.getString("corporate_name"));
 				m.setCorporateRegistrationNo(rset.getString("corporate_registration_no"));
-				m.setAddress(rset.getString("address"));
 				m.setUserClass(rset.getString("user_class"));
 				m.setEnrollDate(rset.getDate("enroll_date"));
 				m.setStatus(rset.getString("status"));
 				m.setPwdStatus(rset.getString("pwd_status"));
 				m.setPlatformId(rset.getString("platform_id"));
+				m.setGradingStatus(rset.getString("grading_status"));
 			}
 			
 		} catch (SQLException e) {
@@ -485,8 +485,9 @@ private Properties prop = new Properties();
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			
-			pstmt.setString(1, userId);
+			pstmt.setString(1, "500/1000");
+			pstmt.setString(2, "대기");
+			pstmt.setString(3, userId);
 			
 			result = pstmt.executeUpdate();
 			

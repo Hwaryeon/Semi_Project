@@ -7,6 +7,7 @@ ArrayList<Product> mainFList = (ArrayList<Product>)request.getAttribute("mainFLi
 ArrayList<Product> hotFList = (ArrayList<Product>)request.getAttribute("hotFList");
 ArrayList<Product> closeFList = (ArrayList<Product>)request.getAttribute("closeFList");
 %>    
+
 <!DOCTYPE html>
 <html>
 <head>
