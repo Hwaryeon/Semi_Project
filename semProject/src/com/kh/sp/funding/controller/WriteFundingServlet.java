@@ -32,16 +32,16 @@ public class WriteFundingServlet extends HttpServlet {
 		String cAmount = request.getParameter("cAmount");
 		String openDate = request.getParameter("openDate"); 	// 오픈 기간
 		
-		/*System.out.println(title);
+		System.out.println(title);
 		System.out.println(closeType);
 		System.out.println(feeType);
 		System.out.println(text);
 		System.out.println(cAmount);
-		System.out.println(openDate);*/
+		System.out.println(openDate);
 		
 		
 		int user = 999; 	// 유저 아이디 임시로 넣어놈
-		
+		System.out.println(user);
 		Product p = new Product(closeType, user, title, feeType, text, Integer.parseInt(openDate), cAmount);
 		
 		int result = new FundingService().insertFunding(p);

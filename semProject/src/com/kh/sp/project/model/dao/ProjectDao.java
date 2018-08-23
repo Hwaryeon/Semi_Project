@@ -97,7 +97,7 @@ public class ProjectDao {
 			rset = stmt.executeQuery(query);
 			
 			if(rset.next()) {
-				pid = rset.getInt("currval")-1;
+				pid = rset.getInt("MAX(P_ID)");
 			}
 			System.out.println("pid :" + pid);
 		} catch (SQLException e) {
@@ -132,6 +132,7 @@ public class ProjectDao {
 			else level = 1;
 			
 			pstmt.setInt(5, level);
+			pstmt.setInt(6, fileList.get(i).getPid());
 			result = pstmt.executeUpdate();
 			System.out.println("result : "+result);
 		}

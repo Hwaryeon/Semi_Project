@@ -24,7 +24,7 @@ public class FundingService {
 	}
 
 	public int insertFunding(Product p) {
-		
+		System.out.println("여기까지는 온다..");
 		Connection con = getConnection();
 		
 		int result = new FundingDao().insertFunding(con, p);
@@ -32,7 +32,6 @@ public class FundingService {
 		if(result > 0){
 			   
 			int pid = new FundingDao().selectCurrval(con);
-			
 			
 			result = new FundingDao().detailPoductInsert(con, pid);
 			
