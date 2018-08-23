@@ -304,7 +304,8 @@ background:none;
 
 
 .funding_area1{
-    width: 98%;
+    /* width: 98%; */
+    min-width: 1400px;
     text-align: center;
     height: 550px;
     /* border: 1px solid black; */

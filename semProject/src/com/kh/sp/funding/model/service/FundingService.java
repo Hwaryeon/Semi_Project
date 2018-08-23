@@ -1,6 +1,7 @@
 package com.kh.sp.funding.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.sp.board.model.dao.BoardDao;
@@ -48,6 +49,20 @@ public class FundingService {
 		close(con);
 		
 		return result;
+	}
+
+	public ArrayList<Product> newFundingList() {
+		
+		Connection con = getConnection();
+		
+		ArrayList<Product> pList = new FundingDao().newFundingList(con);
+		
+		ArrayList<Product> pList2 = new FundingDao().newFundingList2(con, pList);
+		
+		
+		close(con);
+		
+		return pList2;
 	}
 
 }

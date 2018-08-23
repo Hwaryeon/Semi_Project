@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.sp.board.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.sp.board.model.vo.*, com.kh.sp.funding.model.vo.*"%>
 <%
 ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+ArrayList<Product> newFList = (ArrayList<Product>)request.getAttribute("newFList");
 %>    
 <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  -->
 <!DOCTYPE html>
@@ -306,93 +307,64 @@ $(function(){
 				</span>
 				</strong> 
 				</div>
+				
+				
 			<div class="funding_area1" >
-			
-					<div class="funding_p2" style="margin-left: 72px;">
+				<!-- new 펀딩 상품  시작 -->
+				<% int i = 0; %>
+				<% for(Product p : newFList) { %>
+					<% if(i == 0){ %>
+						<div class="funding_p2" style="margin-left: 72px;">
+					<% }else{ %>
+						<div class="funding_p2">
+					
+					<% } %>
+					<% i++; %>
 					<div class="fPic2">
 					<em class="picks-img">
 					<span class="scale" >
-					<img src="images/main/h1_3.jpg" style="width: 100%; height:225px;">
+					<!-- <img src="images/main/h1_3.jpg" style="width: 100%; height:225px;"> -->
+					
+					<img src="<%=request.getContextPath()%>/board_uploadFiles/<%=p.getChange_name() %>" style="width: 100%; height:225px;">
+					
 					</span>
 					</em>
 					<div class="progressbar-wrap">
                                    <dl>
-                                       <dt><span style="width:91%"></span></dt>
+                                       <dt><span style="width:<%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %>%"></span></dt>
                                        <dd>
-                                           <span class="percent">91%</span>
-                                           <span class="amount">1,213,123,512원 달성</span>
+                                           <span class="percent">
+                                           
+                                           
+                                           <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %>%
+                                            </span>
+                                           <span class="amount"><%=p.getTotal_amount() %>원 달성</span>
                                            
                                            	
-                                           	<span class="days">10일 남음</span>
+                                           	<span class="days"><%=p.getOpenDate() %>일 남음</span>
                                            
                                        </dd>
                                    </dl>
                                 </div>
 					</div>
 					<div class="fCon2" style="background:#ccf2c9;">
-						<p class="title" >제목을 길게쓰면 어는정도 까지 들어갈 수 있을까</p>
-						<p class="pText">소니</p>
-						<p class="badge">※100%이상 리워드</p>
+						<p class="title" ><%= p.getP_name() %></p>
+						<p class="pText"><%= p.getCorporate_name()%></p>
+						
+						<% if(p.getP_code().equals("1") ) { %>
+							<p class="badge">※80%이상 리워드</p>
+						<% }else if(p.getP_code().equals("2")){ %>
+							<p class="badge">※100%시 마감 및 리워드</p>
+						<% }else{ %>
+							<p class="badge">※100%이상 리워드</p>
+						<% } %>
 					</div>
 				</div>
-				
-				<div class="funding_p2">
-					<div class="fPic2">
-					<em class="picks-img">
-					<span class="scale" >
-					<img src="images/main/product2.jpg" style="width: 100%; height:225px;">
-					</span>
-					</em>
-					<div class="progressbar-wrap">
-                                   <dl>
-                                       <dt><span style="width:85%"></span></dt>
-                                       <dd>
-                                           <span class="percent">85%</span>
-                                           <span class="amount">212,123,554원 달성</span>
-                                           
-                                           	
-                                           	<span class="days">5일 남음</span>
-                                           
-                                       </dd>
-                                   </dl>
-                                </div>
-					</div>
-					<div class="fCon2" style="background:#ccf2c9;">
-						<p class="title" >이거 한글폰트 엄청 안이쁘다 다른거 구해야겠다</p>
-						<p class="pText">삼성</p>
-						<p class="badge">※100%시 마감 및 리워드</p>
-					</div>
-				</div>
-				
-				<div class="funding_p2">
-					<div class="fPic2">
-					<em class="picks-img">
-					<span class="scale" >
-					<img src="images/main/product3.jpg" style="width: 100%; height:225px;">
-					</span>
-					</em>
-					<div class="progressbar-wrap">
-                                   <dl>
-                                       <dt><span style="width:99%"></span></dt>
-                                       <dd>
-                                           <span class="percent">99%</span>
-                                           <span class="amount">999,999,999원 달성</span>
-                                           
-                                           	
-                                           	<span class="days">1일 남음</span>
-                                           
-                                       </dd>
-                                   </dl>
-                                </div>
-					</div>
-					<div class="fCon2" style="background:#ccf2c9;">
-						<p class="title" >없음</p>
-						<p class="pText">네이버</p>
-						<p class="badge">※80%이상 리워드</p>
-					</div>
-				</div>
-				
+				<% } %>
 			</div>
+			
+			
+			
 			
 			</div>
 		</div>
