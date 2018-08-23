@@ -28,7 +28,7 @@ public class FundingService {
 		Connection con = getConnection();
 		
 		int result = new FundingDao().insertFunding(con, p);
-		
+		  
 		if(result > 0){
 			
 			int pid = new FundingDao().selectCurrval(con);
