@@ -18,6 +18,8 @@ ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 <script src="<%=request.getContextPath()%>/js/common/jquery.vticker-min.js"></script>
  
  
+ 
+ 
 
 <script >
 $(function(){
