@@ -42,12 +42,12 @@ public class InsertThumbnailServlet extends HttpServlet {
 		
 		if(ServletFileUpload.isMultipartContent(request)) {
 			int maxSize = 1024 * 1024 * 10;
-			//String root = request.getSession().getServletContext().getRealPath("/");
+			String root = request.getSession().getServletContext().getRealPath("/");
 			
-			//System.out.println(root);
+			System.out.println(root);
 			
-			String savePath = "C:/Users/insj2/jsp/semiProject/web/thumbnail_uploadFiles/";
-					//root + "thumbnail_uploadFiles/";
+			String savePath = root + "thumbnail_uploadFiles/";
+				
 			System.out.println(savePath);
 			/*MultipartRequest multiRequest = new MultipartRequest(request,savePath,maxSize,"UTF-8",new DefaultFileRenamePolicy());*/
 			

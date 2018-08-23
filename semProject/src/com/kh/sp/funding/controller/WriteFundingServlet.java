@@ -48,7 +48,7 @@ public class WriteFundingServlet extends HttpServlet {
 		
 		if(result > 0){
 			System.out.println("등록성공");
-			request.getRequestDispatcher("views/funding/fundingWriter2.jsp").forward(request, response);
+			request.getRequestDispatcher("views/funding/funding1.jsp").forward(request, response);
 		}else{
 			request.setAttribute("msg", "공지사항 등록 실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

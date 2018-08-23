@@ -67,15 +67,14 @@ public class ProjectDao {
 		System.out.println(a.getProjectIntro());
 		System.out.println(a.getProjectPrepare());
 		System.out.println(a.getIntro());
-		
+		System.out.println(a.getpId());
 		try {
 			pstmt = con.prepareStatement(query);
 			
-			pstmt.setString(1, a.getProjectPlan());
+			pstmt.setString(1, a.getProjectPrepare());
 			pstmt.setString(2, a.getProjectIntro());
-			pstmt.setString(3, a.getProjectPrepare());
+			pstmt.setString(3, a.getProjectPlan());
 			pstmt.setString(4, a.getIntro());
-			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -98,7 +97,7 @@ public class ProjectDao {
 			rset = stmt.executeQuery(query);
 			
 			if(rset.next()) {
-				pid = rset.getInt("currval");
+				pid = rset.getInt("currval")-1;
 			}
 			System.out.println("pid :" + pid);
 		} catch (SQLException e) {
@@ -119,6 +118,7 @@ public class ProjectDao {
 		
 		
 		String query = prop.getProperty("insertAttachment");
+		System.out.println("여기까지는 오거든");
 	try {	
 		for(int i = 0; i< fileList.size(); i++) {
 			pstmt = con.prepareStatement(query);
@@ -144,6 +144,5 @@ public class ProjectDao {
 	}
 		return result;
 	}
-	
 	
 }

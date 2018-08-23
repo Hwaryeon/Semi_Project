@@ -34,6 +34,7 @@ public class ProjectService {
 		
 		int result = 0;
 		
+		
 		int result1 = new ProjectDao().insertThumbnailContent(con,a);
 		
 		System.out.println("result1="+result1);
