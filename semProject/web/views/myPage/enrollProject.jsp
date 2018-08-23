@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.ic.mypage.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.sp.myPage.model.vo.*"%>
     <% ArrayList<MypageDetail> list = (ArrayList<MypageDetail>)request.getAttribute("list"); %>
 <!DOCTYPE html>
 <html>
