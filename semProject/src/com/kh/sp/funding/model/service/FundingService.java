@@ -64,5 +64,48 @@ public class FundingService {
 		
 		return pList2;
 	}
+	
+	public ArrayList<Product> mainFundingList() {
+		
+		Connection con = getConnection();
+		
+		ArrayList<Product> pList = new FundingDao().mainFundingList(con);
+		
+		ArrayList<Product> pList2 = new FundingDao().newFundingList2(con, pList);
+		
+		
+		close(con);
+		
+		return pList2;
+	}
+	
+	public ArrayList<Product> hotFundingList() {
+		
+		Connection con = getConnection();
+		
+		ArrayList<Product> pList = new FundingDao().hotFundingList(con);
+		
+		ArrayList<Product> pList2 = new FundingDao().newFundingList2(con, pList);
+		
+		
+		close(con);
+		
+		return pList2;
+	}
+	
+	public ArrayList<Product> closeFundingList() {
+		
+		Connection con = getConnection();
+		
+		ArrayList<Product> pList = new FundingDao().closeFundingList(con);
+		
+		ArrayList<Product> pList2 = new FundingDao().newFundingList2(con, pList);
+		
+		
+		close(con);
+		
+		return pList2;
+	}
+	
 
 }

@@ -160,7 +160,7 @@ th, td {
  */
 html {
 	background-color: white;
-	margin-top: 86px;
+	margin-top: -1px;
 }
 
 element {
