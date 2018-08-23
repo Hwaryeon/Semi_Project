@@ -29,9 +29,11 @@ body {
     margin-right:auto;
   } 
 th, td {
+font-size:14px;
    text-align: center;
 }
 select{
+font-size:14px;
     color:black;
 }
  
@@ -65,18 +67,20 @@ select{
 <div id="text">
 <div id="container">
    <ul class="nav nav-tabs">
-				<li role="presentation" class="active"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 개설 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li role="presentation"><a href="fundingStatistics2.jsp">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 성공 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 개설 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation" style="font-size: 14px;"><a href="fundingStatistics2.jsp">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 성공 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
    </ul>
    <br>
    
 
 
-   <table class="table table-hover">
+   <table class="table table-hover" id="result">
    <thead>
    <tr>
    <th>구분</th>
+   <th>등록 건수</th>
    <th>개설 건수</th>
+   <th>승인 비율</th>
    <th colspan="3">마감방식별 펀딩 개설 건수</th>
    </tr>
    <tr>
@@ -86,6 +90,8 @@ select{
    <option>년도별</option>
    </select>
    </th>
+   <th></th>
+   <th></th>
    <th></th>
    <th>80%이상 성공</th>
    <th>100%달성 마감</th>
@@ -98,6 +104,14 @@ select{
   </table>
 </div>
 </div>
+<script>
+    $(function(){
+    	
+    	var tableBody = $("#result tbody");
+		tableBody.html('');
+		
+    });
+</script>
 
 <%--  <div><%@ include file="../common/footer.jsp" %></div> --%>
 

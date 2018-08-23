@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.sp.member.model.vo.Member"%>
 <!DOCTYPE html>
-<% Member loginUser = (Member)session.getAttribute("loginUser");%>
 <html>
 <head>
 <meta content="text/html; charset=UTF-8">
@@ -55,45 +54,53 @@ p, label {
 	text-align: center;
 	font-weight: 400;
 	color: rgba(0, 0, 0, 0.54);
+} 
+p {
+    font-size:smaller;
 }
 </style>
 </head>
 <body>
-    <!-- business 회원으로 업데이트시 mypageIndex에서 보이지 않게하기 + 잘못된 접근 차단(only general 회원만 접근 가능)-->
-	<%-- <%@ include file="../common/headBar.jsp" %> --%>
+    
+	<%@ include file="../common/headBar.jsp" %>
 	
 	<div class="container">
-	<h2 align="center">사업자 정보 입력</h2>
+	<h2 align="center" style="font-size:30px">사업자 정보 입력</h2>
 	<hr>
 		<form class="bUpdateForm" action="<%=request.getContextPath() %>/updateBusinessMember" method="post" onsubmit="return validate();">
-			<label>사업자등록번호</label>
+			<label style="font-size:14px"> 사업자명 </label><br>
+            <input type="text" class="form-control" id="name" name="name" readonly>
+			<label style="font-size:14px">사업자등록번호</label>
             <input type="text" class="form-control" id="inputBNumber" name="businessLicenseNo" placeholder="사업자 등록번호(10자리)" maxlength="10" required>
             <input type="hidden" id="userId" name="userId">
             <div class="error-bNumber">
-			<label style="color: red; font-style: italic;">사업자등록번호의 자릿수가 잘못 입력되었습니다.</label>
+			<label style="color: red; font-style: italic;font-size:14px;">사업자등록번호의 자릿수가 잘못 입력되었습니다.</label>
 			</div>
 		    <div class="error-bNumber2">
-		    <label style="color: red; font-style: italic;">잘못된 사업자등록번호입니다. 다시 확인해주세요.</label>
+		    <label style="color: red; font-style: italic;font-size:14px;">잘못된 사업자등록번호입니다. 다시 확인해주세요.</label>
 			</div>
 		    <div class="error-bNumber3">
-			<label style="color: red; font-style: italic;">중복된 사업자등록번호입니다. 다시 확인해주세요.</label>
+			<label style="color: red; font-style: italic;font-size:14px;">중복된 사업자등록번호입니다. 다시 확인해주세요.</label>
 			</div>
 			<div class="error-bNumber4">
-			<label style="color: green; font-style: italic;">사용 가능한 사업자등록번호입니다.</label>
+			<label style="color: green; font-style: italic;font-size:14px;">사용 가능한 사업자등록번호입니다.</label>
 			</div>
-            <label>법인등록번호</label>
+            <label style="font-size:14px">법인등록번호</label>
             <input type="text" class="form-control" id="inputCNumber" name="corporateRegistrationNo" placeholder="법인등록번호(13자리)" maxlength="13" required>
             <div class="error-cNumber">
-			<label style="color: red; font-style: italic;">법인등록번호의 자릿수가 잘못 입력되었습니다.</label>
+			<label style="color: red; font-style: italic;font-size:14px;">법인등록번호의 자릿수가 잘못 입력되었습니다.</label>
 			</div>
 			<div class="error-cNumber2">
-			<label style="color: red; font-style: italic;">잘못된 법인등록번호입니다. 다시 확인해주세요.</label>
+			<label style="color: red; font-style: italic;font-size:14px;">잘못된 법인등록번호입니다. 다시 확인해주세요.</label>
 			</div>
-            <label>법인명</label>
+            <label style="font-size:14px">법인명</label>
             <input type="text" class="form-control" id="inputCoName" name="corporateName" placeholder="법인명" required>
             <br>
             <div class="btns" align="center">
 			<button class="form-control btn btn-primary" id="update" type="submit">사업자 인증받기</button>
+		    <hr>
+    <p>* 사업자인증을 진행하기 위해서는 회원님의 사업자 정보가 실제 정보와 일치해야 합니다. 위의 공란을 작성하여 사업자인증을 진행해 주시기 바랍니다.</p>
+    <p>* 사업자명 및 연락처의 변경은 <a href="updateMember.jsp" style="color:#428bca;">개인정보수정</a> 메뉴를 통해 가능합니다.</p>
 		    </div>
 		</form>
 	</div>
@@ -105,10 +112,17 @@ p, label {
 	$(function(){
 	   
 		var userId = <%= loginUser.getUserId() %>;
+		var userName = "<%= loginUser.getUserName()%>";
+		 
 	    var businessLicenseNo = $("#inputBNumber");
 		var corporateRegistrationNo = $("#inputCNumber");
 		
 		$("#userId").val(userId);
+		
+		if(userName != "null"){
+    		$("#name").val(userName);
+    	}else{
+    		$("#name").val("개인정보수정을 통해 이름을 등록해주세요.");}
 		
 		$(".error-cNumber").hide();
 	    $(".error-cNumber2").hide();
@@ -230,7 +244,7 @@ p, label {
 			    });
 		//제출 전 검사
 			    function validate(){
-					
+			
 					if($(".error-cNumber").is(':visible')){
 						return false;
 					}else if($(".error-cNumber2").is(':visible')){

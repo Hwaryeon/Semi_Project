@@ -29,6 +29,7 @@ body {
     margin-right:auto;
   } 
 th, td {
+font-size:14px;
    text-align: center;
 }
 select{
@@ -65,8 +66,8 @@ select{
 <div id="text">
 <div id="container">
    <ul class="nav nav-tabs">
-				<li role="presentation"><a href="fundingStatistics.jsp">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 개설 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li role="presentation" class="active"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 성공 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation" style="font-size: 14px;"><a href="fundingStatistics.jsp">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 개설 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 성공 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
    </ul>
    <br>
    <table class="table table-hover">

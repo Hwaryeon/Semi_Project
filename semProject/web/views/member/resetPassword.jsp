@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.kh.sp.member.model.vo.*"%>
-<% Member loginUser = (Member)session.getAttribute("loginUser"); %>
+<%-- <% Member loginUser = (Member)session.getAttribute("loginUser"); %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,12 +83,12 @@ p, label {
 
 </head>
 <body>
-    
+    <div>
+		 <%@ include file="../common/headBar.jsp"%>
+	</div>
 	
 	<% if(loginUser != null){ %>
-	<div>
-		<%-- <%@ include file="../common/headBar.jsp"%> --%>
-	</div>
+	
 	
 		<div class="container">
 			<ul class="nav nav-tabs">
@@ -96,7 +96,7 @@ p, label {
 				<li role="presentation" class="active"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			</ul>
 			<br>
-			<h4>비밀번호 재설정</h4>
+			<h3>비밀번호 재설정</h3>
 			<label>개인정보 보호 및 원활한 사이트 이용을</label>
 			<label>위해 새롭게 사용할 비밀번호를 입력해주세요.</label>
 			<form class="form-resetPassword" action="<%=request.getContextPath()%>/updatePwd.me" method="post" onsubmit="return validate();">

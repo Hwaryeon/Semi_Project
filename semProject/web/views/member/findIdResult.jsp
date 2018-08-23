@@ -86,28 +86,27 @@ p, label {
 <body>
 
 	<div>
-		<%@ include file="../common/headBar.jsp"%>
+		<%@ include file="../common/headBar.jsp"%> 
 	</div>
 		<div class="container">
 			<ul class="nav nav-tabs">
-				<li role="presentation" class="active"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;아이디 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li role="presentation"><a href="views/member/findPassword.jsp">&nbsp;&nbsp;&nbsp;&nbsp;비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation" class="active"><a href="#" style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;아이디 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation"><a href="findPassword.jsp" style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			</ul>
 			<br>
 			<% if(m != null){ %>
-			<h4>회원 정보와 일치하는</h4>
-			<h4>이메일 아이디는 다음과 같습니다.</h4>
-			<label>만약, 비밀번호를 잊어버리셨다면</label>
-			<label> 비밀번호 찾기 서비스를 이용해주세요.</label>
+			<h4 style="font-size:18px;color:black;">회원 정보와 일치하는 이메일<br>아이디는 다음과 같습니다.</h4>
+			<label style="font-size:14px">만약, 비밀번호를 잊어버리셨다면</label>
+			<label style="font-size:14px"> 비밀번호 찾기 서비스를 이용해주세요.</label>
 			<% }else{ %>
-			<h4>회원 정보와 일치하는</h4>
-			<h4>이메일 아이디가 없습니다.</h4>
-			<label>입력하신 정보가 맞는지</label>
-			<label> 다시 한 번 확인해주세요.</label>
+			<h4 style="font-size:18px;color:black;">회원 정보와 일치하는 <br>이메일 아이디가 없습니다.</h4>
+			<br>
+			<label style="font-size:14px">입력하신 정보가 맞는지</label>
+			<label style="font-size:14px"> 다시 한 번 확인해주세요.</label>
 			<% } %>
 			<div class="form-findIdResult">
 			<br>
-			<label> 가입 이메일</label>
+			<label style="font-size:14px"> 가입 이메일</label>
 			<% if(m != null){ %>
 			<input type="email" id="inputEmail" class="form-control" placeholder=<%= m.getEmail() %> readonly>
 			<% }else{ %>

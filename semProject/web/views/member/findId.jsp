@@ -92,32 +92,32 @@ p, label {
 
 	<div class="container">
 		<ul class="nav nav-tabs">
-			<li role="presentation" class="active"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;아이디
+			<li role="presentation" class="active"><a href="#" style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;아이디
 					찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li role="presentation"><a href="findPassword.jsp">&nbsp;&nbsp;&nbsp;&nbsp;비밀번호
+			<li role="presentation"><a href="findPassword.jsp" style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;비밀번호
 					찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 		</ul>
 		<form class="form-findId" action="<%=request.getContextPath()%>/selectOne.me" method="post" onsubmit="return validate();">
-			<br> <label> 이름</label> <input type="text" id="inputName"
+			<br> <label style="font-size:14px;"> 이름</label> <input type="text" id="inputName"
 				name="userName" class="form-control" placeholder="이름을 입력하세요"
 				maxlength="10" required autofocus>
 
 			<div class="error-name">
-				<label style="color: red; font-style: italic;">2글자 이상 한글만
+				<label style="color: red; font-style: italic; font-size:14px;">2글자 이상 한글만
 					입력하실 수 있습니다.</label>
 			</div>
 
-			<label> 휴대폰 번호</label> <input type="tel" id="inputPhone" name="phone"
+			<label style="font-size:14px;"> 휴대폰 번호</label> <input type="tel" id="inputPhone" name="phone"
 				class="form-control" placeholder="휴대폰 번호를 입력하세요('-'없이 입력)"
 				maxlength="11" required>
 
 			<div class="error-phone">
-				<label style="color: red; font-style: italic;">숫자만 입력하실 수
+				<label style="color: red; font-style: italic; font-size:14px;">숫자만 입력하실 수
 					있습니다.</label>
 			</div>
 
 			<div class="error-phone2">
-				<label style="color: red; font-style: italic;">휴대폰 번호는 최소
+				<label style="color: red; font-style: italic; font-size:14px;">휴대폰 번호는 최소
 					10자리 이상입니다.</label>
 			</div>
 

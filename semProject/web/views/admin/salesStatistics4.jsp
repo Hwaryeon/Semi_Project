@@ -30,6 +30,7 @@ body {
   } 
 th, td {
    text-align: center;
+   font-size:14px;
 }
 select{
     color:black;
@@ -65,10 +66,10 @@ select{
 <div id="text">
 <div id="container">
    <ul class="nav nav-tabs">
-				<li role="presentation"><a href="salesStatistics.jsp">&nbsp;&nbsp;전체 매출 통계&nbsp;&nbsp;</a></li>
-				<li role="presentation"><a href="salesStatistics2.jsp">&nbsp;&nbsp;80%이상 성공 상품&nbsp;&nbsp;</a></li>
-				<li role="presentation"><a href="salesStatistics3.jsp">&nbsp;&nbsp;100%달성 마감 상품&nbsp;&nbsp;</a></li>
-				<li role="presentation" class="active"><a href="#">&nbsp;&nbsp;100%초과 마감 상품&nbsp;&nbsp;</a></li>
+				<li role="presentation" style="font-size: 14px;"><a href="salesStatistics.jsp">&nbsp;&nbsp;전체 매출 통계&nbsp;&nbsp;</a></li>
+				<li role="presentation" style="font-size: 14px;"><a href="salesStatistics2.jsp">&nbsp;&nbsp;80%이상 성공 상품&nbsp;&nbsp;</a></li>
+				<li role="presentation" style="font-size: 14px;"><a href="salesStatistics3.jsp">&nbsp;&nbsp;100%달성 마감 상품&nbsp;&nbsp;</a></li>
+				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;100%초과 마감 상품&nbsp;&nbsp;</a></li>
    </ul>
    <br>
 
