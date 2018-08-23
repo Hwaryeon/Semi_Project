@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
- th{
+/*  th{
  	background:#66CDAA;
  	color:white;
  }
  thead{
   	border-bottom:3px solid #f3d950;
- }
+ } */
  
 *, :after, :before, article, aside, div, footer, header, main, nav,
 	section {
@@ -90,6 +90,7 @@ ul, menu, dir {
 	max-width: 1224px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top:-30px;
 }
 
 .guide_nav .inner {
@@ -579,15 +580,13 @@ cursor : pointer;
 								<li id="gstRewFaq_li"><a href="/sp/views/admin/memberStatistics.jsp"
 									class="link_depth">가입자 통계</a></li>
 							</ul></li>
-					</ul></li>
-			</ul>
+					</ul>
 		</div>
 	</nav>
 <script>
 function memberAll(){
 	location.href="<%=request.getContextPath()%>/selectAllMember.adm";
 }
-
 </script>
 </body>
 </html>

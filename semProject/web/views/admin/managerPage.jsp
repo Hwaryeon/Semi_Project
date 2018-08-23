@@ -28,6 +28,8 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="<%=request.getContextPath()%>/css/admin/admin.css">
+
 <style>
 #sortBtn {
 	width: 60px;
@@ -156,23 +158,33 @@ th, td {
  */
 html {
 	background-color: white;
-	    margin-top: 165px;
+	    margin-top: 86px;
 }
 
 element {
 	background: white;
 }
+
 </style>
 </head>
 
 
 <body>
 	<%@ include file="../common/headBar.jsp"%>
+	<header class="head_banner" style="margin-bottom: 65px;">
+						<div class="hero"><img src="<%=request.getContextPath()%>/images/common/admin.jpg" style="width:100%;"alt="공지사항 배경 이미지 입니다." class="img_rwd"></div>
+						<div class="layer">
+							<!-- <h1 class="tit_comm">Manager</h1>
+							<p class="txt_comm">관리자 페이지</p> -->
+						</div>
+					</header>
+
+
 
 	<%@ include file="../common/sideMenu2.jsp"%>
 	<%-- <%@ include file="../views/sideMenu.jsp" %> --%>
 	<div>
-		<div id="text">
+		<div id="text" style="margin-left: 90px;">
 			<h2 id="web-font">
 				<b>회원 관리 > 회원 조회</b>
 			</h2>

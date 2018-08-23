@@ -1,0 +1,29 @@
+.head_banner {
+    height: 225px;
+    text-align: center;
+    background-color: #ebebe9;
+    position: relative;
+    overflow: hidden;
+}
+.head_banner .hero img {
+    max-width: none;
+}
+.head_banner .layer {
+    position: absolute;
+    top: 62px;
+    right: 0;
+    left: 0;
+}
+.layer {
+    color: #000000a3;
+    font-size: 20px;
+    font-weight: 400;
+}
+.head_banner .layer .tit_comm {
+    margin-bottom: 9px;
+    font-size: 1.875em;
+    font-weight: 400;
+}
+.head_banner .layer .txt_comm {
+    font-size: 1.25em;
+}

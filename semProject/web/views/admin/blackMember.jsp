@@ -5,10 +5,12 @@
 <head>
 <meta charset= "UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css"  href="<%=request.getContextPath()%>/css/admin/admin.css">
 <style>
 
+
 html {
-	    margin-top: 165px;
+	    margin-top: 86px;
 }
 
 th{
@@ -53,7 +55,13 @@ td {
 </head>
 <body>
 	<%@ include file="../common/headBar.jsp" %>
-	
+	<header class="head_banner" style="margin-bottom: 65px;">
+						<div class="hero"><img src="<%=request.getContextPath()%>/images/common/admin.jpg" style="width:100%;"alt="공지사항 배경 이미지 입니다." class="img_rwd"></div>
+						<div class="layer">
+							<!-- <h1 class="tit_comm">Manager</h1>
+							<p class="txt_comm">관리자 페이지</p> -->
+						</div>
+					</header>
 	<%@ include file="../common/sideMenu2.jsp" %>
 	<div>
 		<div id="text">
