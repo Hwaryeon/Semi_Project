@@ -6,8 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
- 
  th{
  	background:#66CDAA;
  	color:white;
@@ -548,8 +546,10 @@ cursor : pointer;
 						관리</a>
 					<ul class="lnb_depth">			
 						<li id="9 6b bgvt6 vg6tfvg7"class="link_depth" onclick="memberAll();">회원 조회</li>
-						<li id="comJoi_li" onclick="blackListAll();">블랙리스트 관리</li>
-						<li id="comFaq_li"><a href="/ic/views/admin/invtRankUpdate.jsp"
+						<li id="comJoi_li"><a href="/sp/views/admin/blackMember.jsp"
+							class="link_depth">블랙리스트
+								관리</a></li>
+						<li id="comFaq_li"><a href="/sp/views/admin/invtRankUpdate.jsp"
 							class="link_depth">투자자 등급
 								관리</a></li>
 					</ul></li>
@@ -557,15 +557,27 @@ cursor : pointer;
 					class="link_cont">펀딩 관리</a>
 					
 							<ul class="lnb_depth">
-							<li id="gstRewPay_li"><a href="/ic/views/admin/searchProject.jsp"
+							<li id="gstRewPay_li"><a href="/sp/views/admin/searchProject.jsp"
 									class="link_depth">펀딩
 										관리</a></li>
-								<li id="gstRewPay_li"><a href="/ic/views/admin/confirmProject.jsp"
+								<li id="gstRewPay_li"><a href="/sp/views/admin/confirmProject.jsp"
 									class="link_depth">펀딩
 										심사</a></li>
-								<li id="gstRewFaq_li"><a href="/ic/views/admin/dlineProject.jsp"
+								<li id="gstRewFaq_li"><a href="/sp/views/admin/dlineProject.jsp"
 									class="link_depth">펀딩
 										마감 관리</a></li>
+							</ul></li>
+							
+							<li id="gstRoot"><a href="guest.jsp#gstRewPay"
+					class="link_cont">통계 현황</a>
+					
+							<ul class="lnb_depth">
+							<li id="gstRewPay_li"><a href="<%= request.getContextPath() %>/salesSt.adm"
+									class="link_depth">매출 통계</a></li>
+								<li id="gstRewPay_li"><a href="<%= request.getContextPath() %>/fundingSt.adm"
+									class="link_depth">펀딩 통계</a></li>
+								<li id="gstRewFaq_li"><a href="<%= request.getContextPath() %>/memberSt.adm"
+									class="link_depth">가입자 통계</a></li>
 							</ul></li>
 					</ul></li>
 			</ul>
@@ -576,10 +588,6 @@ function memberAll(){
 	location.href="<%=request.getContextPath()%>/selectAllMember.adm";
 }
 
-function blackListAll(){
-	location.href="<%=request.getContextPath()%>/blackSelectAll.adm";
-	
-}
 </script>
 </body>
 </html>
