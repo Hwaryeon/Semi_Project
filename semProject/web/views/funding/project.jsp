@@ -181,7 +181,7 @@
     	<p><br>로그인이 필요한 기능입니다.<br>
     	로그인 화면으로 이동하시겠습니까?</p>
     	<hr>
-    	<button id="login">로그인하기</button>
+    	<button id="login">>로그인하기</button>
         <button id="popCloseBtn">취소</button>
     </div>
         
@@ -210,9 +210,13 @@
             $("#popupDiv").css("display","none"); 
             $("body").css("overflow","auto");
         });
-     
-    
     });
+    
+    $(function(){
+    	$("#login").click(function(){
+    		location.href="<%=request.getContextPath()%>/ptype";
+    	})
+    })
  
  
     </script>

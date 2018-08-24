@@ -13,7 +13,6 @@ public class ProjectService {
 	public int insertProject(Application a) {
 			
 			Connection con = getConnection();
-			System.out.println("연결");
 			int result = new ProjectDao().insertProject(con,a);
 			
 			if(result > 0) {
@@ -34,9 +33,10 @@ public class ProjectService {
 		
 		int result = 0;
 		
+		
 		int result1 = new ProjectDao().insertThumbnailContent(con,a);
 		
-		System.out.println("result1="+result1);
+		//System.out.println("result1="+result1);
 		
 		if(result1 > 0) {
 			int pid = new ProjectDao().selectCurrval(con);
@@ -47,7 +47,7 @@ public class ProjectService {
 		}
 		
 		int result2 = new ProjectDao().insertAttachment(con,fileList);
-		System.out.println("result2 : "+result2);
+		
 		if(result1 > 0 && result2 > 0) {
 			commit(con);
 			result = 1;

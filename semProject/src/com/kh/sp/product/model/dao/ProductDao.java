@@ -48,21 +48,32 @@ public class ProductDao {
 				hmap = new HashMap<String, Object>();
 				
 				
-				hmap.put("projectPlan",rset.getString("P_PLAN"));
-				hmap.put("projectIntroduction",rset.getString("P_INTRODUCTION"));
-				hmap.put("projectPreparation",rset.getString("P_PREPARATION"));
-				hmap.put("intro",rset.getString("intro"));
-				hmap.put("originName", rset.getString("origin_name"));
-				hmap.put("uploadDate",rset.getDate("upload_date"));
-				hmap.put("fileLevel", rset.getInt("file_level"));
+				hmap.put("pId",rset.getString("P_ID"));
+				hmap.put("pCode",rset.getString("P_CODE"));
+				hmap.put("pName",rset.getString("P_NAME"));
+				hmap.put("content",rset.getString("CONTENT"));
+				hmap.put("openDate", rset.getString("OPEN_DATE"));
+				hmap.put("closingAmount",rset.getDate("CLOSING_AMOUNT"));
+				hmap.put("interestRate", rset.getInt("INTEREST_RATE"));
+				hmap.put("preparation",rset.getString("P_PREPARATION"));
+				hmap.put("introduction",rset.getInt("P_INTRODUCTION"));
+				hmap.put("plan", rset.getString("P_PLAN"));
+				hmap.put("intro", rset.getInt("INTRO"));
+				hmap.put("fid", rset.getInt("FID"));
+				hmap.put("bid", rset.getInt("BID"));
+				hmap.put("orginName", rset.getString("ORIGIN_NAME"));
+				hmap.put("changeName",rset.getString("CHANGE_NAME"));
 				hmap.put("filePath",rset.getString("FILE_PATH"));
-				hmap.put("bid",rset.getInt("bid"));
-				hmap.put("changeName", rset.getString("change_name"));
-				hmap.put("pid", rset.getInt("P_ID"));
+				hmap.put("uploadDate",rset.getDate("UPLOAD_DATE"));
+				hmap.put("file_level",rset.getInt("FILE_LEVEL"));
+				hmap.put("pType",rset.getInt("P_TYPE"));
+				hmap.put("pNum",rset.getInt("P_NUM"));
+				hmap.put("status",rset.getString("STATUS"));
+				hmap.put("userId",rset.getInt("USER_ID"));
+				
 				
 				list.add(hmap);
-				System.out.println(hmap.get("bid"));
-				
+				System.out.println(hmap.get("bid"));		
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

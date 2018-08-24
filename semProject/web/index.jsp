@@ -20,7 +20,7 @@ ArrayList<Product> closeFList = (ArrayList<Product>)request.getAttribute("closeF
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Limelight|Sunflower:300" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/common/jquery.vticker-min.js"></script>
- 
+  
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 
 <script >

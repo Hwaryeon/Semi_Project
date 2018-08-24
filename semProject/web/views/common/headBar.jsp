@@ -172,7 +172,7 @@
 			<div class="gnb-menu">
 				<ul>
 					<li><a href="<%=request.getContextPath()%>/SelectList.tn">투자하기</a></li>
-					<li><a href="<%=request.getContextPath()%>/ptype">프로젝트 신청</a></li>
+					<li><a href="<%=request.getContextPath()%>/views/funding/project.jsp">프로젝트 신청</a></li>
 					<li><a href="<%=request.getContextPath()%>/views/qna/guideMain.jsp">이용가이드</a></li>
 					<li><a href="<%=request.getContextPath()%>/allBoard">공지사항</a></li>
 					<li><a href="<%=request.getContextPath()%>/views/myPage/mypageIndex.jsp">마이페이지</a></li>

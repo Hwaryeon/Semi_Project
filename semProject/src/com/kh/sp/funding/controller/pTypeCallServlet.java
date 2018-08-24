@@ -37,7 +37,6 @@ public class pTypeCallServlet extends HttpServlet {
 		request.setAttribute("productType", (ArrayList<ProductType>)hmap.get("productType"));
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

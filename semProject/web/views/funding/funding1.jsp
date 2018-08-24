@@ -32,6 +32,43 @@
 	});
 </script> -->
 <style>
+
+#login,#popCloseBtn{
+		width:100px;
+		height:30px;
+	}
+	#login{
+		border:1px solid;
+		background-color: #05a7e2;
+		color: #fff;
+	}
+	#popCloseBtn{
+		border:1px solid;
+		color:#05a7e2;
+		background-color:#fff;
+	}
+	#popupDiv {
+    top : 0px;
+    position: absolute;
+    background: #fff;
+    width: 400px;
+    height: 220px;
+    display: none; 
+    text-align:center;
+    font-size:17pt;
+    }
+    
+    #popup_mask { 
+        position: fixed;
+        width: 100%;
+        height: 1000px;
+        top: 0px;
+        left: 0px;
+         display: none; 
+         background-color:#000;
+         opacity: 0.8;
+    }
+    
 .wrap {
 	margin-top: 150px;
 	min-height: 1000px;
@@ -206,12 +243,26 @@ textarea{
 					</span>
 				</div>
 				<div class="fund_bu">
-					<input class="ui-button ui-widget ui-corner-all" type="submit"
+					<input class="ui-button ui-widget ui-corner-all" id="submit"
 						value="등록하기">
 				</div>
+				
+				<div id ="popup_mask" ></div>
+    
+    			<div id="popupDiv">
+    	
+    			<p><br>등록 신청이 완료되었습니다
+    				내부 심사를 거쳐 프로젝트를 승인합니다.<br>
+    				 </p>
+    			<hr>
+    			<button id="login">>확인</button>
+        		<!-- <button id="popCloseBtn">취소</button> -->
+    				</div>
 			</form>			
 		</div>
 	</div>
+	
+	
 	<script>
 		$(function(){
 			$("#fileArea").hide();
@@ -246,6 +297,36 @@ textarea{
 				flag=0;
 			}
 		}
+		
+		$(document).ready(function(){
+	        
+	        $("#submit").click(function(event){   
+	 
+	             $("#popupDiv").css({
+	                "top": (($(window).height()-$("#popupDiv").outerHeight())/2+$(window).scrollTop())+"px",
+	                "left": (($(window).width()-$("#popupDiv").outerWidth())/2+$(window).scrollLeft())+"px"
+	                
+	             }); 
+	            
+	            $("#popup_mask").css("display","block"); 
+	            $("#popupDiv").css("display","block"); 
+	            
+	            $("body").css("overflow","hidden");
+	        });
+	        
+	        $("#popCloseBtn").click(function(event){
+	            $("#popup_mask").css("display","none"); 
+	            $("#popupDiv").css("display","none"); 
+	            $("body").css("overflow","auto");
+	        });
+	    });
+		
+		$(function(){
+	    	$("#login").click(function(){
+	    		location.href="<%=request.getContextPath()%>/SelectList.tn";
+	    	})
+	    })
 	</script>
+
 </body>
 </html>

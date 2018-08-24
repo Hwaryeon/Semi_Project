@@ -85,7 +85,7 @@ public class FundingDao {
 		int result = 0;
 		
 		String query = prop.getProperty("insertFunding");
-		
+		System.out.println("여기가 문제여");
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, p.getP_code());
@@ -97,7 +97,7 @@ public class FundingDao {
 			pstmt.setString(7, p.getFeeType());
 			
 			result = pstmt.executeUpdate();
-			
+			System.out.println("result="+result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
@@ -121,7 +121,7 @@ public class FundingDao {
 			if(rset.next()){
 				pid = rset.getInt("currval");
 			}
-			
+			System.out.println(pid+"??");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
@@ -139,7 +139,7 @@ public class FundingDao {
 		int result = 0;
 		
 		String query = prop.getProperty("detailPoductInsert");
-		
+		System.out.println(pid+"!");
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, pid);
