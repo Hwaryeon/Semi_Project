@@ -214,8 +214,8 @@
  	<% for(int i = 0; i <list.size(); i++){
  			HashMap<String,Object> hmap = list.get(i);
  		%>
-					<li><input type="hidden" value="<%=hmap.get("bid")%>"><img src="/se1/thumbnail_uploadFiles/<%=hmap.get("changeName")%>" width="300px" height="186px">
-					<br><br><br><%=hmap.get("intro") %> <br><%=hmap.get("bid")%> <br><%=hmap.get("bcount") %></li>
+					<li><input type="hidden" value="<%=hmap.get("pid")%>"><img src="/se1/thumbnail_uploadFiles/<%=hmap.get("changeName")%>" width="300px" height="186px">
+					<br><br><br><%=hmap.get("intro") %> <br><%=hmap.get("pid")%> <%-- <br><%=hmap.get("bcount") %> --%></li>
 					
  		<% } %>	
  	</ul>
