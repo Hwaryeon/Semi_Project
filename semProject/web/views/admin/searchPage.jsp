@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, com.kh.sp.member.model.vo.*, 
-	com.kh.sp.admin.model.vo.*"%>
+	pageEncoding="UTF-8" import="java.util.*, com.kh.member.model.vo.*, 
+	com.kh.admin.model.vo.*"%>
 <%
 	
 ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
@@ -28,12 +28,7 @@ int endPage = pi.getEndPage();
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link rel="stylesheet" type="text/css"  href="<%=request.getContextPath()%>/css/admin/admin.css">
-
 <style>
-html {
-	    margin-top: 86px;
-}
 #sortBtn {
 	width: 60px;
 }
@@ -172,13 +167,7 @@ element {
 
 <body>
 		<%@ include file="../common/headBar.jsp" %>
-	<header class="head_banner" style="margin-bottom: 65px;">
-						<div class="hero"><img src="<%=request.getContextPath()%>/images/common/admin.jpg" style="width:100%;"alt="공지사항 배경 이미지 입니다." class="img_rwd"></div>
-						<div class="layer">
-							<!-- <h1 class="tit_comm">Manager</h1>
-							<p class="txt_comm">관리자 페이지</p> -->
-						</div>
-					</header>
+	
 	<%@ include file="../common/sideMenu2.jsp" %>
 	<%-- <%@ include file="../views/sideMenu.jsp" %> --%>
 	<div>
