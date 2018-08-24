@@ -173,12 +173,12 @@ $(document).ready(function(){
 			<header class="head_banner">
 				<div class="hero">
 					<img
-						src="<%=request.getContextPath()%>/images/common/img_media_newsletter1.jpg" style="width:100%"
+						src="<%=request.getContextPath()%>/images/common/img_qna1.jpg" style="width:100%"
 						alt="공지사항 배경 이미지 입니다." class="img_rwd">
 				</div>
 				<div class="layer">
 					<h1 class="tit_comm">Funding</h1>
-					<p class="txt_comm">펀딩글 등록하기</p>
+					<p class="txt_comm"></p>
 				</div>
 			</header>
 			<form id ="insertForm" method="post" id="frm">

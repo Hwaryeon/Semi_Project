@@ -86,7 +86,7 @@ int endPage = pi.getEndPage();
 						<div class="hero"><img src="<%=request.getContextPath()%>/images/common/img_media_newsletter1.jpg" style="width:100%;"alt="공지사항 배경 이미지 입니다." class="img_rwd"></div>
 						<div class="layer">
 							<h1 class="tit_comm">Notice</h1>
-							<p class="txt_comm">다양한 소식을 알려드립니다.</p>
+							<p class="txt_comm"></p>
 						</div>
 					</header>
 					<div class="cont_comm">

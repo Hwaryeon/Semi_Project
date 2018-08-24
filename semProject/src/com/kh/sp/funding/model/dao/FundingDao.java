@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -197,13 +199,13 @@ public class FundingDao {
 		return pList;
 	}
 
-	public ArrayList<Product> newFundingList2(Connection con, ArrayList<Product> pList) {
+	public ArrayList<Product> inverstFundingList(Connection con, ArrayList<Product> pList) {
 		
 		Statement stmt = null;
 		ResultSet rset = null;
 		Product p = null;
 		
-		String query = prop.getProperty("newFundingList2");
+		String query = prop.getProperty("inverstFundingList");
 		
 		try {
 			stmt = con.createStatement();
@@ -227,6 +229,50 @@ public class FundingDao {
 		}
 		
 		return pList;
+	}
+	
+public ArrayList<Product> inverstHotFundingList(Connection con) {
+		
+	ArrayList<Product> pList = new ArrayList<Product>();
+	Statement stmt = null;
+	ResultSet rset = null;
+	Product p = null;
+	
+	String query = prop.getProperty("hotFundingList");
+	
+	try {
+		stmt = con.createStatement();
+		
+		rset = stmt.executeQuery(query);
+		
+		while(rset.next()){
+			p = new Product();
+			
+			p.setP_id(rset.getInt("p_id"));
+			p.setP_code(rset.getInt("p_code")+"");
+			p.setUser_id(rset.getInt("user_id"));
+			p.setP_name(rset.getString("p_name"));
+			p.setOpenDate(Math.round(rset.getInt("(r.END_DATE-sysdate)")));
+			p.setcAmount(rset.getInt("CLOSING_AMOUNT")+"");
+			p.setP_intro(rset.getString("intro"));
+			p.setOpenDate(rset.getInt("(r.END_DATE-sysdate)"));
+			p.setCorporate_name(rset.getString("CORPORATE_NAME"));
+			p.setOrigin_name(rset.getString("ORIGIN_NAME"));
+			p.setChange_name(rset.getString("CHANGE_NAME"));
+			p.setFile_path(rset.getString("FILE_PATH"));
+			
+			pList.add(p);
+			
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally{
+		close(stmt);
+		close(rset);
+	}
+	
+	
+	return pList;
 	}
 
 	public ArrayList<Product> mainFundingList(Connection con) {
@@ -272,13 +318,14 @@ public class FundingDao {
 		return pList;
 	}
 
-	public ArrayList<Product> hotFundingList(Connection con) {
-		ArrayList<Product> pList = new ArrayList<Product>();
+	public ArrayList<Product> hotFundingList(Connection con,ArrayList<Product> pList) {
 		Statement stmt = null;
 		ResultSet rset = null;
 		Product p = null;
 		
-		String query = prop.getProperty("hotFundingList");
+		ArrayList<Product> hotList = new ArrayList<Product>();
+		
+		String query = prop.getProperty("inverstHotFundingList");
 		
 		try {
 			stmt = con.createStatement();
@@ -286,31 +333,57 @@ public class FundingDao {
 			rset = stmt.executeQuery(query);
 			
 			while(rset.next()){
-				p = new Product();
 				
-				p.setP_id(rset.getInt("p_id"));
-				p.setP_code(rset.getInt("p_code")+"");
-				p.setUser_id(rset.getInt("user_id"));
-				p.setP_name(rset.getString("p_name"));
-				p.setOpenDate(Math.round(rset.getInt("(r.END_DATE-sysdate)")));
-				p.setcAmount(rset.getInt("CLOSING_AMOUNT")+"");
-				p.setP_intro(rset.getString("intro"));
-				p.setOpenDate(rset.getInt("(r.END_DATE-sysdate)"));
-				p.setCorporate_name(rset.getString("CORPORATE_NAME"));
-				p.setOrigin_name(rset.getString("ORIGIN_NAME"));
-				p.setChange_name(rset.getString("CHANGE_NAME"));
-				p.setFile_path(rset.getString("FILE_PATH"));
-				
-				pList.add(p);
-				
+				for(int i=0; i < pList.size(); i++){
+					if(rset.getInt("p_id") == pList.get(i).getP_id()){
+						pList.get(i).setTotal_amount(rset.getInt("sum(ir.price)"));
+					}
+				}
 			}
+			
+			
+			for(int i=0; i < pList.size(); i++){
+				if(pList.get(i).getTotal_amount() <= 0){
+					pList.remove(i);
+				}
+			}
+			
+			
+			/*while(rset.next()){
+				
+				for(int i=0; i < pList.size(); i++){
+					if(rset.getInt("sum(ir.price)") == pList.get(i).getTotal_amount()){
+						
+						System.out.println("11");
+						
+						hotList.add(pList.get(i));
+					}
+				}
+			}
+*/
+
+			
+			/*for(int i=0; i < pList.size(); i++){
+				
+				if(pList.get(i).getTotal_amount() <= 0){
+					pList.remove(i);
+				}
+			}*/
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
 			close(stmt);
 			close(rset);
 		}
+		pList.remove(pList.size()-1);
 		
+		System.out.println("pList : " + pList);
+		System.out.println("count : " + pList.size());
+		
+		
+		for(int i = 0; i < pList.size(); i++){
+			System.out.println("i : " + pList.get(i).getTotal_amount());
+		}
 		
 		return pList;
 	}
@@ -359,10 +432,7 @@ public class FundingDao {
 	}
 	
 	
-	
-	
-	
-	
+
 	
 	
 	
