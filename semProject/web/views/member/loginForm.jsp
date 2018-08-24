@@ -26,12 +26,12 @@
 	border-radius: 10px;
 }
 
- .card {
+/*  .card {
 	/* just in case there no content*/
 	padding: 20px 25px 30px;
 	margin: 0 auto 25px;
 	margin-top: 50px;
-} 
+}  */
 
 .reauth-email {
 	display: block;
@@ -105,7 +105,8 @@ p, label {
 		<%@ include file="../common/headBar.jsp"%>
 	</div>
 		<div class="container">
-			<h2>이메일 로그인</h2>
+			<h2 style="font-size:30px">이메일 로그인</h2>
+			<br>
 			<form class="form-signin" action="<%=request.getContextPath()%>/login.me" method="post">
 				<span id="reauth-email" class="reauth-email"></span> 
 				<input type="email" name="email" class="form-control" placeholder="이메일 아이디" autofocus required>
@@ -113,7 +114,7 @@ p, label {
 				<input type="password" id="inputPassword" name="userPwd" class="form-control" placeholder="비밀번호(영문, 숫자, 특수문자 포함 8자 이상)" maxlength="20" required>
 				
 				<div id="remember" class="checkbox">
-					<label> <input type="checkbox" id="remember-me">
+					<label style="font-size:14px;color:rgba(0, 0, 0, 0.54);"> <input type="checkbox" id="remember-me">
 						아이디 저장
 					</label>
 				</div>
@@ -121,15 +122,15 @@ p, label {
 			</form>
 			<!-- /form -->
 			<div class="bottom-message">
-				<p>
+				<p style="font-size:14px;color:rgba(0, 0, 0, 0.54);">
 					아이디∙비밀번호를 잊으셨다면?<br>
-					<a href="findId.jsp">아이디∙비밀번호 찾기</a>
+					<a href="<%=request.getContextPath() %>/views/member/findId.jsp" style="color:#428bca;">아이디∙비밀번호 찾기</a>
 				</p>
 			</div>
 			
 			<div class="bottom-message"></div>
 			<hr>
-			<h2>간편 로그인</h2>
+			<h2 style="font-size:30px">간편 로그인</h2>
 			
 			<div class="social-login" align="center">
 				<div class="naver" align="center">
@@ -141,8 +142,8 @@ p, label {
 			</div>
 			<br>
 			<div class="bottom-message">
-				<p>
-					아직 iCrowd 계정이 없나요? <a href="memberJoinForm.jsp">회원가입</a>
+				<p style="font-size:14px;color:rgba(0, 0, 0, 0.54);">
+					아직 iCrowd 계정이 없나요? <a href="<%=request.getContextPath() %>/views/member/memberJoinForm.jsp" style="color:#428bca;">회원가입</a>
 				</p>
 			</div>
 		</div>

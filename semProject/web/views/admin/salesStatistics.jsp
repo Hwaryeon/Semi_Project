@@ -11,7 +11,7 @@
 <meta charset= "UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"  href="<%=request.getContextPath()%>/css/admin/admin.css">
-
+   
 <style>
 html {
 	    margin-top: 86px;
@@ -29,6 +29,7 @@ body {
     margin-right:auto;
   } 
 th, td {
+font-size:14px;
    text-align: center;
 }
 select{
@@ -65,10 +66,10 @@ select{
 <div id="text">
 <div id="container">
    <ul class="nav nav-tabs">
-				<li role="presentation" class="active"><a href="#">&nbsp;&nbsp;전체 매출 통계&nbsp;&nbsp;</a></li>
-				<li role="presentation"><a href="salesStatistics2.jsp">&nbsp;&nbsp;80%이상 성공 상품&nbsp;&nbsp;</a></li>
-				<li role="presentation"><a href="salesStatistics3.jsp">&nbsp;&nbsp;100%달성 마감 상품&nbsp;&nbsp;</a></li>
-				<li role="presentation"><a href="salesStatistics4.jsp">&nbsp;&nbsp;100%초과 마감 상품&nbsp;&nbsp;</a></li>
+				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;전체 매출 통계&nbsp;&nbsp;</a></li>
+				<li role="presentation" style="font-size: 14px;"><a href="salesStatistics2.jsp">&nbsp;&nbsp;80%이상 성공 상품&nbsp;&nbsp;</a></li>
+				<li role="presentation" style="font-size: 14px;"><a href="salesStatistics3.jsp">&nbsp;&nbsp;100%달성 마감 상품&nbsp;&nbsp;</a></li>
+				<li role="presentation" style="font-size: 14px;"><a href="salesStatistics4.jsp">&nbsp;&nbsp;100%초과 마감 상품&nbsp;&nbsp;</a></li>
    </ul>
    <br>
 
@@ -103,13 +104,13 @@ select{
    </tr>
    </thead>
    <tbody>
-   
+     
    </tbody>
   </table>
 </div>
 </div>
 
-<%--  <div><%@ include file="../common/footer.jsp" %></div> --%>
+ <%-- <div><%@ include file="../common/footer.jsp" %></div>  --%>
 
 </body>
 </html>

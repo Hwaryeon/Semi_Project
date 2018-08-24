@@ -26,12 +26,14 @@ public class UpdateUserServlet extends HttpServlet {
 		String platform = request.getParameter("platformType");
 		String userId = request.getParameter("userId");
 		String userEmail = request.getParameter("email");
+		String userName = request.getParameter("userName");
 		String nickname = request.getParameter("nickName");
 		String phone = request.getParameter("tel");
 		
 		Member m = new Member();
 		
 		m.setEmail(userEmail);//이메일
+		m.setUserName(userName);//이름
 		m.setNickName(nickname);//닉네임
 		if(platform.equals("email")) {
 			String password = request.getParameter("userPwd");
@@ -44,22 +46,24 @@ public class UpdateUserServlet extends HttpServlet {
 		m.setPlatformType(platform);//플랫폼타입
 		
 		int result = new MemberService().updateMember(m);
-		
+		Member m2 = new MemberService().checkEmail(userEmail);
 		//처리 결과에 따른 뷰 페이지 결정
 		String page = "";
 				
 		if(result > 0) {
 			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", m);
-			response.sendRedirect("views/myPage/updateMember.jsp");
+			session.setAttribute("loginUser", m2);
+			page = "views/myPage/mypageIndex.jsp";
+			request.setAttribute("msg", "회원 정보 수정에 성공하였습니다.");
+			//response.sendRedirect("views/myPage/mypageIndex.jsp");
 		} else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "회원 정보 수정에 실패하였습니다!!");
 			//뷰 페이지로 전달
-			RequestDispatcher view = request.getRequestDispatcher(page);
-			view.forward(request, response);
-					
 		}
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

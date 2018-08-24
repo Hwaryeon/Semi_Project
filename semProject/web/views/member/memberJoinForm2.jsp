@@ -93,78 +93,78 @@ p, label {
 
 
 	<div class="container">
-		<h2>일반 회원 가입</h2>
+		<h2 style="font-size:30px">일반 회원 가입</h2>
 		<form class="form-joinMember2"
 			action="<%=request.getContextPath()%>/insertMember.me" method="post" onsubmit="return validate();">
 			<span id="reauth-email" class="reauth-email"></span>
 			<div id="general-member">
 
-				<label> 이메일 주소</label> <input type="email" id="inputEmail"
+				<label style="font-size:14px"> 이메일 주소</label> <input type="email" id="inputEmail"
 					name="email" class="form-control" value="<%= request.getParameter("email") %>" readonly>
 
-				<label> 이름</label> <input type="text" id="inputName" name="userName"
+				<label style="font-size:14px"> 이름</label> <input type="text" id="inputName" name="userName"
 					class="form-control" placeholder="이름을 입력해주세요" maxlength="10"
 					required autofocus>
 
 				<div class="error-name">
-					<label style="color: red; font-style: italic;">2글자 이상 한글만
+					<label style="color: red; font-style: italic;font-size:14px;">2글자 이상 한글만
 						입력하실 수 있습니다.</label>
 				</div>
 
-				<label> 비밀번호</label> <input type="password" id="inputPassword"
+				<label style="font-size:14px"> 비밀번호</label> <input type="password" id="inputPassword"
 					name="userPwd" class="form-control"
 					placeholder="비밀번호(영문, 숫자, 특수문자 포함 8자 이상)" maxlength="20" required>
 
 				<div class="error-password">
-					<label style="color: red; font-style: italic;">영문,숫자,특수문자(!@$%^&* 만 허용)포함 8자 이상 입력 바랍니다.</label>
+					<label style="color: red; font-style: italic;font-size:14px;">영문,숫자,특수문자(!@$%^&* 만 허용)포함 8자 이상 입력 바랍니다.</label>
 				</div>
 
 				<input type="password" id="inputPassword2" class="form-control"
 					placeholder="비밀번호 확인" maxlength="20" required>
 
 				<div class="error-password2">
-					<label style="color: red; font-style: italic;">비밀번호가 일치하지
+					<label style="color: red; font-style: italic;font-size:14px;">비밀번호가 일치하지
 						않습니다.</label>
 				</div>
 
-				<label> 휴대폰 번호</label> <input type="tel" id="inputPhone"
+				<label style="font-size:14px"> 휴대폰 번호</label> <input type="tel" id="inputPhone"
 					name="phone" class="form-control"
 					placeholder="휴대폰 번호를 입력해주세요('-'없이 입력)" maxlength="11" required>
 
 				<div class="error-phone">
-					<label style="color: red; font-style: italic;">숫자만 입력하실 수
+					<label style="color: red; font-style: italic;font-size:14px;">숫자만 입력하실 수
 						있습니다.</label>
 				</div>
 
 				<div class="error-phone2">
-					<label style="color: red; font-style: italic;">휴대폰 번호는 최소
+					<label style="color: red; font-style: italic;font-size:14px;">휴대폰 번호는 최소
 						10자리 이상입니다.</label>
 				</div>
 
-				<label> 별명</label> <input type="text" id="inputNickName"
+				<label style="font-size:14px"> 별명</label> <input type="text" id="inputNickName"
 					name="nickName" class="form-control" placeholder="사용하실 별명을 입력해주세요"
 					maxlength="10" required>
 
 				<div class="error-nickName">
-					<label style="color: red; font-style: italic;">이미 사용 중인
+					<label style="color: red; font-style: italic;font-size:14px;">이미 사용 중인
 						별명입니다.</label>
 				</div>
 				<div class="error-nickName2">
-					<label style="color: green; font-style: italic;">사용 가능한 별명입니다.</label>
+					<label style="color: green; font-style: italic;font-size:14px;">사용 가능한 별명입니다.</label>
 				</div>
 
 			</div>
 			<hr>
 			<div id="additional-information" class="checkbox">
 
-				<label> <input type="checkbox" id="ch-bm"
+				<label style="font-size:14px"> <input type="checkbox" id="ch-bm"
 					onclick="checkBM();"> 추가 정보 입력하여 사업자 회원으로 가입하기
 				</label>
 			</div>
 
 			<div id="business-member">
 				<hr>
-				<h2>사업자 정보 입력</h2>
+				<h2 style="font-size:30px">사업자 정보 입력</h2>
 				<span id="reauth-email" class="reauth-email"></span>
 				<table>
 					<tr>
@@ -182,19 +182,19 @@ p, label {
 					<tr>
 						<td colspan="3" align="center">
 							<div class="error-bNumber">
-								<label style="color: red; font-style: italic;">사업자등록번호의
+								<label style="color: red; font-style: italic;font-size:14px;">사업자등록번호의
 									자릿수가 잘못 입력되었습니다.</label>
 							</div>
 							<div class="error-bNumber2">
-								<label style="color: red; font-style: italic;">잘못된
+								<label style="color: red; font-style: italic;font-size:14px;">잘못된
 									사업자등록번호입니다. 다시 확인해주세요.</label>
 							</div>
 							<div class="error-bNumber3">
-								<label style="color: red; font-style: italic;">중복된
+								<label style="color: red; font-style: italic;font-size:14px;">중복된
 									사업자등록번호입니다. 다시 확인해주세요.</label>
 							</div>
 							<div class="error-bNumber4">
-								<label style="color: green; font-style: italic;">사용 가능한 사업자등록번호입니다.</label>
+								<label style="color: green; font-style: italic;font-size:14px;">사용 가능한 사업자등록번호입니다.</label>
 							</div>
 						</td>
 					</tr>
@@ -207,11 +207,11 @@ p, label {
 					<tr>
 						<td colspan="3" align="center">
 							<div class="error-cNumber">
-								<label style="color: red; font-style: italic;">법인등록번호의
+								<label style="color: red; font-style: italic;font-size:14px;">법인등록번호의
 									자릿수가 잘못 입력되었습니다.</label>
 							</div>
 							<div class="error-cNumber2">
-								<label style="color: red; font-style: italic;">잘못된
+								<label style="color: red; font-style: italic;font-size:14px;">잘못된
 									법인등록번호입니다. 다시 확인해주세요.</label>
 							</div>
 							

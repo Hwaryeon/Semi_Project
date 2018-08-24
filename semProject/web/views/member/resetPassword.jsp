@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.kh.sp.member.model.vo.*"%>
-<% Member loginUser = (Member)session.getAttribute("loginUser"); %>
+<%-- <% Member loginUser = (Member)session.getAttribute("loginUser"); %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,36 +83,37 @@ p, label {
 
 </head>
 <body>
-    
+    <div>
+		 <%@ include file="../common/headBar.jsp"%>
+	</div>
 	
 	<% if(loginUser != null){ %>
-	<div>
-		<%-- <%@ include file="../common/headBar.jsp"%> --%>
-	</div>
+	
 	
 		<div class="container">
 			<ul class="nav nav-tabs">
-				<li role="presentation"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;아이디 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li role="presentation" class="active"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation"><a href="#" style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;아이디 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation" class="active"><a href="#" style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			</ul>
 			<br>
-			<h4>비밀번호 재설정</h4>
-			<label>개인정보 보호 및 원활한 사이트 이용을</label>
-			<label>위해 새롭게 사용할 비밀번호를 입력해주세요.</label>
+			<h3 style="font-size:18px">비밀번호 재설정</h3>
+			<br>
+			<label style="font-size:14px">개인정보 보호 및 원활한 사이트 이용을</label>
+			<label style="font-size:14px">위해 새롭게 사용할 비밀번호를 입력해주세요.</label>
 			<form class="form-resetPassword" action="<%=request.getContextPath()%>/updatePwd.me" method="post" onsubmit="return validate();">
 			<br>
-			<label> 새로운 비밀번호</label>
+			<label style="font-size:14px"> 새로운 비밀번호</label>
 		    <input type="password" id="inputPassword" name="userPwd" class="form-control" placeholder="비밀번호(영문, 숫자, 특수문자 포함 8자 이상)" required autofocus>
 		    <input type="hidden" name="email" value="<%= loginUser.getEmail() %>">
 		    <div class="error-password">
-					<label style="color: red; font-style: italic;">영문,숫자,특수문자
+					<label style="color: red; font-style: italic;font-size:14px;">영문,숫자,특수문자
 						포함 8자 이상 입력 바랍니다.</label>
 		    </div>
 		    
 		    <input type="password" id="inputPassword2" class="form-control" placeholder="비밀번호 확인" required>
 		    
 		    <div class="error-password2">
-					<label style="color: red; font-style: italic;">비밀번호가 일치하지
+					<label style="color: red; font-style: italic;font-size:14px;">비밀번호가 일치하지
 						않습니다.</label>
 			</div>
 			

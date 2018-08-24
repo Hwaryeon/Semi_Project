@@ -26,6 +26,7 @@
 	border-radius: 10px;
 }
 .form-update input[name=userPwd], .form-update input[name=userPwd2],
+.form-update input[name=userName], 
 .form-update input[name=email], .form-update input[name=nickName], 
 .form-update input[name=tel], .form-update button {
 	width: 100%;
@@ -73,7 +74,7 @@ label {
 	<%@ include file="../common/headBar.jsp"%>
 	<h2 align="center" class="cmntitle">회원정보 수정</h2>
 	<div class="container">
-		<form class="form-update"
+		<form class="form-update" id="updateForm"
 			action="<%=request.getContextPath() %>/update.me" method="post">
 			<table align="center">
 				<tr>
@@ -81,6 +82,14 @@ label {
 					<td colspan="2"><input type="text" id="inputEmail" name="email"
 						class="form-control"
 						value="<%= loginUser.getEmail() %>" readonly></td>
+				</tr>
+				<tr>
+					<td><label>* 이름</label></td>
+					<td colspan="2"><input type="text" id="inputName" name="userName"
+						class="form-control" 
+						<% if(loginUser.getUserName() != null ) { %> 
+						value="<%= loginUser.getUserName() %>" <% } %>>
+					</td>
 				</tr>
 				<tr>
 					<td><label>* 닉네임</label></td>
@@ -159,6 +168,7 @@ label {
 			location.href = 'deleteMember.jsp';
 		}
 		function update() {
+			console.log("11");
 			$("#updateForm").submit();
 		}
 		

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.sp.board.model.vo.Board;
+import com.kh.sp.funding.model.service.FundingService;
+import com.kh.sp.funding.model.vo.Product;
 import com.kh.sp.main.model.service.MainService;
 
 @WebServlet("")
@@ -25,10 +27,19 @@ public class ViewMainServlet extends HttpServlet {
 		System.out.println("메인화면 호출");
 	
 		ArrayList<Board> list = new MainService().startMain();
-		
+		 
+		ArrayList<Product> newFList = new FundingService().newFundingList();
+		ArrayList<Product> mainFList = new FundingService().mainFundingList();
+		ArrayList<Product> hotFList = new FundingService().hotFundingList();
+		ArrayList<Product> closeFList = new FundingService().closeFundingList();
 		
 		if(list.size() > 0){
 			request.setAttribute("list", list);
+			request.setAttribute("newFList", newFList);
+			request.setAttribute("mainFList", mainFList);
+			request.setAttribute("hotFList", hotFList);
+			request.setAttribute("closeFList", closeFList);
+			
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			
 		}else{

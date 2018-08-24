@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,18 +9,18 @@
 <title>Login Demo - Kakao JavaScript SDK</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
-
 </head>
 <body>
-<a id="kakao-login-btn"></a>
+<a onclick="kakao();"><img class="btn-img" src="<%= request.getContextPath() %>/images/member/kakao.png"></a>
+<!-- <a id="kakao-login-btn" onclick="kakao();"></a> -->
 <a href="http://developers.kakao.com/logout"></a>
 <script type='text/javascript'>
-  //<![CDATA[
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+function kakao(){
+
     Kakao.init('dcb5abf4c9dd11f3923f2dd46c0680c2');
-    // 카카오 로그인 버튼을 생성합니다.
-    Kakao.Auth.createLoginButton({
-      container: '#kakao-login-btn',
+  
+    Kakao.Auth.loginForm({
+      /* container: '#kakao-login-btn', */
       success: function(authObj) {
         //alert(JSON.stringify(authObj));
         var accessToken=Kakao.Auth.getAccessToken();
@@ -29,7 +31,7 @@
 
        
        success: function(res) {
-    	 //alert(JSON.stringify(res)); //<---- kakao.api.request 에서 불러온 결과값 json형태로 출력
+    	 //alert(JSON.stringify(res)); //<---- kakao.api.request 
     	  
     	  <%-- location.href="<%= request.getContextPath() %>/snsLogin.ka?email=" + res.kaccount_email + 
 			"&id=" + res.id + "&nickname=" + res.properties.nickname + "&accessToken=" + authObj.access_token
@@ -44,18 +46,18 @@
 			
 			$("#loginSubmit").submit();
 
-             //alert(JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
+             //alert(JSON.stringify(authObj)); //
 
-             //console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
+             //console.log(res.id);//
 
-             //console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
+             //console.log(res.kaccount_email);//
 
-             //console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
+             //console.log(res.properties['nickname']);//
 
                    
-         // res.properties.nickname으로도 접근 가능 )
+         // res.properties.nickname;
 
-         //console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
+         //console.log(authObj.access_token);//
    
              //alert(authObj.refresh_token);
              
@@ -69,6 +71,7 @@
       }
     });
   //]]>
+}
 </script>
 <form id="loginSubmit" action="<%= request.getContextPath() %>/snsLogin.ka" method="post">
 <input type="hidden" id="id" name="id">

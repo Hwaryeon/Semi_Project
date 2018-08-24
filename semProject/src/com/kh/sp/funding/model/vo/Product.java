@@ -1,6 +1,7 @@
 package com.kh.sp.funding.model.vo;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Product implements Serializable{
 
@@ -15,6 +16,11 @@ public class Product implements Serializable{
 	private String p_prepar;
 	private String p_intro;
 	private String p_plan;
+	private String corporate_name;
+	private String origin_name;
+	private String change_name;
+	private String file_path;
+	private int total_amount;
 	
 	public Product(){}
 
@@ -42,6 +48,28 @@ public class Product implements Serializable{
 		this.p_prepar = p_prepar;
 		this.p_intro = p_intro;
 		this.p_plan = p_plan;
+	}
+
+	public Product(int p_id, String p_code, int user_id, String p_name, String feeType, String content, int openDate,
+			String cAmount, String p_prepar, String p_intro, String p_plan, String corporate_name, String origin_name,
+			String change_name, String file_path, int total_amount) {
+		super();
+		this.p_id = p_id;
+		this.p_code = p_code;
+		this.user_id = user_id;
+		this.p_name = p_name;
+		this.feeType = feeType;
+		this.content = content;
+		this.openDate = openDate;
+		this.cAmount = cAmount;
+		this.p_prepar = p_prepar;
+		this.p_intro = p_intro;
+		this.p_plan = p_plan;
+		this.corporate_name = corporate_name;
+		this.origin_name = origin_name;
+		this.change_name = change_name;
+		this.file_path = file_path;
+		this.total_amount = total_amount;
 	}
 
 	public int getP_id() {
@@ -132,16 +160,56 @@ public class Product implements Serializable{
 	public void setOpenDate(int openDate) {
 		this.openDate = openDate;
 	}
+	
+
+	public String getCorporate_name() {
+		return corporate_name;
+	}
+
+	public void setCorporate_name(String corporate_name) {
+		this.corporate_name = corporate_name;
+	}
+
+	public String getOrigin_name() {
+		return origin_name;
+	}
+
+	public void setOrigin_name(String origin_name) {
+		this.origin_name = origin_name;
+	}
+
+	public String getChange_name() {
+		return change_name;
+	}
+
+	public void setChange_name(String change_name) {
+		this.change_name = change_name;
+	}
+
+	public String getFile_path() {
+		return file_path;
+	}
+
+	public void setFile_path(String file_path) {
+		this.file_path = file_path;
+	}
+	
+	public int getTotal_amount() {
+		return total_amount;
+	}
+
+	public void setTotal_amount(int total_amount) {
+		this.total_amount = total_amount;
+	}
 
 	@Override
 	public String toString() {
 		return "Product [p_id=" + p_id + ", p_code=" + p_code + ", user_id=" + user_id + ", p_name=" + p_name
 				+ ", feeType=" + feeType + ", content=" + content + ", openDate=" + openDate + ", cAmount=" + cAmount
-				+ ", p_prepar=" + p_prepar + ", p_intro=" + p_intro + ", p_plan=" + p_plan + "]";
+				+ ", p_prepar=" + p_prepar + ", p_intro=" + p_intro + ", p_plan=" + p_plan + ", corporate_name="
+				+ corporate_name + ", origin_name=" + origin_name + ", change_name=" + change_name + ", file_path="
+				+ file_path + ", total_amount=" + total_amount + "]";
 	}
 
-
-	
-	
 	
 }

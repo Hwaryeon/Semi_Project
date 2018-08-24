@@ -103,22 +103,22 @@ p, label {
 	
 		<div class="container">
 			<ul class="nav nav-tabs">
-				<li role="presentation"><a href="findId.jsp">&nbsp;&nbsp;&nbsp;&nbsp;아이디 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li role="presentation" class="active"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation"><a href="findId.jsp" style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;아이디 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation" class="active"><a href="#" style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			</ul>
 			<br>
-			<h4>임시비밀번호 받기</h4>
-			<label>가입하셨던 이메일 계정을 입력하면,</label>
-			<label>임시비밀번호를 이메일로 발송해드립니다.</label>
+			<h4 style="font-size:18px;color:black;">임시비밀번호 받기</h4>
+			<label style="font-size:14px">가입하셨던 이메일 계정을 입력하면,</label>
+			<label style="font-size:14px">임시비밀번호를 이메일로 발송해드립니다.</label>
 			<div class="form-signin">
 			<br>
-			<label> 이메일</label>
+			<label style="font-size:14px"> 이메일</label>
 		    <input type="email" id="inputEmail" name="emailForPwd" class="form-control" placeholder="이메일을 입력하세요" required autofocus>
 			<div id="hidden1">
-					<label>임시 비밀번호가 메일로 발송 되었습니다. 임시 비밀번호로 로그인 후 비밀번호를 재설정 해주세요.</label>
+					<label style="font-size:14px">임시 비밀번호가 메일로 발송 되었습니다. 임시 비밀번호로 로그인 후 비밀번호를 재설정 해주세요.</label>
 			</div>
 			<div id="hidden2">
-					<label>입력 정보와 일치하는 이메일 계정이 없습니다. 입력정보를 다시 확인 해주세요.</label>
+					<label style="font-size:14px">입력 정보와 일치하는 이메일 계정이 없습니다. 입력정보를 다시 확인 해주세요.</label>
 			</div>
 			<button class="form-control btn btn-primary" id="findPwdBtn" type="button">확인</button>
 			</div>

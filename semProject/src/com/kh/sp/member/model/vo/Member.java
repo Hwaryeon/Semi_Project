@@ -17,19 +17,20 @@ public class Member implements java.io.Serializable{
     private String businessLicenseNo;
     private String corporateRegistrationNo;
     private String corporateName;
-    private String address;
     private String userClass;
     private Date enrollDate;
     private String status;
     private String pwdStatus;
     private String platformId;
+    private String gradingStatus;
 	
     public Member(){}
 
+    
 	public Member(int userId, String platformType, String refreshToken, String email, String userPwd, String userName,
 			String nickName, String phone, String investorGrade, String investmentLimit, String businessLicenseNo,
-			String corporateRegistrationNo, String corporateName, String address, String userClass, Date enrollDate,
-			String status, String pwdStatus, String platformId) {
+			String corporateRegistrationNo, String corporateName, String userClass, Date enrollDate, String status,
+			String pwdStatus, String platformId, String gradingStatus) {
 		super();
 		this.userId = userId;
 		this.platformType = platformType;
@@ -44,13 +45,14 @@ public class Member implements java.io.Serializable{
 		this.businessLicenseNo = businessLicenseNo;
 		this.corporateRegistrationNo = corporateRegistrationNo;
 		this.corporateName = corporateName;
-		this.address = address;
 		this.userClass = userClass;
 		this.enrollDate = enrollDate;
 		this.status = status;
 		this.pwdStatus = pwdStatus;
 		this.platformId = platformId;
+		this.gradingStatus = gradingStatus;
 	}
+
 
 	public int getUserId() {
 		return userId;
@@ -156,14 +158,6 @@ public class Member implements java.io.Serializable{
 		this.corporateName = corporateName;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	public String getUserClass() {
 		return userClass;
 	}
@@ -196,7 +190,6 @@ public class Member implements java.io.Serializable{
 		this.pwdStatus = pwdStatus;
 	}
 
-	
 	public String getPlatformId() {
 		return platformId;
 	}
@@ -205,20 +198,25 @@ public class Member implements java.io.Serializable{
 		this.platformId = platformId;
 	}
 
+	public String getGradingStatus() {
+		return gradingStatus;
+	}
+
+	public void setGradingStatus(String gradingStatus) {
+		this.gradingStatus = gradingStatus;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Member [userId=" + userId + ", platformType=" + platformType + ", refreshToken=" + refreshToken
 				+ ", email=" + email + ", userPwd=" + userPwd + ", userName=" + userName + ", nickName=" + nickName
 				+ ", phone=" + phone + ", investorGrade=" + investorGrade + ", investmentLimit=" + investmentLimit
 				+ ", businessLicenseNo=" + businessLicenseNo + ", corporateRegistrationNo=" + corporateRegistrationNo
-				+ ", corporateName=" + corporateName + ", address=" + address + ", userClass=" + userClass
-				+ ", enrollDate=" + enrollDate + ", status=" + status + ", pwdStatus=" + pwdStatus + ", platformId="
-				+ platformId + "]";
+				+ ", corporateName=" + corporateName + ", userClass=" + userClass + ", enrollDate=" + enrollDate
+				+ ", status=" + status + ", pwdStatus=" + pwdStatus + ", platformId=" + platformId + ", gradingStatus="
+				+ gradingStatus + "]";
 	}
 
-	
-	
-	
-    
 
 }

@@ -166,7 +166,7 @@
 </head>
 <body style="" style="width:1500px; overflow:hidden;">
 	<div >
-		<div class="headr-wrap" id="headr-wrap" style="width:1600px;max-height:87px;">
+		<div class="headr-wrap" id="headr-wrap" style="width:1400px;max-height:87px;">
 
 			<h1 class="lg" ><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/common/logo.png" width="100" height="200" ></a></h1>
 			<div class="gnb-menu">
