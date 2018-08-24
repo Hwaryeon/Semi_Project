@@ -7,8 +7,11 @@
  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css"  href="<%=request.getContextPath()%>/css/admin/admin.css">
 <style>
-
+html {
+	    margin-top: 86px;
+}
 th{
 background-color:#66CDAA;
 }
@@ -44,7 +47,13 @@ td, th {
 </head>
 <body>
 		<%@ include file="../common/headBar.jsp" %>
-	
+	<header class="head_banner" style="margin-bottom: 65px;">
+						<div class="hero"><img src="<%=request.getContextPath()%>/images/common/admin.jpg" style="width:100%;"alt="공지사항 배경 이미지 입니다." class="img_rwd"></div>
+						<div class="layer">
+							<!-- <h1 class="tit_comm">Manager</h1>
+							<p class="txt_comm">관리자 페이지</p> -->
+						</div>
+					</header>
 	<%@ include file="../common/sideMenu2.jsp" %>
 <div id="text">
 				<h2>펀딩관리 > 펀딩 마감 승인</h2><br>
