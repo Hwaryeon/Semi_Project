@@ -59,7 +59,7 @@
 		<div class="product">
 			<table align="center">
 				<tr>
-					<th colspan="2" width="100px" height="50px">썸네일</td>
+					<th colspan="2" width="100px" height="50px">번호</td>
 					<th colspan="6" width="300px" height="50px">제목</td>
 					<th colspan="2" width="100px" height="50px">상태</td>
 				</tr>
@@ -70,7 +70,8 @@
 					<td colspan="6" width="300px" height="50px"><%= md.getP_name() %></td>
 					<td colspan="2" width="100px" height="50px">
 					<% if(md.getStatus().equals("going")) { %> 진행중
-					<% } else if(md.getStatus().equals("done")) {%>완료<% } %>
+					<% } else if(md.getStatus().equals("done")) {%>완료
+					<% } else if(md.getStatus().equals("submit")) {%>신청중<% } %>
 					</td>
 				</tr>
 				<tr></tr>

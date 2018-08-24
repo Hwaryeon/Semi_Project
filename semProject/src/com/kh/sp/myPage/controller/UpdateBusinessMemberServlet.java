@@ -35,11 +35,14 @@ public class UpdateBusinessMemberServlet extends HttpServlet {
 		int result = new MemberService().updateBusinessMember(member);
 		
 		if(result > 0){
-			request.setAttribute("msg", "사업자회원정보 변경 완료 되었습니다.");
+			request.setAttribute("msg", "사업자회원정보 변경 완료 되었습니다. 다시 로그인 해주세요");
 		}else{
 			request.setAttribute("msg", "사업자회원정보 변경에 실패하였습니다.");
 		}
-		RequestDispatcher view = request.getRequestDispatcher("views/myPage/mypageIndex.jsp");
+		
+		request.getSession().invalidate();
+		
+		RequestDispatcher view = request.getRequestDispatcher("views/member/loginForm.jsp");
 		view.forward(request, response);
 	}
 

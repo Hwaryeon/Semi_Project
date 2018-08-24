@@ -71,10 +71,10 @@ legend {
             </tr>
             
             <tr id="menubar" class="mypage enroll">
-               <td onclick="location.href='enrollProject.jsp'">
-              <%--  <% if(loginUser.getUserClass().equals("investor")) { %>참여 프로젝트
-               <% } else if(loginUser.getUserClass().equals("business")) { %>개설 프로젝트
-               <% } %> --%>
+               <td onclick="location.href='<%=request.getContextPath() %>/select.ep?userid='+<%= loginUser.getUserId() %>">
+              <% if(loginUser.getUserClass().equals("investor")) { %>참여 프로젝트
+              <% } else if(loginUser.getUserClass().equals("business")) { %>개설 프로젝트
+              <% } %> 
                </td>
             </tr>
             
@@ -100,32 +100,32 @@ legend {
          </table>
       </fieldset>
    </div>   
-   <script>
-    <%--   
-      <% if(loginUser.getUserClass().equals("investor")) { %>
+   <script> 
+   
+  	<% if(loginUser.getUserClass().equals("investor")) { %>
          //로그인 한 유저가 투자자일 경우
          $(".certification").hide(); //투자자 인증창 숨기기
-      <%       if(loginUser.getInvestorGrade().equals("PI")) { %>
-            //전문 투자자인 경우
+      <% if(loginUser.getInvestorGrade().equals("PI")) { %>
+         //전문 투자자인 경우
             $(".updateRank").hide();//투자등급 올리기 메뉴 숨기기
-         <%   }   %>
+      <% } %>
          
-      <% } else if(loginUser.getUserClass().equals("business")) { %>
+    <% } else if(loginUser.getUserClass().equals("business")) { %>
          //로그인 한 유저가 사업자 회원일 경우
          $(".certification").hide();
          $(".updateRank").hide();
          
-      <% } else if(loginUser.getUserClass().equals("general")){%>
+    <% } else if(loginUser.getUserClass().equals("general")){%>
          //로그인 한 유저가 일반회원일 경우
          $(".investService").hide();
-      <% } %> --%>
-      $(function(){
-      	<%if(msg != null){ %>
-      	    alert('<%= msg %>');
-      	<% } %>
-      });
+         $(".enroll").hide();
+    <% } %> 
       
-      
+    $(function(){
+    	<%if(msg != null){ %>
+    	    alert('<%= msg %>');
+    	<% } %>
+    });  
    </script>
 </body>
 </html>

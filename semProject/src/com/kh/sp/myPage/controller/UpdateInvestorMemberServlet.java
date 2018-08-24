@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.sp.member.model.service.MemberService;
+import com.kh.sp.member.model.vo.Member;
 
 @WebServlet("/updateInvestorMember")
 public class UpdateInvestorMemberServlet extends HttpServlet {
@@ -25,11 +27,13 @@ public class UpdateInvestorMemberServlet extends HttpServlet {
 		int result = new MemberService().updateInvestorMember(userId);
 		
 		if(result > 0){
-			request.setAttribute("msg", "투자자로 회원정보 변경이 완료되었습니다.");
+			request.setAttribute("msg", "투자자로 회원정보 변경이 완료되었습니다. 재로그인 해주세요");
 		}else{
 			request.setAttribute("msg", "투자자로 회원정보 변경에 실패하였습니다.");
 		}
-		RequestDispatcher view = request.getRequestDispatcher("views/myPage/mypageIndex.jsp");
+		request.getSession().invalidate();
+		
+		RequestDispatcher view = request.getRequestDispatcher("views/member/loginForm.jsp");
 		view.forward(request, response);
 	}
 

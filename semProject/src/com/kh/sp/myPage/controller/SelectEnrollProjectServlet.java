@@ -1,4 +1,4 @@
-package com.kh.ic.mypage.controller;
+package com.kh.sp.myPage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.ic.mypage.model.service.MypageDetailService;
-import com.kh.ic.mypage.model.vo.MypageDetail;
+import com.kh.sp.myPage.model.service.MypageDetailService;
+import com.kh.sp.myPage.model.vo.MypageDetail;
 
 @WebServlet("/select.ep")
 public class SelectEnrollProjectServlet extends HttpServlet {

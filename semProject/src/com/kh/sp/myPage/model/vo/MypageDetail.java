@@ -1,4 +1,4 @@
-package com.kh.ic.mypage.model.vo;
+package com.kh.sp.myPage.model.vo;
 
 public class MypageDetail {
 	private int p_id;//상품아이디

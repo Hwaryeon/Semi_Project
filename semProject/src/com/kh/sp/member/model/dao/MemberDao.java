@@ -403,7 +403,7 @@ private Properties prop = new Properties();
 		
 		return m;
 	}
-
+	
 	public Member checkEmailMember(Connection con, String userEmail) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -512,7 +512,8 @@ private Properties prop = new Properties();
 				pstmt.setString(1, m.getNickName());//닉네임 set
 				pstmt.setString(2, m.getUserPwd());//비밀번호 set
 				pstmt.setString(3, m.getPhone());//전화번호 set
-				pstmt.setInt(4, m.getUserId());//where절
+				pstmt.setString(4, m.getUserName());//이름 set
+				pstmt.setInt(5, m.getUserId());//where절
 				
 				result = pstmt.executeUpdate();
 				
@@ -530,7 +531,9 @@ private Properties prop = new Properties();
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, m.getNickName());//닉네임 set
 				pstmt.setString(2, m.getPhone());//전화번호 set
-				pstmt.setInt(3, m.getUserId());//where절
+				//System.out.println(m.getUserName());
+				pstmt.setString(3, m.getUserName());//이름 set
+				pstmt.setInt(4, m.getUserId());//where절
 				
 				result = pstmt.executeUpdate();
 				

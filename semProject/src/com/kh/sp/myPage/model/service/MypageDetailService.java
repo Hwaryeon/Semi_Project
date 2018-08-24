@@ -1,11 +1,11 @@
-package com.kh.ic.mypage.model.service;
+package com.kh.sp.myPage.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.kh.ic.mypage.model.dao.MypageDetailDao;
-import com.kh.ic.mypage.model.vo.MypageDetail;
-import static com.kh.ic.common.JDBCTemplate.*;
+import com.kh.sp.myPage.model.dao.MypageDetailDao;
+import com.kh.sp.myPage.model.vo.MypageDetail;
+import static com.kh.sp.common.JDBCTemplate.*;
 
 public class MypageDetailService {
 
