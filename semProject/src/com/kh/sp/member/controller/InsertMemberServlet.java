@@ -49,6 +49,7 @@ public class InsertMemberServlet extends HttpServlet {
 			request.setAttribute("msg", "회원 가입에 실패하였습니다. 다시 시도해 주세요.");
 		}
 		
+		
 		RequestDispatcher view = request.getRequestDispatcher("views/member/loginForm.jsp");
 		view.forward(request, response);
 		
