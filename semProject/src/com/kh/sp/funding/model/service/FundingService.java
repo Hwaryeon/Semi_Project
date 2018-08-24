@@ -57,7 +57,7 @@ public class FundingService {
 		
 		ArrayList<Product> pList = new FundingDao().newFundingList(con);
 		
-		ArrayList<Product> pList2 = new FundingDao().newFundingList2(con, pList);
+		ArrayList<Product> pList2 = new FundingDao().inverstFundingList(con, pList);
 		
 		
 		close(con);
@@ -71,7 +71,7 @@ public class FundingService {
 		
 		ArrayList<Product> pList = new FundingDao().mainFundingList(con);
 		
-		ArrayList<Product> pList2 = new FundingDao().newFundingList2(con, pList);
+		ArrayList<Product> pList2 = new FundingDao().inverstFundingList(con, pList);
 		
 		
 		close(con);
@@ -83,10 +83,9 @@ public class FundingService {
 		
 		Connection con = getConnection();
 		
-		ArrayList<Product> pList = new FundingDao().hotFundingList(con);
+		ArrayList<Product> pList = new FundingDao().inverstHotFundingList(con);
 		
-		ArrayList<Product> pList2 = new FundingDao().newFundingList2(con, pList);
-		
+		ArrayList<Product> pList2 = new FundingDao().hotFundingList(con, pList);
 		
 		close(con);
 		
@@ -99,7 +98,7 @@ public class FundingService {
 		
 		ArrayList<Product> pList = new FundingDao().closeFundingList(con);
 		
-		ArrayList<Product> pList2 = new FundingDao().newFundingList2(con, pList);
+		ArrayList<Product> pList2 = new FundingDao().inverstFundingList(con, pList);
 		
 		
 		close(con);

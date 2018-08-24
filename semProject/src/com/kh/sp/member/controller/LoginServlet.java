@@ -61,9 +61,8 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 		}else{
-			//모달로 로그인 실패 알림 구현?
-			request.setAttribute("msg", "로그인 실패!!");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			request.setAttribute("msg", "email로 가입되지 않은 계정입니다. 다시 한 번 확인해주세요.");
+			request.getRequestDispatcher("views/member/loginForm.jsp").forward(request, response);
 		}
 		
 	}

@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.sp.admin.model.vo.OpenFundingStatistics;
+import com.kh.sp.admin.model.vo.SalesStatistics;
+import com.kh.sp.admin.model.vo.SuccessFundingStatistics;
 import com.kh.sp.member.model.vo.Member;
 
 public class AdminDao {
@@ -245,7 +249,6 @@ public class AdminDao {
 				m.setNickName(rset.getString("nick_name"));
 				m.setEmail(rset.getString("email"));
 				m.setPhone(rset.getString("phone"));
-				m.setAddress(rset.getString("address"));
 				m.setEnrollDate(rset.getDate("enroll_date"));
 				
 			}
@@ -257,6 +260,90 @@ public class AdminDao {
 		}
 		System.out.println("객체 m 은 ? = " + m);
 		return m;
+	}
+
+
+	public ArrayList<SalesStatistics> selectSalesList(Connection con, int num, String str) {
+		ArrayList<SalesStatistics> list = null;
+		SalesStatistics result = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = null;
+		
+		if(num == 0){
+			if(str == "date"){
+			    query = prop.getProperty("selectAllSalesDate");
+			}else if(str == "month"){
+				query = prop.getProperty("selectAllSalesMonth");
+			}else if(str == "year"){
+				query = prop.getProperty("selectAllSalesYear");
+			}
+		}else if(num == 1){
+			if(str == "date"){
+			    query = prop.getProperty("selectType1SalesDate");
+			}else if(str == "month"){
+				query = prop.getProperty("selectType1SalesMonth");
+			}else if(str == "year"){
+				query = prop.getProperty("selectType1SalesYear");
+			}
+		}else if(num == 2){
+			if(str == "date"){
+			    query = prop.getProperty("selectType2SalesDate");
+			}else if(str == "month"){
+				query = prop.getProperty("selectType2SalesMonth");
+			}else if(str == "year"){
+				query = prop.getProperty("selectType2SalesYear");
+			}
+		}else if(num == 3){
+			if(str == "date"){
+			    query = prop.getProperty("selectType3SalesDate");
+			}else if(str == "month"){
+				query = prop.getProperty("selectType3SalesMonth");
+			}else if(str == "year"){
+				query = prop.getProperty("selectType3SalesYear");
+			}
+		}
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				result = new SalesStatistics();
+				
+				result.setTerm(rset.getDate(""));
+				result.setPaymentCount(rset.getInt(""));
+				result.setPaymentPrice(rset.getInt(""));
+				result.setRefundCount(rset.getInt(""));
+				result.setFailCount(rset.getInt(""));
+				result.setCancelCount(rset.getInt(""));
+				result.setPaymentPercentage(rset.getInt(""));
+				result.setPaymentCompletePrice(rset.getInt(""));
+				result.setNetSales(rset.getInt(""));
+				
+				list.add(result);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		return list;
+	}
+
+	public ArrayList<OpenFundingStatistics> selectOpenFundingList(Connection con, String str) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<SuccessFundingStatistics> selectSuccessFundingList(Connection con, String str) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
