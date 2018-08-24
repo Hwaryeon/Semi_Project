@@ -1,4 +1,4 @@
-package com.kh.ic.mypage.model.dao;
+package com.kh.sp.myPage.model.dao;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.kh.ic.mypage.model.vo.MypageDetail;
+import com.kh.sp.myPage.model.vo.MypageDetail;
 
-import static com.kh.ic.common.JDBCTemplate.*;
+import static com.kh.sp.common.JDBCTemplate.*;
 
 public class MypageDetailDao {
 	

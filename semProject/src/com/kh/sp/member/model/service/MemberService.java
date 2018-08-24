@@ -176,6 +176,14 @@ public class MemberService {
 		return result;
 	}
 
+	public Member checkUserId(String userId) {
+		Connection con = getConnection();
+		Member m = new Member();
+		m = new MemberDao().checkEmail(con, userId);
+		close(con);
+		return m;
+	}
+
 
 
 }
