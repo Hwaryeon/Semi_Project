@@ -307,6 +307,9 @@ public class AdminDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			
+			
+			
+			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()){
@@ -337,13 +340,96 @@ public class AdminDao {
 	}
 
 	public ArrayList<OpenFundingStatistics> selectOpenFundingList(Connection con, String str) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<OpenFundingStatistics> list = null;
+		OpenFundingStatistics result = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = null;
+		
+		if(str=="month"){
+			query = prop.getProperty("selectOpenFundingMonth");
+			
+			
+		}else{
+			query = prop.getProperty("selectOpenFundingYear");
+		}
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			
+			
+			
+			
+            rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				result = new OpenFundingStatistics();
+				result.setTerm(rset.getDate(""));
+				result.setEnrollCount(rset.getInt(""));
+				result.setOpenCount(rset.getInt(""));
+				result.setApprovalRate(rset.getInt(""));
+				result.setType1OpenCount(rset.getInt(""));
+				result.setType2OpenCount(rset.getInt(""));
+				result.setType3OpenCount(rset.getInt(""));
+				
+				list.add(result);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return list;
 	}
 
 	public ArrayList<SuccessFundingStatistics> selectSuccessFundingList(Connection con, String str) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<SuccessFundingStatistics> list = null;
+		SuccessFundingStatistics result = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = null;
+		
+		if(str=="month"){
+			query = prop.getProperty("selectSuccessFundingMonth");
+		}else{
+			query = prop.getProperty("selectSuccessFundingYear");
+		}
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			
+			
+            rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				result = new SuccessFundingStatistics();
+				result.setTerm(rset.getDate(""));
+				result.setEndCount(rset.getInt(""));
+				result.setSuccessCount(rset.getInt(""));
+				result.setSuccessRate(rset.getInt(""));
+				result.setType1SuccessCount(rset.getInt(""));
+				result.setType1SuccessRate(rset.getInt(""));
+				result.setType2SuccessCount(rset.getInt(""));
+				result.setType2SuccessRate(rset.getInt(""));
+				result.setType3SuccessCount(rset.getInt(""));
+				result.setType3SuccessRate(rset.getInt(""));
+				
+				list.add(result);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return list;
 	}
 
 }
