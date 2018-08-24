@@ -572,11 +572,11 @@ cursor : pointer;
 					class="link_cont">통계 현황</a>
 					
 							<ul class="lnb_depth">
-							<li id="gstRewPay_li"><a href="/sp/views/admin/salesStatistics.jsp"
+							<li id="gstRewPay_li"><a href="<%= request.getContextPath() %>/salesSt.adm"
 									class="link_depth">매출 통계</a></li>
-								<li id="gstRewPay_li"><a href="/sp/views/admin/fundingStatistics.jsp"
+								<li id="gstRewPay_li"><a href="<%= request.getContextPath() %>/fundingSt.adm"
 									class="link_depth">펀딩 통계</a></li>
-								<li id="gstRewFaq_li"><a href="/sp/views/admin/memberStatistics.jsp"
+								<li id="gstRewFaq_li"><a href="<%= request.getContextPath() %>/memberSt.adm"
 									class="link_depth">가입자 통계</a></li>
 							</ul></li>
 					</ul></li>

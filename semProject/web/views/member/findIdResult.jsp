@@ -91,7 +91,7 @@ p, label {
 		<div class="container">
 			<ul class="nav nav-tabs">
 				<li role="presentation" class="active"><a href="#" style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;아이디 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li role="presentation"><a href="findPassword.jsp" style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation"><a href="<%=request.getContextPath() %>/views/member/findPassword.jsp" style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;비밀번호 찾기&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			</ul>
 			<br>
 			<% if(m != null){ %>

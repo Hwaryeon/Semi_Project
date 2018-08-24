@@ -124,7 +124,7 @@ p, label {
 			<div class="bottom-message">
 				<p style="font-size:14px;color:rgba(0, 0, 0, 0.54);">
 					아이디∙비밀번호를 잊으셨다면?<br>
-					<a href="findId.jsp" style="color:#428bca;">아이디∙비밀번호 찾기</a>
+					<a href="<%=request.getContextPath() %>/views/member/findId.jsp" style="color:#428bca;">아이디∙비밀번호 찾기</a>
 				</p>
 			</div>
 			
@@ -143,7 +143,7 @@ p, label {
 			<br>
 			<div class="bottom-message">
 				<p style="font-size:14px;color:rgba(0, 0, 0, 0.54);">
-					아직 iCrowd 계정이 없나요? <a href="memberJoinForm.jsp" style="color:#428bca;">회원가입</a>
+					아직 iCrowd 계정이 없나요? <a href="<%=request.getContextPath() %>/views/member/memberJoinForm.jsp" style="color:#428bca;">회원가입</a>
 				</p>
 			</div>
 		</div>

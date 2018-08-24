@@ -6,6 +6,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.sp.admin.model.dao.AdminDao;
+import com.kh.sp.admin.model.vo.OpenFundingStatistics;
+import com.kh.sp.admin.model.vo.SalesStatistics;
+import com.kh.sp.admin.model.vo.SuccessFundingStatistics;
 import com.kh.sp.member.model.vo.Member;
 
 
@@ -64,5 +67,27 @@ public class AdminService {
 		close(con);
 		
 		return m;
+	}
+
+
+	public ArrayList<SalesStatistics> selectSalesList(int num, String str) {
+		Connection con = getConnection();
+		ArrayList<SalesStatistics> list = new AdminDao().selectSalesList(con,num,str);
+		close(con);
+		return list;
+	}
+
+	public ArrayList<OpenFundingStatistics> selectOpenFundingList(String str) {
+		Connection con = getConnection();
+		ArrayList<OpenFundingStatistics> list = new AdminDao().selectOpenFundingList(con,str);
+		close(con);
+		return list;
+	}
+
+	public ArrayList<SuccessFundingStatistics> selectSuccessFundingList(String str) {
+		Connection con = getConnection();
+		ArrayList<SuccessFundingStatistics> list = new AdminDao().selectSuccessFundingList(con,str);
+		close(con);
+		return list;
 	}
 }
