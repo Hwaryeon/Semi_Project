@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.sp.board.model.vo.Board;
+import com.kh.sp.funding.model.service.FundingService;
+import com.kh.sp.funding.model.vo.Product;
 import com.kh.sp.main.model.service.MainService;
 import com.kh.sp.member.model.service.MemberService;
 import com.kh.sp.member.model.vo.Member;
@@ -38,8 +40,21 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("loginUser", loginUser);
 			
 			if(loginUser.getPwdStatus().equals("NT")){
+				request.setAttribute("msg", "로그인 성공");
+				session.setAttribute("loginUser", loginUser);
+				
 				ArrayList<Board> list = new MainService().startMain();
+				ArrayList<Product> newFList = new FundingService().newFundingList();
+				ArrayList<Product> mainFList = new FundingService().mainFundingList();
+				ArrayList<Product> hotFList = new FundingService().hotFundingList();
+				ArrayList<Product> closeFList = new FundingService().closeFundingList();
+				
 				request.setAttribute("list", list);
+				request.setAttribute("newFList", newFList);
+				request.setAttribute("mainFList", mainFList);
+				request.setAttribute("hotFList", hotFList);
+				request.setAttribute("closeFList", closeFList);
+				
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}else{
 				response.sendRedirect("views/member/resetPassword.jsp");

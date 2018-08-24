@@ -73,7 +73,7 @@ label {
 	<%@ include file="../common/headBar.jsp"%>
 	<h2 align="center" class="cmntitle">회원정보 수정</h2>
 	<div class="container">
-		<form class="form-update"
+		<form class="form-update" id="updateForm"
 			action="<%=request.getContextPath() %>/update.me" method="post">
 			<table align="center">
 				<tr>
@@ -159,6 +159,7 @@ label {
 			location.href = 'deleteMember.jsp';
 		}
 		function update() {
+			console.log("11");
 			$("#updateForm").submit();
 		}
 		
