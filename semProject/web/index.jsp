@@ -47,6 +47,24 @@ $(function(){
 
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
+#messageArea{
+	position: fixed;
+    bottom: 0%;
+    right: 3%;
+    background: #89cc84;
+    width: 200px;
+    text-align: center;
+    height: 35px;
+    padding-top: 5px;
+    border-radius: 9px;
+    cursor:pointer;
+}
+#messageArea a{
+	color:#f7dfdf;
+}
+
+
+
 </style>
 
 </head>
@@ -467,6 +485,11 @@ $(function(){
 			href="#outer" title="맨 아래로"> <img src="images/common/bottom.PNG"></a>
 
 
+		
+			<div id="messageArea">
+			 	<a onclick="messageopen()">1:1 메세지 보내기</a>
+			</div>
+
 	</div>
 	<script>
 		$(".noticeArea").click(function(){
@@ -475,7 +498,17 @@ $(function(){
 			location.href='<%=request.getContextPath()%>/boardRead.jsp?num='+wNo;
 		});
 			
-		
+		function messageopen(){
+			
+			var popUrl = "<%=request.getContextPath()%>/views/popup/message.jsp";	//팝업창에 출력될 페이지 URL
+
+			var popOption = "width=500, height=280, resizable=no, left=500, top=200, scrollbars=no, status=no; ";    //팝업창 옵션(optoin)
+
+				window.open(popUrl,"",popOption);
+
+
+			
+		}
 	
 	
 	</script>
