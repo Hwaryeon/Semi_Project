@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.sp.admin.model.vo.*"%>
 <!DOCTYPE html>
+<%
+ArrayList<SuccessFundingStatistics> list =
+    (ArrayList<SuccessFundingStatistics>)request.getAttribute("list");
+String num = (String)request.getAttribute("num");
+%>
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -66,7 +71,7 @@ select{
 <div id="text">
 <div id="container">
    <ul class="nav nav-tabs">
-				<li role="presentation" style="font-size: 14px;"><a href="fundingStatistics.jsp">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 개설 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation" style="font-size: 14px;"><a href="<%=request.getContextPath()%>/fundingSt.adm">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 개설 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 성공 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
    </ul>
    <br>
@@ -82,8 +87,8 @@ select{
    <tr>
    <th>
    <select>
-   <option>월별</option>
-   <option>년도별</option>
+   <option id="month">월별</option>
+   <option id="year">년도별</option>
    </select>
    </th>
    <th></th>
@@ -95,12 +100,38 @@ select{
    </tr>
    </thead>
    <tbody>
-
+   <% for(SuccessFundingStatistics f : list){ %>
+				<tr>
+					<td><%= f.getTerm() %></td>
+					<%-- <td><%= f.getEnrollCount() %></td>
+					<td><%= f.getOpenCount() %></td>
+					<td><%= f.getApprovalRate() %>%</td>
+					<td><%= f.getType1OpenCount() %></td>
+					<td><%= f.getType2OpenCount() %></td>
+					<td><%= f.getType3OpenCount() %></td> --%>
+				</tr>
+				<% } %>
    </tbody>
   </table>
 </div>
 </div>
-
+<script>
+$(function(){
+	if(<%= num %>=="0"){
+		$("#month").attr("selected", "selected");
+	}else{
+		$("#year").attr("selected", "selected");
+	}
+	
+	$('select').change(function(){
+	    if($("#year").is(':selected')) {
+	    	location.href = "<%= request.getContextPath() %>/fundingSt2.adm?term=year";
+	    }else if($("#month").is(':selected')){
+	    	location.href = "<%= request.getContextPath() %>/fundingSt2.adm";
+	    }
+	});
+});
+</script>
 <%--  <div><%@ include file="../common/footer.jsp" %></div> --%>
 
 </body>

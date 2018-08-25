@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.sp.admin.model.vo.*"%>
 <!DOCTYPE html>
+<%
+ArrayList<OpenFundingStatistics> list =
+    (ArrayList<OpenFundingStatistics>)request.getAttribute("list");
+String num = (String)request.getAttribute("num");
+%>
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -23,7 +28,7 @@ body {
  .table {
     width: 90%;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    background-color:#428BCA;
+background-color:#428BCA;
     color:white;
     margin-left:auto;
     margin-right:auto;
@@ -32,6 +37,11 @@ th, td {
 font-size:14px;
    text-align: center;
 }
+td{
+    background-color:white;
+    color:black;
+}
+
 select{
 font-size:14px;
     color:black;
@@ -68,7 +78,7 @@ font-size:14px;
 <div id="container">
    <ul class="nav nav-tabs">
 				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 개설 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li role="presentation" style="font-size: 14px;"><a href="fundingStatistics2.jsp">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 성공 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation" style="font-size: 14px;"><a href="<%=request.getContextPath()%>/fundingSt2.adm">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 성공 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
    </ul>
    <br>
    
@@ -86,8 +96,8 @@ font-size:14px;
    <tr>
    <th>
    <select>
-   <option>월별</option>
-   <option>년도별</option>
+   <option id="month">월별</option>
+   <option id="year">년도별</option>
    </select>
    </th>
    <th></th>
@@ -99,18 +109,150 @@ font-size:14px;
    </tr>
    </thead>
    <tbody>
-   
+    <% for(OpenFundingStatistics f : list){ %>
+				<tr>
+					<td><%= f.getTerm() %></td>
+					<td><%= f.getEnrollCount() %></td>
+					<td><%= f.getOpenCount() %></td>
+					<td><%= f.getApprovalRate() %>%</td>
+					<td><%= f.getType1OpenCount() %></td>
+					<td><%= f.getType2OpenCount() %></td>
+					<td><%= f.getType3OpenCount() %></td>
+				</tr>
+				<% } %> 
    </tbody>
   </table>
 </div>
 </div>
 <script>
     $(function(){
-    	
-    	var tableBody = $("#result tbody");
-		tableBody.html('');
-		
+    	if(<%= num %>=="0"){
+    		$("#month").attr("selected", "selected");
+    	}else{
+    		$("#year").attr("selected", "selected");
+    	}
+   	
+    	$('select').change(function(){
+    	    if($("#year").is(':selected')) {
+    	    	location.href = "<%= request.getContextPath() %>/fundingSt.adm?term=year";
+    	    }else if($("#month").is(':selected')){
+    	    	location.href = "<%= request.getContextPath() %>/fundingSt.adm";
+    	    }
+    	});
     });
+   /*  $(function(){
+	   $("select").change(function(){
+		   $.ajax({
+	  		    url:"fundingSt.adm",
+	  			type:"get",
+	  			success:function(data){
+					console.log(data);
+					
+					$tableBody = $("#result tbody");
+					$tableBody.html('');
+					
+					$.each(data, function(index, value){
+						
+						var $tr = $("<tr>");
+						var $termTd = $("<td>").text(value.term);
+						var $enrollCountTd = $("<td>").text(value.enrollCount);
+						var $openCountTd = $("<td>").text(value.openCount);
+						var $approvalRateTd = $("<td>").text(value.approvalRate);
+						var $type1OpenCountTd = $("<td>").text(value.type1OpenCount);
+						var $type2OpenCountTd = $("<td>").text(value.type2OpenCount);
+						var $type3OpenCountTd = $("<td>").text(value.type3OpenCount);
+						
+					
+						$tr.append($termTd);
+						$tr.append($enrollCountTd);
+						$tr.append($openCountTd);
+						$tr.append($approvalRateTd);
+						$tr.append($type1OpenCountTd);
+						$tr.append($type2OpenCountTd);
+						$tr.append($type3OpenCountTd);
+						$tableBody.append($tr);
+					})
+					
+				},
+				error:function(){
+					console.log('에러');
+				}
+	  		  });
+	   });  */
+       /* $("#month").selected(function(){
+    	   $.ajax({
+  			 url:"fundingSt.adm",
+  			 data:{term:"month"},
+  			 type:"post",
+  			success:function(data){
+				console.log(data);
+				
+				$tableBody = $("#result tbody");
+				$tableBody.html('');
+				
+				$.each(data, function(index, value){
+					
+					var $tr = $("<tr>");
+					var $termTd = $("<td>").text(value.term);
+					var $enrollCountTd = $("<td>").text(value.enrollCount);
+					var $openCountTd = $("<td>").text(value.openCount);
+					var $approvalRateTd = $("<td>").text(value.approvalRate);
+					var $type1OpenCountTd = $("<td>").text(value.type1OpenCount);
+					var $type2OpenCountTd = $("<td>").text(value.type2OpenCount);
+					var $type3OpenCountTd = $("<td>").text(value.type3OpenCount);
+					
+				
+					$tr.append($termTd);
+					$tr.append($enrollCountTd);
+					$tr.append($openCountTd);
+					$tr.append($approvalRateTd);
+					$tr.append($type1OpenCountTd);
+					$tr.append($type2OpenCountTd);
+					$tr.append($type3OpenCountTd);
+					$tableBody.append($tr);
+				})
+				
+			},
+			error:function(){
+				console.log('에러');
+			}
+  		  });
+
+		   
+	   });
+ 
+	   $("#year").selected(function(){
+		  $.ajax({
+			 url:"fundingSt.adm",
+			 data:{term:"year"},
+			 type:"post",
+			 success:function(data){
+					console.log(data);
+					
+					$tableBody = $("#result tbody");
+					$tableBody.html('');
+					
+					$.each(data, function(index, value){
+						
+						var $tr = $("<tr>");
+						var $noTd = $("<td>").text(value.userNo);
+						var $nameTd = $("<td>").text(decodeURIComponent(value.userName));
+						var $nationTd = $("<td>").text(decodeURIComponent(value.userNation));
+					
+						$tr.append($noTd);
+						$tr.append($nameTd);
+						$tr.append($nationTd);
+						$tableBody.append($tr);
+					})
+					
+				},
+				error:function(){
+					console.log('에러');
+				}
+		  });
+		   
+	   }); 
+   });*/
 </script>
 
 <%--  <div><%@ include file="../common/footer.jsp" %></div> --%>
