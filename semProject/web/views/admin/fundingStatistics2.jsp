@@ -37,6 +37,10 @@ th, td {
 font-size:14px;
    text-align: center;
 }
+td{
+    color:black;
+    background-color:white;
+}
 select{
     color:black;
 }
@@ -82,7 +86,7 @@ select{
    <th>마감 건수</th>
    <th>성공 건수</th>
    <th>성공 비율</th>
-   <th colspan="3">마감방식별 성공 건수/비율</th>
+   <th colspan="3">마감방식별 성공 비율</th>
    </tr>
    <tr>
    <th>
@@ -103,12 +107,12 @@ select{
    <% for(SuccessFundingStatistics f : list){ %>
 				<tr>
 					<td><%= f.getTerm() %></td>
-					<%-- <td><%= f.getEnrollCount() %></td>
-					<td><%= f.getOpenCount() %></td>
-					<td><%= f.getApprovalRate() %>%</td>
-					<td><%= f.getType1OpenCount() %></td>
-					<td><%= f.getType2OpenCount() %></td>
-					<td><%= f.getType3OpenCount() %></td> --%>
+					<td><%= f.getEndCount() %>건</td>
+					<td><%= f.getSuccessCount() %>건</td>
+					<td><%= f.getSuccessRate() %>%</td>
+					<td><%= f.getType1SuccessRate() %>%</td>
+					<td><%= f.getType2SuccessRate() %>%</td>
+					<td><%= f.getType3SuccessRate() %>%</td>
 				</tr>
 				<% } %>
    </tbody>

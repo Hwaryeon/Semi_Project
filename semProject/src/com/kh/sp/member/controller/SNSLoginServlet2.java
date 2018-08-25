@@ -61,17 +61,17 @@ public class SNSLoginServlet2 extends HttpServlet {
 			int result = new MemberService().insertSnsMember(m);
 			
 			if(result > 0){
-				request.setAttribute("msg", "가입 성공");
+				request.setAttribute("msg", "회원 가입이 완료되었습니다.");
 				session.setAttribute("accessToken", accessToken);
 			}
 			else{
-				request.setAttribute("msg", "로그인 및 가입 실패");
+				request.setAttribute("msg", "회원 가입에 실패하였습니다.");
 			}
 			RequestDispatcher view = request.getRequestDispatcher("views/member/loginForm.jsp");
 			view.forward(request, response);
 			
 		}else{
-			request.setAttribute("msg", "로그인 성공");
+			//로그인 성공
 			session.setAttribute("accessToken", accessToken);
 			session.setAttribute("loginUser", loginUser);
 			

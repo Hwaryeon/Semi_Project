@@ -112,12 +112,12 @@ font-size:14px;
     <% for(OpenFundingStatistics f : list){ %>
 				<tr>
 					<td><%= f.getTerm() %></td>
-					<td><%= f.getEnrollCount() %></td>
-					<td><%= f.getOpenCount() %></td>
+					<td><%= f.getEnrollCount() %>건</td>
+					<td><%= f.getOpenCount() %>건</td>
 					<td><%= f.getApprovalRate() %>%</td>
-					<td><%= f.getType1OpenCount() %></td>
-					<td><%= f.getType2OpenCount() %></td>
-					<td><%= f.getType3OpenCount() %></td>
+					<td><%= f.getType1OpenCount() %>건</td>
+					<td><%= f.getType2OpenCount() %>건</td>
+					<td><%= f.getType3OpenCount() %>건</td>
 				</tr>
 				<% } %> 
    </tbody>

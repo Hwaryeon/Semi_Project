@@ -518,23 +518,29 @@ public class AdminDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			
-			
+			pstmt.setString(1, "펀딩모집");
+			pstmt.setString(2, "펀딩모집");
+			pstmt.setString(3, "펀딩모집");
+			pstmt.setString(4, "펀딩모집");
+			pstmt.setString(5, "채권발급");
+			pstmt.setString(6, "채권발급");
+			pstmt.setString(7, "채권발급");
+			pstmt.setString(8, "채권발급");
 			
             rset = pstmt.executeQuery();
 			
 			while(rset.next()){
 				result = new SuccessFundingStatistics();
-				result.setTerm(rset.getString(""));
-				result.setEndCount(rset.getInt(""));
-				result.setSuccessCount(rset.getInt(""));
-				result.setSuccessRate(rset.getInt(""));
-				result.setType1SuccessCount(rset.getInt(""));
-				result.setType1SuccessRate(rset.getInt(""));
-				result.setType2SuccessCount(rset.getInt(""));
-				result.setType2SuccessRate(rset.getInt(""));
-				result.setType3SuccessCount(rset.getInt(""));
-				result.setType3SuccessRate(rset.getInt(""));
+				result.setTerm(rset.getString("term"));
+				result.setEndCount(rset.getInt("end_count"));
+				result.setSuccessCount(rset.getInt("success_count"));
+				result.setSuccessRate(rset.getInt("success_rate"));
+				result.setType1SuccessCount(rset.getInt("type1_success_count"));
+				result.setType1SuccessRate(rset.getInt("type1_success_rate"));
+				result.setType2SuccessCount(rset.getInt("type2_success_count"));
+				result.setType2SuccessRate(rset.getInt("type2_success_rate"));
+				result.setType3SuccessCount(rset.getInt("type3_success_count"));
+				result.setType3SuccessRate(rset.getInt("type3_success_rate"));
 				
 				list.add(result);
 			}
