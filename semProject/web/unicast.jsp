@@ -123,7 +123,7 @@
 	
 	// 채팅 서버
 	var webSocket = null;
-	
+		
 	// 내가 보낼 문자열을 담은 input 태그
 	var $inputMessage = $('#inputMessage');
 	
