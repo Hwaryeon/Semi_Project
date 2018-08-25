@@ -11,19 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.sp.board.model.vo.Attachment;
+import com.kh.sp.funding.model.vo.Product;
 import com.kh.sp.product.model.service.ProductService;
 
 /**
- * Servlet implementation class SelectProductThumbnailServlet
+ * Servlet implementation class SelectOneProduct
  */
-@WebServlet("/SelectList.tn")
-public class SelectProductThumbnailServlet extends HttpServlet {
+@WebServlet("/SelectOne.tn")
+public class SelectOneProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectProductThumbnailServlet() {
+    public SelectOneProduct() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,19 +34,21 @@ public class SelectProductThumbnailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//System.out.println("왔어?");
+		int num = Integer.parseInt(request.getParameter("num"));
+		System.out.println("num은??"+num);
 		
-		ArrayList<HashMap<String, Object>> list
-			= new ProductService().selectProductList();
-		System.out.println(list.size());
+		
+		HashMap<String, Object> hmap = new ProductService().selectOne(num);
+		
 		String page = "";
 		
-		if(list != null) {
-			
-			page = "views/funding/welcome.jsp";
-			request.setAttribute("list", list);	
+		if(hmap!=null) {
+			page = "views/funding/product.jsp";
+			request.setAttribute("hamp", hmap);
+			/*request.setAttribute("a", (Product)hmap.get("product"));
+			request.setAttribute("proList",(ArrayList<Attachment>)hmap.get("attachment"));*/
 		}else {
-			System.out.println("조회 실패");
+			System.out.println("상세 보기 실패!");
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);

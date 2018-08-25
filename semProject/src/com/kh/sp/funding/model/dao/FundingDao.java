@@ -357,8 +357,10 @@ public class FundingDao {
 			close(stmt);
 		}
 
+
 		if(pList.size() > 0){
 			pList.remove(pList.size()-1);
+
 		}
 		
 		return pList;

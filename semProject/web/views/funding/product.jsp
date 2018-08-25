@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+    pageEncoding="UTF-8" import="java.util.*" %>
+
+<%HashMap<String,Object> hmap = (HashMap<String,Object>)request.getAttribute("hamp"); %>
     
 <!DOCTYPE html>
 <%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> --%>
@@ -87,8 +89,8 @@
 	height : 400px;
 }
 #picture{
-	width : 80%;
-	height: 70%;
+	/* width : 80%;
+	height: 70%; */
 	display : inline-block;
 	margin-top: 40px;
 	margin-left : 90px;
@@ -265,7 +267,7 @@ $(document).ready(function(){
 다울쿠키가 만들어갑니다.</p>
 <div class="contents">
 	<div id="pic">
-		<img id="picture" src="../../images/product2.PNG"/>
+		<img id="picture" src="/sp/thumbnail_uploadFiles/<%=hmap.get("changeName")%>" width="300px" height="200px">
 	</div>
 	<div id="text">
 		<br>
