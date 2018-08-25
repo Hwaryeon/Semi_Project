@@ -2,7 +2,7 @@ package com.kh.sp.project.model.vo;
 
 import java.sql.Date;
 
-public class Application {
+public class Application implements java.io.Serializable{
 	private int pId;
 	private Date processingDate;
 	private Date applicationDate;

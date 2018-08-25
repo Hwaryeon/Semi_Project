@@ -3,7 +3,7 @@ package com.kh.sp.admin.model.vo;
 import java.sql.Date;
 
 public class SalesStatistics {
-    private Date term;
+    private String term;
     private int paymentCount;
     private int paymentPrice;
     private int refundCount;
@@ -15,7 +15,7 @@ public class SalesStatistics {
     
     public SalesStatistics(){}
     
-	public SalesStatistics(Date term, int paymentCount, int paymentPrice, int refundCount, int failCount,
+	public SalesStatistics(String term, int paymentCount, int paymentPrice, int refundCount, int failCount,
 			int cancelCount, int paymentPercentage, int paymentCompletePrice, int netSales) {
 		super();
 		this.term = term;
@@ -29,11 +29,11 @@ public class SalesStatistics {
 		this.netSales = netSales;
 	}
 
-	public Date getTerm() {
+	public String getTerm() {
 		return term;
 	}
 
-	public void setTerm(Date term) {
+	public void setTerm(String term) {
 		this.term = term;
 	}
 
