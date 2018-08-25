@@ -106,11 +106,12 @@ public class UpdateBoardServlet extends HttpServlet {
 				System.out.println("oriFiles : " + at.getOriginName());
 				System.out.println("saveFiles : " + at.getChangeName());
 				
-				fileList.add(at);
-				
+				if(at.getOriginName() != null){
+					fileList.add(at);
+				}
 			}
 			
-			result = new BoardService().updateAttachment(wNo, fileList, count);
+			result = new BoardService().updateAttachment(wNo, fileList, count, uId);
 			
 			if(result > 0){
 				response.sendRedirect("/sp/allBoard");

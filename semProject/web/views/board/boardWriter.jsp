@@ -216,12 +216,12 @@ $(document).ready(function(){
 							    <li class="active" style="float:left;">
 							        <label style="cursor:pointer;">
 							            <span></span><input type="radio" name="viewType" id="viewTypea" 
-							            	value="A" title="등록" checked="checked" />등록
+							            	value="Y" title="등록" checked="checked" />등록
 							        </label>
 							    </li>
 							    <li style="float:left;">
 							        <label style="cursor:pointer;">
-							            <span></span><input type="radio" name="viewType" id="viewTypeb" value="B" title="등록안함" />등록안함
+							            <span></span><input type="radio" name="viewType" id="viewTypeb" value="N" title="등록안함" />등록안함
 							        </label>
 							    </li>
 							</ul>

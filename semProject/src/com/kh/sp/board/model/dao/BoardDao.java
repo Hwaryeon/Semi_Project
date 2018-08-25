@@ -46,7 +46,7 @@ public class BoardDao {
 			/*pstmt.setInt(1, board.getwNo());*/
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getText());
-			pstmt.setString(3, board.getbType());
+			pstmt.setString(3, "공지사항");
 			pstmt.setString(4, board.getaText());
 			pstmt.setInt(5, board.getFileNum());
 			pstmt.setInt(6, board.getpView());
@@ -398,7 +398,7 @@ public class BoardDao {
 		return bid;
 	}
 
-	public int insertAttachment(Connection con, ArrayList<Attachment> fileList) {
+	public int insertAttachment(Connection con, ArrayList<Attachment> fileList, int uId) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 
@@ -406,11 +406,8 @@ public class BoardDao {
 		
 		try {
 			
-			System.out.println("오류1");
-			
 			for(int i=0; i < fileList.size(); i++){
 				
-				System.out.println("오류2");
 				
 				System.out.println("fileList " + i + " : " + fileList.get(i));
 				
@@ -428,6 +425,7 @@ public class BoardDao {
 				}*/
 				
 				pstmt.setInt(5, level);
+				pstmt.setInt(6, uId);
 				
 				result += pstmt.executeUpdate();
 				
