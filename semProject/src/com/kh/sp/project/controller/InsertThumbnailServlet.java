@@ -70,12 +70,7 @@ public class InsertThumbnailServlet extends HttpServlet {
 			String projectPrepare = multiRequest.getParameter("projectPrepare");
 			String projectIntro = multiRequest.getParameter("projectIntro");
 			String projectPlan = multiRequest.getParameter("projectPlan");
-			System.out.println(intro);
-			System.out.println(projectPrepare);
-			System.out.println(projectIntro);
-			System.out.println(projectPlan);
-			System.out.println(saveFiles);
-			System.out.println(originFiles);
+			
 			
 			Application a = new Application();
 			a.setIntro(intro);
@@ -99,7 +94,7 @@ public class InsertThumbnailServlet extends HttpServlet {
 			int result = new ProjectService().insertThumbnail(a,fileList);
 			String page = "";
 			if(result > 0) {
-				System.out.println("등록성공");
+				
 				response.sendRedirect(request.getContextPath() + "/SelectList.tn");
 			}else {
 				for(int i = 0 ; i<saveFiles.size(); i++) {

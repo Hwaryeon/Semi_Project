@@ -115,7 +115,7 @@ public class WriteBoardServlet extends HttpServlet {
 			
 			int result = 0;
 			//Service로 전송
-				result = new BoardService().insertAttachment(board, fileList, count);
+				result = new BoardService().insertAttachment(board, fileList, count, uId);
 			
 			if(result >0){
 				response.sendRedirect("/sp/allBoard");
