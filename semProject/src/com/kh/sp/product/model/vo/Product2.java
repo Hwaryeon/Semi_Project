@@ -3,7 +3,7 @@ package com.kh.sp.product.model.vo;
 public class Product2 implements java.io.Serializable{
 	private int pid;
 	private String pCode;
-	private String UserId;
+	private int UserId;
 	private String pName;
 	private String interestRate;
 	private String pPreparation;
@@ -20,7 +20,7 @@ public class Product2 implements java.io.Serializable{
 
 	public Product2 (){}
 	
-	public Product2(int pid, String pCode, String userId, String pName, String interestRate, String pPreparation,
+	public Product2(int pid, String pCode, int userId, String pName, String interestRate, String pPreparation,
 			String pIntroduction, String pPlan, int purpose, int present, String proPlan, String img, String pno,
 			String shortintro) {
 		super();
@@ -52,10 +52,10 @@ public class Product2 implements java.io.Serializable{
 	public void setpCode(String pCode) {
 		this.pCode = pCode;
 	}
-	public String getUserId() {
+	public int getUserId() {
 		return UserId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		UserId = userId;
 	}
 	public String getpName() {
