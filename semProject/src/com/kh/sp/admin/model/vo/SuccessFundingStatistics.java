@@ -3,7 +3,7 @@ package com.kh.sp.admin.model.vo;
 import java.sql.Date;
 
 public class SuccessFundingStatistics {
-    private Date term;
+    private String term;
     private int endCount;
     private int successCount;
     private int successRate;
@@ -16,7 +16,7 @@ public class SuccessFundingStatistics {
     
     public SuccessFundingStatistics(){}
 
-	public SuccessFundingStatistics(Date term, int endCount, int successCount, int successRate, int type1SuccessCount,
+	public SuccessFundingStatistics(String term, int endCount, int successCount, int successRate, int type1SuccessCount,
 			int type1SuccessRate, int type2SuccessCount, int type2SuccessRate, int type3SuccessCount,
 			int type3SuccessRate) {
 		super();
@@ -32,11 +32,11 @@ public class SuccessFundingStatistics {
 		this.type3SuccessRate = type3SuccessRate;
 	}
 
-	public Date getTerm() {
+	public String getTerm() {
 		return term;
 	}
 
-	public void setTerm(Date term) {
+	public void setTerm(String term) {
 		this.term = term;
 	}
 

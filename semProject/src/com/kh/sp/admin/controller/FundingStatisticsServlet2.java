@@ -10,38 +10,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.sp.admin.model.service.AdminService;
-import com.kh.sp.admin.model.vo.MemberStatistics;
-import com.kh.sp.admin.model.vo.OpenFundingStatistics;
+import com.kh.sp.admin.model.vo.SuccessFundingStatistics;
 
-@WebServlet("/memberSt.adm")
-public class MeberStatisticsServlet extends HttpServlet {
+/**
+ * Servlet implementation class FundingStatisticsServlet2
+ */
+@WebServlet("/fundingSt2.adm")
+public class FundingStatisticsServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
-    public MeberStatisticsServlet() {
+       
+    public FundingStatisticsServlet2() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<MemberStatistics> list = null;
-
-		String term = request.getParameter("term");
+		ArrayList<SuccessFundingStatistics> list = null;
 		
+		String term = request.getParameter("term");
 		if(term == null){
-			list = new AdminService().selectMemberList("date");
+			list = new AdminService().selectSuccessFundingList("month");
 			request.setAttribute("num","0");
-		}else if(term.equals("month")){
-			list = new AdminService().selectMemberList("month");
-			request.setAttribute("num","1");
 		}else{
-			list = new AdminService().selectMemberList("year");
-			request.setAttribute("num","2");
+			list = new AdminService().selectSuccessFundingList("year");
+			request.setAttribute("num","1");
 		}
 		
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/admin/memberStatistics.jsp").forward(request, response);
+		request.getRequestDispatcher("views/admin/fundingStatistics2.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 

@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.sp.admin.model.vo.*"%>
 <!DOCTYPE html>
+<%
+ArrayList<MemberStatistics> list =
+    (ArrayList<MemberStatistics>)request.getAttribute("list");
+String num = (String)request.getAttribute("num");
+%>
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -29,8 +34,12 @@ body {
     margin-right:auto;
   } 
 th, td {
+font-size:14px;
    text-align: center;
-   font-size:14px;
+}
+td{
+    background-color:white;
+    color:black;
 }
 select{
     color:black;
@@ -81,24 +90,52 @@ select{
    <tr>
    <th>
    <select>
-   <option>일별</option>
-   <option>월별</option>
-   <option>년도별</option>
+   <option id="date">일별</option>
+   <option id="month">월별</option>
+   <option id="year">년도별</option>
    </select>
    </th>
    <th></th>
    <th>Email</th>
-   <th>Naver</th>
    <th>Kakao</th>
+   <th>Naver</th>
    </tr>
    </thead>
    <tbody>
-   
+    <% for(MemberStatistics m : list){ %>
+				<tr>
+					<td><%= m.getTerm() %></td>
+					<td><%= m.getMemberCount() %></td>
+					<td><%= m.getEmailMemberCount() %></td>
+					<td><%= m.getKakaoMemberCount() %></td>
+					<td><%= m.getNaverMemberCount() %></td>
+				</tr>
+				<% } %> 
    </tbody>
   </table>
 </div>
 </div>
-
+<script>
+$(function(){
+	if(<%= num %>=="0"){
+		$("#date").attr("selected", "selected");
+	}else if(<%= num %>=="1"){
+		$("#month").attr("selected", "selected");
+	}else{
+		$("#year").attr("selected", "selected");
+	}
+	
+	$('select').change(function(){
+	    if($("#year").is(':selected')) {
+	    	location.href = "<%= request.getContextPath() %>/memberSt.adm?term=year";
+	    }else if($("#month").is(':selected')){
+	    	location.href = "<%= request.getContextPath() %>/memberSt.adm?term=month";
+	    }else{
+	    	location.href = "<%= request.getContextPath() %>/memberSt.adm";
+	    }
+	});
+});
+</script>
 <%--  <div><%@ include file="../common/footer.jsp" %></div> --%>
 
 </body>
