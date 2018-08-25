@@ -375,8 +375,10 @@ public ArrayList<Product> inverstHotFundingList(Connection con) {
 			close(stmt);
 			close(rset);
 		}
-		pList.remove(pList.size()-1);
 		
+		if(pList == null) {
+			/*pList.remove(pList.size()-1);*/
+		}
 		System.out.println("pList : " + pList);
 		System.out.println("count : " + pList.size());
 		

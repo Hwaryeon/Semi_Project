@@ -22,6 +22,17 @@ public class ProductService {
 		return list;
 	}
 
+	public HashMap<String, Object> selectOne(int num) {
+		Connection con = getConnection();
+		
+		
+		HashMap<String,Object> hmap = new ProductDao().selectOne(con,num);
+		
+		close(con);
+		
+		return hmap; 
+	}
+
 	
 	
 	

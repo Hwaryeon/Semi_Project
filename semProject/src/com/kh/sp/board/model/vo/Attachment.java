@@ -15,11 +15,23 @@ public class Attachment implements Serializable{
 	private int fileLevel;
 	private int downloadCount;
 	private String status;
+	private String userId;
 	
+	
+
 	public Attachment(){}
 
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
 	public Attachment(int fid, int bid, String originName, String changeName, String filePath, String upload,
-			Date uploadDate, int fileLevel, int downloadCount, String status) {
+			Date uploadDate, int fileLevel, int downloadCount, String status, String userId) {
 		super();
 		this.fid = fid;
 		this.bid = bid;
@@ -31,6 +43,7 @@ public class Attachment implements Serializable{
 		this.fileLevel = fileLevel;
 		this.downloadCount = downloadCount;
 		this.status = status;
+		this.userId = userId;
 	}
 
 	public int getFid() {
@@ -117,7 +130,7 @@ public class Attachment implements Serializable{
 	public String toString() {
 		return "Attachment [fid=" + fid + ", bid=" + bid + ", originName=" + originName + ", changeName=" + changeName
 				+ ", filePath=" + filePath + ", upload=" + upload + ", uploadDate=" + uploadDate + ", fileLevel="
-				+ fileLevel + ", downloadCount=" + downloadCount + ", status=" + status + "]";
+				+ fileLevel + ", downloadCount=" + downloadCount + ", status=" + status + ", userId=" + userId + "]";
 	}
 	
 	

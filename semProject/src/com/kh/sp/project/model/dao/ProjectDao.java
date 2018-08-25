@@ -63,11 +63,6 @@ public class ProjectDao {
 		
 		String query = prop.getProperty("insertThumb");
 		
-		System.out.println(a.getProjectPlan());
-		System.out.println(a.getProjectIntro());
-		System.out.println(a.getProjectPrepare());
-		System.out.println(a.getIntro());
-		System.out.println(a.getpId());
 		try {
 			pstmt = con.prepareStatement(query);
 			
