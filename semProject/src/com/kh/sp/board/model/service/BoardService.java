@@ -140,7 +140,7 @@ public class BoardService {
 		return np;
 	}
 
-	public int insertAttachment(Board board, ArrayList<Attachment> fileList, int count) {
+	public int insertAttachment(Board board, ArrayList<Attachment> fileList, int count, int uId) {
 
 		int result= 0;
 		Connection con = getConnection();
@@ -156,12 +156,13 @@ public class BoardService {
 
 				// 하나의 게시물에 여러 첨부파일이 들어가면  하나의 게시물에 대한 번호만을 가지고 있어야하므로
 				for(int i=0; i<fileList.size(); i++){
+					System.out.println("insert 파일리스트");
 					fileList.get(i).setBid(bid);
 				}
 			}
 
 			//첨부파일 DB저장
-			int result2 = new BoardDao().insertAttachment(con, fileList);
+			int result2 = new BoardDao().insertAttachment(con, fileList, uId);
 
 			if(result1 >0 && result2 >0){
 				commit(con);	
@@ -182,7 +183,7 @@ public class BoardService {
 		return result;
 	}
 
-	public int updateAttachment(int wNo, ArrayList<Attachment> fileList, int count) {
+	public int updateAttachment(int wNo, ArrayList<Attachment> fileList, int count, int uId) {
 
 		int result= 0;
 		Connection con = getConnection();
@@ -191,11 +192,12 @@ public class BoardService {
 
 			// 하나의 게시물에 여러 첨부파일이 들어가면  하나의 게시물에 대한 번호만을 가지고 있어야하므로
 			for(int i=0; i<fileList.size(); i++){
+				System.out.println("update 파일리스트");
 				fileList.get(i).setBid(wNo);
 			}
 
 			//첨부파일 DB저장
-			result = new BoardDao().insertAttachment(con, fileList);
+			result = new BoardDao().insertAttachment(con, fileList, uId);
 
 			if(result > 0){
 				commit(con);
