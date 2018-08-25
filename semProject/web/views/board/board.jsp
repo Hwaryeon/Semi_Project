@@ -204,7 +204,9 @@ int endPage = pi.getEndPage();
 					</div>
 				</article>
 			</div>
+			
 		</main>		
+		
 				</script>
 		<!-- footer -->
 
@@ -212,8 +214,8 @@ int endPage = pi.getEndPage();
 <!--Start of Tawk.to Script-->
 
 <!-- 웹소캣부분인것같음 -->
-
-<!-- <script type="text/javascript">
+<!-- 
+<script type="text/javascript">
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function () {
         var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
@@ -223,7 +225,7 @@ int endPage = pi.getEndPage();
         s1.setAttribute('crossorigin', '*');
         s0.parentNode.insertBefore(s1, s0);
     })();
-</script> -->
+</script>  -->
 
 
 

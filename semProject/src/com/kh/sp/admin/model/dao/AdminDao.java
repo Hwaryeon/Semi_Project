@@ -1,6 +1,6 @@
 package com.kh.sp.admin.model.dao;
 
-import static com.kh.sp.common.JDBCTemplate.close;
+import static com.kh.sp.common.JDBCTemplate.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -59,6 +59,33 @@ public class AdminDao {
 
 		return listCount;
 	}
+	public int getBlackListCount(Connection con) {
+		Statement stmt = null;
+		int blackListCount = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("blackListCount");
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if(rset.next()) {
+				blackListCount = rset.getInt(1);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(stmt);
+			close(rset);
+
+		}
+
+
+		return blackListCount;
+	}
+	
 
 	public ArrayList<Member> selectList(Connection con, int currentPage, int limit) {
 		ArrayList<Member> list = null;
@@ -262,6 +289,92 @@ public class AdminDao {
 		return m;
 	}
 
+	public ArrayList<Member> selectBlackList(Connection con, int currentPage, int limit) {
+		ArrayList<Member> blackList = null;
+
+		System.out.println("이게 안나오면 이상하지");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		System.out.println("여기 오나 ?");
+		String query = prop.getProperty("blackSelectAll");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage -1) * limit + 1;
+			int endRow = startRow + limit -1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+
+			blackList = new ArrayList<Member>();
+
+			while(rset.next()){
+				Member m = new Member();
+				
+				m.setUserId(rset.getInt("user_Id"));
+				m.setUserClass(rset.getString("user_Class"));
+				m.setUserName(rset.getString("user_Name"));
+				m.setCorporateName(rset.getString("corporate_Name"));
+				m.setB_reason(rset.getString("reason"));
+				m.setB_enrollDate(rset.getDate("enroll_Date"));
+				
+				blackList.add(m);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+
+		System.out.println(blackList);
+		return blackList;
+	}
+
+	public int searchMemberList(Connection con, String text) {
+		PreparedStatement pstmt = null;
+		int searchList = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("searchMemberList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, text);
+			pstmt.setString(2, text);
+			pstmt.setString(3, text);
+			pstmt.setString(4, text);
+			pstmt.setString(5, text);
+			pstmt.setString(6, text);
+			
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				searchList = rset.getInt(1);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+
+		}
+
+
+		return searchList;
+	}
+
+	public int searchBlackListCount(Connection con, String text) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	public ArrayList<SalesStatistics> selectSalesList(Connection con, int num, String str) {
 		ArrayList<SalesStatistics> list = null;

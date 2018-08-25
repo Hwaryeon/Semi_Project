@@ -23,7 +23,15 @@ public class AdminService {
 		
 		return listCount;
 	}
-
+	public int getBlackListCount() {
+		Connection con = getConnection();
+		
+		int blackListCount = new AdminDao().getBlackListCount(con);
+		
+		close(con);
+		
+		return blackListCount;
+	}
 	public ArrayList<Member> selectList(int currentPage, int limit) {
 		Connection con = getConnection();
 		
@@ -56,19 +64,43 @@ public class AdminService {
 				
 		Member m = new AdminDao().selectOne(con, user_id);
 		
-		/*if(m != null){
-			commit(con);
-		}
-		else {
-			rollback(con);
-		}
-		
-		*/
 		close(con);
 		
 		return m;
 	}
 
+	public ArrayList<Member> selectBlackList(int currentPage, int limit) {
+
+		Connection con = getConnection();
+		System.out.println("서비스도 안와?");
+		ArrayList<Member> blackList = new AdminDao().selectBlackList(con, currentPage, limit);
+		
+		close(con);
+		
+		return blackList;	
+	}
+	public int searchMemberList(String text) {
+	Connection con = getConnection();
+		
+		int searchList = new AdminDao().searchMemberList(con, text);
+		
+		close(con);
+		
+		return searchList;
+	}
+	public int searchBlackList(String text) {
+		Connection con = getConnection();
+		
+		int searchList = new AdminDao().searchBlackListCount(con, text);
+		
+		close(con);
+		
+		return searchList;
+	}
+	public ArrayList<Member> searchBlackMember(int currentPage, int limit, String text) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	public ArrayList<SalesStatistics> selectSalesList(int num, String str) {
 		Connection con = getConnection();
