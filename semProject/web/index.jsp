@@ -120,56 +120,33 @@ $(function(){
 			
 			<div class="funding_area1" >
 			
+				<%int k=0; %>
+				<% for(Product p : mainFList) { %>
+				<% if(k == 0){ %>
 				<div class="funding_p" style="margin-left: 72px;">
-					<div class="fPic">
-					<em class="picks-img">
-					<span class="scale" style="overflow:hidden" >
-					<img src="images/main/h1_1.jpg" style="width: 100%; height:229px;  overflow:hidden">
-					</span>
-					</em>
-					<div class="progressbar-wrap">
-                                   <dl>
-                                       <dt><span style="width:16%"></span></dt>
-                                       <dd>
-                                           <span class="percent">16%</span>
-                                           <span class="amount">13,250,000원 달성</span>
-                                           
-                                           	
-                                           	<span class="days">24일 남음</span>
-                                           
-                                       </dd>
-                                   </dl>
-                                </div>
+				<% }else{ %>
+						<div class="funding_p">
 					
-                                
-                                
-                                
-					</div>
-					<div class="fCon">
-						<p class="category"><em>마감임박</em><em class="type" >투자</em></p>
-						<p class="title">꽃바다를 부탁해<br>한번에</p>
-						<p class="pText">어디어디회사<br>http://www.사이트주소.com</p>
-						<p class="badge">※원금손실가능</p>
-					</div>
-					
-				</div>
-				
-				<div class="funding_p">
+					<% } %>
+					<% k++; %>
 					<div class="fPic">
 					<em class="picks-img">
 					<span class="scale" >
-					<img src="images/main/h1_2.jpg" style="width: 100%; height:229px;">
+					<!-- <img src="images/main/h1_2.jpg" style="width: 100%; height:229px;"> -->
+					<img src="<%=request.getContextPath()%>/board_uploadFiles/<%=p.getChange_name() %>" style="width: 100%; height:229px;">
 					</span>
 					</em>
 					<div class="progressbar-wrap">
                                    <dl>
-                                       <dt><span style="width:77%"></span></dt>
+                                       <dt><span style="width:<% if(p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) < 100){ %>
+                                       <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %><% }else{%>100<% } %>%"></span></dt>
                                        <dd>
-                                           <span class="percent">77%</span>
-                                           <span class="amount">777,777,777원 달성</span>
+                                           <span class="percent"><%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %>%</span>
+                                           <%String str = String.format("%,d", p.getTotal_amount()); %>
+                                           <span class="amount"><%=str %>원 달성</span>
                                            
                                            	
-                                           	<span class="days">77일 남음</span>
+                                           	<span class="days"><%=p.getOpenDate() %>일 남음</span>
                                            
                                        </dd>
                                    </dl>
@@ -177,13 +154,22 @@ $(function(){
 					</div>
 					<div class="fCon" style="background:#a7d7ec;">
 						<p class="category"><em>마감임박</em><em class="type" >투자</em></p>
-						<p class="title">영양좋고 맛 좋은 과자를<br>다함께</p>
-						<p class="pText">사단 법인<br>두리하나다읍</p>
-						<p class="badge">※원금보장</p>
+						<p class="title"><%= p.getP_name() %>
+						<p class="pText"><%= p.getCorporate_name()%></p>
+						<% if(p.getP_code().equals("1") ) { %>
+							<p class="badge">※80%이상 리워드</p>
+						<% }else if(p.getP_code().equals("2")){ %>
+							<p class="badge">※100%시 마감 및 리워드</p>
+						<% }else{ %>
+							<p class="badge">※100%이상 리워드</p>
+						<% } %>
 					</div>
 				</div>
 				
-				<div class="funding_p">
+				
+				<% } %>
+				
+			<!-- 	<div class="funding_p">
 					<div class="fPic" style="height:330px;">
 					<em class="picks-img">
 					<span class="scale" >
@@ -195,7 +181,7 @@ $(function(){
 						<p class="title" id="fTitle">구매후기쓰고<br>선물 받으세요!</p>
 						<p class="text" id="fText">이미 지난 이벤트지만 <br> 노출/SNS 광고 혜택 받으세요!</p>
 					</div>
-				</div>
+				</div> -->
 				
 			</div>
 			
@@ -236,17 +222,9 @@ $(function(){
 					</em>
 					<div class="progressbar-wrap">
                                    <dl>
-                                       <dt><span style="width:
-                                       
-                                       <% if(p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) < 100){ %>
-                                       <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %>
-                                       
-                                       <% }else{%>
-                                        100
-                                       <% } %>
-                                       
-                                       %"></span></dt>
-                                       <dd>
+                                       <dt><span style="width:<% if(p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) < 100){ %>
+                                       <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %><% }else{%>100<% } %>%"></span></dt>
+                                                                              <dd>
                                            <span class="percent">
                                            
                                            
@@ -320,16 +298,8 @@ $(function(){
 					</em>
 					<div class="progressbar-wrap">
                                    <dl>
-                                       <dt><span style="width:
-                                       
-                                       <% if(p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) < 100){ %>
-                                       <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %>
-                                       
-                                       <% }else{%>
-                                        100
-                                       <% } %>
-                                       
-                                       %"></span></dt>
+                                       <dt><span style="width:<% if(p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) < 100){ %>
+                                       <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %><% }else{%>100<% } %>%"></span></dt>
                                        <dd>
                                            <span class="percent">
                                            
@@ -397,16 +367,8 @@ $(function(){
 					</em>
 					<div class="progressbar-wrap">
                                    <dl>
-                                       <dt><span style="width:
-                                       
-                                       <% if(p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) < 100){ %>
-                                       <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %>
-                                       
-                                       <% }else{%>
-                                        100
-                                       <% } %>
-                                       
-                                       %"></span></dt>
+                                       <dt><span style="width:<% if(p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) < 100){ %>
+                                       <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %><% }else{%>100<% } %>%"></span></dt>
                                        <dd>
                                            <span class="percent">
                                            
@@ -470,7 +432,7 @@ $(function(){
 								
 								<input type="hidden" id="wNo" name="wNo" value="<%=b.getwNo()%>"></input>
 								
-								<% if(b.getNoticeYn().equals("A")) { %>[공지]&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<% if(b.getNoticeYn().equals("Y")) { %>[공지]&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<%= b.getTitle() %>
 								
 										<% }else{ %>

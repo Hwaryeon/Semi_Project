@@ -126,7 +126,7 @@ int endPage = pi.getEndPage();
 									%>
 									<div class="tbl_row body_group important" > <!-- 공지 글일때 important 클래스 추가 -->
 										<div class="tbl_cell cell_num" id="bNo" >
-										<% if(b.getNoticeYn().equals("A")) { %>[공지]
+										<% if(b.getNoticeYn().equals("Y")) { %>[공지]
 										<% }else{ %>
 										<%= b.getwNo() %>
 										<% } %> 
