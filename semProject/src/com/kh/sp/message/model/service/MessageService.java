@@ -15,9 +15,26 @@ public class MessageService {
 		
 		int result = new MessageDao().sendMessage(con, m);
 		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
 		close(con);
 		
 		return result;
+	}
+
+	public Message readMessage(int msgId) {
+		
+		Connection con = getConnection();
+		
+		Message m = new MessageDao().readMessage(con, msgId);
+		
+		close(con);
+		
+		return m;
 	}
 
 }

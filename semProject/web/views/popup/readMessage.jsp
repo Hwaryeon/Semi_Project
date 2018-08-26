@@ -70,6 +70,12 @@ button {
 			    <div>
 			    <!-- 메시지 보내는 회원의 아이디 -->
 				    <input type="hidden" id="user_id" name="user_id" value="21">
+				     <label for="title">보낸이:</label>
+				    <input type="text" id="nickname" name="nickname">
+			    </div>
+			    <div>
+			    	 <label for="title">보낸시간:</label>
+			    	<input type="text" id="nickname" name="nickname">
 			    </div>
 			
 			  <div>
@@ -78,7 +84,9 @@ button {
 			  </div>
 			 
 			  <div class="button">
-			    <button type="submit" onclick="closePopup();">전송</button>
+			    <button type="submit" onclick="closePopup();">목록</button>
+			    <button type="submit" onclick="closePopup();">답장</button>
+			    <button type="submit" onclick="closePopup();">삭제</button>
 			  </div>
 		</form>
 		<script>

@@ -3,7 +3,9 @@ package com.kh.sp.message.model.dao;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -49,6 +51,44 @@ public class MessageDao {
 		
 		
 		return result;
+	}
+	public Message readMessage(Connection con, int msgId) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Message m = null;
+		
+		String query = prop.getProperty("readMessage");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, msgId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				m = new Message();
+				
+				m.setMsg_id(rset.getInt("msg_id"));
+				m.setTitle(rset.getString("title"));
+				m.setMsg(rset.getString("content"));
+				m.setUser_id(rset.getInt("send_id"));
+				m.setReceive_id(rset.getInt("receive_id"));
+				m.setSend_date(rset.getDate("send_date"));
+				m.setReadYN(rset.getString("readyn"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return m;
 	}
 
 }
