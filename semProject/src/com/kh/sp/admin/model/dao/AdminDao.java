@@ -32,6 +32,8 @@ public class AdminDao {
 			e.printStackTrace();
 		}
 
+		
+			
 	}
 
 	public int getListCount(Connection con) {
