@@ -41,6 +41,7 @@ public class SelectOneProduct extends HttpServlet {
 		HashMap<String, Object> hmap = new ProductService().selectOne(num);
 		
 		String page = "";
+		System.out.println("test");
 		
 		if(hmap!=null) {
 			page = "views/funding/product.jsp";
