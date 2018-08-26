@@ -38,7 +38,6 @@ public class SelectProductThumbnailServlet extends HttpServlet {
 			= new ProductService().selectProductList();
 		System.out.println(list.size());
 		String page = "";
-		
 		if(list != null) {
 			
 			page = "views/funding/welcome.jsp";
