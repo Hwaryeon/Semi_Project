@@ -114,8 +114,9 @@ public class AdminService {
 		}
 
 
-	//재영이형~
-	public ArrayList<SalesStatistics> selectSalesList(int num, String str) {
+	//별림누나 에러 부분 잠깐 주석처리 할게요!!!
+	
+	/*public ArrayList<SalesStatistics> selectSalesList(int num, String str) {
 
 		Connection con = getConnection();
 		ArrayList<SalesStatistics> list = new AdminDao().selectSalesList(con,type,term,currentPage,limit);
@@ -128,7 +129,7 @@ public class AdminService {
 		ArrayList<OpenFundingStatistics> list = new AdminDao().selectOpenFundingList(con,str,currentPage,limit);
 		close(con);
 		return list;
-	}
+	}*/
 
 	public ArrayList<SuccessFundingStatistics> selectSuccessFundingList(String str, int currentPage, int limit) {
 		Connection con = getConnection();
@@ -143,7 +144,7 @@ public class AdminService {
 		close(con);
 		return list;
 	}
-	public int getOpenFundingListCount(String term) {
+	/*public int getOpenFundingListCount(String term) {
 		Connection con = getConnection();
 		int listCount = new AdminDao().getOpenFundingListCount(con, term);
 		close(con);
@@ -166,6 +167,20 @@ public class AdminService {
 		int listCount = new AdminDao().getSalesListCount(con, term);
 		close(con);
 		return listCount;
+	}*/
+	public int updateBlackList(String text) {
+		Connection con = getConnection();
+		
+		int result = new AdminDao().updateBlackList(con, text);
+		
+		if(result>0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
+		return result;
 	}
 
 }

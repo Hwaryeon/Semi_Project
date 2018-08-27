@@ -384,7 +384,9 @@ public class AdminDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = null;
-
+		
+		//재영이 형 부분 에러나서 잠깐 주석처리 했습니다!!!!!
+/*
 
 		if(num == 0){
 			if(str.equals("date")){
@@ -424,7 +426,7 @@ public class AdminDao {
 				query = prop.getProperty("selectT3SalesYear");
 			}
 		}
-
+*/
 		try {
 			pstmt = con.prepareStatement(query);
 
@@ -476,6 +478,7 @@ public class AdminDao {
 			pstmt.setString(2, text);
 			pstmt.setString(3, text);
 			pstmt.setString(4, text);
+			pstmt.setString(5, text);
 			pstmt.setString(6, text);
 			pstmt.setInt(7, startRow);
 			pstmt.setInt(8, endRow);
@@ -692,6 +695,19 @@ public class AdminDao {
 		}
 
 		return listCount;
+	}
+
+	public int updateBlackList(Connection con, String blackText) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateBlackList");
+		
+		
+		
+		
+		
+		return 0;
 	}
 
 

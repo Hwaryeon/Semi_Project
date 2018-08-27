@@ -7,7 +7,7 @@
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStatPage();
+	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	
 %>
@@ -175,7 +175,7 @@ element {
 			
 
 			<!-- 여기는 검색 form   -->
-			<form action="<%=request.getContextPath()%>/searchBlackList.adm"
+			<form action="<%=request.getContextPath()%>/blackSearch.adm"
 				method="get">
 
 				<div id="searchBox">
