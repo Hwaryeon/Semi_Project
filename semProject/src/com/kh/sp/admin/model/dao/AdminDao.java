@@ -32,8 +32,8 @@ public class AdminDao {
 			e.printStackTrace();
 		}
 
-		
-			
+
+
 	}
 
 	public int getListCount(Connection con) {
@@ -88,8 +88,9 @@ public class AdminDao {
 
 		return blackListCount;
 	}
-	
 
+
+	//회원 전체 조회 메소드
 	public ArrayList<Member> selectList(Connection con, int currentPage, int limit) {
 		ArrayList<Member> list = null;
 
@@ -259,20 +260,20 @@ public class AdminDao {
 	public Member selectOne(Connection con, int user_id) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+
 		Member m = null;
-		
+
 		String query = prop.getProperty("selectOneMember");
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, user_id);
-			
+
 			rset = pstmt.executeQuery();
-			
+
 			if(rset.next()) {
 				m = new Member();
-				
+
 				m.setUserId(rset.getInt("user_id"));
 				m.setUserClass(rset.getString("user_class"));
 				m.setUserName(rset.getString("user_name"));
@@ -280,7 +281,7 @@ public class AdminDao {
 				m.setEmail(rset.getString("email"));
 				m.setPhone(rset.getString("phone"));
 				m.setEnrollDate(rset.getDate("enroll_date"));
-				
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -317,14 +318,14 @@ public class AdminDao {
 
 			while(rset.next()){
 				Member m = new Member();
-				
+
 				m.setUserId(rset.getInt("user_Id"));
 				m.setUserClass(rset.getString("user_Class"));
 				m.setUserName(rset.getString("user_Name"));
 				m.setCorporateName(rset.getString("corporate_Name"));
 				m.setB_reason(rset.getString("reason"));
 				m.setB_enrollDate(rset.getDate("enroll_Date"));
-				
+
 				blackList.add(m);
 			}
 
@@ -339,23 +340,23 @@ public class AdminDao {
 		return blackList;
 	}
 
-	public int searchMemberList(Connection con, String text) {
+	public int searchMemberListCount (Connection con, String text) {
 		PreparedStatement pstmt = null;
 		int searchList = 0;
 		ResultSet rset = null;
 
-		String query = prop.getProperty("searchMemberList");
+		String query = prop.getProperty("searchMemberListCount");
 
 		try {
 			pstmt = con.prepareStatement(query);
-			
+
 			pstmt.setString(1, text);
 			pstmt.setString(2, text);
 			pstmt.setString(3, text);
 			pstmt.setString(4, text);
 			pstmt.setString(5, text);
 			pstmt.setString(6, text);
-			
+
 			rset = pstmt.executeQuery();
 
 			if(rset.next()) {
@@ -374,10 +375,6 @@ public class AdminDao {
 		return searchList;
 	}
 
-	public int searchBlackListCount(Connection con, String text) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 
 	public ArrayList<SalesStatistics> selectSalesList(Connection con, String type, String term, int currentPage,
@@ -387,55 +384,55 @@ public class AdminDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = null;
-		
-		int startRow = (currentPage -1 ) * limit + 1;
-		int endRow = startRow + limit - 1;
-		
-		if(type.equals("all")){
-			if(term.equals("date")){
+
+
+		if(num == 0){
+			if(str.equals("date")){
 				query = prop.getProperty("selectAllSalesDate");
-			}else if(term.equals("month")){
+			}else if(str.equals("month")){
+
 				query = prop.getProperty("selectAllSalesMonth");
 			}else{
 				query = prop.getProperty("selectAllSalesYear");
 			}
-		}else if(type.equals("t1")){
-			if(term.equals("date")){
-				query = prop.getProperty("selectT1SalesDate");
-			}else if(term.equals("month")){
-				query = prop.getProperty("selectT1SalesMonth");
+
+		}else if(num == 1){
+			if(str.equals("date")){
+				query = prop.getProperty("selectType1SalesDate");
+			}else if(str.equals("month")){
+				query = prop.getProperty("selectType1SalesMonth");
 			}else{
-				query = prop.getProperty("selectT1SalesYear");
-			} 
-		}else if(type.equals("t2")){
-			if(term.equals("date")){
-				query = prop.getProperty("selectT2SalesDate");
-			}else if(term.equals("month")){
-				query = prop.getProperty("selectT2SalesMonth");
+				query = prop.getProperty("selectType1SalesYear");
+			}
+		}else if(num == 2){
+			if(str.equals("date")){
+				query = prop.getProperty("selectType2SalesDate");
+			}else if(str.equals("month")){
+				query = prop.getProperty("selectType2SalesMonth");
+
 			}else{
 				query = prop.getProperty("selectT2SalesYear");
 			}
-		}else{
-			if(term.equals("date")){
-				query = prop.getProperty("selectT3SalesDate");
-			}else if(term.equals("month")){
-				query = prop.getProperty("selectT3SalesMonth");
+
+		}else if(num == 3){
+			if(str.equals("date")){
+				query = prop.getProperty("selectType3SalesDate");
+			}else if(str.equals("month")){
+				query = prop.getProperty("selectType3SalesMonth");
+
 			}else{
 				query = prop.getProperty("selectT3SalesYear");
 			}
 		}
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
-			/////////쿼리문 만들고 수정해야함
-	
-			
-			
+
 			rset = pstmt.executeQuery();
-			
+
 			while(rset.next()){
 				result = new SalesStatistics();
-				
+
 				result.setTerm(rset.getString(""));
 				result.setPaymentCount(rset.getInt(""));
 				result.setPaymentPrice(rset.getInt(""));
@@ -445,37 +442,88 @@ public class AdminDao {
 				result.setPaymentPercentage(rset.getInt(""));
 				result.setPaymentCompletePrice(rset.getInt(""));
 				result.setNetSales(rset.getInt(""));
-				
+
 				list.add(result);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 			close(rset);
 		}
-		
+
 		return list;
 	}
 	
 
-	public ArrayList<OpenFundingStatistics> selectOpenFundingList(Connection con, String str, int currentPage, int limit) {
+
+
+	public ArrayList<Member> searchBlackMember(Connection con, int currentPage, int limit, String text) {
+		ArrayList<Member> blackList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("blackMemberSearch");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			int startRow = (currentPage -1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setString(1, text);
+			pstmt.setString(2, text);
+			pstmt.setString(3, text);
+			pstmt.setString(4, text);
+			pstmt.setString(6, text);
+			pstmt.setInt(7, startRow);
+			pstmt.setInt(8, endRow);
+
+			blackList = new ArrayList<Member>();
+			rset = pstmt.executeQuery();
+			while(rset.next()){
+				Member m = new Member();
+
+				m.setUserId(rset.getInt("user_Id"));
+				m.setUserClass(rset.getString("user_Class"));
+				m.setUserName(rset.getString("user_Name"));
+				m.setCorporateName(rset.getString("corporate_Name"));
+				m.setB_reason(rset.getString("reason"));
+				m.setB_enrollDate(rset.getDate("enroll_Date"));
+
+				blackList.add(m);
+
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+
+
+		return blackList;
+	}
+
+
+
+	public ArrayList<OpenFundingStatistics> selectOpenFundingList(Connection con, String str) {
+
 		ArrayList<OpenFundingStatistics> list = new ArrayList<OpenFundingStatistics>();
 		OpenFundingStatistics result = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = null;
 
-		int startRow = (currentPage -1 ) * limit + 1;
-		int endRow = startRow + limit - 1;
-		
 		if(str.equals("month")){
 			query = prop.getProperty("selectOpenFundingMonth");
 		}else{
 			query = prop.getProperty("selectOpenFundingYear");
 		}
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, "펀딩등록");
@@ -486,14 +534,13 @@ public class AdminDao {
 			pstmt.setString(6, "펀딩승인");
 			pstmt.setString(7, "펀딩승인");
 			pstmt.setString(8, "펀딩승인");
-			pstmt.setInt(9, startRow);
-			pstmt.setInt(10, endRow);
-			
-            rset = pstmt.executeQuery();
-			
+
+			rset = pstmt.executeQuery();
+
+
 			while(rset.next()){
 				result = new OpenFundingStatistics();
-				
+
 				result.setTerm(rset.getString("term"));
 				result.setEnrollCount(rset.getInt("enroll_count"));
 				result.setOpenCount(rset.getInt("open_count"));
@@ -501,17 +548,16 @@ public class AdminDao {
 				result.setType1OpenCount(rset.getInt("type1_open_count"));
 				result.setType2OpenCount(rset.getInt("type2_open_count"));
 				result.setType3OpenCount(rset.getInt("type3_open_count"));
-				
+
 				list.add(result);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 			close(rset);
 		}
-		System.out.println(list);
 		return list;
 	}
 
@@ -521,16 +567,13 @@ public class AdminDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = null;
-		
-		int startRow = (currentPage -1 ) * limit + 1;
-		int endRow = startRow + limit - 1;
-		
+
 		if(str.equals("month")){
 			query = prop.getProperty("selectSuccessFundingMonth");
 		}else{
 			query = prop.getProperty("selectSuccessFundingYear");
 		}
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, "펀딩모집");
@@ -542,11 +585,8 @@ public class AdminDao {
 			pstmt.setString(7, "채권발급");
 			pstmt.setString(8, "채권발급");
 
-			pstmt.setInt(9, startRow);
-			pstmt.setInt(10, endRow);
-			
-            rset = pstmt.executeQuery();
-			
+			rset = pstmt.executeQuery();
+
 			while(rset.next()){
 				result = new SuccessFundingStatistics();
 				result.setTerm(rset.getString("term"));
@@ -556,17 +596,17 @@ public class AdminDao {
 				result.setType1SuccessRate(rset.getInt("type1_success_rate"));
 				result.setType2SuccessRate(rset.getInt("type2_success_rate"));
 				result.setType3SuccessRate(rset.getInt("type3_success_rate"));
-				
+
 				list.add(result);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 			close(rset);
 		}
-		
+
 		return list;
 	}
 
@@ -576,9 +616,7 @@ public class AdminDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = null;
-		int startRow = (currentPage -1 ) * limit + 1;
-		int endRow = startRow + limit - 1;
-		
+
 		if(str.equals("date")){
 			query = prop.getProperty("selectMemberDate");
 		}else if(str.equals("month")){
@@ -586,178 +624,68 @@ public class AdminDao {
 		}else{
 			query = prop.getProperty("selectMemberYear");
 		}
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-            rset = pstmt.executeQuery();
-			
+
+
+			rset = pstmt.executeQuery();
+
+
 			while(rset.next()){
 				result = new MemberStatistics();
-				
+
 				result.setTerm(rset.getString("term"));
 				result.setMemberCount(rset.getInt("member_count"));
 				result.setEmailMemberCount(rset.getInt("email_member_count"));
 				result.setKakaoMemberCount(rset.getInt("kakao_member_count"));
 				result.setNaverMemberCount(rset.getInt("naver_member_count"));
 
-				
 				list.add(result);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 			close(rset);
 		}
-		
+
 		return list;
 	}
 
-	public int getOpenFundingListCount(Connection con, String term) {
+
+	public int blackListCount(Connection con, String text) {
 		PreparedStatement pstmt = null;
 		int listCount = 0;
 		ResultSet rset = null;
-        String query = null;
-        
-		if(term == null){
-			query = prop.getProperty("listOpenFundingMonthCount");
-		}else{
-			query = prop.getProperty("listOpenFundingYearCount");
-		}
-		
+
+		String query = prop.getProperty("blacklistSearchCount");
+
 		try {
 			pstmt = con.prepareStatement(query);
+
+			pstmt.setString(1, text);
+			pstmt.setString(2, text);
+			pstmt.setString(3, text);
+			pstmt.setString(4, text);
+			pstmt.setString(5, text);
+			pstmt.setString(6, text);
 			
-			pstmt.setString(1, "펀딩등록");
-			pstmt.setString(2, "펀딩승인");
-			pstmt.setString(3, "펀딩승인");
-			pstmt.setString(4, "펀딩등록");
-			pstmt.setString(5, "펀딩등록");
-			pstmt.setString(6, "펀딩승인");
-			pstmt.setString(7, "펀딩승인");
-			pstmt.setString(8, "펀딩승인");
-			
+
 			rset = pstmt.executeQuery();
+
+			//이 부분이 맞나 싶다
+			
 
 			if(rset.next()) {
 				listCount = rset.getInt(1);
 
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally{
-			close(pstmt);
-			close(rset);
-
-		}
-
-
-		return listCount;
-	}
-
-	public int getSuccessFundingListCount(Connection con, String term) {
-		PreparedStatement pstmt = null;
-		int listCount = 0;
-		ResultSet rset = null;
-        String query = null;
-        
-		if(term == null){
-			query = prop.getProperty("listSuccessFundingMonthCount");
-		}else{
-			query = prop.getProperty("listSuccessFundingYearCount");
-		}
-		
-		try {
-			pstmt = con.prepareStatement(query);
 			
-			pstmt.setString(1, "펀딩모집");
-			pstmt.setString(2, "펀딩모집");
-			pstmt.setString(3, "펀딩모집");
-			pstmt.setString(4, "펀딩모집");
-			pstmt.setString(5, "채권발급");
-			pstmt.setString(6, "채권발급");
-			pstmt.setString(7, "채권발급");
-			pstmt.setString(8, "채권발급");
-			rset = pstmt.executeQuery();
-
-			if(rset.next()) {
-				listCount = rset.getInt(1);
-
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally{
-			close(pstmt);
-			close(rset);
-
-		}
-
-
-		return listCount;
-	}
-
-	public int getMemberListCount(Connection con, String term) {
-		PreparedStatement pstmt = null;
-		int listCount = 0;
-		ResultSet rset = null;
-        String query = null;
-        
-		if(term == null){
-			query = prop.getProperty("listMemberDateCount");
-		}else if(term.equals("month")){
-			query = prop.getProperty("listMemberMonthCount");
-		}else{
-			query = prop.getProperty("listMemberYearCount");
-		}
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			
-			rset = pstmt.executeQuery();
-
-			if(rset.next()) {
-				listCount = rset.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally{
-			close(pstmt);
-			close(rset);
-
-		}
-
-		return listCount;
-	}
-
-	/////////////////////////////////////쿼리문 작성해서 입력해야 함
-	public int getSalesListCount(Connection con, String term) {
-		PreparedStatement pstmt = null;
-		int listCount = 0;
-		ResultSet rset = null;
-        String query = null;
-        
-		if(term == null){
-			query = prop.getProperty("listSalesDateCount");
-		}else if(term.equals("month")){
-			query = prop.getProperty("listSalesMonthCount");
-		}else{
-			query = prop.getProperty("listSalesYearCount");
-		}
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			
-			rset = pstmt.executeQuery();
-
-			if(rset.next()) {
-				listCount = rset.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally{
+		} finally {
 			close(pstmt);
 			close(rset);
 

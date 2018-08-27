@@ -33,6 +33,7 @@ public class AdminService {
 		
 		return blackListCount;
 	}
+	//회원 전체 조회 메소드
 	public ArrayList<Member> selectList(int currentPage, int limit) {
 		Connection con = getConnection();
 		
@@ -43,7 +44,7 @@ public class AdminService {
 		return list;	
 	
 	}
-
+	//회원 검색
 	public ArrayList<Member> searchAllMember(int currentPage, int limit, String text) {
 		Connection con = getConnection();
 		ArrayList<Member> list = new AdminDao().searchAllMember(con, currentPage, limit,text);
@@ -51,6 +52,7 @@ public class AdminService {
 		return list;
 		
 	}
+	//회원 정렬 메소드
 	public ArrayList<Member> sortMember(int currentPage, int limit, String sort) {
 		Connection con = getConnection();
 		ArrayList<Member> list = new AdminDao().sortMember(con, currentPage, limit, sort);
@@ -60,6 +62,7 @@ public class AdminService {
 	}
 
 	
+	//회원 상세 조회
 	public Member selectOne(int user_id) {
 		Connection con = getConnection();
 				
@@ -70,6 +73,7 @@ public class AdminService {
 		return m;
 	}
 
+	//블랙리스트 전체 조회
 	public ArrayList<Member> selectBlackList(int currentPage, int limit) {
 
 		Connection con = getConnection();
@@ -80,30 +84,39 @@ public class AdminService {
 		
 		return blackList;	
 	}
-	public int searchMemberList(String text) {
+	//회원 검색 카운트
+	public int searchMemberListCount(String text) {
 	Connection con = getConnection();
 		
-		int searchList = new AdminDao().searchMemberList(con, text);
+		int searchList = new AdminDao().searchMemberListCount(con, text);
 		
 		close(con);
 		
 		return searchList;
 	}
-	public int searchBlackList(String text) {
+	//블랙리스트 카운트
+	public int blackListCount(String text) {
 		Connection con = getConnection();
 		
-		int searchList = new AdminDao().searchBlackListCount(con, text);
+		int listCount = new AdminDao().blackListCount(con, text);
 		
 		close(con);
 		
-		return searchList;
+		return listCount;
 	}
+	//블랙리스트 검색
 	public ArrayList<Member> searchBlackMember(int currentPage, int limit, String text) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		Connection con = getConnection();
+		ArrayList<Member> blackList = new AdminDao().searchBlackMember(con, currentPage, limit, text);
+		close(con);
+		return blackList;
+		
+		}
 
-	public ArrayList<SalesStatistics> selectSalesList(String type, String term, int currentPage, int limit) {
+
+	//재영이형~
+	public ArrayList<SalesStatistics> selectSalesList(int num, String str) {
+
 		Connection con = getConnection();
 		ArrayList<SalesStatistics> list = new AdminDao().selectSalesList(con,type,term,currentPage,limit);
 		close(con);
