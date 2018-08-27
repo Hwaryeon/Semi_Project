@@ -36,7 +36,7 @@ public class SelectProductThumbnailServlet extends HttpServlet {
 		
 		ArrayList<HashMap<String, Object>> list
 			= new ProductService().selectProductList();
-		System.out.println(list.size());
+		
 		String page = "";
 		if(list != null) {
 			

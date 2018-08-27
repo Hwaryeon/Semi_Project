@@ -214,7 +214,9 @@
  	<% for(int i = 0; i <list.size(); i++){
  			HashMap<String,Object> hmap = list.get(i);
  		%>
-					<li><img src="/sp/thumbnail_uploadFiles/<%=hmap.get("changeName")%>" width="300px" height="186px"><input value="<%=hmap.get("pId")%>">
+					<li class="p_list2" id="p<%=i%>">
+					<img src="/sp/thumbnail_uploadFiles/<%=hmap.get("changeName")%>" width="300px" height="186px">
+					<input value="<%=hmap.get("pId")%>">
 					<br><br><br><%=hmap.get("intro") %> <br><%=hmap.get("pId")%> </li>
 					
  		<% } %>	
@@ -222,8 +224,9 @@
 </div>
 <script>
 	 $(function(){
-		$("#p_list").click(function(){
-			var num = $(this).children().children().eq(1).val();
+		$(".p_list2").click(function(){
+			/* var num = $(this).children().children().eq(1).val(); */
+			var num = $(this).children().eq(1).val();
 			location.href="<%=request.getContextPath()%>/SelectOne.tn?num=" + num;
 		});
 	});
