@@ -116,7 +116,7 @@ public class ProductDao {
 				hmap.put("pCode",rset.getString("p_code"));
 				hmap.put("pName",rset.getString("p_name"));
 				hmap.put("content",rset.getString("content"));
-				hmap.put("openDate",rset.getInt("OPEN_DATE"));
+				hmap.put("openDate",rset.getInt("open_date"));
 				hmap.put("closingAmount",rset.getInt("closing_amount"));
 				hmap.put("interestRate",rset.getString("interest_rate"));
 				hmap.put("pPreparation",rset.getString("p_preparation"));
@@ -131,7 +131,7 @@ public class ProductDao {
 				hmap.put("fileLevel",rset.getInt("file_level"));
 				hmap.put("status",rset.getString("status"));
 				hmap.put("filePath",rset.getString("file_path"));
-				hmap.put("userId",rset.getString("user_id"));
+				hmap.put("userId",rset.getInt("user_id"));
 				hmap.put("pType",rset.getInt("p_type"));
 			}
 		} catch (SQLException e) {
