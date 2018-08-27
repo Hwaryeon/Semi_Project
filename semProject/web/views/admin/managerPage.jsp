@@ -373,7 +373,6 @@ element {
 					}).click(function() {
 						$("#userId2").val($("#userId").val());
 						$("#userClass2").val($("#userClass").val());
-
 						$("#selectOne").submit();
 
 					});
