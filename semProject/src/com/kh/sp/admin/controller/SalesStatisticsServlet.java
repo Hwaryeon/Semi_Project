@@ -39,8 +39,9 @@ public class SalesStatisticsServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
          
-		int listCount = new AdminService().getSalesListCount(term);
+		int listCount = new AdminService().getSalesListCount(term, type);
 
+		System.out.println(listCount);
 		limit = 8;
 
 		maxPage = (int)((double)listCount / limit + 0.9);
@@ -54,8 +55,8 @@ public class SalesStatisticsServlet extends HttpServlet {
 		}
 
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-
 		request.setAttribute("pi", pi);
+		
 	
 		if(type == null){
 			if(term == null){
@@ -69,7 +70,7 @@ public class SalesStatisticsServlet extends HttpServlet {
 				request.setAttribute("num","2");
 			}
 		    request.setAttribute("list", list);
-		    request.getRequestDispatcher("views/admin/SalesStatistics.jsp").forward(request, response);
+		    request.getRequestDispatcher("views/admin/salesStatistics.jsp").forward(request, response);
 		
 		}else if(type.equals("t1")){
 			if(term == null){
@@ -83,7 +84,7 @@ public class SalesStatisticsServlet extends HttpServlet {
 				request.setAttribute("num","2");
 			}
 		    request.setAttribute("list", list);
-		    request.getRequestDispatcher("views/admin/SalesStatistics2.jsp").forward(request, response);
+		    request.getRequestDispatcher("views/admin/salesStatistics2.jsp").forward(request, response);
 		}else if(type.equals("t2")){
 			if(term == null){
 				list = new AdminService().selectSalesList("t2", "date", currentPage, limit);
@@ -96,7 +97,7 @@ public class SalesStatisticsServlet extends HttpServlet {
 				request.setAttribute("num","2");
 			}
 		    request.setAttribute("list", list);
-		    request.getRequestDispatcher("views/admin/SalesStatistics3.jsp").forward(request, response);
+		    request.getRequestDispatcher("views/admin/salesStatistics3.jsp").forward(request, response);
 		}else{
 			if(term == null){
 				list = new AdminService().selectSalesList("t3", "date", currentPage, limit);
@@ -109,7 +110,7 @@ public class SalesStatisticsServlet extends HttpServlet {
 				request.setAttribute("num","2");
 			}
 		    request.setAttribute("list", list);
-		    request.getRequestDispatcher("views/admin/SalesStatistics4.jsp").forward(request, response);
+		    request.getRequestDispatcher("views/admin/salesStatistics4.jsp").forward(request, response);
 		}
 			
 		

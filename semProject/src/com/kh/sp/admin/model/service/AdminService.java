@@ -115,8 +115,7 @@ public class AdminService {
 
 
 	//재영이형~
-	public ArrayList<SalesStatistics> selectSalesList(int num, String str) {
-
+	public ArrayList<SalesStatistics> selectSalesList(String type, String term, int currentPage, int limit) {
 		Connection con = getConnection();
 		ArrayList<SalesStatistics> list = new AdminDao().selectSalesList(con,type,term,currentPage,limit);
 		close(con);
@@ -143,6 +142,12 @@ public class AdminService {
 		close(con);
 		return list;
 	}
+	public int getSalesListCount(String term, String type) {
+		Connection con = getConnection();
+		int listCount = new AdminDao().getSalesListCount(con, term, type);
+		close(con);
+		return listCount;
+	}
 	public int getOpenFundingListCount(String term) {
 		Connection con = getConnection();
 		int listCount = new AdminDao().getOpenFundingListCount(con, term);
@@ -161,11 +166,6 @@ public class AdminService {
 		close(con);
 		return listCount;
 	}
-	public int getSalesListCount(String term) {
-		Connection con = getConnection();
-		int listCount = new AdminDao().getSalesListCount(con, term);
-		close(con);
-		return listCount;
-	}
+
 
 }
