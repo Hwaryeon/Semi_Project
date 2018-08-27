@@ -106,6 +106,7 @@ display: inline-block;
 				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 성공 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
    </ul>
    <br>
+   <div style="height:390px">
    <table class="table table-hover">
    <thead>
    <tr>
@@ -144,6 +145,7 @@ display: inline-block;
 				<% } %>
    </tbody>
   </table>
+  </div>
 </div>
 <%-- 페이지처리 --%>
         
