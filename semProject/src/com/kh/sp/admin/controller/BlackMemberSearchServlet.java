@@ -14,12 +14,11 @@ import com.kh.sp.admin.model.service.AdminService;
 import com.kh.sp.admin.model.vo.PageInfo;
 import com.kh.sp.member.model.vo.Member;
 
-
-@WebServlet(name = "SearchMemberServlet", urlPatterns = { "/searchMember.adm" })
-public class SearchMemberServlet extends HttpServlet {
+@WebServlet("/blackSearch.adm")
+public class BlackMemberSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public SearchMemberServlet() {
+    public BlackMemberSearchServlet() {
         super();
     }
 
@@ -31,7 +30,7 @@ public class SearchMemberServlet extends HttpServlet {
 		int startPage;
 		int endPage;
 		
-		System.out.println("서치 오닝??");
+		System.out.println("블랙서치 오닝??");
 		currentPage = 1;
 		
 		if(request.getParameter("currentPage") != null){
@@ -46,12 +45,12 @@ public class SearchMemberServlet extends HttpServlet {
 		
 		System.out.println("text 는 = " + text);
 		
-		int searchList = new AdminService().searchMemberListCount(text);
+		int listCount = new AdminService().blackListCount(text);
 		
 		limit = 10;
 		
 		//총 페이지 수 계산
-		maxPage = (int)((double)searchList / 10 + 0.9);
+		maxPage = (int)((double)listCount / 10 + 0.9);
 		
 		startPage = (((int)((double)currentPage / 10 + 0.9)) -1) * 10 + 1;
 		
@@ -61,21 +60,21 @@ public class SearchMemberServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		PageInfo pi = new PageInfo(currentPage, searchList, limit, maxPage, startPage, endPage);
+		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
 		
-		ArrayList<Member> list = null;
+		ArrayList<Member> blackList = null;
 		
 		
 
-			list = new AdminService().searchAllMember(currentPage, limit, text);
+			blackList = new AdminService().searchBlackMember(currentPage, limit, text);
 
 	
-		String page ="/views/admin/searchPage.jsp";
+		String page ="/views/admin/blackSearchPage.jsp";
 		
-		System.out.println("마지막 list는" + list);
-		if(list != null || list.size() > 0){
-			request.setAttribute("list", list);
+		System.out.println("마지막 list는" + blackList);
+		if(blackList != null || blackList.size() > 0){
+			request.setAttribute("list", blackList);
 			request.setAttribute("pi", pi);
 		}else{
 			request.setAttribute("msg", "검색 결과가 없습니다");
@@ -83,8 +82,6 @@ public class SearchMemberServlet extends HttpServlet {
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-		
-	
 		
 	}
 

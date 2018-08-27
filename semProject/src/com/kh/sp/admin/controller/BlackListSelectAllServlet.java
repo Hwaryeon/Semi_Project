@@ -14,16 +14,16 @@ import com.kh.sp.admin.model.service.AdminService;
 import com.kh.sp.admin.model.vo.PageInfo;
 import com.kh.sp.member.model.vo.Member;
 
-
-@WebServlet(name = "SearchMemberServlet", urlPatterns = { "/searchMember.adm" })
-public class SearchMemberServlet extends HttpServlet {
+@WebServlet("/blackSelectAll.adm")
+public class BlackListSelectAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public SearchMemberServlet() {
+    public BlackListSelectAllServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("블랙리스트 서치 오니?");
 		
 		int currentPage;
 		int limit;
@@ -31,7 +31,6 @@ public class SearchMemberServlet extends HttpServlet {
 		int startPage;
 		int endPage;
 		
-		System.out.println("서치 오닝??");
 		currentPage = 1;
 		
 		if(request.getParameter("currentPage") != null){
@@ -39,21 +38,17 @@ public class SearchMemberServlet extends HttpServlet {
 			= Integer.parseInt(request.getParameter("currentPage"));
 			
 		}
+		System.out.println("crrentPage" + currentPage);
 		
-		System.out.println("여기까지됨 : " + currentPage);
-		
-		String text = request.getParameter("searchValue");
-		
-		System.out.println("text 는 = " + text);
-		
-		int searchList = new AdminService().searchMemberListCount(text);
+		//listCount를 지금 전체조회로 했잖아 그래서 정확히 안나오나본데 이것도 pstmt ? 해서 
+		//찾아야 하는 리스트에 맞춰서 출력해주자
+		int listCount  = new AdminService().getBlackListCount();
 		
 		limit = 10;
 		
-		//총 페이지 수 계산
-		maxPage = (int)((double)searchList / 10 + 0.9);
+		maxPage = (int)((double)listCount / 10 + 0.9);
 		
-		startPage = (((int)((double)currentPage / 10 + 0.9)) -1) * 10 + 1;
+		startPage = (((int)((double)currentPage / 10 + 0.9)) - 1) * 10 + 1;
 		
 		endPage = startPage + 10 -1;
 		
@@ -61,31 +56,28 @@ public class SearchMemberServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		PageInfo pi = new PageInfo(currentPage, searchList, limit, maxPage, startPage, endPage);
+		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		
-		ArrayList<Member> list = null;
-		
-		
+		ArrayList<Member> blackList = new AdminService().selectBlackList(currentPage, limit);
+		System.out.println(blackList);
 
-			list = new AdminService().searchAllMember(currentPage, limit, text);
-
-	
-		String page ="/views/admin/searchPage.jsp";
-		
-		System.out.println("마지막 list는" + list);
-		if(list != null || list.size() > 0){
-			request.setAttribute("list", list);
+		String page = "";
+		if(blackList != null){
+			System.out.println("블랙리스트 멤버 여깃슴둥");
+			page = "views/admin/blackMember.jsp";
+			request.setAttribute("blackList", blackList);
 			request.setAttribute("pi", pi);
 		}else{
-			request.setAttribute("msg", "검색 결과가 없습니다");
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "회원 조회 실패");
+			
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 		
-	
 		
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

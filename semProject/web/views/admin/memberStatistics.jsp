@@ -105,7 +105,7 @@ display: inline-block;
 				
    </ul>
    <br>
-
+   <div style="height:390px">
    <table class="table table-hover">
    <thead>
    <tr>
@@ -139,6 +139,7 @@ display: inline-block;
 				<% } %> 
    </tbody>
   </table>
+  </div>
 </div>
 <%-- 페이지처리 --%>
 

@@ -168,13 +168,14 @@ element {
 	
 	<%@ include file="../common/sideMenu2.jsp" %>
 	<div>
+	<br><br><br><br><br><br>
 		<div id="text">
 			<h2>회원관리 > 블랙리스트 관리</h2>
 			<br>
 			
 
 			<!-- 여기는 검색 form   -->
-			<form action="<%=request.getContextPath()%>/blackSearch.adm"
+			<form action="<%=request.getContextPath()%>/searchBlackList.adm"
 				method="get">
 
 				<div id="searchBox">
@@ -228,7 +229,7 @@ element {
 			<%-- 페이지처리 --%>
 			<div class="pageArea" align="center">
 				<button
-					onclick="location.href='<%=request.getContextPath()%>/blackSelectAll.adm?currentPage=1'"><<</button>
+					onclick="location.href='<%=request.getContextPath()%>/blackSearch.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=1'"><<</button>
 				<%
 					if (currentPage <= 1) {
 				%>
@@ -237,7 +238,7 @@ element {
 					} else {
 				%>
 				<button
-					onclick="location.href='<%=request.getContextPath()%>/blackSelectAll.adm?currentPage=<%=currentPage - 1%>'"><</button>
+					onclick="location.href='<%=request.getContextPath()%>/blackSearch.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=currentPage - 1%>'"><</button>
 				<%
 					}
 				%>
@@ -250,7 +251,7 @@ element {
 					} else {
 				%>
 				<button
-					onclick="location.href='<%=request.getContextPath()%>/blackSelectAll.adm?currentPage=<%=p%>'"><%=p%></button>
+					onclick="location.href='<%=request.getContextPath()%>/blackSearch.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=p%>'"><%=p%></button>
 				<%
 					}
 				%>
@@ -267,12 +268,12 @@ element {
 					} else {
 				%>
 				<button
-					onclick="location.href='<%=request.getContextPath()%>/blackSelectAll.adm?currentPage=<%=currentPage + 1%>'">></button>
+					onclick="location.href='<%=request.getContextPath()%>/blackSearch.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=currentPage + 1%>'">></button>
 				<%
 					}
 				%>
 				<button
-					onclick="location.href='<%=request.getContextPath()%>/blackSelectAll.adm?currentPage=<%=maxPage%>'">>></button>
+					onclick="location.href='<%=request.getContextPath()%>/blackSearch.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=maxPage%>'">>></button>
 
 			</div>
 		</div>

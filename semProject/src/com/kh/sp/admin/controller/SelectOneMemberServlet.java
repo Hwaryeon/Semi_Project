@@ -13,10 +13,10 @@ import com.kh.sp.admin.model.service.AdminService;
 import com.kh.sp.member.model.vo.Member;
 
 @WebServlet("/selectOneMember.adm")
-public class SelectOneMember extends HttpServlet {
+public class SelectOneMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public SelectOneMember() {
+    public SelectOneMemberServlet() {
         super();
     }
 

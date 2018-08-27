@@ -546,9 +546,7 @@ cursor : pointer;
 						관리</a>
 					<ul class="lnb_depth">			
 						<li id="9 6b bgvt6 vg6tfvg7"class="link_depth" onclick="memberAll();">회원 조회</li>
-						<li id="comJoi_li"><a href="/sp/views/admin/blackMember.jsp"
-							class="link_depth">블랙리스트
-								관리</a></li>
+						<li id="comJoi_li" onclick="blackList();">블랙리스트 관리</li>
 						<li id="comFaq_li"><a href="/sp/views/admin/invtRankUpdate.jsp"
 							class="link_depth">투자자 등급
 								관리</a></li>
@@ -586,6 +584,9 @@ cursor : pointer;
 <script>
 function memberAll(){
 	location.href="<%=request.getContextPath()%>/selectAllMember.adm";
+}
+function blackList(){
+	location.href="<%=request.getContextPath()%>/blackSelectAll.adm";
 }
 
 </script>

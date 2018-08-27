@@ -108,7 +108,7 @@ display: inline-block;
    </ul>
    <br>
    
-
+   <div style="height:390px">
    <input type="hidden" id="term">
    <table class="table table-hover" id="result">
    <thead>
@@ -148,6 +148,7 @@ display: inline-block;
 				<% } %> 
    </tbody>
   </table>
+  </div>
 </div>
 <%-- 페이지처리 --%>
         
