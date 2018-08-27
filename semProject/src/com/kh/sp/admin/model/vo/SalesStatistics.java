@@ -7,23 +7,19 @@ public class SalesStatistics {
     private int paymentCount;
     private int paymentPrice;
     private int refundCount;
-    private int failCount;
-    private int cancelCount;
     private int paymentPercentage;
     private int paymentCompletePrice;
     private int netSales;
     
     public SalesStatistics(){}
-    
-	public SalesStatistics(String term, int paymentCount, int paymentPrice, int refundCount, int failCount,
-			int cancelCount, int paymentPercentage, int paymentCompletePrice, int netSales) {
+
+	public SalesStatistics(String term, int paymentCount, int paymentPrice, int refundCount, int paymentPercentage,
+			int paymentCompletePrice, int netSales) {
 		super();
 		this.term = term;
 		this.paymentCount = paymentCount;
 		this.paymentPrice = paymentPrice;
 		this.refundCount = refundCount;
-		this.failCount = failCount;
-		this.cancelCount = cancelCount;
 		this.paymentPercentage = paymentPercentage;
 		this.paymentCompletePrice = paymentCompletePrice;
 		this.netSales = netSales;
@@ -61,22 +57,6 @@ public class SalesStatistics {
 		this.refundCount = refundCount;
 	}
 
-	public int getFailCount() {
-		return failCount;
-	}
-
-	public void setFailCount(int failCount) {
-		this.failCount = failCount;
-	}
-
-	public int getCancelCount() {
-		return cancelCount;
-	}
-
-	public void setCancelCount(int cancelCount) {
-		this.cancelCount = cancelCount;
-	}
-
 	public int getPaymentPercentage() {
 		return paymentPercentage;
 	}
@@ -104,12 +84,10 @@ public class SalesStatistics {
 	@Override
 	public String toString() {
 		return "SalesStatistics [term=" + term + ", paymentCount=" + paymentCount + ", paymentPrice=" + paymentPrice
-				+ ", refundCount=" + refundCount + ", failCount=" + failCount + ", cancelCount=" + cancelCount
-				+ ", paymentPercentage=" + paymentPercentage + ", paymentCompletePrice=" + paymentCompletePrice
-				+ ", NetSales=" + netSales + "]";
+				+ ", refundCount=" + refundCount + ", paymentPercentage=" + paymentPercentage
+				+ ", paymentCompletePrice=" + paymentCompletePrice + ", netSales=" + netSales + "]";
 	}
     
-    
-    
+	
     
 }
