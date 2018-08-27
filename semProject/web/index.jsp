@@ -188,20 +188,6 @@ $(function(){
 				
 				<% } %>
 				
-			<!-- 	<div class="funding_p">
-					<div class="fPic" style="height:330px;">
-					<em class="picks-img">
-					<span class="scale" >
-					<img src="images/main/event.jpg" style="width: 100%; height:330px;">
-					</span>
-					</em>
-					</div>
-					<div class="fCon" style="height:170px; background:#c5e4c6; /* padding: 33px 20px; */">
-						<p class="title" id="fTitle">구매후기쓰고<br>선물 받으세요!</p>
-						<p class="text" id="fText">이미 지난 이벤트지만 <br> 노출/SNS 광고 혜택 받으세요!</p>
-					</div>
-				</div> -->
-				
 			</div>
 			
 			</div>
@@ -492,6 +478,8 @@ $(function(){
 			</div>
 
 	</div>
+	<input type="hidden" value="11" id="chat_id" size="10"/>
+	
 	<script>
 		$(".noticeArea").click(function(){
 			
@@ -499,19 +487,7 @@ $(function(){
 			location.href='<%=request.getContextPath()%>/boardRead.jsp?num='+wNo;
 		});
 			
-		function messageopen(){
-			
-			var popUrl = "<%=request.getContextPath()%>/views/popup/writeMessage.jsp";	//팝업창에 출력될 페이지 URL
-
-			var popOption = "width=450, height=390, resizable=no, left=500, top=200, scrollbars=no, status=no; ";    //팝업창 옵션(optoin)
-
-				window.open(popUrl,"",popOption);
-
-
-			
-		}
-	
-	
+		
 	</script>
 	<%@ include file="/views/common/footer.jsp" %>
 </body>
