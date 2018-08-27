@@ -74,7 +74,8 @@ public class BlackMemberSearchServlet extends HttpServlet {
 		
 		System.out.println("마지막 list는" + blackList);
 		if(blackList != null || blackList.size() > 0){
-			request.setAttribute("list", blackList);
+			//이거 조심하자 저번에도 실수했는데 또 ㅠㅠ
+			request.setAttribute("blackList", blackList);
 			request.setAttribute("pi", pi);
 		}else{
 			request.setAttribute("msg", "검색 결과가 없습니다");

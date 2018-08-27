@@ -376,6 +376,92 @@ public class AdminDao {
 	}
 
 
+
+
+	public ArrayList<SalesStatistics> selectSalesList(Connection con, String type, String term, int currentPage,
+			int limit) {
+		ArrayList<SalesStatistics> list = new ArrayList<SalesStatistics>();
+		SalesStatistics result = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = null;
+		
+		//재영이 형 부분 에러나서 잠깐 주석처리 했습니다!!!!!
+/*
+
+		if(num == 0){
+			if(str.equals("date")){
+				query = prop.getProperty("selectAllSalesDate");
+			}else if(str.equals("month")){
+
+				query = prop.getProperty("selectAllSalesMonth");
+			}else{
+				query = prop.getProperty("selectAllSalesYear");
+			}
+
+		}else if(num == 1){
+			if(str.equals("date")){
+				query = prop.getProperty("selectType1SalesDate");
+			}else if(str.equals("month")){
+				query = prop.getProperty("selectType1SalesMonth");
+			}else{
+				query = prop.getProperty("selectType1SalesYear");
+			}
+		}else if(num == 2){
+			if(str.equals("date")){
+				query = prop.getProperty("selectType2SalesDate");
+			}else if(str.equals("month")){
+				query = prop.getProperty("selectType2SalesMonth");
+
+			}else{
+				query = prop.getProperty("selectT2SalesYear");
+			}
+
+		}else if(num == 3){
+			if(str.equals("date")){
+				query = prop.getProperty("selectType3SalesDate");
+			}else if(str.equals("month")){
+				query = prop.getProperty("selectType3SalesMonth");
+
+			}else{
+				query = prop.getProperty("selectT3SalesYear");
+			}
+		}
+*/
+		try {
+			pstmt = con.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+
+			while(rset.next()){
+				result = new SalesStatistics();
+
+				result.setTerm(rset.getString(""));
+				result.setPaymentCount(rset.getInt(""));
+				result.setPaymentPrice(rset.getInt(""));
+				result.setRefundCount(rset.getInt(""));
+				result.setFailCount(rset.getInt(""));
+				result.setCancelCount(rset.getInt(""));
+				result.setPaymentPercentage(rset.getInt(""));
+				result.setPaymentCompletePrice(rset.getInt(""));
+				result.setNetSales(rset.getInt(""));
+
+				list.add(result);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+
+		return list;
+	}
+	
+
+
+
 	public ArrayList<Member> searchBlackMember(Connection con, int currentPage, int limit, String text) {
 		ArrayList<Member> blackList = null;
 		PreparedStatement pstmt = null;
@@ -393,6 +479,7 @@ public class AdminDao {
 			pstmt.setString(2, text);
 			pstmt.setString(3, text);
 			pstmt.setString(4, text);
+			pstmt.setString(5, text);
 			pstmt.setString(6, text);
 			pstmt.setInt(7, startRow);
 			pstmt.setInt(8, endRow);
@@ -849,7 +936,21 @@ public class AdminDao {
 		return listCount;
 	}
 
-	
+
+	public int updateBlackList(Connection con, String blackText) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateBlackList");
+		
+		
+		
+		
+		
+		return 0;
+	}
+
+
 
 }
 

@@ -113,6 +113,8 @@ th, td {
 					</tr>
 				</thead>
 				<tr>
+					<input type="hidden" name="userId" id="userId"
+								value="<%=m.getUserId()%>">
 					<td><span><%=m.getUserId() %></span></td>
 					<td><span><%=m.getUserClass() %></span></td>
 					<td><span><%=m.getUserName() %></span></td>
@@ -131,6 +133,7 @@ th, td {
 				</thead>
 
 				<tr>
+				
 					<td><span><%=m.getEmail() %></span></td>
 					<td><span><%=m.getPhone() %></span></td>
 					<td><span><%=m.getEnrollDate() %></span></td>
@@ -154,6 +157,7 @@ th, td {
 		<!-- Trigger the modal with a button -->
 
 		<!-- Modal -->
+		<form id="insertBlackForm" action="<%=request.getContextPath()%>/updateBlackList.adm" method="get">
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -163,17 +167,36 @@ th, td {
 					</div>
 					<div class="modal-body">
 						<p>블랙리스트 사유를 입력해 주세요.</p>
-						<input type="text" id="blackText">
+						<input type="text" name="text" id="blackText">
 					</div>
 					<div class="modal-footer">
-						<button type="button" onclick="location.href='#'"
-							class="btn btn-default" data-dismiss="modal">추가하기</button>
+						<button type="button" onclick="insertBlackList();"
+							class="btn btn-default" id="plusBtn" data-dismiss="modal">추가하기</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소하기</button>
+				<input type="hidden" id="userId2" name="userId2">
 					</div>
 				</div>
 			</div>
 		</div>
+		</form>
 	</div>
 
+
+<script>
+/* 	$(function(){
+		$("#plusBtn").click(function(){
+			var userId = $(this).parent().children("userId").val();
+			var blackText = $("#blackText").val();
+			
+			$("#updateBlackList").submit();
+	});
+	});
+ */
+
+ 	function insertBlackList(){
+		$("#userId2").val($("#userId").val());
+	 $("#insertBlackForm").submit();
+ }
+</script>
 </body>
 </html>
