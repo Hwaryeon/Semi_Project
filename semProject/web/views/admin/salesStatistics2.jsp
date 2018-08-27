@@ -109,7 +109,7 @@ display: inline-block;
 				<li role="presentation" style="font-size: 14px;"><a href="<%= request.getContextPath() %>/salesSt.adm?type=t3">&nbsp;&nbsp;100%초과 마감 상품&nbsp;&nbsp;</a></li>
    </ul>
    <br>
-
+   <div style="height:390px">
    <table class="table table-hover">
    <thead>
    <tr>
@@ -156,6 +156,7 @@ display: inline-block;
 				<% } %> 
    </tbody>
   </table>
+  </div>
 </div>
 <%-- 페이지처리 --%>
 
