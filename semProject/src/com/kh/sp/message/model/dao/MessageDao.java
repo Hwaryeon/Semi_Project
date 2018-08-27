@@ -198,5 +198,30 @@ public class MessageDao {
 		
 		
 	}
+	public int checkMessage(Connection con, int id) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("checkMessage");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, id);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				result = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return result;
+	}
 
 }

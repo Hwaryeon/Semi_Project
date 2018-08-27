@@ -82,4 +82,15 @@ public class MessageService {
 		return list;
 	}
 
+	public int checkMessage(int id) {
+		
+		Connection con = getConnection();
+		
+		int result = new MessageDao().checkMessage(con, id);
+		
+		close(con);
+		
+		return result;
+	}
+
 }

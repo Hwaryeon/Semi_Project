@@ -32,7 +32,7 @@ public class BoardDao {
 			e.printStackTrace();
 		}
 	}
-
+ 
 	public int insertBoard(Connection con, Board board) {
 
 		int result = 0;

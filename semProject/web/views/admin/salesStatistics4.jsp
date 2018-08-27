@@ -103,8 +103,8 @@ display: inline-block;
 <div id="text">
 <div id="container">
    <ul class="nav nav-tabs">
-				<li role="presentation" style="font-size: 14px;"><a href="<%= request.getContextPath() %>/salesSt">&nbsp;&nbsp;전체 매출 통계&nbsp;&nbsp;</a></li>
-				<li role="presentation" style="font-size: 14px;"><a href="<%= request.getContextPath() %>/salesSt.adm?type=t3">&nbsp;&nbsp;80%이상 성공 상품&nbsp;&nbsp;</a></li>
+				<li role="presentation" style="font-size: 14px;"><a href="<%= request.getContextPath() %>/salesSt.adm">&nbsp;&nbsp;전체 매출 통계&nbsp;&nbsp;</a></li>
+				<li role="presentation" style="font-size: 14px;"><a href="<%= request.getContextPath() %>/salesSt.adm?type=t1">&nbsp;&nbsp;80%이상 성공 상품&nbsp;&nbsp;</a></li>
 				<li role="presentation" style="font-size: 14px;"><a href="<%= request.getContextPath() %>/salesSt.adm?type=t2">&nbsp;&nbsp;100%달성 마감 상품&nbsp;&nbsp;</a></li>
 				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;100%초과 마감 상품&nbsp;&nbsp;</a></li>
    </ul>
@@ -117,7 +117,6 @@ display: inline-block;
    <th>결제 건수</th>
    <th>결제 금액</th>
    <th>환불 건수</th>
-   <th colspan="2">환불 사유</th>
    <th>실결제비율</th>
    <th>결제완료금액</th>
    <th>순매출액</th>
@@ -125,16 +124,14 @@ display: inline-block;
    <tr>
    <th>
    <select>
-   <option>일별</option>
-   <option>월별</option>
-   <option>년도별</option>
+   <option id="date">일별</option>
+   <option id="month">월별</option>
+   <option id="year">년도별</option>
    </select>
    </th>
    <th></th>
    <th></th>
    <th></th>
-   <th>펀딩 실패</th>
-   <th>단순 변심</th>
    <th></th>
    <th></th>
    <th></th>
@@ -145,10 +142,8 @@ display: inline-block;
 				<tr>
 					<td><%= s.getTerm() %></td>
 					<td><%= s.getPaymentCount() %>건</td>
-					<td><%= s.getPaymentPrice() %>건</td>
+					<td><%= s.getPaymentPrice() %>원</td>
 					<td><%= s.getRefundCount() %>건</td>
-					<td><%= s.getFailCount() %>건</td>
-					<td><%= s.getCancelCount() %>건</td>
 					<td><%= s.getPaymentPercentage() %>%</td>
 					<td><%= s.getPaymentCompletePrice() %>원</td>
 					<td><%= s.getNetSales() %>원</td>
