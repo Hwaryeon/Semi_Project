@@ -5,17 +5,24 @@
 <!DOCTYPE html>
 
 <%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> --%>
+<%-- <%@ page session="false" %> --%>
+
 <html>
 <head>
 <meta charset="UTF-8">
   
 <title>투자 페이지</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- <script src="<%=request.getContextPath()%>/js/common/scroll.js"></script> -->
+	<script src="../js/common/scroll.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script> -->
 <style>
 
 	
+	<link rel="stylesheet" href="../css/common.css"/>
+	<link rel="stylesheet" href="../css/unit.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
 	
 	<script>
 	
@@ -169,7 +176,7 @@
 <body>
 	
 	
-	<%@ include file="../common/headBar.jsp"%> 
+	<%@ include file="../common/headBar.jsp"%>
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<div class="slide">
@@ -202,17 +209,28 @@
 <div class="productArea">
  	<br>
  	<h2 align="center">제품list</h2>
- 	<button onclick="location='views/funding/product.jsp'">제품상세보기</button>
- 	<button onclick="location='views/funding/project.jsp'">프로젝트 신청</button>
  	
- 	<ul class="input" align="center">
+ 	<ul class="input" id="p_list" align="center">
  	<% for(int i = 0; i <list.size(); i++){
  			HashMap<String,Object> hmap = list.get(i);
  		%>
-					<li><img src="/se1/thumbnail_uploadFiles/<%=hmap.get("changeName")%>" width="300px" height="186px"><br>그외 텍스트</li>
+					<li class="p_list2" id="p<%=i%>">
+					<img src="/sp/thumbnail_uploadFiles/<%=hmap.get("changeName")%>" width="300px" height="186px">
+					<input value="<%=hmap.get("pId")%>">
+					<br><br><br><%=hmap.get("intro") %> <br><%=hmap.get("pId")%> </li>
+					
  		<% } %>	
  	</ul>
 </div>
+<script>
+	 $(function(){
+		$(".p_list2").click(function(){
+			/* var num = $(this).children().children().eq(1).val(); */
+			var num = $(this).children().eq(1).val();
+			location.href="<%=request.getContextPath()%>/SelectOne.tn?num=" + num;
+		});
+	});
+</script>
 </body>
 
 <!-- <footer id="footer">

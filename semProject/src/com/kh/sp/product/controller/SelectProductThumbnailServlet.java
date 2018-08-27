@@ -36,9 +36,8 @@ public class SelectProductThumbnailServlet extends HttpServlet {
 		
 		ArrayList<HashMap<String, Object>> list
 			= new ProductService().selectProductList();
-		System.out.println("여기까지");
-		String page = "";
 		
+		String page = "";
 		if(list != null) {
 			
 			page = "views/funding/welcome.jsp";

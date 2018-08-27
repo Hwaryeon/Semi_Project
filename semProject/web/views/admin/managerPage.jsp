@@ -8,7 +8,7 @@
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStatPage();
+	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html>
@@ -373,7 +373,6 @@ element {
 					}).click(function() {
 						$("#userId2").val($("#userId").val());
 						$("#userClass2").val($("#userClass").val());
-
 						$("#selectOne").submit();
 
 					});

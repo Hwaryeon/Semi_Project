@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.sp.admin.model.vo.*"%>
 <!DOCTYPE html>
+<%
+ArrayList<SuccessFundingStatistics> list =
+    (ArrayList<SuccessFundingStatistics>)request.getAttribute("list");
+String num = (String)request.getAttribute("num");
+PageInfo pi = (PageInfo)request.getAttribute("pi");
+int listCount = pi.getListCount();
+int currentPage = pi.getCurrentPage();
+int maxPage = pi.getMaxPage();
+int startPage = pi.getStartPage();
+int endPage = pi.getEndPage();
+%>
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -32,6 +43,10 @@ th, td {
 font-size:14px;
    text-align: center;
 }
+td{
+    color:black;
+    background-color:white;
+}
 select{
     color:black;
 }
@@ -48,6 +63,27 @@ select{
 	margin-bottom:50px;
 }
 
+.pageArea a {
+display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin: 0 2px;
+    border: 1px solid #d6d6d6;
+    font-size: .75em;
+    line-height: 32px;
+    color: #999; 
+    text-align: center;
+    vertical-align: top;
+    cursor:pointer;
+}
+/* .pageArea {
+    margin: 40px 0;
+    text-align: center;
+    margin-top: 200px;
+} */
+.pageArea a:hover{
+          color: #999; 
+       }
 
 </style>
 </head>
@@ -66,10 +102,11 @@ select{
 <div id="text">
 <div id="container">
    <ul class="nav nav-tabs">
-				<li role="presentation" style="font-size: 14px;"><a href="fundingStatistics.jsp">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 개설 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li role="presentation" style="font-size: 14px;"><a href="<%=request.getContextPath()%>/fundingSt.adm">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 개설 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 성공 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
    </ul>
    <br>
+   <div style="height:390px">
    <table class="table table-hover">
    <thead>
    <tr>
@@ -77,13 +114,13 @@ select{
    <th>마감 건수</th>
    <th>성공 건수</th>
    <th>성공 비율</th>
-   <th colspan="3">마감방식별 성공 건수/비율</th>
+   <th colspan="3">마감방식별 성공 비율</th>
    </tr>
    <tr>
    <th>
    <select>
-   <option>월별</option>
-   <option>년도별</option>
+   <option id="month">월별</option>
+   <option id="year">년도별</option>
    </select>
    </th>
    <th></th>
@@ -95,12 +132,97 @@ select{
    </tr>
    </thead>
    <tbody>
-
+   <% for(SuccessFundingStatistics f : list){ %>
+				<tr>
+					<td><%= f.getTerm() %></td>
+					<td><%= f.getEndCount() %>건</td>
+					<td><%= f.getSuccessCount() %>건</td>
+					<td><%= f.getSuccessRate() %>%</td>
+					<td><%= f.getType1SuccessRate() %>%</td>
+					<td><%= f.getType2SuccessRate() %>%</td>
+					<td><%= f.getType3SuccessRate() %>%</td>
+				</tr>
+				<% } %>
    </tbody>
   </table>
+  </div>
 </div>
+<%-- 페이지처리 --%>
+        
+		<div class="pageArea" id="monthPaging" align="center">
+			<a onclick="location.href='<%=request.getContextPath() %>/fundingSt2.adm?currentPage=1'" class="link_fst">
+			<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
+			<% if (currentPage <= 1) { %>
+				<a disabled class="link_prev"><</a>&#160;
+			<% } else { %>
+				<a onclick="location.href='<%=request.getContextPath() %>/fundingSt2.adm?currentPage=<%=currentPage -1 %>'" class="link_prev"><</a>&#160;
+			<% } %>
+			
+			<% for(int p = startPage;p<= endPage;p++) { 
+					if(p==currentPage) { %>
+						<a disabled class="link_page" style="background:lightgray;"><%= p %></a>
+			<% 		} else { %>
+						<a onclick="location.href='<%=request.getContextPath()%>/fundingSt2.adm?currentPage=<%=p %>'" class="link_page"><%= p %></a>
+			<%  	} %>
+			<% } %>
+			
+			<% if(currentPage >= maxPage) { %>
+				&#160;<a disabled class="link_next">></a>&#160;
+			<% } else { %>
+				&#160;<a onclick="location.href='<%=request.getContextPath()%>/fundingSt2.adm?currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
+			<% } %>
+			<a onclick="location.href='<%=request.getContextPath()%>/fundingSt2.adm?currentPage=<%=maxPage%>'" class="link_lst">>></a>
+		</div>
+		
+		<div class="pageArea" id="yearPaging" align="center">
+			<a onclick="location.href='<%=request.getContextPath() %>/fundingSt2.adm?term=year&currentPage=1'" class="link_fst">
+			<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
+			<% if (currentPage <= 1) { %>
+				<a disabled class="link_prev"><</a>&#160;
+			<% } else { %>
+				<a onclick="location.href='<%=request.getContextPath() %>/fundingSt2.adm?term=year&currentPage=<%=currentPage -1 %>'" class="link_prev"><</a>&#160;
+			<% } %>
+			
+			<% for(int p = startPage;p<= endPage;p++) { 
+					if(p==currentPage) { %>
+						<a disabled class="link_page" style="background:lightgray;"><%= p %></a>
+			<% 		} else { %>
+						<a onclick="location.href='<%=request.getContextPath()%>/fundingSt2.adm?term=year&currentPage=<%=p %>'" class="link_page" ><%= p %></a>
+			<%  	} %>
+			<% } %>
+			
+			<% if(currentPage >= maxPage) { %>
+				&#160;<a disabled class="link_next">></a>&#160;
+			<% } else { %>
+				&#160;<a onclick="location.href='<%=request.getContextPath()%>/fundingSt2.adm?term=year&currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
+			<% } %>
+			<a onclick="location.href='<%=request.getContextPath()%>/fundingSt2.adm?term=year&currentPage=<%=maxPage%>'" class="link_lst">>></a>
+		</div>
 </div>
-
+<script>
+$(function(){
+	$("#yearPaging").hide();
+	$("#monthPaging").show();
+	
+	if(<%= num %>=="0"){
+		$("#month").attr("selected", "selected");
+		$("#yearPaging").hide();
+    	$("#monthPaging").show();
+	}else{
+		$("#year").attr("selected", "selected");
+		$("#yearPaging").show();
+    	$("#monthPaging").hide();
+	}
+	
+	$('select').change(function(){
+	    if($("#year").is(':selected')) {
+	    	location.href = "<%= request.getContextPath() %>/fundingSt2.adm?term=year&currentPage=1";
+	    }else if($("#month").is(':selected')){
+	    	location.href = "<%= request.getContextPath() %>/fundingSt2.adm?currentPage=1";
+	    }
+	});
+});
+</script>
 <%--  <div><%@ include file="../common/footer.jsp" %></div> --%>
 
 </body>

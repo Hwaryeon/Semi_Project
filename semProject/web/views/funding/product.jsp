@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+    pageEncoding="UTF-8" import="java.util.*" %>
+
+<%HashMap<String,Object> hmap = (HashMap<String,Object>)request.getAttribute("hamp"); %>
     
 <!DOCTYPE html>
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> --%>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>상품 페이지</title>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-<!-- <script src="<%=request.getContextPath()%>/js/common/scroll.js"></script> -->
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+
+
 <style>
 
 #login,#popCloseBtn{
@@ -72,7 +75,7 @@
     }
 
 
-.title{
+.ttitle{
 	margin-bottom : 30px;
 	text-align : center;
 	font-size : 20pt;
@@ -87,8 +90,8 @@
 	height : 400px;
 }
 #picture{
-	width : 80%;
-	height: 70%;
+	/* width : 80%;
+	height: 70%; */
 	display : inline-block;
 	margin-top: 40px;
 	margin-left : 90px;
@@ -240,32 +243,20 @@ textarea{
 }
 
 </style>
-<script>
 
-$(document).ready(function(){
-	
-	$('ul.tabs li').click(function(){
-		var tab_id = $(this).attr('data-tab');
-
-		$('ul.tabs li').removeClass('current');
-		$('.tab-content').removeClass('current');
-
-		$(this).addClass('current');
-		$("#"+tab_id).addClass('current');
-	})
-
-})
-	</script>
 
 </head>
 <body style="background: #eaeaea;">
 	  <%@ include file="../common/headBar.jsp"%>  
 <br><br><br><br><br>
-<p class="title">[채권형] "다함께 사는 우리"
-다울쿠키가 만들어갑니다.</p>
+
+<p class="ttitle">[채권형] "다함께 사는 우리"
+	다울쿠키가 만들어갑니다.</p>
+
+
 <div class="contents">
 	<div id="pic">
-		<img id="picture" src="../../images/product2.PNG"/>
+		<img id="picture" src="/sp/thumbnail_uploadFiles/<%=hmap.get("changeName")%>" width="300px" height="200px">
 	</div>
 	<div id="text">
 		<br>
@@ -374,8 +365,6 @@ $(document).ready(function(){
             $("#popupDiv").css("display","none"); 
             $("body").css("overflow","auto");
         });
-     
-    
     });
  
     
@@ -404,9 +393,24 @@ $(document).ready(function(){
      
     
     });
- 
- 
 
+    $(document).ready(function(){
+    	
+    	$('ul.tabs li').click(function(){
+    		var tab_id = $(this).attr('data-tab');
+
+    		$('ul.tabs li').removeClass('current');
+    		$('.tab-content').removeClass('current');
+
+    		$(this).addClass('current');
+    		$("#"+tab_id).addClass('current');
+    	});
+
+    });
+ 	
+    IMP.init('imp67147309');
+    
+    
     </script>
 </body>
 <br><br><br><br><br><br>

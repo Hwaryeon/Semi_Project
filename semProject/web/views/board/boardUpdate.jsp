@@ -230,18 +230,18 @@ $(document).ready(function(){
 								<div class="notice1">공지사항 등록 여부</div>
 								<div class="notice2">
 							
-								<% if(b.getNoticeYn().equals("A")) {%>
+								<% if(b.getNoticeYn().equals("Y")) {%>
 							
 										<ul class="radio-list">
 							    <li class="active" style="float:left;">
 							        <label style="cursor:pointer;">
 							            <span></span><input type="radio" name="viewType" id="viewTypea" 
-							            	value="A" title="등록" checked="checked" />등록
+							            	value="Y" title="등록" checked="checked" />등록
 							        </label>
 							    </li>
 							    <li style="float:left;">
 							        <label style="cursor:pointer;">
-							            <span></span><input type="radio" name="viewType" id="viewTypeb" value="B" title="등록안함" />등록안함
+							            <span></span><input type="radio" name="viewType" id="viewTypeb" value="N" title="등록안함" />등록안함
 							        </label>
 							    </li>
 							</ul>
@@ -252,12 +252,12 @@ $(document).ready(function(){
 							    <li style="float:left;">
 							        <label style="cursor:pointer;">
 							            <span></span><input type="radio" name="viewType" id="viewTypea" 
-							            	value="A" title="등록" />등록
+							            	value="Y" title="등록" />등록
 							        </label>
 							    </li>
 							    <li  class="active" style="float:left;">
 							        <label style="cursor:pointer;">
-							            <span></span><input type="radio" name="viewType" id="viewTypeb" value="B" title="등록안함" checked="checked" />등록안함
+							            <span></span><input type="radio" name="viewType" id="viewTypeb" value="N" title="등록안함" checked="checked" />등록안함
 							        </label>
 							    </li>
 							</ul>
@@ -355,16 +355,14 @@ $(document).ready(function(){
 								<br>
 							<% if(attachFile1 == null){ %>
 								<label>File Attach
-									<input type="file" id='insertFile0' name='insertFile0' multiple onchange="javascript:document.getElementById('file_route0').value=this.value"/>
+									<input type="file" id='insertFile0' value="" name='insertFile0' multiple onchange="javascript:document.getElementById('file_route0').value=this.value"/>
 								</label>
-								<input type="hidden" id='insertFileName0' name='inserFileName0' value=""> 
+								<!-- <input type="hidden" id='insertFileName0' name='inserFileName0' value="">  -->
 								<input type="text" readonly="readonly" title="File Route0" id="file_route0">
 								<% } else{ %>
 								<label>File Attach
 									<input type="file" id='insertFile0' value="" name='insertFile0' multiple onchange="javascript:document.getElementById('file_route0').value=this.value"/>
 								</label>
-								<input type="hidden" id='FileId0' name='FileId0' value="<%=attachFile1.getFid()%>"> 
-								<input type="hidden" id='FileName0' name='FileName0' value="<%=attachFile1.getOriginName()%>">
 								<input type="text" readonly="readonly" title="File Route0" id="file_route0" value="<%=attachFile1.getFilePath()%><%=attachFile1.getOriginName()%> ">
 								<% } %>
 								
@@ -372,9 +370,8 @@ $(document).ready(function(){
 								
 								<div id="insertFileAdd1" style="display:none;">
 									<label>File Attach
-									<input type="file" id='insertFile1' name='insertFile1' multiple onchange="javascript:document.getElementById('file_route1').value=this.value"/>
+									<input type="file" id='insertFile1' value="" name='insertFile1' multiple onchange="javascript:document.getElementById('file_route1').value=this.value"/>
 								</label>
-								<input type="hidden" id='insertFileName1' name='inserFileName1' value=""> 
 								<input type="text" readonly="readonly" title="File Route1" id="file_route1">
 								<a class='button-delete-file'>삭제</a>
 								</div>
@@ -385,8 +382,6 @@ $(document).ready(function(){
 									<label>File Attach
 									<input type="file" id='insertFile1' value="" name='insertFile1' multiple onchange="javascript:document.getElementById('file_route1').value=this.value"/>
 								</label>
-								<input type="hidden" id='FileId1' name='FileId0' value="<%=attachFile2.getFid()%>"> 
-								<input type="hidden" id='FileName1' name='FileName0' value="<%=attachFile2.getOriginName()%>">
 								<input type="text" readonly="readonly" title="File Route1" id="file_route1" value="<%=attachFile2.getFilePath()%><%=attachFile2.getOriginName()%> ">
 								<a class='button-delete-file'>삭제</a>
 								
@@ -396,9 +391,8 @@ $(document).ready(function(){
 								
 								<div id="insertFileAdd2" style="display:none;">
 									<label>File Attach
-									<input type="file" id='insertFile2' name='insertFile2' multiple onchange="javascript:document.getElementById('file_route2').value=this.value"/>
+									<input type="file" id='insertFile2' value="" name='insertFile2' multiple onchange="javascript:document.getElementById('file_route2').value=this.value"/>
 								</label>
-								<input type="hidden" id='insertFileName2' name='inserFileName2' value=""> 
 								<input type="text" readonly="readonly" title="File Route2" id="file_route2">
 								<a class='button-delete-file'>삭제</a>
 								</div>
@@ -408,8 +402,6 @@ $(document).ready(function(){
 									<label>File Attach
 									<input type="file" id='insertFile2' value="" name='insertFile2' multiple onchange="javascript:document.getElementById('file_route2').value=this.value"/>
 									</label>
-									<input type="hidden" id='FileId2' name='FileId0' value="<%=attachFile3.getFid()%>"> 
-									<input type="hidden" id='FileName2' name='FileName0' value="<%=attachFile3.getOriginName()%>">
 									<input type="text" readonly="readonly" title="File Route2" id="file_route2" value="<%=attachFile3.getFilePath()%><%=attachFile3.getOriginName()%> ">
 									<a class='button-delete-file'>삭제</a>
 									</div>
@@ -421,8 +413,8 @@ $(document).ready(function(){
 
 							<div class="field_foot_btn">
 								<a onclick="allBoard();" class="link_list">목록</a>
-								<button style="margin-left: 10px;"onclick="updateBoard();" id="update" class="link_list">수정
-								</button>
+								<a style="margin-left: 10px;"onclick="updateBoard();" id="update" class="link_list">수정
+								</a>
 								<a style="margin-left: 10px;"onclick="deleteBoard();" id="delete" class="link_list">삭제</a>
 								
 							</div>
@@ -463,15 +455,12 @@ $(document).ready(function(){
 										
 										if(document.getElementById('insertFile0').value == ""){
 											count++;
-											/* $("#insertFileAdd0").remove(); */
 										}
 										if(document.getElementById('insertFile1').value == ""){
 											count++;
-											/* $("#insertFileAdd1").remove(); */
 										}
 										if(document.getElementById('insertFile2').value == ""){
 											count++;
-											/* $("#insertFileAdd2").remove(); */
 										}
 										
 											

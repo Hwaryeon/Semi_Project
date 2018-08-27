@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,12 +43,12 @@ public class InsertThumbnailServlet extends HttpServlet {
 		
 		if(ServletFileUpload.isMultipartContent(request)) {
 			int maxSize = 1024 * 1024 * 10;
-			//String root = request.getSession().getServletContext().getRealPath("/");
+			String root = request.getSession().getServletContext().getRealPath("/");
 			
-			//System.out.println(root);
+			System.out.println(root);
 			
-			String savePath = "C:/Users/insj2/jsp/semiProject/web/thumbnail_uploadFiles/";
-					//root + "thumbnail_uploadFiles/";
+			String savePath = root + "thumbnail_uploadFiles/";
+				
 			System.out.println(savePath);
 			/*MultipartRequest multiRequest = new MultipartRequest(request,savePath,maxSize,"UTF-8",new DefaultFileRenamePolicy());*/
 			
@@ -69,12 +70,7 @@ public class InsertThumbnailServlet extends HttpServlet {
 			String projectPrepare = multiRequest.getParameter("projectPrepare");
 			String projectIntro = multiRequest.getParameter("projectIntro");
 			String projectPlan = multiRequest.getParameter("projectPlan");
-			System.out.println(intro);
-			System.out.println(projectPrepare);
-			System.out.println(projectIntro);
-			System.out.println(projectPlan);
-			System.out.println(saveFiles);
-			System.out.println(originFiles);
+			
 			
 			Application a = new Application();
 			a.setIntro(intro);
@@ -96,9 +92,10 @@ public class InsertThumbnailServlet extends HttpServlet {
 			}
 			
 			int result = new ProjectService().insertThumbnail(a,fileList);
-			
+			String page = "";
 			if(result > 0) {
-				System.out.println("성공");
+				
+				response.sendRedirect(request.getContextPath() + "/SelectList.tn");
 			}else {
 				for(int i = 0 ; i<saveFiles.size(); i++) {
 					File failedFile = new File(savePath + saveFiles.get(i));
@@ -107,9 +104,8 @@ public class InsertThumbnailServlet extends HttpServlet {
 				}
 				System.out.println("실패 다시 해봐");
 				request.setAttribute("msg", "사진게시판 등록 실패!");
-				request.getRequestDispatcher("views/common/errorPage.jsp");
+				request.getRequestDispatcher("views/common/welcome.jsp");
 			}
-			
 			
 			
 			

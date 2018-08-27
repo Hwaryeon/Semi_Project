@@ -23,7 +23,7 @@ import static com.kh.sp.common.JDBCTemplate.*;
 public class FundingDao {
 
 	private Properties prop = new Properties();
-	
+
 	public FundingDao(){
 		String fileName = FundingDao.class.getResource("/sql/funding/funding-query.properties").getPath();
 		try {
@@ -32,60 +32,60 @@ public class FundingDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public HashMap<String, Object> callType(Connection con) {
-		
+
 		Statement stmt = null;
 		ResultSet rset = null;
-		
+
 		HashMap<String, Object> hmap = null;
 		ArrayList<ProductType> list = null;
-		
+
 		ProductType pt = null;
-		
-		
+
+
 		String query = prop.getProperty("callType");
-		
+
 		try {
 			stmt = con.createStatement();
-			
+
 			rset = stmt.executeQuery(query);
-			
+
 			list = new ArrayList<ProductType>();
 			while(rset.next()){
-				
+
 				pt = new ProductType();
 				pt.setpCode(rset.getInt("p_code"));
 				pt.setpName(rset.getString("p_name"));
 				pt.setP_fees(rset.getInt("p_fees"));
-				
+
 				list.add(pt);
-				
-				
+
+
 			}
-			
+
 			hmap = new HashMap<String, Object>();
-			
+
 			hmap.put("productType", list);
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
 			close(stmt);
 			close(rset);
 		}
-		
-		
+
+
 		return hmap;
 	}
 
 	public int insertFunding(Connection con, Product p) {
-		
+
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = prop.getProperty("insertFunding");
-		
+		System.out.println("여기가 문제여");
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, p.getP_code());
@@ -95,9 +95,9 @@ public class FundingDao {
 			pstmt.setInt(5, p.getOpenDate());
 			pstmt.setInt(6, Integer.parseInt(p.getcAmount()));
 			pstmt.setString(7, p.getFeeType());
-			
+
 			result = pstmt.executeUpdate();
-			
+			System.out.println("result="+result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
@@ -107,71 +107,74 @@ public class FundingDao {
 	}
 
 	public int selectCurrval(Connection con) {
-		
+
 		Statement stmt = null;
 		ResultSet rset = null;
 		int pid=0;
-		
+
 		String query = prop.getProperty("selectCurrval");
-		
+
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
-			
+
 			if(rset.next()){
 				pid = rset.getInt("currval");
 			}
-			
+			System.out.println(pid+"??");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
 			close(stmt);
 			close(rset);
 		}
-		
+
 		return pid;
 	}
 
 	public int detailPoductInsert(Connection con, int pid) {
-		
+
 		PreparedStatement pstmt = null;
-		
+
 		int result = 0;
-		
+
 		String query = prop.getProperty("detailPoductInsert");
-		
+		System.out.println(pid+"!");
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, pid);
-			
+
 			result = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 
 	public ArrayList<Product> newFundingList(Connection con) {
-		
+
 		ArrayList<Product> pList = new ArrayList<Product>();
-		Statement stmt = null;
 		ResultSet rset = null;
 		Product p = null;
-		
+		PreparedStatement pstmt = null;
+
 		String query = prop.getProperty("newFundingList");
-		
+
 		try {
-			stmt = con.createStatement();
 			
-			rset = stmt.executeQuery(query);
 			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "펀딩모집");
+			
+			rset = pstmt.executeQuery();
+
 			while(rset.next()){
 				p = new Product();
-				
+
 				p.setP_id(rset.getInt("p_id"));
 				p.setP_code(rset.getInt("p_code")+"");
 				p.setUser_id(rset.getInt("user_id"));
@@ -184,113 +187,71 @@ public class FundingDao {
 				p.setOrigin_name(rset.getString("ORIGIN_NAME"));
 				p.setChange_name(rset.getString("CHANGE_NAME"));
 				p.setFile_path(rset.getString("FILE_PATH"));
-				
+
 				pList.add(p);
-				
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
-			close(stmt);
 			close(rset);
+			close(pstmt);
 		}
-		
-		
+
+
 		return pList;
 	}
 
 	public ArrayList<Product> inverstFundingList(Connection con, ArrayList<Product> pList) {
-		
-		Statement stmt = null;
+
 		ResultSet rset = null;
 		Product p = null;
-		
+		PreparedStatement pstmt = null;
+
 		String query = prop.getProperty("inverstFundingList");
-		
+
 		try {
-			stmt = con.createStatement();
-			
-			rset = stmt.executeQuery(query);
-			
+			pstmt =con.prepareStatement(query);
+			pstmt.setString(1, "펀딩모집");
+
+			rset = pstmt.executeQuery();
+
 			while(rset.next()){
-				
+
 				for(int i=0; i < pList.size(); i++){
 					if(rset.getInt("p_id") == pList.get(i).getP_id()){
 						pList.get(i).setTotal_amount(rset.getInt("sum(ir.price)"));
 					}
 				}
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
-			close(stmt);
 			close(rset);
+			close(pstmt);
 		}
-		
+
 		return pList;
 	}
-	
-public ArrayList<Product> inverstHotFundingList(Connection con) {
-		
-	ArrayList<Product> pList = new ArrayList<Product>();
-	Statement stmt = null;
-	ResultSet rset = null;
-	Product p = null;
-	
-	String query = prop.getProperty("hotFundingList");
-	
-	try {
-		stmt = con.createStatement();
-		
-		rset = stmt.executeQuery(query);
-		
-		while(rset.next()){
-			p = new Product();
-			
-			p.setP_id(rset.getInt("p_id"));
-			p.setP_code(rset.getInt("p_code")+"");
-			p.setUser_id(rset.getInt("user_id"));
-			p.setP_name(rset.getString("p_name"));
-			p.setOpenDate(Math.round(rset.getInt("(r.END_DATE-sysdate)")));
-			p.setcAmount(rset.getInt("CLOSING_AMOUNT")+"");
-			p.setP_intro(rset.getString("intro"));
-			p.setOpenDate(rset.getInt("(r.END_DATE-sysdate)"));
-			p.setCorporate_name(rset.getString("CORPORATE_NAME"));
-			p.setOrigin_name(rset.getString("ORIGIN_NAME"));
-			p.setChange_name(rset.getString("CHANGE_NAME"));
-			p.setFile_path(rset.getString("FILE_PATH"));
-			
-			pList.add(p);
-			
-		}
-	} catch (SQLException e) {
-		e.printStackTrace();
-	} finally{
-		close(stmt);
-		close(rset);
-	}
-	
-	
-	return pList;
-	}
 
-	public ArrayList<Product> mainFundingList(Connection con) {
+	public ArrayList<Product> inverstHotFundingList(Connection con) {
+
 		ArrayList<Product> pList = new ArrayList<Product>();
-		Statement stmt = null;
 		ResultSet rset = null;
 		Product p = null;
-		
-		String query = prop.getProperty("mainFundingList");
-		
+		PreparedStatement pstmt = null;
+
+		String query = prop.getProperty("hotFundingList");
+
 		try {
-			stmt = con.createStatement();
-			
-			rset = stmt.executeQuery(query);
-			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "펀딩모집");
+			rset = pstmt.executeQuery();
+
 			while(rset.next()){
 				p = new Product();
-				
+
 				p.setP_id(rset.getInt("p_id"));
 				p.setP_code(rset.getInt("p_code")+"");
 				p.setUser_id(rset.getInt("user_id"));
@@ -303,86 +264,103 @@ public ArrayList<Product> inverstHotFundingList(Connection con) {
 				p.setOrigin_name(rset.getString("ORIGIN_NAME"));
 				p.setChange_name(rset.getString("CHANGE_NAME"));
 				p.setFile_path(rset.getString("FILE_PATH"));
-				
+
 				pList.add(p);
-				
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
-			close(stmt);
 			close(rset);
+			close(pstmt);
 		}
-		
-		
+
+
+		return pList;
+	}
+
+	public ArrayList<Product> mainFundingList(Connection con) {
+		ArrayList<Product> pList = new ArrayList<Product>();
+		ResultSet rset = null;
+		Product p = null;
+		PreparedStatement pstmt = null;
+
+		String query = prop.getProperty("mainFundingList");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "펀딩모집");
+			rset = pstmt.executeQuery();
+
+			while(rset.next()){
+				p = new Product();
+
+				p.setP_id(rset.getInt("p_id"));
+				p.setP_code(rset.getInt("p_code")+"");
+				p.setUser_id(rset.getInt("user_id"));
+				p.setP_name(rset.getString("p_name"));
+				p.setOpenDate(Math.round(rset.getInt("(r.END_DATE-sysdate)")));
+				p.setcAmount(rset.getInt("CLOSING_AMOUNT")+"");
+				p.setP_intro(rset.getString("intro"));
+				p.setOpenDate(rset.getInt("(r.END_DATE-sysdate)"));
+				p.setCorporate_name(rset.getString("CORPORATE_NAME"));
+				p.setOrigin_name(rset.getString("ORIGIN_NAME"));
+				p.setChange_name(rset.getString("CHANGE_NAME"));
+				p.setFile_path(rset.getString("FILE_PATH"));
+
+				pList.add(p);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+		}
+
+
 		return pList;
 	}
 
 	public ArrayList<Product> hotFundingList(Connection con,ArrayList<Product> pList) {
-		Statement stmt = null;
 		ResultSet rset = null;
 		Product p = null;
-		
+		Statement stmt = null;
 		ArrayList<Product> hotList = new ArrayList<Product>();
-		
+
 		String query = prop.getProperty("inverstHotFundingList");
-		
+
 		try {
 			stmt = con.createStatement();
-			
 			rset = stmt.executeQuery(query);
-			
+
 			while(rset.next()){
-				
+
 				for(int i=0; i < pList.size(); i++){
 					if(rset.getInt("p_id") == pList.get(i).getP_id()){
 						pList.get(i).setTotal_amount(rset.getInt("sum(ir.price)"));
 					}
 				}
 			}
-			
-			
+
+
 			for(int i=0; i < pList.size(); i++){
 				if(pList.get(i).getTotal_amount() <= 0){
 					pList.remove(i);
 				}
 			}
-			
-			
-			/*while(rset.next()){
-				
-				for(int i=0; i < pList.size(); i++){
-					if(rset.getInt("sum(ir.price)") == pList.get(i).getTotal_amount()){
-						
-						System.out.println("11");
-						
-						hotList.add(pList.get(i));
-					}
-				}
-			}
-*/
 
-			
-			/*for(int i=0; i < pList.size(); i++){
-				
-				if(pList.get(i).getTotal_amount() <= 0){
-					pList.remove(i);
-				}
-			}*/
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
-			close(stmt);
 			close(rset);
+			close(stmt);
 		}
-		pList.remove(pList.size()-1);
-		
-		System.out.println("pList : " + pList);
-		System.out.println("count : " + pList.size());
-		
-		
-		for(int i = 0; i < pList.size(); i++){
-			System.out.println("i : " + pList.get(i).getTotal_amount());
+
+
+		if(pList.size() > 0){
+			pList.remove(pList.size()-1);
+
 		}
 		
 		return pList;
@@ -390,20 +368,20 @@ public ArrayList<Product> inverstHotFundingList(Connection con) {
 
 	public ArrayList<Product> closeFundingList(Connection con) {
 		ArrayList<Product> pList = new ArrayList<Product>();
-		Statement stmt = null;
 		ResultSet rset = null;
 		Product p = null;
-		
+		PreparedStatement pstmt = null;
+
 		String query = prop.getProperty("closeFundingList");
-		
+
 		try {
-			stmt = con.createStatement();
-			
-			rset = stmt.executeQuery(query);
-			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "펀딩모집");
+			rset = pstmt.executeQuery();
+
 			while(rset.next()){
 				p = new Product();
-				
+
 				p.setP_id(rset.getInt("p_id"));
 				p.setP_code(rset.getInt("p_code")+"");
 				p.setUser_id(rset.getInt("user_id"));
@@ -416,28 +394,27 @@ public ArrayList<Product> inverstHotFundingList(Connection con) {
 				p.setOrigin_name(rset.getString("ORIGIN_NAME"));
 				p.setChange_name(rset.getString("CHANGE_NAME"));
 				p.setFile_path(rset.getString("FILE_PATH"));
-				
+
 				pList.add(p);
-				
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
-			close(stmt);
 			close(rset);
+			close(pstmt);
 		}
-		
-		
+
+
 		return pList;
 	}
-	
-	
 
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 
 }

@@ -13,20 +13,32 @@ public class Attachment2 implements java.io.Serializable{
 	private int fileLevle;
 	private int downloadCount;
 	private String status;
+	private String userId;
 	
+	
+
 	public Attachment2() {}
 	
 	@Override
 	public String toString() {
-		return "Attachment [bid"+"=" + bid + ", pid=" + pid + ", originName=" + originName
-				+ ", changeName=" + changeName + ", filePath=" + filePath + ", uploadDate=" + uploadDate
-				+ ", fileLevle=" + fileLevle + ", downloadCount=" + downloadCount + ", status=" + status + "]";
+		return "Attachment2 [bid=" + bid + ", pid=" + pid + ", originName=" + originName + ", changeName=" + changeName
+				+ ", filePath=" + filePath + ", uploadDate=" + uploadDate + ", fileLevle=" + fileLevle
+				+ ", downloadCount=" + downloadCount + ", status=" + status + ", userId=" + userId + "]";
 	}
 
-	public Attachment2( int bid, int pid, String originName, String changeName, String filePath, Date uploadDate,
-			int fileLevle, int downloadCount, String status) {
+	
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
+	public Attachment2(int bid, int pid, String originName, String changeName, String filePath, Date uploadDate,
+			int fileLevle, int downloadCount, String status, String userId) {
 		super();
-		
 		this.bid = bid;
 		this.pid = pid;
 		this.originName = originName;
@@ -36,6 +48,7 @@ public class Attachment2 implements java.io.Serializable{
 		this.fileLevle = fileLevle;
 		this.downloadCount = downloadCount;
 		this.status = status;
+		this.userId = userId;
 	}
 
 	public int getPid() {
