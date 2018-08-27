@@ -376,21 +376,26 @@ public class AdminDao {
 	}
 
 
-	public ArrayList<SalesStatistics> selectSalesList(Connection con, int num, String str) {
+
+	public ArrayList<SalesStatistics> selectSalesList(Connection con, String type, String term, int currentPage,
+			int limit) {
 		ArrayList<SalesStatistics> list = new ArrayList<SalesStatistics>();
 		SalesStatistics result = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = null;
 
+
 		if(num == 0){
 			if(str.equals("date")){
 				query = prop.getProperty("selectAllSalesDate");
 			}else if(str.equals("month")){
+
 				query = prop.getProperty("selectAllSalesMonth");
 			}else{
 				query = prop.getProperty("selectAllSalesYear");
 			}
+
 		}else if(num == 1){
 			if(str.equals("date")){
 				query = prop.getProperty("selectType1SalesDate");
@@ -404,24 +409,24 @@ public class AdminDao {
 				query = prop.getProperty("selectType2SalesDate");
 			}else if(str.equals("month")){
 				query = prop.getProperty("selectType2SalesMonth");
+
 			}else{
-				query = prop.getProperty("selectType2SalesYear");
+				query = prop.getProperty("selectT2SalesYear");
 			}
+
 		}else if(num == 3){
 			if(str.equals("date")){
 				query = prop.getProperty("selectType3SalesDate");
 			}else if(str.equals("month")){
 				query = prop.getProperty("selectType3SalesMonth");
+
 			}else{
-				query = prop.getProperty("selectType3SalesYear");
+				query = prop.getProperty("selectT3SalesYear");
 			}
 		}
 
 		try {
 			pstmt = con.prepareStatement(query);
-
-
-
 
 			rset = pstmt.executeQuery();
 
@@ -448,9 +453,10 @@ public class AdminDao {
 			close(rset);
 		}
 
-
 		return list;
 	}
+	
+
 
 
 	public ArrayList<Member> searchBlackMember(Connection con, int currentPage, int limit, String text) {
@@ -505,6 +511,7 @@ public class AdminDao {
 
 
 	public ArrayList<OpenFundingStatistics> selectOpenFundingList(Connection con, String str) {
+
 		ArrayList<OpenFundingStatistics> list = new ArrayList<OpenFundingStatistics>();
 		OpenFundingStatistics result = null;
 		PreparedStatement pstmt = null;
@@ -530,6 +537,7 @@ public class AdminDao {
 
 			rset = pstmt.executeQuery();
 
+
 			while(rset.next()){
 				result = new OpenFundingStatistics();
 
@@ -550,11 +558,10 @@ public class AdminDao {
 			close(pstmt);
 			close(rset);
 		}
-
 		return list;
 	}
 
-	public ArrayList<SuccessFundingStatistics> selectSuccessFundingList(Connection con, String str) {
+	public ArrayList<SuccessFundingStatistics> selectSuccessFundingList(Connection con, String str, int currentPage, int limit) {
 		ArrayList<SuccessFundingStatistics> list = new ArrayList<SuccessFundingStatistics>();
 		SuccessFundingStatistics result = null;
 		PreparedStatement pstmt = null;
@@ -586,11 +593,8 @@ public class AdminDao {
 				result.setEndCount(rset.getInt("end_count"));
 				result.setSuccessCount(rset.getInt("success_count"));
 				result.setSuccessRate(rset.getInt("success_rate"));
-				result.setType1SuccessCount(rset.getInt("type1_success_count"));
 				result.setType1SuccessRate(rset.getInt("type1_success_rate"));
-				result.setType2SuccessCount(rset.getInt("type2_success_count"));
 				result.setType2SuccessRate(rset.getInt("type2_success_rate"));
-				result.setType3SuccessCount(rset.getInt("type3_success_count"));
 				result.setType3SuccessRate(rset.getInt("type3_success_rate"));
 
 				list.add(result);
@@ -606,7 +610,7 @@ public class AdminDao {
 		return list;
 	}
 
-	public ArrayList<MemberStatistics> selectMemberList(Connection con, String str) {
+	public ArrayList<MemberStatistics> selectMemberList(Connection con, String str, int currentPage, int limit) {
 		ArrayList<MemberStatistics> list = new ArrayList<MemberStatistics>();
 		MemberStatistics result = null;
 		PreparedStatement pstmt = null;
@@ -624,7 +628,9 @@ public class AdminDao {
 		try {
 			pstmt = con.prepareStatement(query);
 
+
 			rset = pstmt.executeQuery();
+
 
 			while(rset.next()){
 				result = new MemberStatistics();
@@ -648,6 +654,7 @@ public class AdminDao {
 		return list;
 	}
 
+
 	public int blackListCount(Connection con, String text) {
 		PreparedStatement pstmt = null;
 		int listCount = 0;
@@ -670,6 +677,7 @@ public class AdminDao {
 
 			//이 부분이 맞나 싶다
 			
+
 			if(rset.next()) {
 				listCount = rset.getInt(1);
 
@@ -680,6 +688,7 @@ public class AdminDao {
 		} finally {
 			close(pstmt);
 			close(rset);
+
 		}
 
 		return listCount;

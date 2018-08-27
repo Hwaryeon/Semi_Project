@@ -3,10 +3,15 @@ package com.kh.sp.message.model.dao;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.sp.board.model.vo.Board;
 import com.kh.sp.member.model.dao.MemberDao;
 import com.kh.sp.message.model.vo.Message;
 
@@ -49,6 +54,149 @@ public class MessageDao {
 		
 		
 		return result;
+	}
+	public Message readMessage(Connection con, int msgId) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Message m = null;
+		
+		String query = prop.getProperty("readMessage");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, msgId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				m = new Message();
+				
+				m.setMsg_id(rset.getInt("msg_id"));
+				m.setTitle(rset.getString("title"));
+				m.setMsg(rset.getString("content"));
+				m.setUser_id(rset.getInt("send_id"));
+				m.setReceive_id(rset.getInt("receive_id"));
+				m.setSend_date(rset.getDate("send_date"));
+				m.setReadYN(rset.getString("readyn"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		
+		return m;
+	}
+	public int deleteMsg(Connection con, String msgId) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteMsg");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(msgId));
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+	public int getListCount(Connection con, int user_id) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result= 0;
+		
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("listCount");
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, user_id);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				result = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rset);
+		}
+		
+		
+		return result;
+	}
+	public ArrayList<Message> listMsg(Connection con, int currentPage, int limit, int user_id) {
+		
+		ArrayList<Message> list = new ArrayList<Message>();
+		
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("listMsg");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			int startRow = (currentPage -1 ) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, user_id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				
+				Message m = new Message();
+				
+				m.setMsg_id(rset.getInt("msg_id"));
+				m.setTitle(rset.getString("title"));
+				m.setMsg(rset.getString("content"));
+				m.setUser_id(rset.getInt("send_id"));
+				m.setReceive_id(rset.getInt("receive_id"));
+				m.setSend_date(rset.getDate("send_date"));
+				m.setRead_date(rset.getDate("read_date"));
+				m.setReadYN(rset.getString("readyn"));
+				
+				
+				list.add(m);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+		
+		return list;
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }

@@ -40,10 +40,10 @@ public class SelectOneProduct extends HttpServlet {
 		
 		HashMap<String, Object> hmap = new ProductService().selectOne(num);
 		
-		String page = "";
+		String page = "views/funding/product.jsp";
+		System.out.println("test");
 		
 		if(hmap!=null) {
-			page = "views/funding/product.jsp";
 			request.setAttribute("hamp", hmap);
 			/*request.setAttribute("a", (Product)hmap.get("product"));
 			request.setAttribute("proList",(ArrayList<Attachment>)hmap.get("attachment"));*/
