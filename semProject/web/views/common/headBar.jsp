@@ -12,6 +12,8 @@
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main/style.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/qna/qna.css">
+
+
 <style>
 .headr-wrap {
 	width: 100%;
@@ -166,9 +168,12 @@
 </head>
 <body style="" style="width:1500px; overflow:hidden;">
 	<div >
-		<div class="headr-wrap" id="headr-wrap" style="width:1550px;max-height:87px;">
+		<div class="headr-wrap navbar navbar-default navbar-static-top" id="headr-wrap" style="width:1550px;max-height:87px;">
+
 
 			<h1 class="lg" ><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/common/logo.png" width="100" height="200" ></a></h1>
+			
+			
 			<div class="gnb-menu">
 				<ul>
 					<li><a href="<%=request.getContextPath()%>/SelectList.tn">투자하기</a></li>
@@ -181,7 +186,20 @@
 			</div>
 
 			<div class="gnb-user">
-				<ul>
+				
+					
+			
+				<ul >
+				
+				
+				
+				<!-- 현재 테스트할겸 넣어놈 -->
+				<li><a onclick="messageList()">쪽지함</a></li>
+				<!--  -->
+				
+				
+				
+				
 					<% if(loginUser == null) { %>
 						<li><a href="<%=request.getContextPath()%>/views/member/loginForm.jsp">로그인</a></li>
 						<li><a href="<%=request.getContextPath()%>/views/member/memberJoinForm.jsp">회원가입</a></li>
@@ -191,6 +209,18 @@
 					<% } %>
 				</ul>
 			</div>
+
+	<script>
+		function messageList(){
+		
+		var popUrl = "<%=request.getContextPath()%>/listMessage";	//팝업창에 출력될 페이지 URL
+
+		var popOption = "width=895, height=670, resizable=no, left=300, top=50, scrollbars=no, status=no; ";    //팝업창 옵션(optoin)
+
+			window.open(popUrl,"",popOption);
+	}
+	
+	</script>
 
 			<div class="full-menu">
 				<div class="menu-container">

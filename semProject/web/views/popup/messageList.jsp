@@ -1,203 +1,224 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+	pageEncoding="UTF-8" import="java.util.*, com.kh.sp.message.model.vo.*, com.kh.sp.board.model.vo.*"%>
+<%
+ArrayList<Message> list 
+= (ArrayList<Message>)request.getAttribute("list");
+PageInfo pi = (PageInfo)request.getAttribute("pi");
+int listCount = pi.getListCount();
+int currentPage = pi.getCurrentPage();
+int maxPage = pi.getMaxPage();
+int startPage = pi.getStartPage();
+int endPage = pi.getEndPage();
+
+%>
+<!doctype html>
+<html lang="en">
 <head>
-<title>받은쪽지함</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/popup/message.css" type="text/css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery UI Tabs - Vertical Tabs functionality</title>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/message/message.css">
 
 <script>
-function del(a,b,c) {
-
-if (confirm("정말 삭제하시겠습니까?")) {
-	window.location='del.asp?hompyidx=12&Category='+a+'&idx='+b+'&Pageno='+c;
-    return;
-	}
-else {
-     
-	return;
-   }  	
+  $( function() {
+    $( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+    $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+  } );
+  </script>
+<style>
+.ui-tabs-vertical {
+	width: 55em;
 }
 
-function del2(a,b,c) {
-
-if (confirm("선택하신 쪽지를 삭제합니다.\n정말 삭제하시겠습니까?")) {
-document.frmList.action="deleteall.asp";
-document.frmList.submit();
-    return;
-	}
-else {
-     
-	return;
-   }  	
+.ui-tabs-vertical .ui-tabs-nav {
+	padding: .2em .1em .2em .2em;
+	float: left;
+	width: 12em;
 }
 
-function del3(a,b,c) {
-
-if (confirm("받은쪽지함에 있는 쪽지를 전부 삭제합니다.\n정말 삭제하시겠습니까?")) {
-window.location="deleteall2.asp?hompyidx=12&category="+a;
-
-    return;
-	}
-else {
-     
-	return;
-   }  	
+.ui-tabs-vertical .ui-tabs-nav li {
+	clear: left;
+	width: 100%;
+	border-bottom-width: 1px !important;
+	border-right-width: 0 !important;
+	margin: 0 -1px .2em 0;
 }
 
-
-function OnClickAllSel()
-{
-	var frm, i, bAllSel;
-	frm = document.frmList;
-
-	if (typeof(frm.chkMailList) == "undefined") 
-		return;
-	
-	bAllSel = frm.chkAllSel.checked;
-	if (typeof(frm.chkMailList.length) == "undefined") {
-		frm.chkMailList.checked = bAllSel;
-//		TRChanged(frm.chkMailList);
-	} else {
-		for (i=0; i<frm.chkMailList.length; i++) {
-			frm.chkMailList[i].checked = bAllSel;
-//			TRChanged(frm.chkMailList[i]);
-		}
-	}
+.ui-tabs-vertical .ui-tabs-nav li a {
+	display: block;
 }
-</script>
 
+.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
+	padding-bottom: 0;
+	padding-right: .1em;
+	border-right-width: 1px;
+}
+
+.ui-tabs-vertical .ui-tabs-panel {
+	padding: 1em;
+	float: right;
+	width: 40em;
+}
+</style>
 </head>
+<body>
 
-<body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0">
+	<div id="tabs">
+		<ul>
+			<li><a href="#tabs-1">받은 쪽지함</a></li>
+			<li><a href="#tabs-2">보낸 쪽지함</a></li>
+			<!-- <li><a href="#tabs-3">Aenean lacinia</a></li> -->
+		</ul>
+		<div id="tabs-1">
+			<h2>받은 쪽지함</h2>
+			<p>
+			<div id="omcWrap">
+				<main id="omcContainer" class="cont_main">
+				<div id="cMain">
+					<article id="mContent" class="layout_community">
+						<div class="cont_comm">
+							<div class="box_comm">
+								<div class="tbl_list tbl_type_notice" style="height: 300px;">
+									<div class="tbl">
+										<div class="tbl_row head_group">
+											<div class="tbl_cell cell_num">보낸사람</div>
+											
+											<div class="tbl_cell cell_tit">제목</div>
+											
+											<div class="tbl_cell cell_date">받은날짜</div>
+											
+											<div class="tbl_cell cell_date">읽은날짜</div>
+											
+											<div class="tbl_cell cell_hit">선택</div>
+											
+										</div>
 
-<table width="750" border="0" cellspacing="0" cellpadding="0">
-  <tr> 
-    <td><	 src="<%=request.getContextPath() %>/images/message/bg_01.gif" width="750" height="19"></td>
-  </tr>
-  <tr> 
-    <td>
-      <table width="750" border="0" cellspacing="0" cellpadding="0">
-        <tr> 
-          <td width="19"><img src="<%=request.getContextPath() %>/images/message/bg_03.gif" width="19" height="512"></td>
-          <td width="126" valign="top" background="<%=request.getContextPath() %>/images/message/bg_00.gif"><img src="<%=request.getContextPath() %>/images/message/logo.gif" width="126" height="102"><br>
-            <img src="<%=request.getContextPath() %>/images/message/left_img_01.gif" width="126" height="31"><br>
-            <a href="/memo/01.html?hompyidx=12"><img src="<%=request.getContextPath() %>/images/message/b_01_r.gif" width="126" height="21" border="0"></a><br>
-            <a href="/memo/04.html?hompyidx=12"><img src="<%=request.getContextPath() %>/images/message/b_02.gif" width="126" height="21" border="0"></a><br>
-            <a href="/memo/02.html?hompyidx=12"><img src="<%=request.getContextPath() %>/images/message/b_03.gif" width="126" height="21" border="0"></a><br>
-            <a href="/memo/03.html?hompyidx=12"><img src="<%=request.getContextPath() %>/images/message/b_04.gif" width="126" height="21" border="0"></a><br>
-            <img src="<%=request.getContextPath() %>/images/message/left_img_02.gif" width="126" height="102"> </td>
-          <td width="586" valign="top" background="<%=request.getContextPath() %>/images/message/bg_00.gif">
-            <table width="586" border="0" cellspacing="0" cellpadding="0">
-              <tr> 
-                <td width="138" height="78" valign="bottom"><img src="<%=request.getContextPath() %>/images/message/title_01.gif" width="138" height="68"></td>
-                <td width="448" valign="top"> 
-                  <table width="448" border="0" cellspacing="0" cellpadding="0">
-                    <tr> 
-                      <td height="52" align="right" valign="top"> 
-                        <div style='padding-top:25px'></div>
-						<table border="0" cellspacing="0" cellpadding="0">
-                          <tr> 
-                            <td width="5"><img src="<%=request.getContextPath() %>/images/message/bg_06.gif" width="10" height="21"></td>
-                            <td bgcolor="#78C6CC" align="center"><b></b>님의
-                               받은 쪽지함</td>
-                            <td width="5"><img src="<%=request.getContextPath() %>/images/message/bg_07.gif" width="10" height="21"></td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                    <tr> 
-                      <td height="26"><img src="<%=request.getContextPath() %>/images/message/bg_05.gif" width="448" height="26"></td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-            <table width="586" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td background="<%=request.getContextPath() %>/images/message/bg_10.gif" height="380" valign="top" align="center"> 
-                  <br>
-             <form name="frmList" method="post" action="">
-				  <input type="hidden" name="category" value="받은쪽지함">
-				  <input type="hidden" name="hompyidx" value="12">
-                  <table width="553" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td height="35" width="31" align="center"><input name="chkAllSel" onClick="OnClickAllSel();" type="checkbox" id="allcheck" value="Y">
-</td>
-                      <td width="99" align="center"><table width="0" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td width="5"><img src="<%=request.getContextPath() %>/images/message/bg_08.gif" width="5" height="20"></td>
-                          <td bgcolor="#D7D7D7" class="tt">보낸이</td>
-                          <td width="5"><img src="<%=request.getContextPath() %>/images/message/bg_09.gif" width="5" height="20"></td>
-                        </tr>
-                      </table></td>
-                      <td width="325" align="center">
-                        <table width="0" border="0" cellspacing="0" cellpadding="0">
-                          <tr>
-                            <td width="5"><img src="<%=request.getContextPath() %>/images/message/bg_08.gif" width="5" height="20"></td>
-                            <td bgcolor="#D7D7D7" class="tt">제 목</td>
-                            <td width="5"><img src="<%=request.getContextPath() %>/images/message/bg_09.gif" width="5" height="20"></td>
-                          </tr>
-                        </table>
-                      </td>
-                      <td width="98" align="center">
-                        <table width="0" border="0" cellspacing="0" cellpadding="0">
-                          <tr>
-                            <td width="5"><img src="<%=request.getContextPath() %>/images/message/bg_08.gif" width="5" height="20"></td>
-                            <td bgcolor="#D7D7D7" class="tt">받은날짜</td>
-                            <td width="5"><img src="<%=request.getContextPath() %>/images/message/bg_09.gif" width="5" height="20"></td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="4"><img src="<%=request.getContextPath() %>/images/message/line_553.gif" width="553" height="1"></td>
-                    </tr>
-                    
-                    <tr>
-                      <td height="25" colspan="4" align="center" class="name">자료가
-                        없습니다.</td>
-                    </tr>
-                    <tr>
-                      <td colspan="4"><img src="<%=request.getContextPath() %>/images/message/line_553.gif" width="553" height="1"></td>
-                    </tr>
-                    
-                  </table>
-                  <table width="553" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td height="25">&nbsp;<a href="javascript:del2('받은쪽지함','','1');"><strong>[선택삭제하기]</strong> </a> <a href="javascript:del3('받은쪽지함','','1');"><strong>[받은쪽지함비우기]</strong></a></td>
-                    </tr>
-                  </table>
-                  </form></td>
-              </tr>
-              <tr>
-                <td><img src="<%=request.getContextPath() %>/images/message/bg_11.gif" width="586" height="13"></td>
-              </tr>
-              <tr>
-                <td height="40" align="center">
-                  <img src="<%=request.getContextPath() %>/images/message/b_prev.gif" width="40" height="9" align="absmiddle">
-                  
-                  <a href="01.html?hompyidx=12&Category=받은쪽지함&pageNo=&board=&div=" onMouseOver="window.status='Go To  page'; return true">[]</a>
-                  
-                  <img src="<%=request.getContextPath() %>/images/message/b_next.gif" width="40" height="9" align="absmiddle">
-                  
-</td>
-              </tr>
-            </table>
-          </td>
-          <td width="19"><img src="<%=request.getContextPath() %>/images/message/bg_04.gif" width="19" height="512"></td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr> 
-    <td><img src="<%=request.getContextPath() %>/images/message/bg_02.gif" width="750" height="19"></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-</table>
+									<form>
+										<% for(Message m : list) { 
+										
+									%>
+									<div class="tbl_row body_group important" > 
+										<div class="tbl_cell cell_num" id="bNo" >
+										<%= m.getUser_id() %>
+										</div>
+								<div class="tbl_cell cell_tit">
+									<a class="titleField" href="<%=request.getContextPath()%>/boardRead.jsp?num=<%= m.getMsg_id() %>">
+										<%=m.getTitle() %></a></div>
+										<div class="tbl_cell cell_date"><%= m.getSend_date() %></div>
+										<div class="tbl_cell cell_date">
+										
+										<% if(m.getRead_date() == null) { %>
+											읽지않음
+										<% }else { %>
+											<%= m.getRead_date() %>
+										<% } %>
+										</div>
+										<div class="tbl_cell cell_hit deleChk">
+										
+										<%int i =1; %>
+										
+											<input type="checkbox" id="chk<%=i%>" class="delGroup" name="delGroup" value="<%=m.getMsg_id()%>"> 
+											<label for="chk<%=i%>">선택</label>
+										
+										</div>
+									
+									
+									
+									</div>
+										
+									
+									<% } %>
+									</form>
+
+
+
+
+
+
+									</div>
+								</div>
+								
+								
+								<%-- 페이지 처리 --%>
+		<div id="paging" class="paging_comm" >
+			<a onclick="location.href='<%=request.getContextPath()%>/allBoard?currentPage=1'" class="link_fst" >
+							    	<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
+			<% if(currentPage <= 1) {%>
+				<a disabled class="link_prev" style="background:darkgray;"><</a>&#160;
+				
+			<% }else{ %>
+				<a onclick="location.href='<%=request.getContextPath()%>/allBoard?currentPage=<%=currentPage - 1%>'" class="link_prev" ><</a>&#160;
+			<% } %>
+			<% for(int p=startPage; p <= endPage; p++){ 
+				if(p == currentPage){
+			%>
+					<a disabled class="link_page" style="background:darkgray;"><%= p %></a>
+			
+			<% }else{ %>
+					<a onclick="location.href='<%=request.getContextPath()%>/allBoard?currentPage=<%=p %>'" class="link_page"><%= p %></a>
+				<% } %>
+			<% } %>
+			
+			<% if(currentPage >= maxPage){ %>
+				&#160;<a disabled class="link_next" style="background:darkgray;">></a></a>&#160;
+			
+			<% }else { %>
+				&#160;<a onclick="location.href='<%=request.getContextPath()%>/allBoard?currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
+			
+			<% } %>
+				<a onclick="location.href='<%=request.getContextPath()%>/allBoard?currentPage=<%=maxPage%>'" class="link_lst">>></a>
+		</div>
+								
+								
+							</div>
+						</div>
+					</article>
+				</div>
+				</main>
+			</div>
+
+
+			</p>
+		</div>
+		<div id="tabs-2">
+			<h2>Content heading 2</h2>
+			<p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus
+				gravida ante, ut pharetra massa metus id nunc. Duis scelerisque
+				molestie turpis. Sed fringilla, massa eget luctus malesuada, metus
+				eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet
+				fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam.
+				Praesent in eros vestibulum mi adipiscing adipiscing. Morbi
+				facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut
+				posuere viverra nulla. Aliquam erat volutpat. Pellentesque
+				convallis. Maecenas feugiat, tellus pellentesque pretium posuere,
+				felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris
+				consectetur tortor et purus.</p>
+		</div>
+		<!-- <div id="tabs-3">
+    <h2>Content heading 3</h2>
+    <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+  </div> -->
+	</div>
+
+	<script>
+	
+		$('.deleChk').click(function(){
+			
+			var num = $(this).find('input').value;
+			console.log(num);
+			
+		});
+	
+	</script>
+
+
 </body>
 </html>

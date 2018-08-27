@@ -59,7 +59,8 @@ button {
 </head>
 <body>
 
-	<h4>문의사항을 남겨주시면 최대한 빨리 이메일로 답변을 드리겠습니다.</h4>
+	<h4>문의사항을 남겨주시면 <br>
+	최대한 빨리 이메일로 답변을 드리겠습니다.</h4>
 
 		<form id="msgId"action="<%=request.getContextPath() %>/sendMessage" method="post">
 			   <div>

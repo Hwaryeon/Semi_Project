@@ -29,10 +29,11 @@ public class readMessageServlet extends HttpServlet {
 	
 		request.setAttribute("message", m);
 		
-		/*request.getRequestDispatcher("views/popup/readMessage.jsp").forward(request, response);
-	*/
+		/*System.out.println(m);*/
 		
-		System.out.println(m);
+		request.getRequestDispatcher("views/popup/readMessage.jsp").forward(request, response);
+		
+		
 	
 	}
 

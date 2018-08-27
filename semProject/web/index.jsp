@@ -23,6 +23,7 @@ ArrayList<Product> closeFList = (ArrayList<Product>)request.getAttribute("closeF
   
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 
+
 <script >
 $(function(){
 	$('#news-container').vTicker({ 
@@ -500,9 +501,9 @@ $(function(){
 			
 		function messageopen(){
 			
-			var popUrl = "<%=request.getContextPath()%>/views/popup/message.jsp";	//팝업창에 출력될 페이지 URL
+			var popUrl = "<%=request.getContextPath()%>/views/popup/writeMessage.jsp";	//팝업창에 출력될 페이지 URL
 
-			var popOption = "width=500, height=280, resizable=no, left=500, top=200, scrollbars=no, status=no; ";    //팝업창 옵션(optoin)
+			var popOption = "width=450, height=390, resizable=no, left=500, top=200, scrollbars=no, status=no; ";    //팝업창 옵션(optoin)
 
 				window.open(popUrl,"",popOption);
 
