@@ -149,8 +149,7 @@ display: inline-block;
    </tbody>
   </table>
   </div>
-</div>
-<%-- 페이지처리 --%>
+  <%-- 페이지처리 --%>
         
 		<div class="pageArea" id="monthPaging" align="center">
 			<a onclick="location.href='<%=request.getContextPath() %>/fundingSt.adm?currentPage=1'" class="link_fst">
@@ -201,6 +200,8 @@ display: inline-block;
 			<% } %>
 			<a onclick="location.href='<%=request.getContextPath()%>/fundingSt.adm?term=year&currentPage=<%=maxPage%>'" class="link_lst">>></a>
 		</div>
+</div>
+
 </div>
 <script>
     $(function(){

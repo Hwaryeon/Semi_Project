@@ -375,6 +375,7 @@ public class AdminDao {
 		return searchList;
 	}
 
+
 	public int insertBlackList(Connection con, String blackText, int userId) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -397,6 +398,7 @@ public class AdminDao {
 		
 		return result;
 	}
+
 	public ArrayList<Member> searchBlackMember(Connection con, int currentPage, int limit, String text) {
 		ArrayList<Member> blackList = null;
 		PreparedStatement pstmt = null;
@@ -485,6 +487,19 @@ public class AdminDao {
 
 		return listCount;
 	}
+
+
+	public int updateBlackList(Connection con, String blackText) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateBlackList");
+		
+		
+		return 0;
+	}
+
+
 
 	
 	

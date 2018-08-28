@@ -113,7 +113,9 @@ public class AdminService {
 		
 		}
 
+
 	public int insertBlackList(String text, int userId) {
+
 		Connection con = getConnection();
 		
 		int result = new AdminDao().insertBlackList(con, text, userId);
