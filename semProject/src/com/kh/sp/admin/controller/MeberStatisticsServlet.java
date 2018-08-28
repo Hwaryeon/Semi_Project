@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.kh.sp.admin.model.service.AdminService;
 import com.kh.sp.admin.model.vo.MemberStatistics;
-import com.kh.sp.admin.model.vo.OpenFundingStatistics;
 import com.kh.sp.admin.model.vo.PageInfo;
 
 @WebServlet("/memberSt.adm")
@@ -67,8 +67,10 @@ public class MeberStatisticsServlet extends HttpServlet {
 			request.setAttribute("pi", pi);
 		}
 		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/admin/memberStatistics.jsp").forward(request, response);
+		
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("views/admin/memberStatistics.jsp").forward(request, response);
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -152,8 +152,7 @@ display: inline-block;
    </tbody>
   </table>
   </div>
-</div>
-<%-- 페이지처리 --%>
+  <%-- 페이지처리 --%>
 
         <div class="pageArea" id="datePaging" align="center">
 			<a onclick="location.href='<%=request.getContextPath() %>/salesSt.adm?type=t2&currentPage=1'" class="link_fst">
@@ -229,6 +228,8 @@ display: inline-block;
 			<% } %>
 			<a onclick="location.href='<%=request.getContextPath()%>/salesSt.adm?term=year&type=t2&currentPage=<%=maxPage%>'" class="link_lst">>></a>
 		</div>
+</div>
+
 </div>
 <script>
 $(function(){

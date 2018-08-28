@@ -14,6 +14,7 @@ int endPage = pi.getEndPage();
 %>
 <html>
 <head>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -85,6 +86,16 @@ display: inline-block;
           color: #999; 
        }
 </style>
+
+<script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js">
+      
+      </script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['corechart']});     
+      </script>
+      
+      
 </head>
 <body>
 		<%@ include file="../common/headBar.jsp" %>
@@ -140,8 +151,7 @@ display: inline-block;
    </tbody>
   </table>
   </div>
-</div>
-<%-- 페이지처리 --%>
+  <%-- 페이지처리 --%>
 
         <div class="pageArea" id="datePaging" align="center">
 			<a onclick="location.href='<%=request.getContextPath() %>/memberSt.adm?currentPage=1'" class="link_fst">
@@ -218,6 +228,9 @@ display: inline-block;
 			<a onclick="location.href='<%=request.getContextPath()%>/memberSt.adm?term=year&currentPage=<%=maxPage%>'" class="link_lst">>></a>
 		</div>
 </div>
+
+</div>
+
 <script>
 $(function(){
 	$("#datePaging").show();
