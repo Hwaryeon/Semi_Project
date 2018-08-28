@@ -52,7 +52,7 @@ $(function(){
 </head>
 <body >
 <%@ include file="/views/common/headBar.jsp" %>
-	<div class="wrap" style=" background:#f8f8f8; margin-top:50px;">
+	 <div class="wrap" style=" background:#f8f8f8; margin-top:50px;">
 		<div class="containerBox" style="width: 100%;">
 
 
@@ -117,7 +117,7 @@ $(function(){
 				</strong> 
 					</div>
 			
-			<div class="funding_area1" >
+			 <div class="funding_area1" >
 			
 				<%int k=0; %>
 				<% for(Product p : mainFList) { %>
@@ -150,7 +150,7 @@ $(function(){
                                        </dd>
                                    </dl>
                                 </div>
-					</div>
+					</div> --%>
 					<div class="fCon" style="background:#a7d7ec;">
 						<p class="category"><em>마감임박</em><em class="type" >투자</em></p>
 						<p class="title"><%= p.getP_name() %>
@@ -232,7 +232,7 @@ $(function(){
                                             <%String str = String.format("%,d", p.getTotal_amount()); %>
                                            <span class="amount"><%=str %>원 달성</span>
                                            
-                                           <%-- <%=p.getTotal_amount() %> --%>	
+                                           <%=p.getTotal_amount() %>	
                                            	<span class="days"><%=p.getOpenDate() %>일 남음</span>
                                            
                                        </dd>
@@ -308,7 +308,7 @@ $(function(){
                                             <%String str = String.format("%,d", p.getTotal_amount()); %>
                                            <span class="amount"><%=str %>원 달성</span>
                                            
-                                           <%-- <%=p.getTotal_amount() %> --%>	
+                                           <%=p.getTotal_amount() %>	
                                            	<span class="days"><%=p.getOpenDate() %>일 남음</span>
                                            
                                        </dd>
@@ -377,7 +377,7 @@ $(function(){
                                             <%String str = String.format("%,d", p.getTotal_amount()); %>
                                            <span class="amount"><%=str %>원 달성</span>
                                            
-                                           <%-- <%=p.getTotal_amount() %> --%>	
+                                           <%=p.getTotal_amount() %>	
                                            	<span class="days"><%=p.getOpenDate() %>일 남음</span>
                                            
                                        </dd>
@@ -478,6 +478,6 @@ $(function(){
 	
 	
 	</script>
-	<%@ include file="/views/common/footer.jsp" %>
+	<%@ include file="/views/common/footer.jsp" %> 
 </body>
 </html>
