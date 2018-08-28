@@ -129,7 +129,38 @@ public class AdminService {
 		close(con);
 		return result;
 	}
-
+	public int getInvRankListCount() {
+		Connection con = getConnection();
+		
+		int listCount = new AdminDao().getInvRankListCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+	
+	public ArrayList<Member> selectInvRankList(int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<Member> rankList = new AdminDao().selectInvRankList(con, currentPage, limit);
+		
+		close(con);
+		
+		return rankList;
+	}
+	public int updateRank(int userId) {
+		Connection con = getConnection();
+		int result = new AdminDao().updateRank(con, userId);
+		
+		if(result > 0 ){
+			commit(con);
+		}
+		else{
+			rollback(con);
+		}
+		
+		return result;
+	}
 
 
 
@@ -186,6 +217,7 @@ public class AdminService {
 			close(con);
 			return listCount;
 		}
+	
 	
 
 }

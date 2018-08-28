@@ -194,7 +194,7 @@ th, td {
 			
 			console.log(user_id);
 			$("#userId").val(user_id);
-
+   
 			
 			$("#insertBlackForm").submit();
  		};

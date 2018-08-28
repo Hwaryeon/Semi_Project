@@ -470,8 +470,6 @@ public class AdminDao {
 			rset = pstmt.executeQuery();
 
 			//이 부분이 맞나 싶다
-			
-
 			if(rset.next()) {
 				listCount = rset.getInt(1);
 
@@ -498,7 +496,92 @@ public class AdminDao {
 		
 		return 0;
 	}
+public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int limit) {
+		
+		
+		ArrayList<Member> rankList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 
+		String query = prop.getProperty("selectAllInvRank");
+		System.out.println("제발 여기까진 와주라");
+		try {
+			pstmt= con.prepareStatement(query);
+
+			int startRow = (currentPage -1) * limit + 1;
+			int endRow = startRow + limit -1;
+
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rankList = new ArrayList<Member>();
+			rset = pstmt.executeQuery();
+			while(rset.next()){
+				Member m = new Member();		
+			
+				m.setUserId(rset.getInt("user_id"));
+				m.setUserName(rset.getString("user_name"));
+				m.setInvestorGrade(rset.getString("investor_grade"));
+				
+				rankList.add(m);
+			};
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+		System.out.println("랭크리스트는~" + rankList);
+
+		return rankList;
+	}
+
+	public int getInvRankListCount(Connection con) {
+
+		Statement stmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("invRankCount");
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(stmt);
+			close(rset);
+
+		}
+
+		return listCount;
+	}
+
+	public int updateRank(Connection con, int userId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userId);
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
 
 
 	
@@ -892,5 +975,6 @@ public class AdminDao {
 		return listCount;
 	}
 
+	
 }
 
