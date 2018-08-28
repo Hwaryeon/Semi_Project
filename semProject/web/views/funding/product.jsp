@@ -337,7 +337,6 @@ textarea{
     	<div> 투자 상품 명 : <%=hmap.get("pName") %></div>
     	<div> 투자 금액 : <%=hmap.get("amount") %>원</div>
     	
-    	
     	<button id="confirm">결제 확인</button>
     	<button id="popCloseBtn2">취소</button>
     </div>
