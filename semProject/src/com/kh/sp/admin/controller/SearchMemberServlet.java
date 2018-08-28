@@ -42,12 +42,16 @@ public class SearchMemberServlet extends HttpServlet {
 		
 		System.out.println("여기까지됨 : " + currentPage);
 		
-		int listCount = new AdminService().getListCount();
+		String text = request.getParameter("searchValue");
+		
+		System.out.println("text 는 = " + text);
+		
+		int searchList = new AdminService().searchMemberListCount(text);
 		
 		limit = 10;
 		
 		//총 페이지 수 계산
-		maxPage = (int)((double)listCount / 10 + 0.9);
+		maxPage = (int)((double)searchList / 10 + 0.9);
 		
 		startPage = (((int)((double)currentPage / 10 + 0.9)) -1) * 10 + 1;
 		
@@ -57,14 +61,12 @@ public class SearchMemberServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+		PageInfo pi = new PageInfo(currentPage, searchList, limit, maxPage, startPage, endPage);
 		
 		
 		ArrayList<Member> list = null;
 		
-			String text = request.getParameter("searchValue");
-	
-			System.out.println("text 는 = " + text);
+		
 
 			list = new AdminService().searchAllMember(currentPage, limit, text);
 

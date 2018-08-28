@@ -13,18 +13,18 @@ import com.kh.sp.admin.model.service.AdminService;
 import com.kh.sp.member.model.vo.Member;
 
 @WebServlet("/selectOneMember.adm")
-public class SelectOneMember extends HttpServlet {
+public class SelectOneMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public SelectOneMember() {
+    public SelectOneMemberServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("셀렉트 원 오니?");
 		
-		int user_id = Integer.parseInt(request.getParameter("userId2"));
-		String user_class = request.getParameter("userClass2");
+		int user_id = Integer.parseInt(request.getParameter("user_id"));
+		String user_class = request.getParameter("user_class");
 		
 		System.out.println("user_id = " + user_id);
 		System.out.println("user_class = " + user_class);

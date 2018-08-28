@@ -23,7 +23,12 @@ ArrayList<Product> closeFList = (ArrayList<Product>)request.getAttribute("closeF
   
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 
+<<<<<<< HEAD
 <script>
+=======
+
+<script >
+>>>>>>> refs/remotes/origin/sojin
 $(function(){
 	$('#news-container').vTicker({ 
 		speed: 500,
@@ -46,6 +51,24 @@ $(function(){
 <style>
 
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+#messageArea{
+	position: fixed;
+    bottom: 0%;
+    right: 3%;
+    background: #89cc84;
+    width: 200px;
+    text-align: center;
+    height: 35px;
+    padding-top: 5px;
+    border-radius: 9px;
+    cursor:pointer;
+}
+#messageArea a{
+	color:#f7dfdf;
+}
+
+
 
 </style>
 
@@ -102,6 +125,7 @@ $(function(){
 			</div>
 		</div>
 
+					
 
 
 
@@ -169,6 +193,7 @@ $(function(){
 				
 				<% } %> 
 				
+<<<<<<< HEAD
 			 	<div class="funding_p">
 					<div class="fPic" style="height:330px;">
 					<em class="picks-img">
@@ -184,6 +209,9 @@ $(function(){
 				</div> 
 				
 			 </div>
+=======
+			</div>
+>>>>>>> refs/remotes/origin/sojin
 			
 			</div>
 		</div>
@@ -467,7 +495,14 @@ $(function(){
 			href="#outer" title="맨 아래로"> <img src="images/common/bottom.PNG"></a>
 
 
+		
+			<div id="messageArea">
+			 	<a onclick="messageopen()">1:1 메세지 보내기</a>
+			</div>
+
 	</div>
+	<input type="hidden" value="11" id="chat_id" size="10"/>
+	
 	<script>
 		$(".noticeArea").click(function(){
 			
@@ -476,9 +511,13 @@ $(function(){
 		}); 
 			
 		
+<<<<<<< HEAD
 	
 	
 	</script> --%>
+=======
+	</script>
+>>>>>>> refs/remotes/origin/sojin
 	<%@ include file="/views/common/footer.jsp" %> 
 </body>
 </html>
