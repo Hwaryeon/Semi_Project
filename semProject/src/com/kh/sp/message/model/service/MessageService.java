@@ -35,6 +35,17 @@ public class MessageService {
 		
 		Message m = new MessageDao().readMessage(con, msgId);
 		
+		if(m != null){
+			int result = new MessageDao().readYMessage(con, msgId);
+			
+			if(result > 0){
+				commit(con);
+			}else{
+				rollback(con);
+			}
+			
+		}
+		
 		close(con);
 		
 		return m;
@@ -87,6 +98,17 @@ public class MessageService {
 		Connection con = getConnection();
 		
 		int result = new MessageDao().checkMessage(con, id);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int reWriteMsg(Message m) {
+		
+		Connection con = getConnection();
+		
+		int result = new MessageDao().reWriteMsg(con, m);
 		
 		close(con);
 		

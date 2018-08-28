@@ -80,6 +80,8 @@ public class MessageDao {
 				m.setSend_date(rset.getDate("send_date"));
 				m.setReadYN(rset.getString("readyn"));
 				
+				System.out.println("m: " + m);
+				
 			}
 			
 		} catch (SQLException e) {
@@ -220,6 +222,56 @@ public class MessageDao {
 		}
 		
 		
+		
+		return result;
+	}
+	public int reWriteMsg(Connection con, Message m) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("reWriteMsg");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, m.getReceive_id());
+			pstmt.setInt(2, m.getUser_id());
+			pstmt.setString(3, m.getTitle());
+			pstmt.setString(4, m.getMsg());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+	public int readYMessage(Connection con, int msgId) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("readYMessage");
+		
+		try {
+			
+			System.out.println("msgId : " + msgId);
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, msgId);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
 		
 		return result;
 	}

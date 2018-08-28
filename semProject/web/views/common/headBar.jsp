@@ -313,7 +313,7 @@
 		
 		var popUrl = "<%=request.getContextPath()%>/listMessage";	//팝업창에 출력될 페이지 URL
 
-		var popOption = "width=895, height=670, resizable=no, left=300, top=50, scrollbars=no, status=no; ";    //팝업창 옵션(optoin)
+		var popOption = "width=895, height=720, resizable=no, left=300, top=50, scrollbars=no, status=no; ";    //팝업창 옵션(optoin)
 
 			window.open(popUrl,"",popOption);
 	}
