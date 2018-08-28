@@ -120,8 +120,8 @@ button {
 			  
 			  <div  id="msgBu">
 			    <div class="col-sm-offset-2 col-sm-10" style="width:230px;">
-			      <button type="submit" class="btn btn-default" onclick="">목록</button>
-			      <button type="submit" class="btn btn-default" onclick="">답장</button>
+			      <button type="submit" class="btn btn-default" onclick="listMsg()">목록</button>
+			      <button  class="btn btn-default" onclick="reMsg()">답장</button>
 			      <button class="btn btn-default" onclick="deleteMsg();">삭제</button>
 			    </div>
 			  </div>
@@ -130,7 +130,20 @@ button {
 		
 		
 		<script>
+		
+		function listMsg(){
+			$("#msgId").attr("action", "<%=request.getContextPath()%>/listMessage");
+			$("#msgId").submit();
+		}
+		
+		function reMsg(){
 			
+			$("#msgId").attr("action", "<%=request.getContextPath()%>/reMessage");
+			$("#msgId").submit(); 
+			
+			
+		}
+		
 			function deleteMsg(){
 				/* var msgNo = document.getElementById('user_id').value; */
 				

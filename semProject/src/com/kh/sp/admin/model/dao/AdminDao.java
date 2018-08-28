@@ -375,6 +375,30 @@ public class AdminDao {
 		return searchList;
 	}
 
+
+	public int insertBlackList(Connection con, String blackText, int userId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateBlackList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userId);
+			pstmt.setString(2, blackText);
+			
+			result = pstmt.executeUpdate();
+		
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 	public ArrayList<Member> searchBlackMember(Connection con, int currentPage, int limit, String text) {
 		ArrayList<Member> blackList = null;
 		PreparedStatement pstmt = null;
@@ -474,6 +498,7 @@ public class AdminDao {
 		
 		return 0;
 	}
+
 
 
 	

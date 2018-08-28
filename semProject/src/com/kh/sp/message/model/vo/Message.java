@@ -31,7 +31,15 @@ public class Message implements Serializable{
 		this.msg = msg;
 		this.user_id = user_id;
 	}
-
+	
+	
+	public Message(String title, String msg, int user_id, int receive_id){
+		this.title = title;
+		this.msg = msg;
+		this.user_id = user_id;
+		this.receive_id = receive_id;
+	}
+	
 	public Message(int msg_id, String title, String msg, int user_id, int receive_id, Date send_date, String readYN) {
 		super();
 		this.msg_id = msg_id;

@@ -10,30 +10,36 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.sp.message.model.service.MessageService;
 import com.kh.sp.message.model.vo.Message;
 
-@WebServlet("/readMessage")
-public class readMessageServlet extends HttpServlet {
+@WebServlet("/reWriteMessage")
+public class reWriteMessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public readMessageServlet() {
+    public reWriteMessageServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		System.out.println("답장 db 전송 서블릿");
 	
+		String title = request.getParameter("title");
+		String userId = request.getParameter("user_id");
+		String receive_id = request.getParameter("receive_id");
+		String msg = request.getParameter("msg");
+		
+		/*System.out.println(title);
+		System.out.println(userId);
+		System.out.println(receive_id);
+		System.out.println(msg);*/
+		
+		Message m = new Message(title, msg, Integer.parseInt(userId), Integer.parseInt(receive_id));
+		
+		int result = new MessageService().reWriteMsg(m);
 	
-		System.out.println("메시지 읽기 서블릿 ");
-		
-		int msgId = Integer.parseInt(request.getParameter("num")); 		// 임시로 설정
-		
-		Message m = new MessageService().readMessage(msgId);
-	
-		request.setAttribute("message", m);
-		
-		/*System.out.println(m);*/
-		
-		request.getRequestDispatcher("views/popup/readMessage.jsp").forward(request, response);
-		
-		
+		if(result > 0){
+			String page = "listMessage";
+			response.sendRedirect(page);
+		}
 	
 	}
 

@@ -15,7 +15,7 @@ import com.kh.sp.member.model.vo.Member;
 
 public class AdminService {
 
-	public int getListCount() {
+		public int getListCount() {
 		Connection con = getConnection();
 		
 		int listCount = new AdminDao().getListCount(con);
@@ -112,11 +112,13 @@ public class AdminService {
 		return blackList;
 		
 		}
-	
-	public int updateBlackList(String text) {
+
+
+	public int insertBlackList(String text, int userId) {
+
 		Connection con = getConnection();
 		
-		int result = new AdminDao().updateBlackList(con, text);
+		int result = new AdminDao().insertBlackList(con, text, userId);
 		
 		if(result>0){
 			commit(con);
@@ -127,6 +129,7 @@ public class AdminService {
 		close(con);
 		return result;
 	}
+
 
 
 

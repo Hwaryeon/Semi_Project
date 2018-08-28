@@ -7,34 +7,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.sp.message.model.service.MessageService;
-import com.kh.sp.message.model.vo.Message;
-
-@WebServlet("/readMessage")
-public class readMessageServlet extends HttpServlet {
+@WebServlet("/reMessage")
+public class reMessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public readMessageServlet() {
+    public reMessageServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	
-		System.out.println("메시지 읽기 서블릿 ");
+
+		System.out.println("??????");
 		
-		int msgId = Integer.parseInt(request.getParameter("num")); 		// 임시로 설정
+		String userId = request.getParameter("user_id");
 		
-		Message m = new MessageService().readMessage(msgId);
-	
-		request.setAttribute("message", m);
+		System.out.println("userid : " +userId);
 		
-		/*System.out.println(m);*/
+		request.setAttribute("userId", userId);
 		
-		request.getRequestDispatcher("views/popup/readMessage.jsp").forward(request, response);
+		request.getRequestDispatcher("views/popup/replyMessage.jsp").forward(request, response);
 		
-		
-	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

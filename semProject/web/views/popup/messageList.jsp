@@ -71,7 +71,7 @@ int endPage = pi.getEndPage();
 <body>
 
 	<div id="tabs">
-		<ul>
+		<ul style="margin-top: 108px;">
 			<li><a href="#tabs-1">받은 쪽지함</a></li>
 			<li><a href="#tabs-2">보낸 쪽지함</a></li>
 			<!-- <li><a href="#tabs-3">Aenean lacinia</a></li> -->
@@ -109,8 +109,20 @@ int endPage = pi.getEndPage();
 										<%= m.getUser_id() %>
 										</div>
 								<div class="tbl_cell cell_tit">
-									<a class="titleField" href="<%=request.getContextPath()%>/boardRead.jsp?num=<%= m.getMsg_id() %>">
+										<% if( m.getRead_date() != null) {%>
+									<a class="titleField" style="color:#cdcccc;"
+									href="<%=request.getContextPath()%>/readMessage?num=<%= m.getMsg_id() %>">
+										
+										
 										<%=m.getTitle() %></a></div>
+										<% } else{%>
+											<a class="titleField"
+									href="<%=request.getContextPath()%>/readMessage?num=<%= m.getMsg_id() %>">
+										
+										
+										<%=m.getTitle() %></a></div>
+										
+										<% } %>
 										<div class="tbl_cell cell_date"><%= m.getSend_date() %></div>
 										<div class="tbl_cell cell_date">
 										
@@ -148,13 +160,13 @@ int endPage = pi.getEndPage();
 								
 								<%-- 페이지 처리 --%>
 		<div id="paging" class="paging_comm" >
-			<a onclick="location.href='<%=request.getContextPath()%>/allBoard?currentPage=1'" class="link_fst" >
+			<a onclick="location.href='<%=request.getContextPath()%>/listMessage?currentPage=1'" class="link_fst" >
 							    	<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
 			<% if(currentPage <= 1) {%>
 				<a disabled class="link_prev" style="background:darkgray;"><</a>&#160;
 				
 			<% }else{ %>
-				<a onclick="location.href='<%=request.getContextPath()%>/allBoard?currentPage=<%=currentPage - 1%>'" class="link_prev" ><</a>&#160;
+				<a onclick="location.href='<%=request.getContextPath()%>/listMessage?currentPage=<%=currentPage - 1%>'" class="link_prev" ><</a>&#160;
 			<% } %>
 			<% for(int p=startPage; p <= endPage; p++){ 
 				if(p == currentPage){
@@ -162,7 +174,7 @@ int endPage = pi.getEndPage();
 					<a disabled class="link_page" style="background:darkgray;"><%= p %></a>
 			
 			<% }else{ %>
-					<a onclick="location.href='<%=request.getContextPath()%>/allBoard?currentPage=<%=p %>'" class="link_page"><%= p %></a>
+					<a onclick="location.href='<%=request.getContextPath()%>/listMessage?currentPage=<%=p %>'" class="link_page"><%= p %></a>
 				<% } %>
 			<% } %>
 			
@@ -170,10 +182,10 @@ int endPage = pi.getEndPage();
 				&#160;<a disabled class="link_next" style="background:darkgray;">></a></a>&#160;
 			
 			<% }else { %>
-				&#160;<a onclick="location.href='<%=request.getContextPath()%>/allBoard?currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
+				&#160;<a onclick="location.href='<%=request.getContextPath()%>/listMessage?currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
 			
 			<% } %>
-				<a onclick="location.href='<%=request.getContextPath()%>/allBoard?currentPage=<%=maxPage%>'" class="link_lst">>></a>
+				<a onclick="location.href='<%=request.getContextPath()%>/listMessage?currentPage=<%=maxPage%>'" class="link_lst">>></a>
 		</div>
 								
 								

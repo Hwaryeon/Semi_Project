@@ -30,7 +30,7 @@ public class deleteMessageServlet extends HttpServlet {
 		int result = new MessageService().deleteMsg(msgId);
 		
 		if(result > 0){
-			String page = "views/popup/messageList.jsp";
+			String page = "listMessage";
 			
 			response.sendRedirect(page);
 		}
