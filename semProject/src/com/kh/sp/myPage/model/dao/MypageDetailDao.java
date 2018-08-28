@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.sp.board.model.vo.Attachment;
 import com.kh.sp.myPage.model.vo.MypageDetail;
 
 import static com.kh.sp.common.JDBCTemplate.*;
@@ -60,6 +61,35 @@ public class MypageDetailDao {
 			close(rset);
 		}
 		return list;
+	}
+
+	public int insertAttachment(Connection con, ArrayList<Attachment> fileList, int userid, int ptype) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertUserRankingAttachment");
+		
+		try {
+			for(int i=0;i<fileList.size();i++) {
+				System.out.println("fileList " + i + " : " + fileList.get(i));
+				
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, fileList.get(i).getOriginName());
+				pstmt.setString(2, fileList.get(i).getChangeName());
+				pstmt.setString(3, fileList.get(i).getFilePath());
+				pstmt.setInt(4, ptype);
+				pstmt.setInt(5, userid);
+				
+				result = pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }

@@ -4,15 +4,11 @@
 <html>
 <head>
 <meta content="text/html; charset=UTF-8">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <style>
 .cmntitle {
@@ -44,10 +40,11 @@
 }
 
 .area {
-	width: 300px;
-	height: 40px;
+	width: 200px;
+	height: 200px;
 	display: block;
 	margin-bottom: 10px;
+	border:1px solid lightgray;
 	z-index: 1;
 	position: relative;
 	-moz-box-sizing: border-box;
@@ -65,7 +62,7 @@
 	<h2 align="center" class="cmntitle">적격투자자 신청하기</h2>
 
 	<div class="container">
-		<form class="form-update"<%-- action="<%=request.getContextPath() %>/updateMember" method="post" --%>>
+		<form class="form-update" action="<%=request.getContextPath() %>/insert.urf?userid=<%= loginUser.getUserId() %>&ptype=1&userEmail=<%= loginUser.getEmail() %>" method="post" encType="multipart/form-data">
 			<table align="center">
 				<tr>
 					<td colspan="3" align="center">
@@ -77,26 +74,28 @@
 				</tr>
 				<tr align="center">
 					<td>근로소득원천징수 영수증</td>
+					<td></td>
 					<td>종합소득세 신고서</td>
 				</tr>
 				<tr></tr>
 				<tr>
 					<td>
 						<div class="area withholdingRecipt">
-							<img id="withholdR" width="350px" height="200px">
+							<img id="withholdR" src="/sp/image/upload.png" width="200px" height="200px">
 						</div>
 					</td>
+					<td>&nbsp;</td>
 					<td>
 						<div class="area generalIncomeTax">
-							<img id="incomeTaxR" width="350px" height="200px">
+							<img id="incomeTaxR" src="/sp/image/upload.png" width="350px" height="200px">
 						</div>
 					</td>
 					<td></td>
 				</tr>
 			</table>
 			<div id="fileArea">
-				<input type="file" id="Inv_attachment1" name="Inv_attachment1">
-				<input type="file" id="Inv_attachment2" name="Inv_attachment2">
+				<input type="file" id="Inv_attachment1" name="Inv_attachment1" multiple onchange="loadImg(this, 1)">
+				<input type="file" id="Inv_attachment2" name="Inv_attachment2" multiple onchange="loadImg(this, 2)">
 			</div>
 
 
@@ -109,34 +108,33 @@
 
 	<script>
 		$(function(){
+			
 			$("#fileArea").hide();
 			
-			$("#withholdingRecipt").click(function(){
+			$("#withholdR").click(function(){
 				$("#Inv_attachment1").click();
 			});
 			
-			$("#generalIncomeTax").click(function(){
+			$(".generalIncomeTax").click(function(){
 				$("#Inv_attachment2").click();
 			});
 		});
 		
-		function loadImg(value, num){
-			console.log("test");
-			if(value.files && value.files[0]){
-				var reader = new FileReader();
-				reader.onload = function(e){
-					switch(num){
-						case 1 : 
-							$("#Inv_attachment1").attr("src", e.target.result);
-							break;
-						case 2 :
-							$("#Inv_attachment2").attr("src", e.target.result);
-							break;
-					}
+		function loadImg(value, num) {
+			var reader = new FileReader();
+			reader.onload = function(e) 
+			{
+				console.log("이미지 올렸니?");
+				switch(num) 
+				{
+				case 1 : $("#withholdR").attr("src", "/sp/image/verification-on-cloud.png"); break;
+				case 2 : $("#incomeTaxR").attr("src", "/sp/image/verification-on-cloud.png"); break;
 				}
+				
 			}
 			reader.readAsDataURL(value.files[0]);
-		}
+		} 
+		
 	</script>
 </body>
 </html>
