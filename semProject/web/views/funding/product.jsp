@@ -340,7 +340,7 @@ textarea{
     	<button id="confirm">결제 확인</button>
     	<button id="popCloseBtn2">취소</button>
     </div>
-     
+      
     <script>
     
     $(document).ready(function(){
