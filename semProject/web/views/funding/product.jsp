@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*" %>
 
-<%HashMap<String,Object> hmap = (HashMap<String,Object>)request.getAttribute("hamp"); %>
+<%HashMap<String,Object> hmap = (HashMap<String,Object>)request.getAttribute("hmap"); %>
     
 <!DOCTYPE html>
 <html>
@@ -338,7 +338,7 @@ textarea{
     	<div> 투자 금액 : 500원</div>
     	<div> 구좌수 선택 : </div>
     	<button id="confirm">결제 확인</button>
-    	<button id="popCloseBtn">취소</button>
+    	<button id="popCloseBtn2">취소</button>
     </div>
     
     <script>
@@ -385,7 +385,7 @@ textarea{
             $("body").css("overflow","hidden");
         });
         
-        $("#popCloseBtn").click(function(event){
+        $("#popCloseBtn2").click(function(event){
             $("#popup_mask2").css("display","none"); 
             $("#popupDiv2").css("display","none"); 
             $("body").css("overflow","auto");
@@ -408,9 +408,51 @@ textarea{
 
     });
  	
-    IMP.init('imp67147309');
-    
-    
+    $(document).ready(function(){
+    $("#confirm").click(function(event){
+    	 alert('전송');
+    	 
+    	    var IMP = window.IMP; // 생략가능
+    	       IMP.init('imp67147309');  // 가맹점 식별 코드
+
+    	       IMP.request_pay({
+    	          pg : 'inicis', // 결제방식
+    	           pay_method : 'card',   // 결제 수단
+    	           merchant_uid : 'merchant_' + new Date().getTime(),
+    	           name : '<%=hmap.get("pId")%>',   // order 테이블에 들어갈 주문명 혹은 주문 번호
+    	           amount : '200', 	
+    	           buyer_email : '<%=loginUser.getEmail()%>',// 구매자 email
+    	           buyer_name :  '<%=loginUser.getUserName()%>'  // 구매자 이름 
+    	       }, function(rsp) {
+    	       if ( rsp.success ) { // 성공시
+    	          var msg = '결제가 완료되었습니다.';
+    	          msg += '고유ID : ' + rsp.imp_uid;
+    	         
+    	          msg += '결제 금액 : ' + rsp.paid_amount;
+    	          
+    	          $("#popup_mask2").css("display","none"); 
+    	            $("#popupDiv2").css("display","none"); 
+    	            $("body").css("overflow","auto");
+    	          //console.log();
+    	          var contextPath = '<%= request.getContextPath() %>';
+    	          var investId = rsp.imp_uid;
+    	          var userId = '<%=hmap.get("userId")%>';
+    	          var pId = '<%=hmap.get("pId")%>';
+    	          var price = rsp.paid_amount;
+    	          var loc = contextPath + '/Insert.pm?investId=' + investId + "&userId=" + userId + "&pId=" + pId + "&price=" + price; 
+    	          
+    	          location.href=loc;
+    	       
+    	          /*m_redirect_url : // 결제 완료 후 보낼 컨트롤러의 메소드명 */
+    	       } else { // 실패시
+    	          var msg = '결제에 실패하였습니다.';
+    	          msg += '에러내용 : ' + rsp.error_msg;
+    	          
+    	       }
+    	    });
+    	 });
+    });
+   
     </script>
 </body>
 <br><br><br><br><br><br>

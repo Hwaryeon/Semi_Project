@@ -1,5 +1,7 @@
 package com.kh.sp.product.model.dao;
 
+
+import static com.kh.sp.common.JDBCTemplate.close;
 import static com.kh.sp.common.JDBCTemplate.close;
 import static com.kh.sp.common.JDBCTemplate.getConnection;
 
@@ -7,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +19,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import com.kh.sp.product.model.dao.ProductDao;
+import com.kh.sp.product.model.vo.Invest;
 import com.kh.sp.board.model.vo.Attachment;
 import com.kh.sp.funding.model.vo.Product;
 
@@ -143,5 +147,80 @@ public class ProductDao {
 		}
 		return hmap;
 	}
-
-}
+	public int insertPayment(Connection con, Invest i) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertPayment");
+		System.out.println(i.getInvestId());
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, i.getUserId());
+			pstmt.setInt(2, i.getpId());
+			
+			result = pstmt.executeUpdate();
+			System.out.println("result = "+result);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public int selectId(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int investId = 0;
+		
+		String query = prop.getProperty("selectId");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				investId = rset.getInt("MAX(INVEST_ID)");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+			close(rset);
+			
+		}
+				
+		return investId;
+	}
+	public int insertPaymentRe(Connection con, Invest i, int investId) {
+		
+		int result2 = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertPaymentRe");
+		System.out.println(i.getInvestId());
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, investId);
+			pstmt.setInt(2, i.getPrice());
+			
+			result2 = pstmt.executeUpdate();
+			System.out.println("result = "+result2);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result2;
+	}
+	
+	}
