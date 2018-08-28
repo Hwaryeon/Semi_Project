@@ -23,7 +23,7 @@ ArrayList<Product> closeFList = (ArrayList<Product>)request.getAttribute("closeF
   
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 
-<script >
+<script>
 $(function(){
 	$('#news-container').vTicker({ 
 		speed: 500,
@@ -117,7 +117,7 @@ $(function(){
 				</strong> 
 					</div>
 			
-			 <div class="funding_area1" >
+			  <div class="funding_area1" >
 			
 				<%int k=0; %>
 				<% for(Product p : mainFList) { %>
@@ -150,8 +150,9 @@ $(function(){
                                        </dd>
                                    </dl>
                                 </div>
-					</div> --%>
-					<div class="fCon" style="background:#a7d7ec;">
+					</div> 
+					
+					 <div class="fCon" style="background:#a7d7ec;">
 						<p class="category"><em>마감임박</em><em class="type" >투자</em></p>
 						<p class="title"><%= p.getP_name() %>
 						<p class="pText"><%= p.getCorporate_name()%></p>
@@ -166,9 +167,9 @@ $(function(){
 				</div>
 				
 				
-				<% } %>
+				<% } %> 
 				
-			<!-- 	<div class="funding_p">
+			 	<div class="funding_p">
 					<div class="fPic" style="height:330px;">
 					<em class="picks-img">
 					<span class="scale" >
@@ -180,9 +181,9 @@ $(function(){
 						<p class="title" id="fTitle">구매후기쓰고<br>선물 받으세요!</p>
 						<p class="text" id="fText">이미 지난 이벤트지만 <br> 노출/SNS 광고 혜택 받으세요!</p>
 					</div>
-				</div> -->
+				</div> 
 				
-			</div>
+			 </div>
 			
 			</div>
 		</div>
@@ -213,7 +214,7 @@ $(function(){
 					<div class="fPic2">
 					<em class="picks-img">
 					<span class="scale" >
-					<!-- <img src="images/main/h1_3.jpg" style="width: 100%; height:225px;"> -->
+				 <img src="images/main/h1_3.jpg" style="width: 100%; height:225px;">
 					
 					<img src="<%=request.getContextPath()%>/board_uploadFiles/<%=p.getChange_name() %>" style="width: 100%; height:225px;">
 					
@@ -470,14 +471,14 @@ $(function(){
 	<script>
 		$(".noticeArea").click(function(){
 			
-			var wNo = $(this).children('#wNo').val();
-			location.href='<%=request.getContextPath()%>/boardRead.jsp?num='+wNo;
-		});
+			var wNo = $(this).children('#wNo').val(); 
+			 location.href='<%=request.getContextPath()%>/boardRead.jsp?num='+wNo;
+		}); 
 			
 		
 	
 	
-	</script>
+	</script> --%>
 	<%@ include file="/views/common/footer.jsp" %> 
 </body>
 </html>

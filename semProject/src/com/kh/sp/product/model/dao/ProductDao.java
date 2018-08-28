@@ -137,6 +137,7 @@ public class ProductDao {
 				hmap.put("filePath",rset.getString("file_path"));
 				hmap.put("userId",rset.getInt("user_id"));
 				hmap.put("pType",rset.getInt("p_type"));
+				hmap.put("amount",rset.getInt("amount"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -208,10 +209,14 @@ public class ProductDao {
 			pstmt = con.prepareStatement(query);
 			
 			pstmt.setInt(1, investId);
-			pstmt.setInt(2, i.getPrice());
+			pstmt.setString(2, i.getStatus());
+			pstmt.setInt(3, i.getPrice());
+			pstmt.setString(4, i.getStatus());
+			pstmt.setString(5, i.getStatus());
+			pstmt.setString(6, i.getStatus());
 			
 			result2 = pstmt.executeUpdate();
-			System.out.println("result = "+result2);
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -201,7 +201,8 @@ textarea{
 							<div id="titleImgAreadiv">
 								<img id="titleImg"><span id="tarea">클릭하여 대표 이미지를 등록하시오</span>
 							</div>
-							
+							 <input type="file" id="image_uploads" name="uploads2" accept=".jpg, .jpeg, .png" multiple>
+							  <input type="file" id="image_uploads2" name="uploads3" accept=".pdf, .jpeg, .png" multiple>
 							
 							<div class="text1">
 								<textarea name="intro" id="intro" cols="42" rows="5" style="resize: none"  onclick="removeContent()"> : 상품에 대한 간단한 소개를 작성해주세요.</textarea>
@@ -234,12 +235,18 @@ textarea{
 							style="resize: none"></textarea>
 					</span>
 				</div>
-
-
+				
 				<div class="text2">
 					<span class="title">5. 펀딩 오픈시 유의사항 권고</span> <br> <span
 						style="margin-left: 25px;"> <textarea disabled cols="78"
 							rows="5" style="resize: none">펀딩시 조심해야할점</textarea>
+					</span>
+				</div>
+				
+				<div class="text2">
+					<span class="title">4. 투자금 사용 계획</span> <br> <span
+						style="margin-left: 25px;"> <textarea name="amount" cols="78" rows="5"
+							style="resize: none"></textarea>
 					</span>
 				</div>
 				<div class="fund_bu">
@@ -287,6 +294,7 @@ textarea{
 				reader.readAsDataURL(value.files[0]);
 			}
 		}
+	
 		
 		
 		function removeContent(){

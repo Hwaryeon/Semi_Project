@@ -36,6 +36,8 @@ public class InsertPayment extends HttpServlet {
 		int userId = Integer.parseInt(request.getParameter("userId"));
 		int pId = Integer.parseInt(request.getParameter("pId"));
 		int price = Integer.parseInt(request.getParameter("price"));
+		String status = request.getParameter("status");
+		
 		System.out.println(price);
 		Invest i = new Invest();
 		
@@ -43,6 +45,7 @@ public class InsertPayment extends HttpServlet {
 		i.setUserId(userId);
 		i.setpId(pId);
 		i.setPrice(price);
+		i.setStatus(status);
 		
 		int result = new ProductService().InsertPayment(i);
 		

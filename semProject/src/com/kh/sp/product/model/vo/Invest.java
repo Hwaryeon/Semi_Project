@@ -5,10 +5,18 @@ public class Invest implements java.io.Serializable{
 	int userId;
 	int pId;
 	int price;
+	String status;
 	
 	
 	
 	public Invest() {}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	public int getPrice() {
 		return price;
 	}
@@ -24,12 +32,13 @@ public class Invest implements java.io.Serializable{
 	public int getUserId() {
 		return userId;
 	}
-	public Invest(String investId, int userId, int pId, int price) {
+	public Invest(String investId, int userId, int pId, int price, String status) {
 		super();
 		this.investId = investId;
 		this.userId = userId;
 		this.pId = pId;
 		this.price = price;
+		this.status = status;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
@@ -42,7 +51,8 @@ public class Invest implements java.io.Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Invest [investId=" + investId + ", userId=" + userId + ", pId=" + pId + ", price=" + price + "]";
+		return "Invest [investId=" + investId + ", userId=" + userId + ", pId=" + pId + ", price=" + price + ", status="
+				+ status + "]";
 	}
 	
 	

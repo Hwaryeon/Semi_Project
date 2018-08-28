@@ -283,7 +283,7 @@ textarea{
 			<li class="notitle"></li>
 			<li class="tab-link current" data-tab="tab-1">상품소식</li>
 			<li class="tab-link" data-tab="tab-2">상품Q&A</li>
-			<li classs="tab-link" data-tab="tab-3">투자자모임</li>
+			<li class="tab-link" data-tab="tab-3">투자자모임</li>
 		</ul>
 		
 		<hr>
@@ -334,9 +334,8 @@ textarea{
 <div id ="popup_mask2" ></div>
     
     <div id="popupDiv2">
-    	<div> 투자 상품 명 : 맛있는 쿠키</div>
-    	<div> 투자 금액 : 500원</div>
-    	<div> 구좌수 선택 : </div>
+    	<div> 투자 상품 명 : <%=hmap.get("pName") %></div>
+    	<div> 투자 금액 : <%=hmap.get("amount") %>원</div>
     	<button id="confirm">결제 확인</button>
     	<button id="popCloseBtn2">취소</button>
     </div>
@@ -439,7 +438,8 @@ textarea{
     	          var userId = '<%=hmap.get("userId")%>';
     	          var pId = '<%=hmap.get("pId")%>';
     	          var price = rsp.paid_amount;
-    	          var loc = contextPath + '/Insert.pm?investId=' + investId + "&userId=" + userId + "&pId=" + pId + "&price=" + price; 
+    	          var status = rsp.status;
+    	          var loc = contextPath + '/Insert.pm?investId=' + investId + "&userId=" + userId + "&pId=" + pId + "&price=" + price + "&status=" + status;
     	          
     	          location.href=loc;
     	       
