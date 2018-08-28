@@ -1,21 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, com.kh.sp.message.model.vo.*, com.kh.sp.board.model.vo.*"%>
 <%
-/* ArrayList<Message> list 
-= (ArrayList<Message>)request.getAttribute("list");
-PageInfo pi = (PageInfo)request.getAttribute("pi");
-int listCount = pi.getListCount();
-int currentPage = pi.getCurrentPage();
-int maxPage = pi.getMaxPage();
-int startPage = pi.getStartPage();
-int endPage = pi.getEndPage();
-*/
 
  String userId = (String)request.getAttribute("userId");
 
 %>
 <!doctype html>
-<html lang="en">
+<html >
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,7 +71,7 @@ int endPage = pi.getEndPage();
 }
 form {
   margin: 0 auto;
-  width: 400px;
+  min-width: 400px;
   padding: 1em;
   border: 1px solid #CCC;
   border-radius: 1em;
@@ -134,8 +125,15 @@ button {
 #msgBu{
 	margin-left: auto;
     margin-right: auto;
-    width: 134px;
+    width: 300px;
 
+}
+.form-horizontal{
+	min-height:571px;
+}
+
+#tabs ul li, #tabs ul li a{
+	cursor:pointer;
 }
 
 </style>
@@ -144,8 +142,8 @@ button {
 
 	<div id="tabs">
 		<ul style="margin-top: 108px;">
-			<li><a href="#tabs-1">받은 쪽지함</a></li>
-			<li><a href="#tabs-2">보낸 쪽지함</a></li>
+			<li id="send_msg"><a href="#tabs-1">받은 쪽지함</a></li>
+			<li id="receive_msg"><a href="#tabs-2">보낸 쪽지함</a></li>
 			<!-- <li><a href="#tabs-3">Aenean lacinia</a></li> -->
 		</ul>
 		<div id="tabs-1">
@@ -153,8 +151,8 @@ button {
 			<p>
 			<form class="form-horizontal" id="msgId"action="<%=request.getContextPath() %>/reWriteMessage" method="post">
 			  <div class="form-group">
-			    <label for="inputEmail3" class="col-sm-2 control-label" style="width:106px;">메시지 제목</label>
-			    <div class="col-sm-10">
+			    <label for="inputEmail3" class="col-sm-2 control-label" style="width:106px;">제목</label>
+			    <div class="col-sm-10" style="width:81%;">
 			      <input type="text" class="form-control" id="title" name="title" placeholder="제목">
 			    </div>
 			  </div>
@@ -180,6 +178,7 @@ button {
 			  
 			  <div class="form-group" id="msgBu">
 			    <div class="col-sm-offset-2 col-sm-10">
+			    <button type="submit" class="btn btn-default" onclick="listMsg()">목록</button>
 			      <button type="submit" class="btn btn-default" onclick="closePopup();">보내기</button>
 			    </div>
 			  </div>
@@ -194,12 +193,24 @@ button {
 
 	<script>
 	
-		$('.deleChk').click(function(){
-			
-			/* var num = $(this).find('input').value;
-			console.log(num); */
-			
-		});
+		function listMsg(){
+			$("#msgId").attr("action", "<%=request.getContextPath()%>/listMessage");
+			$("#msgId").submit();
+		}
+		
+		 $( function() {
+			 
+			 $('#send_msg').click(function(){
+				 $("#msgId").attr("action", "<%=request.getContextPath()%>/listMessage");
+					$("#msgId").submit();
+			 });
+			 
+			 
+			 
+			 
+			 
+			  } );
+		
 	
 	</script>
 

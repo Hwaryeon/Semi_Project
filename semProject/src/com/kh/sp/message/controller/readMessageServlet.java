@@ -25,9 +25,14 @@ public class readMessageServlet extends HttpServlet {
 		
 		int msgId = Integer.parseInt(request.getParameter("num")); 		// 임시로 설정
 		
+		String type = request.getParameter("type");
+		
+		System.out.println("type : " + type);
+		
 		Message m = new MessageService().readMessage(msgId);
 	
 		request.setAttribute("message", m);
+		request.setAttribute("type", type);
 		
 		/*System.out.println(m);*/
 		

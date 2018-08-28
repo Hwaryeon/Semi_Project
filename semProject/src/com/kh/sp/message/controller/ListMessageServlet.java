@@ -39,40 +39,76 @@ public class ListMessageServlet extends HttpServlet {
 		int startPage;			//한번에 표시될 페이지가 시작할 페이지
 		int endPage;			//한번에 표시될 페이지가 끝나는 페이지
 
-		//게시판은 1페이지부터 시작함
+		int currentPage2;		//현재 페이지를 표시할 변수
+		int maxPage2;			//전체 페이지에서 가장 마지막 페이지
+		int startPage2;			//한번에 표시될 페이지가 시작할 페이지
+		int endPage2;			//한번에 표시될 페이지가 끝나는 페이지
+		
+		
+		String pageType = "1";
+		if(request.getParameter("pageType") != null){
+			pageType = request.getParameter("pageType");
+		}
+		
+		System.out.println("pageType : " + pageType);
+		
 		currentPage = 1;
-		// 1페이지가  아닐때
 		if(request.getParameter("currentPage") != null){
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
+		
+		currentPage2 = 1;
+		if(request.getParameter("currentPage") != null){
+			currentPage2 = Integer.parseInt(request.getParameter("currentPage"));
+		}
 
 		//전체 목록 갯수와 목록 전체를 리턴받음
+		
+		
+			
 		int listCount = new MessageService().getListCount(user_id);
-
-		//한페이지에 보여줄 갯수
+		
+		
+		int listCount2 = new MessageService().getListCount2(user_id);
+		
 		limit = 7;
 
 		//총 페이지 수 계산
 		maxPage = (int)((double)listCount / limit + 0.9);
+		maxPage2 = (int)((double)listCount / limit + 0.9);
 
 		//현재 페이지에 보여줄 시작 페이지 수
 		startPage = (((int)((double)currentPage / 5 + 0.9)) -1) * 5 + 1;
+		startPage2 = (((int)((double)currentPage / 5 + 0.9)) -1) * 5 + 1;
 
 		//목록 아래 보여질 마지막 페이지 수
 		endPage = startPage + 5 - 1;
+		endPage2 = startPage + 5 - 1;
 
 
 		if(maxPage < endPage){
 			endPage = maxPage;
 		}
 
-		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-
-		ArrayList<Message> list = new MessageService().listMsg(currentPage, limit, user_id);
+		if(maxPage2 < endPage2){
+			endPage2 = maxPage2;
+		}
 		
+		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+		PageInfo pi2 = new PageInfo(currentPage2, listCount2, limit, maxPage2, startPage2, endPage2);
+
+		ArrayList<Message> list = null;
+			list = new MessageService().listMsg(currentPage, limit, user_id);
+			
+		ArrayList<Message> list2 = null;	
+			
+			list2 = new MessageService().listMsg2(currentPage, limit, user_id);
 		String page = "views/popup/messageList.jsp";
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
+		request.setAttribute("list2", list2);
+		request.setAttribute("pi2", pi2);
+		request.setAttribute("pageType", pageType);
 
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);

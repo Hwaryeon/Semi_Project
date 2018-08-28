@@ -115,4 +115,28 @@ public class MessageService {
 		return result;
 	}
 
+	public int getListCount2(int user_id) {
+		
+		Connection con = getConnection();
+
+		int count = new MessageDao().getListCount2(con, user_id);
+
+		close(con);
+
+		return count;
+	}
+
+	public ArrayList<Message> listMsg2(int currentPage, int limit, int user_id) {
+		
+		ArrayList<Message> list = new ArrayList<Message>();
+
+		Connection con = getConnection();
+
+		list = new MessageDao().listMsg2(con, currentPage, limit, user_id);
+
+		close(con);
+
+		return list;
+	}
+
 }

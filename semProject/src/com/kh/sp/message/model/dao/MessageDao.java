@@ -193,12 +193,6 @@ public class MessageDao {
 		return list;
 		
 		
-		
-		
-		
-		
-		
-		
 	}
 	public int checkMessage(Connection con, int id) {
 		
@@ -274,6 +268,81 @@ public class MessageDao {
 		}
 		
 		return result;
+	}
+	
+	public int getListCount2(Connection con, int user_id) {
+		PreparedStatement pstmt = null;
+		
+		int result= 0;
+		
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("listCount2");
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, user_id);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				result = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rset);
+		}
+		
+		
+		return result;
+	}
+	public ArrayList<Message> listMsg2(Connection con, int currentPage, int limit, int user_id) {
+		ArrayList<Message> list = new ArrayList<Message>();
+		
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("listMsg2");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			int startRow = (currentPage -1 ) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, user_id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				
+				Message m = new Message();
+				
+				m.setMsg_id(rset.getInt("msg_id"));
+				m.setTitle(rset.getString("title"));
+				m.setMsg(rset.getString("content"));
+				m.setUser_id(rset.getInt("send_id"));
+				m.setReceive_id(rset.getInt("receive_id"));
+				m.setSend_date(rset.getDate("send_date"));
+				m.setRead_date(rset.getDate("read_date"));
+				m.setReadYN(rset.getString("readyn"));
+				
+				
+				list.add(m);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+		
+		return list;
 	}
 
 }
