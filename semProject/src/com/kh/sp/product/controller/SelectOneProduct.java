@@ -42,17 +42,17 @@ public class SelectOneProduct extends HttpServlet {
 		
 		String page = "views/funding/product.jsp";
 		System.out.println("test");
-		
+		System.out.println(hmap);
 		if(hmap!=null) {
-			request.setAttribute("hamp", hmap);
-			/*request.setAttribute("a", (Product)hmap.get("product"));
-			request.setAttribute("proList",(ArrayList<Attachment>)hmap.get("attachment"));*/
+			request.setAttribute("hmap", hmap);
+			
 		}else {
 			System.out.println("상세 보기 실패!");
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
+		
 	}
 
 	/**

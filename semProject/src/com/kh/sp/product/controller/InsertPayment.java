@@ -1,7 +1,6 @@
 package com.kh.sp.product.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -12,18 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.sp.product.model.service.ProductService;
+import com.kh.sp.product.model.vo.Invest;
 
 /**
- * Servlet implementation class SelectProductThumbnailServlet
+ * Servlet implementation class InsertPayment
  */
-@WebServlet("/SelectList.tn")
-public class SelectProductThumbnailServlet extends HttpServlet {
+@WebServlet("/Insert.pm")
+public class InsertPayment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectProductThumbnailServlet() {
+    public InsertPayment() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,22 +32,33 @@ public class SelectProductThumbnailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String investId = request.getParameter("investId");
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		int pId = Integer.parseInt(request.getParameter("pId"));
+		int price = Integer.parseInt(request.getParameter("price"));
+		System.out.println(price);
+		Invest i = new Invest();
+		
+		i.setInvestId(investId);
+		i.setUserId(userId);
+		i.setpId(pId);
+		i.setPrice(price);
+		
+		int result = new ProductService().InsertPayment(i);
 		
 		
-		ArrayList<HashMap<String, Object>> list
-			= new ProductService().selectProductList();
 		
-		String page = "";
-		if(list != null) {
+		if(result > 0) {
 			
-			page = "views/funding/welcome.jsp";
-			request.setAttribute("list", list);	
+			System.out.println("등록성공");
+			
 		}else {
-			System.out.println("조회 실패");
+			/*page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "공지사항 등록 실패!!");
+			RequestDispatcher view = request.getRequestDispatcher(page);
+			view.forward(request, response);*/
+			System.out.println("실패");
 		}
-		
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
 	}
 
 	/**
