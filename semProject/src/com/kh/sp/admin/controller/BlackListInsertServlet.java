@@ -11,26 +11,29 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.sp.admin.model.service.AdminService;
 
-@WebServlet("/updateBlackList.adm")
-public class BlackListUpdateServlet extends HttpServlet {
+@WebServlet("/insertBlackList.adm")
+public class BlackListInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public BlackListUpdateServlet() {
+    public BlackListInsertServlet() {
         super();
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	System.out.println("블랙리스트 업데이트 오니?");
+	System.out.println("블랙리스트 인서트 오니?");
+	
+	
+	int userId =Integer.parseInt(request.getParameter("user_id"));
+	
+	System.out.println("아이디 시키야 좀 와라~!~!~!~!~!~!~!~!~!~!" + userId);
 	
 	String text = request.getParameter("text");
 	
 	System.out.println("text = " + text);
 	
-	String userId = request.getParameter("userId");
 	
-	System.out.println("user_id = " + userId);
-	int result = new AdminService().updateBlackList(text);
+	int result = new AdminService().insertBlackList(text, userId);
 	
 	String page = "";
 	
