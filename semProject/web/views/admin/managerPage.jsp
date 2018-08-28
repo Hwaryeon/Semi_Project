@@ -284,7 +284,6 @@ element {
 					$("table tr").last().append("<td>" + '<%=m.getPhone()%>' + "</td>");
 				
 					
-					$("table").append("</tr>");
 					
 				
 				<%}%>
