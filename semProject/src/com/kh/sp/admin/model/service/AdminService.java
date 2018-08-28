@@ -15,7 +15,7 @@ import com.kh.sp.member.model.vo.Member;
 
 public class AdminService {
 
-	public int getListCount() {
+		public int getListCount() {
 		Connection con = getConnection();
 		
 		int listCount = new AdminDao().getListCount(con);
@@ -113,81 +113,10 @@ public class AdminService {
 		
 		}
 
-
-
-	//별림누나 에러 부분 잠깐 주석처리 할게요!!!
-	
-	/*public ArrayList<SalesStatistics> selectSalesList(int num, String str) {
-
-
-	//재영이형~
-	public ArrayList<SalesStatistics> selectSalesList(String type, String term, int currentPage, int limit) {
-
-		Connection con = getConnection();
-		ArrayList<SalesStatistics> list = new AdminDao().selectSalesList(con,type,term,currentPage,limit);
-		close(con);
-		return list;
-	}
-
-	public ArrayList<OpenFundingStatistics> selectOpenFundingList(String str, int currentPage, int limit) {
-		Connection con = getConnection();
-		ArrayList<OpenFundingStatistics> list = new AdminDao().selectOpenFundingList(con,str,currentPage,limit);
-		close(con);
-		return list;
-	}*/
-
-	public ArrayList<SuccessFundingStatistics> selectSuccessFundingList(String str, int currentPage, int limit) {
-		Connection con = getConnection();
-		ArrayList<SuccessFundingStatistics> list = new AdminDao().selectSuccessFundingList(con,str,currentPage,limit);
-		close(con);
-		return list;
-	}
-
-	public ArrayList<MemberStatistics> selectMemberList(String str, int currentPage, int limit) {
-		Connection con = getConnection();
-		ArrayList<MemberStatistics> list = new AdminDao().selectMemberList(con,str,currentPage,limit);
-		close(con);
-		return list;
-	}
-
-	/*public int getOpenFundingListCount(String term) {
-
-	public int getSalesListCount(String term, String type) {
-		Connection con = getConnection();
-		int listCount = new AdminDao().getSalesListCount(con, term, type);
-		close(con);
-		return listCount;
-	}
-	public int getOpenFundingListCount(String term) {
-
-		Connection con = getConnection();
-		int listCount = new AdminDao().getOpenFundingListCount(con, term);
-		close(con);
-		return listCount;
-	}
-	public int getSuccessFundingListCount(String term) {
-		Connection con = getConnection();
-		int listCount = new AdminDao().getSuccessFundingListCount(con, term);
-		close(con);
-		return listCount;
-	}
-	public int getMemberListCount(String term) {
-		Connection con = getConnection();
-		int listCount = new AdminDao().getMemberListCount(con, term);
-		close(con);
-		return listCount;
-	}
-
-	public int getSalesListCount(String term) {
-		Connection con = getConnection();
-		int listCount = new AdminDao().getSalesListCount(con, term);
-		close(con);
-		return listCount;
-	}*/
-	public int updateBlackList(String text) {
+	public int insertBlackList(String text, int userId) {
 		Connection con = getConnection();
 		
-		int result = new AdminDao().updateBlackList(con, text);
+		int result = new AdminDao().insertBlackList(con, text, userId);
 		
 		if(result>0){
 			commit(con);
@@ -199,5 +128,62 @@ public class AdminService {
 		return result;
 	}
 
+
+
+
+
+	//////////////////////////////여기서부터 별림이꺼///////////////////////////////////////
+		public ArrayList<SalesStatistics> selectSalesList(String type, String term, int currentPage, int limit) {
+			Connection con = getConnection();
+			ArrayList<SalesStatistics> list = new AdminDao().selectSalesList(con,type,term,currentPage,limit);
+			close(con);
+			return list;
+		}
+
+		public ArrayList<OpenFundingStatistics> selectOpenFundingList(String str, int currentPage, int limit) {
+			Connection con = getConnection();
+			ArrayList<OpenFundingStatistics> list = new AdminDao().selectOpenFundingList(con,str,currentPage,limit);
+			close(con);
+			return list;
+		}
+
+		public ArrayList<SuccessFundingStatistics> selectSuccessFundingList(String str, int currentPage, int limit) {
+			Connection con = getConnection();
+			ArrayList<SuccessFundingStatistics> list = new AdminDao().selectSuccessFundingList(con,str,currentPage,limit);
+			close(con);
+			return list;
+		}
+
+		public ArrayList<MemberStatistics> selectMemberList(String str, int currentPage, int limit) {
+			Connection con = getConnection();
+			ArrayList<MemberStatistics> list = new AdminDao().selectMemberList(con,str,currentPage,limit);
+			close(con);
+			return list;
+		}
+		public int getSalesListCount(String term, String type) {
+			Connection con = getConnection();
+			int listCount = new AdminDao().getSalesListCount(con, term, type);
+			close(con);
+			return listCount;
+		}
+		public int getOpenFundingListCount(String term) {
+			Connection con = getConnection();
+			int listCount = new AdminDao().getOpenFundingListCount(con, term);
+			close(con);
+			return listCount;
+		}
+		public int getSuccessFundingListCount(String term) {
+			Connection con = getConnection();
+			int listCount = new AdminDao().getSuccessFundingListCount(con, term);
+			close(con);
+			return listCount;
+		}
+		public int getMemberListCount(String term) {
+			Connection con = getConnection();
+			int listCount = new AdminDao().getMemberListCount(con, term);
+			close(con);
+			return listCount;
+		}
+	
 
 }

@@ -23,8 +23,8 @@ public class SelectOneMemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("셀렉트 원 오니?");
 		
-		int user_id = Integer.parseInt(request.getParameter("userId2"));
-		String user_class = request.getParameter("userClass2");
+		int user_id = Integer.parseInt(request.getParameter("user_id"));
+		String user_class = request.getParameter("user_class");
 		
 		System.out.println("user_id = " + user_id);
 		System.out.println("user_class = " + user_class);

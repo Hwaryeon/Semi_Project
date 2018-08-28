@@ -254,13 +254,12 @@ element {
 						%>
 						<tr>
 
-							<input type="hidden" name="userId" id="userId"
-								value="<%=m.getUserId()%>">
+							<%-- <input type="hidden" name="userId" id="userId"
+								value="<%=m.getUserId()%>"> --%>
 							<td><%=m.getUserId()%></td>
 							<td name="user_class"><%=m.getUserClass()%></td>
-							<input type="hidden" name="userClass" id="userClass"
-								value="<%=m.getUserClass()%>">
-
+							<%-- <input type="hidden" name="userClass" id="userClass"
+								value="<%=m.getUserClass()%>"> --%>
 							<td><%=m.getUserName()%></td>
 							<td><%=m.getNickName()%></td>
 							<td><%=m.getEmail()%></td>
@@ -350,8 +349,8 @@ element {
 				action="<%=request.getContextPath()%>/selectOneMember.adm"
 				method="post">
 
-				<input type="hidden" id="userId2" name="userId2"> <input
-					type="hidden" id="userClass2" name="userClass2">
+				<input type="hidden" id="userId2" name="user_id"> <input
+					type="hidden" id="userClass2" name="user_class">
 
 
 			</form>
@@ -371,9 +370,37 @@ element {
 							"background" : "white"
 						});
 					}).click(function() {
-						$("#userId2").val($("#userId").val());
-						$("#userClass2").val($("#userClass").val());
-						$("#selectOne").submit();
+						
+						console.log($(this));
+						
+						var user_id = $(this).parent().children("userId").val();
+						
+				 		 
+						/* $("#selectOne").submit(); */
+
+					});
+					
+					$("#memberTable tr").mouseenter(function() {
+						$(this).parent().css({
+						});
+					}).mouseout(function() {
+						$(this).parent().css({
+						});
+					}).click(function() {
+						
+						
+						var user_id = $(this).children().eq(0).text();
+						var user_class = $(this).children().eq(1).text();
+						console.log(user_id);
+						console.log(user_class);
+						 $("#userId2").val(user_id);
+						$("#userClass2").val(user_class);
+						/*console.log(user_id);*/
+						$("#selectOne").submit();  
+						
+				/* 		$("#userId2").val($("#userId").val());
+						$("#userClass2").val($("#userClass").val()); */
+						/* $("#selectOne").submit(); */
 
 					});
 
