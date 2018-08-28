@@ -8,11 +8,33 @@
 <meta charset="UTF-8">
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>  -->
+<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> --> 
 <script src="<%=request.getContextPath()%>/js/common/scroll.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main/style.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/qna/qna.css">
+
+
 <style>
+
+.blinking{
+	-webkit-animation:blink 1.5s ease-in-out infinite alternate;
+    -moz-animation:blink 1.5s ease-in-out infinite alternate;
+    animation:blink 1.5s ease-in-out infinite alternate;
+}
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
 .headr-wrap {
 	width: 100%;
 	display: inline-block;
@@ -164,11 +186,14 @@
 
 
 </head>
-<body style="" style="width:1500px; overflow:hidden;">
+<body style="" style="width:1500px; overflow:hidden;" onload="webConnect();">
 	<div >
-		<div class="headr-wrap" id="headr-wrap" style="width:1550px;max-height:87px;">
+		<div class="headr-wrap navbar navbar-default navbar-static-top" id="headr-wrap" style="width:1550px;max-height:87px;">
+
 
 			<h1 class="lg" ><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/common/logo.png" width="100" height="200" ></a></h1>
+			
+			
 			<div class="gnb-menu">
 				<ul>
 					<li><a href="<%=request.getContextPath()%>/SelectList.tn">투자하기</a></li>
@@ -181,7 +206,21 @@
 			</div>
 
 			<div class="gnb-user">
-				<ul>
+				
+					
+			
+				<ul >
+				
+				
+				
+				
+				<!-- 현재 테스트할겸 넣어놈 -->
+				<li><a id="getServerTestBtn" class="" onclick="messageList()">쪽지함</a></li>
+				<!--  -->
+				
+				
+				
+				
 					<% if(loginUser == null) { %>
 						<li><a href="<%=request.getContextPath()%>/views/member/loginForm.jsp">로그인</a></li>
 						<li><a href="<%=request.getContextPath()%>/views/member/memberJoinForm.jsp">회원가입</a></li>
@@ -241,6 +280,143 @@
 			</div>
 		</div>
 </div>
+<script>
+	
+	/* $(document).ready(function() { 
+		
+		var id = "999";
+		
+		$.ajax({
+			url:"checkMessage",
+			data:{id:id},
+			type:"get",
+			success:function(data){
+				if(data > 0){
+					document.getElementById('getServerTestBtn').className="blinking";
+				}else{
+					document.getElementById('getServerTestBtn').className="";
+				}
+				
+			},
+			error:function(data){
+				console.log("실패");
+			}
+		});
+		
+	});
+	 */
+	
+	</script>
+
+	<script>
+		function messageList(){
+		
+		var popUrl = "<%=request.getContextPath()%>/listMessage";	//팝업창에 출력될 페이지 URL
+
+		var popOption = "width=895, height=720, resizable=no, left=300, top=50, scrollbars=no, status=no; ";    //팝업창 옵션(optoin)
+
+			window.open(popUrl,"",popOption);
+	}
+	
+	</script>
+<script>
+
+function webConnect() {
+		connection();
+	}
+ 
+function messageopen(){
+	
+	connection();
+	
+	 var popUrl = "<%=request.getContextPath()%>/views/popup/writeMessage.jsp";	//팝업창에 출력될 페이지 URL
+
+	var popOption = "width=450, height=390, resizable=no, left=500, top=200, scrollbars=no, status=no; ";    //팝업창 옵션(optoin)
+
+		window.open(popUrl,"",popOption); 
+}
+
+var webSocket = null;
+
+var $inputMessage = $('#inputMessage');
+
+function connection(){
+	
+	console.log("연결시도")
+	
+	webSocket = new WebSocket('ws://localhost:8001'+
+	'<%=request.getContextPath()%>/unicast');
+	
+	console.log("연결됨")
+	
+	// 웹 소켓을 통해 연결이 이루어 질 때 동작할 메소드
+	webSocket.onopen = function(event){
+		
+		
+		// 웹 소켓을 통해 만든 채팅 서버에 참여한 내용을
+		// 메시지로 전달
+		// 내가 보낼 때에는 send / 서버로부터 받을 때에는 message
+		
+		webSocket.send("웹소캣 접속");
+	};
+	
+	// 서버로부터 메시지를 전달 받을 때 동작하는 메소드
+	webSocket.onmessage = function(event){
+		onMessage(event);
+	}
+	
+	// 서버에서 에러가 발생할 경우 동작할 메소드
+	webSocket.onerror = function(event){
+		onError(event);
+	}
+	
+	// 서버와의 연결이 종료될 경우 동작하는 메소드
+	webSocket.onclose = function(event){
+		//onClose(event);
+	}
+}
+
+function send(){
+		
+		webSocket.send("");
+		
+		$inputMessage.val("");
+	
+}
+
+// 서버로부터 메시지를 받을 때 수행할 메소드
+function onMessage(event) {
+	
+	console.log("이거되냐?");
+	
+	var message = event.data;
+	
+	$(document).ready(function() { 
+		var id = "999";
+		
+		$.ajax({
+			url:"checkMessage",
+			data:{id:id},
+			type:"get",
+			success:function(data){
+				if(data > 0){
+					document.getElementById('getServerTestBtn').className="blinking";
+				}else{
+					document.getElementById('getServerTestBtn').className="";
+				}
+				
+			},
+			error:function(data){
+				console.log("실패");
+			}
+		});
+		
+	});
+	
+}
+
+
+</script>
 
 </body>
 </html>

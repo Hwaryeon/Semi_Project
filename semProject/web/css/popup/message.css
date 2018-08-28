@@ -1,0 +1,83 @@
+img {border:0}
+
+td { color: #333333 ; font-size: 12px ; font-family: 돋움,굴림,Arial ; line-height : 18px }
+
+A:link, A:visited { color: #3f3f3f ; text-decoration: none }
+A:active, A:hover { color: #089BB3 ; text-decoration: none }
+
+
+<!-- link -->
+
+.kl { padding:15px;}
+
+.nu { color: #999999 ; font-size:11px ; text-decoration: none }
+.nu a:link { color: #3E3E3E ; font-size:11px ; text-decoration: none }
+.nu a:visited { color: #3E3E3E ; font-size:11px ; text-decoration: none }
+.nu a:active { color: #089BB3 ; font-size:11px ; text-decoration: none }
+.nu a:hover { color: #089BB3 ; font-size:11px ; text-decoration: none }
+
+.day { color: #6EBB39 ; font-size:11px ; text-decoration: none }
+.day a:link { color: #3C8807 ; font-size:11px ; text-decoration: none }
+.day a:visited { color: #3C8807 ; font-size:11px ; text-decoration: none }
+.day a:active { color: #089BB3 ; font-size:11px ; text-decoration: none }
+.day a:hover { color: #089BB3 ; font-size:11px ; text-decoration: none }
+
+.day1 { color: #333333 ; font-size:11px ; text-decoration: none }
+.day1 a:link { color: #333333 ; font-size:11px ; text-decoration: none }
+.day1 a:visited { color: #333333 ; font-size:11px ; text-decoration: none }
+.day1 a:active { color: #333333 ; font-size:11px ; text-decoration: none }
+.day1 a:hover { color: #333333 ; font-size:11px ; text-decoration: none }
+
+.name { color: #767676 ; font-size:12px ; text-decoration: none }
+.name a:link { color: #767676 ; font-size:12px ; text-decoration: none }
+.name a:visited { color: #767676 ; font-size:12px ; text-decoration: none }
+.name a:active { color: #767676 ; font-size:12px ; text-decoration: none }
+.name a:hover { color: #767676 ; font-size:12px ; text-decoration: none }
+
+.applyt { color: #877864 ; font-size:12px ; text-decoration: none }
+.applyt a:link { color: #D77B00 ; font-size:12px ; text-decoration: none }
+.applyt a:visited { color: #D77B00 ; font-size:12px ; text-decoration: none }
+.applyt a:active { color: #767676 ; font-size:12px ; text-decoration: none }
+.applyt a:hover { color: #767676 ; font-size:12px ; text-decoration: none }
+
+.tt { color: #525252 ; font-size:12px ; text-decoration: none ; font-weight: bold}
+.tt a:link { color: #525252 ; font-size:12px ; text-decoration: none  }
+.tt a:visited { color: #525252 ; font-size:12px ; text-decoration: none }
+.tt a:active { color: #525252 ; font-size:12px ; text-decoration: none }
+.tt a:hover { color: #525252 ; font-size:12px ; text-decoration: none }
+
+.ttt { color: #252525 ; font-size:12px ; text-decoration: none ; font-weight: bold}
+.ttt a:link { color: #525252 ; font-size:12px ; text-decoration: none  }
+.ttt a:visited { color: #525252 ; font-size:12px ; text-decoration: none }
+.ttt a:active { color: #525252 ; font-size:12px ; text-decoration: none }
+.ttt a:hover { color: #525252 ; font-size:12px ; text-decoration: none }
+
+.btt { color: #796B59 ; font-size:12px ; text-decoration: none ; font-weight: bold}
+.btt a:link { color: #796B59 ; font-size:12px ; text-decoration: none  }
+.btt a:visited { color: #796B59 ; font-size:12px ; text-decoration: none }
+.btt a:active { color: #796B59 ; font-size:12px ; text-decoration: none }
+.btt a:hover { color: #796B59 ; font-size:12px ; text-decoration: none }
+
+.wb { color: #ffffff ; font-size:12px ; text-decoration: none ; font-weight: bold }
+.wb a:link { color: #ffffff ; font-size:12px ; text-decoration: none }
+.wb a:visited { color: #ffffff ; font-size:12px ; text-decoration: none }
+.wb a:active { color: #ffffff ; font-size:12px ; text-decoration: none }
+.wb a:hover { color: #ffffff ; font-size:12px ; text-decoration: none }
+
+.red { color: #FF0000 ; font-size:11px ; text-decoration: none }
+.red a:link { color: #FF0000 ; font-size:11px ; text-decoration: none }
+.red a:visited { color: #FF0000 ; font-size:11px ; text-decoration: none }
+.red a:active { color: #FF0000 ; font-size:11px ; text-decoration: none }
+.red a:hover { color: #FF0000 ; font-size:11px ; text-decoration: none }
+
+
+
+
+<!-- box -->
+.img_box { border: 1px solid #ABABAB }
+.cm_box { background-color : #FFFFFF; border-left: 1px solid #FFD6BD; border-right: 1px solid #FFD6BD; }
+
+.gray_box { border: 1px solid #B7B7B7 }
+.gray_box_1 { border-right: 1px solid #B7B7B7; }
+.gray_box_02 { border: 1px solid #CCCCCC }
+.gray_box_03 { border: 1px solid #ADAEAD }

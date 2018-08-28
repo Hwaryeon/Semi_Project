@@ -3,7 +3,7 @@ package com.kh.sp.admin.model.vo;
 import java.sql.Date;
 
 public class OpenFundingStatistics {
-	private Date term;
+	private String term;
 	private int enrollCount;
 	private int openCount;
 	private int approvalRate;
@@ -13,7 +13,7 @@ public class OpenFundingStatistics {
 	
 	public OpenFundingStatistics(){}
 	
-	public OpenFundingStatistics(Date term, int enrollCount, int openCount, int approvalRate, int type1OpenCount,
+	public OpenFundingStatistics(String term, int enrollCount, int openCount, int approvalRate, int type1OpenCount,
 			int type2OpenCount, int type3OpenCount) {
 		super();
 		this.term = term;
@@ -25,11 +25,11 @@ public class OpenFundingStatistics {
 		this.type3OpenCount = type3OpenCount;
 	}
 
-	public Date getTerm() {
+	public String getTerm() {
 		return term;
 	}
 
-	public void setTerm(Date term) {
+	public void setTerm(String term) {
 		this.term = term;
 	}
 
