@@ -67,7 +67,7 @@ legend {
          </legend>
          <table align="center" height="450px">
             <tr id="menubar" class="mypage update">
-               <td onclick="location.href='updateMember.jsp'">개인정보 수정</td>
+               <td onclick="location.href='<%=request.getContextPath() %>/views/myPage/updateMember.jsp'">개인정보 수정</td>
             </tr>
             
             <tr id="menubar" class="mypage enroll">
@@ -82,20 +82,20 @@ legend {
                <td id="menutitle"><b>투자서비스</b></td>
             </tr>
             <tr id="menubar" class="investService updateRank">
-               <td onclick="location.href='updateRank.jsp'">투자등급 변경 신청</td>
+               <td onclick="location.href='<%=request.getContextPath() %>/views/myPage/updateRank.jsp'">투자등급 변경 신청</td>
             </tr>
             <tr id="menubar" class="investService payment">
-               <td onclick="location.href='PaymentBackground.jsp'">결제내역</td>
+               <td onclick="location.href='<%= request.getContextPath() %>/views/myPage/PaymentBackground.jsp'">결제내역</td>
             </tr>
             
             <tr class="certification">
                <td id="menutitle"><b>서비스 등록</b></td>
             </tr>
             <tr id="menubar" class="certification investor">
-               <td onclick="location.href='normalInvestor.jsp'">일반 투자자 회원 인증</td>
+               <td onclick="location.href='<%=request.getContextPath() %>/views/myPage/normalInvestor.jsp'">일반 투자자 회원 인증</td>
             </tr>
             <tr id="menubar" class="certification business">
-               <td onclick="location.href='licensee.jsp'">사업자 회원 인증</td>
+               <td onclick="location.href='<%=request.getContextPath() %>/views/myPage/licensee.jsp'">사업자 회원 인증</td>
             </tr>
          </table>
       </fieldset>
