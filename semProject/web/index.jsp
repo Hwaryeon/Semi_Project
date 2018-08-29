@@ -234,7 +234,6 @@ $(function(){
 					<div class="fPic2">
 					<em class="picks-img">
 					<span class="scale" >
-				 <img src="images/main/h1_3.jpg" style="width: 100%; height:225px;">
 					
 					<img src="<%=request.getContextPath()%>/board_uploadFiles/<%=p.getChange_name() %>" style="width: 100%; height:225px;">
 					
