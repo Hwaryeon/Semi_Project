@@ -71,7 +71,7 @@ $(function(){
 </head>
 <body >
 <%@ include file="/views/common/headBar.jsp" %>
-	 <div class="wrap" style=" background:#f8f8f8; margin-top:50px;">
+	<div class="wrap" style=" background:#f8f8f8; margin-top:50px;">
 		<div class="containerBox" style="width: 100%;">
 
 
@@ -137,7 +137,7 @@ $(function(){
 				</strong> 
 					</div>
 			
-			 <div class="funding_area1" >
+			<div class="funding_area1" >
 			
 				<%int k=0; %>
 				<% for(Product p : mainFList) { %>
@@ -165,12 +165,19 @@ $(function(){
                                            <span class="amount"><%=str %>원 달성</span>
                                            
                                            	
-                                           	<span class="days"><%=p.getOpenDate() %>일 남음</span>
+                                           	<span class="days">
+											<% if(p.getOpenDate() < 1) { %>
+                                           		0일 남음
+                                           	<% }else{ %>
+                                           	<%=p.getOpenDate() %>일 남음
+                                           	<% } %>
+
+											</span>
                                            
                                        </dd>
                                    </dl>
                                 </div>
-					</div> --%>
+					</div>
 					<div class="fCon" style="background:#a7d7ec;">
 						<p class="category"><em>마감임박</em><em class="type" >투자</em></p>
 						<p class="title"><%= p.getP_name() %>
@@ -238,8 +245,14 @@ $(function(){
                                             <%String str = String.format("%,d", p.getTotal_amount()); %>
                                            <span class="amount"><%=str %>원 달성</span>
                                            
-                                           <%=p.getTotal_amount() %>	
-                                           	<span class="days"><%=p.getOpenDate() %>일 남음</span>
+                                           <%-- <%=p.getTotal_amount() %> --%>	
+                                           	<span class="days">
+                                           	<% if(p.getOpenDate() < 1) { %>
+                                           		0일 남음
+                                           	<% }else{ %>
+                                           	<%=p.getOpenDate() %>일 남음
+                                           	<% } %>
+                                           	</span>
                                            
                                        </dd>
                                    </dl>
@@ -314,8 +327,14 @@ $(function(){
                                             <%String str = String.format("%,d", p.getTotal_amount()); %>
                                            <span class="amount"><%=str %>원 달성</span>
                                            
-                                           <%=p.getTotal_amount() %>	
-                                           	<span class="days"><%=p.getOpenDate() %>일 남음</span>
+                                           <%-- <%=p.getTotal_amount() %> --%>	
+                                           	<span class="days">
+                                           	<% if(p.getOpenDate() < 1) { %>
+                                           		0일 남음
+                                           	<% }else{ %>
+                                           	<%=p.getOpenDate() %>일 남음
+                                           	<% } %>
+                                           	</span>
                                            
                                        </dd>
                                    </dl>
@@ -383,8 +402,15 @@ $(function(){
                                             <%String str = String.format("%,d", p.getTotal_amount()); %>
                                            <span class="amount"><%=str %>원 달성</span>
                                            
-                                           <%=p.getTotal_amount() %>	
-                                           	<span class="days"><%=p.getOpenDate() %>일 남음</span>
+                                           <%-- <%=p.getTotal_amount() %> --%>	
+                                           	<span class="days">
+											<% if(p.getOpenDate() < 1) { %>
+                                           		0일 남음
+                                           	<% }else{ %>
+                                           	<%=p.getOpenDate() %>일 남음
+                                           	<% } %>
+
+											</span>
                                            
                                        </dd>
                                    </dl>
@@ -472,10 +498,11 @@ $(function(){
 			href="#outer" title="맨 아래로"> <img src="images/common/bottom.PNG"></a>
 
 
-		
-			<div id="messageArea">
+		<%-- <% if(loginUser != null) { %>
+			<% } %> --%>
+			<div id="messageArea"> 
 			 	<a onclick="messageopen()">1:1 메세지 보내기</a>
-			</div>
+			 </div>
 
 	</div>
 	<input type="hidden" value="11" id="chat_id" size="10"/>
@@ -489,6 +516,6 @@ $(function(){
 			
 		
 	</script>
-	<%@ include file="/views/common/footer.jsp" %> 
+	<%@ include file="/views/common/footer.jsp" %>
 </body>
 </html>
