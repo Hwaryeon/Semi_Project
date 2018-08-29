@@ -103,7 +103,7 @@
 			%>
 					<a disabled class="link_page" style="background:darkgray;"><%= p %></a>
 			
-			<% }else{ %>
+			<% }else{ %> 
 					<a onclick="location.href='<%=request.getContextPath()%>/select.ep?currentPage=<%=p %>&userid=<%= loginUser.getUserId() %>&userclass=<%= loginUser.getUserClass() %>'" class="link_page"><%= p %></a>
 				<% } %>
 			<% } %>

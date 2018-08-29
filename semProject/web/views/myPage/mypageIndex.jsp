@@ -82,7 +82,7 @@ legend {
                <td id="menutitle"><b>투자서비스</b></td>
             </tr>
             <tr id="menubar" class="investService updateRank">
-               <td onclick="location.href='<%=request.getContextPath() %>/views/myPage/updateRank.jsp'">투자등급 변경 신청</td>
+               <td onclick="location.href='<%=request.getContextPath() %>/views/myPage/updateRank.jsp'">투자등급 변경 신청</td> 
             </tr>
             <tr id="menubar" class="investService payment">
                <td onclick="location.href='<%= request.getContextPath() %>/show.pb?userid=<%= loginUser.getUserId()%>&userclass=<%=loginUser.getUserClass() %>'">

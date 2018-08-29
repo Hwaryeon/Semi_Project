@@ -189,7 +189,7 @@ public class MypageDetailDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				MypageDetail mpd = new MypageDetail();
+				MypageDetail mpd = new MypageDetail(); 
 				mpd.setP_name(rset.getString("p_name"));
 				mpd.setPay_date(rset.getString("pay_date").substring(0, 10));
 				mpd.setPrice(rset.getInt("price"));

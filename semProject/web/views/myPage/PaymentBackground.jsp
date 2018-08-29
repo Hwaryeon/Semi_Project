@@ -99,7 +99,7 @@
 			<% for(int p=startPage; p <= endPage; p++){ 
 				if(p == currentPage){
 			%>
-					<a disabled class="link_page" style="background:darkgray;"><%= p %></a>
+					<a disabled class="link_page" style="background:darkgray;"><%= p %></a> 
 			
 			<% }else{ %>
 					<a onclick="location.href='<%=request.getContextPath()%>/show.pb?userid=<%= loginUser.getUserId()%>&userclass=<%=loginUser.getUserClass() %>&currentPage=<%=p %>'" class="link_page"><%= p %></a>

@@ -76,7 +76,7 @@ public class SelectPaymentBackgroundServlet extends HttpServlet {
 		if (list != null) {
 			page = "views/myPage/PaymentBackground.jsp";
 			request.setAttribute("list", list);
-			request.setAttribute("pi", pi);
+			request.setAttribute("pi", pi); 
 		} else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "참여/개설 프로젝트 조회 실패");

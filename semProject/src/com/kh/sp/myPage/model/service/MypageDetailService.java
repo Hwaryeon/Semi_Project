@@ -66,7 +66,7 @@ public class MypageDetailService {
 		
 		ArrayList<MypageDetail> list = new MypageDetailDao().selectListPayment(con, userId, currentPage, limit, userClass);
 		
-		close(con);
+		close(con); 
 		
 		return list;
 	}

@@ -24,7 +24,7 @@ public class SelectEnrollProjectServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int userId = Integer.parseInt(request.getParameter("userid"));
+		int userId = Integer.parseInt(request.getParameter("userid")); 
 		String userClass = request.getParameter("userclass");
 		System.out.println(userClass);
 
