@@ -188,7 +188,8 @@ public class AdminService {
 			close(con);
 			return list;
 		}
-
+ 
+		 
 		public ArrayList<MemberStatistics> selectMemberList(String str, int currentPage, int limit) {
 			Connection con = getConnection();
 			ArrayList<MemberStatistics> list = new AdminDao().selectMemberList(con,str,currentPage,limit);
