@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*" %>
+    pageEncoding="UTF-8" import="com.kh.sp.funding.model.vo.*, java.util.*" %>
 
-<%HashMap<String,Object> hmap = (HashMap<String,Object>)request.getAttribute("hmap"); %>
+<%HashMap<String,Object> hmap = (HashMap<String,Object>)request.getAttribute("hmap");%>
     
 <!DOCTYPE html>
 <html>
@@ -264,7 +264,7 @@ textarea{
 			<div id="sort">채권</div>
 		</div>
 		<p id="p1">97<span id="p2">명 참여</span></p>
-		<p id="p1">194,500,000<span id="p2">원/목표액 185,000,000원</span></p>
+		<p id="p1">194,500,000<span id="p2">원/목표액 <%=hmap.get("closingAmount")%> 원</span></p>
 		<p id="p1">투자마감<span id="p2">(마감일 2018-xx-xx xx:00)</span></p>
 		<div id="bar"></div>
 		<div style=color:green;>xxx%</div>
@@ -274,7 +274,10 @@ textarea{
 		<br>
 		
 		<br><br><br><br><br><br><br><br><br>
-		
+		<div class="field_content article_intro" style="min-height:350px;">			
+							<%=hmap.get("content")%>				
+		</div>
+		<br><br><br><br><br><br><br><br><br>
 	</div>
 </div>
 <div class="integration">
@@ -283,7 +286,7 @@ textarea{
 			<li class="notitle"></li>
 			<li class="tab-link current" data-tab="tab-1">상품소식</li>
 			<li class="tab-link" data-tab="tab-2">상품Q&A</li>
-			<li classs="tab-link" data-tab="tab-3">투자자모임</li>
+			<li class="tab-link" data-tab="tab-3">투자자모임</li>
 		</ul>
 		
 		<hr>
@@ -334,13 +337,13 @@ textarea{
 <div id ="popup_mask2" ></div>
     
     <div id="popupDiv2">
-    	<div> 투자 상품 명 : 맛있는 쿠키</div>
-    	<div> 투자 금액 : 500원</div>
-    	<div> 구좌수 선택 : </div>
+    	<div> 투자 상품 명 : <%=hmap.get("pName") %></div>
+    	<div> 투자 금액 : <%=hmap.get("amount") %>원</div>
+    	  
     	<button id="confirm">결제 확인</button>
     	<button id="popCloseBtn2">취소</button>
     </div>
-    
+      
     <script>
     
     $(document).ready(function(){
@@ -416,11 +419,11 @@ textarea{
     	       IMP.init('imp67147309');  // 가맹점 식별 코드
 
     	       IMP.request_pay({
-    	          pg : 'inicis', // 결제방식
+    	           pg : 'inicis', // 결제방식
     	           pay_method : 'card',   // 결제 수단
     	           merchant_uid : 'merchant_' + new Date().getTime(),
     	           name : '<%=hmap.get("pId")%>',   // order 테이블에 들어갈 주문명 혹은 주문 번호
-    	           amount : '200', 	
+    	           amount : '<%=hmap.get("amount")%>', 	
     	           buyer_email : '<%=loginUser.getEmail()%>',// 구매자 email
     	           buyer_name :  '<%=loginUser.getUserName()%>'  // 구매자 이름 
     	       }, function(rsp) {
@@ -439,7 +442,8 @@ textarea{
     	          var userId = '<%=hmap.get("userId")%>';
     	          var pId = '<%=hmap.get("pId")%>';
     	          var price = rsp.paid_amount;
-    	          var loc = contextPath + '/Insert.pm?investId=' + investId + "&userId=" + userId + "&pId=" + pId + "&price=" + price; 
+    	          var status = rsp.status;
+    	          var loc = contextPath + '/Insert.pm?investId=' + investId + "&userId=" + userId + "&pId=" + pId + "&price=" + price + "&status=" + status;
     	          
     	          location.href=loc;
     	       

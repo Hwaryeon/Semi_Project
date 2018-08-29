@@ -33,8 +33,12 @@ public class ViewMainServlet extends HttpServlet {
 		ArrayList<Product> hotFList = new FundingService().hotFundingList();
 		ArrayList<Product> closeFList = new FundingService().closeFundingList();
 		
+
+		if(list.size() > 0){
+
 			
 		/*if(list.size() > 0){*/
+
 			request.setAttribute("list", list);
 			request.setAttribute("newFList", newFList);
 			request.setAttribute("mainFList", mainFList);
@@ -43,10 +47,10 @@ public class ViewMainServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			
-	/*	}else{
+		}else{
 			request.setAttribute("msg", "메인 화면 호출 실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		}*/
+		}
 		
 		
 	}

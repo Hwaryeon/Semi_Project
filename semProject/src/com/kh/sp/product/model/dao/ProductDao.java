@@ -127,6 +127,7 @@ public class ProductDao {
 				hmap.put("pIntroduction",rset.getString("p_introduction"));
 				hmap.put("pPlan",rset.getString("p_plan"));
 				hmap.put("intro",rset.getString("intro"));
+				hmap.put("amount",rset.getInt("amount"));
 				hmap.put("fid",rset.getInt("fid"));
 				hmap.put("bid",rset.getInt("bid"));
 				hmap.put("originName",rset.getString("origin_name"));
@@ -208,10 +209,12 @@ public class ProductDao {
 			pstmt = con.prepareStatement(query);
 			
 			pstmt.setInt(1, investId);
-			pstmt.setInt(2, i.getPrice());
+			pstmt.setString(2, i.getStatus());
+			pstmt.setString(3, i.getPrice()+"");
+			pstmt.setString(4, i.getStatus());
 			
 			result2 = pstmt.executeUpdate();
-			System.out.println("result = "+result2);
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
