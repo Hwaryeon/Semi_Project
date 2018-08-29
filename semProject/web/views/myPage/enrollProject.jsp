@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.kh.sp.myPage.model.vo.*"%>
-    <% ArrayList<MypageDetail> list = (ArrayList<MypageDetail>)request.getAttribute("list"); %>
+    <% ArrayList<MypageDetail> list = (ArrayList<MypageDetail>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	System.out.println("그래서 현재 페이지는..? : " + currentPage);
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,18 +76,47 @@
 				<tr>
 					<td colspan="2" width="100px" height="50px"><%=i %>번</td>
 					<td colspan="6" width="300px" height="50px"><%= md.getP_name() %></td>
-					<td colspan="2" width="100px" height="50px">
-					<% if(md.getStatus().equals("going")) { %> 진행중
-					<% } else if(md.getStatus().equals("done")) {%>완료
-					<% } else if(md.getStatus().equals("submit")) {%>신청중<% } %>
+					<td colspan="2" width="100px" height="50px"><%= md.getStatus() %>
+					<%-- <% if(md.getStatus().equals("enroll")) { %> 승인대기중
+					<% } else if(md.getStatus().equals("enrollApproval")) {%>모집중
+					<% } else if(md.getStatus().equals("submit")) {%>신청중<% } %> --%>
 					</td>
 				</tr>
+				
 				<tr></tr>
 				<tr></tr>
 				<% i++; } %>
 			</table>
 		</div>
-
+		
+		<div id="paging" class="paging_comm" align="center">
+			<a onclick="location.href='<%=request.getContextPath()%>/select.ep?userid=<%= loginUser.getUserId()%>&userclass=<%= loginUser.getUserClass() %>'" class="link_fst" >
+							    	<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
+			<% if(currentPage <= 1) {%>
+				<a disabled class="link_prev" style="background:darkgray;"><</a>&#160;
+				
+			<% }else{ %>
+				<a onclick="location.href='<%=request.getContextPath()%>/select.ep?currentPage=<%=currentPage - 1%>&userid=<%= loginUser.getUserId() %>&userclass=<%= loginUser.getUserClass() %>'" class="link_prev" ><</a>&#160;
+			<% } %>
+			<% for(int p=startPage; p <= endPage; p++){ 
+				if(p == currentPage){
+			%>
+					<a disabled class="link_page" style="background:darkgray;"><%= p %></a>
+			
+			<% }else{ %> 
+					<a onclick="location.href='<%=request.getContextPath()%>/select.ep?currentPage=<%=p %>&userid=<%= loginUser.getUserId() %>&userclass=<%= loginUser.getUserClass() %>'" class="link_page"><%= p %></a>
+				<% } %>
+			<% } %>
+			
+			<% if(currentPage >= maxPage){ %>
+				&#160;<a disabled class="link_next" style="background:darkgray;">></a></a>&#160;
+			
+			<% }else { %>
+				&#160;<a onclick="location.href='<%=request.getContextPath()%>/select.ep?currentPage=<%=currentPage + 1%>&userid=<%= loginUser.getUserId() %>&userclass=<%= loginUser.getUserClass() %>'" class="link_next">></a>&#160;
+			
+			<% } %>
+				<a onclick="location.href='<%=request.getContextPath()%>/select.ep?currentPage=<%=maxPage%>&userid=<%= loginUser.getUserId() %>&userclass=<%= loginUser.getUserClass() %>'" class="link_lst">>></a>
+		</div>
 	</div>
 </body>
 </html>

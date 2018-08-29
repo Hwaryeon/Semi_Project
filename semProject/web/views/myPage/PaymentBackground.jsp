@@ -1,75 +1,120 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.sp.myPage.model.vo.*"%>
+    <% ArrayList<MypageDetail> list = (ArrayList<MypageDetail>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	System.out.println("그래서 현재 페이지는..? : " + currentPage);
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <style>
 .cmntitle {
 		margin-top:10%;
 	}
-#text {
-	background-color: white;
-	padding: 20px;
-	width: 60%;
-	border: 1px solid black;
+.product {
+	display: block;
 	margin-left:auto;
 	margin-right:auto;
-	margin-top:3%;
+	margin-bottom: 10px;
+	font-size:15px;
+	z-index: 1;
+	position: relative;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
-#btn:hover {
-	cursor: pointer;
+.container {
+	margin-left:auto;
+	margin-right:auto;
+	width:800px;
+	margin-top: 3%;
+	padding: 40px 40px;
+	font-family: Roboto, 'Noto Sans KR', sans-serif;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+}
+.product th, td{
+	text-align:center;
 }
 
-body {
-	height: 90%;
+.product td {
+	border:1px solid lightgray;
+	
 }
 
-ul {
-	list-style-type: circle;
-	text-align: left;
-}
-
-#payment {
-	border: 1px solid black;
-	text-align: center;
-}
 </style>
+<title>Insert title here</title>
 </head>
 <body>
 	<%@ include file="../common/headBar.jsp" %>
 	<h2 align="center" class="cmntitle">
-	결제내역</h2>
-	<div id="text">
-		<h4>님의 투자금</h4>
-		<h4>2018년 남은 투자 한도</h4>
-
-		<!-- 그래프 모양 넣기 -->
-
-		<!-- 테이블 넣기 -->
-		<table align="center" id="payment">
-			<tr>
-				<th>날짜</th>
-				<th>프로젝트명</th>
-				<th>금액</th>
-			</tr>
-			<tr>
-				<td>18/01/01</td>
-				<td>ㅁㅁㅁ</td>
-				<td>1,000,000</td>
-			</tr>
-			<tr>
-				<td>18/01/01</td>
-				<td>ㅁㅁㅁ</td>
-				<td>1,000,000</td>
-			</tr>
-			<tr>
-				<td>18/01/01</td>
-				<td>ㅁㅁㅁ</td>
-				<td>1,000,000</td>
-			</tr>
-		</table>
+	<% if(loginUser.getUserClass().equals("business")) { %>투자받은
+	<% } else { %>
+	결제<% } %> 내역</h2>
+	
+	<div class="container">
+		<div class="product">
+			<table align="center">
+				<tr>
+					<th colspan="2"	width="100px" height="50px">번호</th>
+					<th colspan="2" width="100px" height="50px">날짜</th>
+					<th colspan="6" width="300px" height="50px">상품명</th>
+					<th colspan="2" width="100px" height="50px">금액</th>
+				</tr>
+				<% int i=1;
+					for(MypageDetail md : list) { %>
+				<tr>
+					<td colspan="2" width="100px" height="50px"><%= i %>번</td>
+					<td colspan="2" width="100px" height="50px"><%= md.getPay_date() %></td>
+					<td colspan="6" width="300px" height="50px"><%= md.getP_name() %></td>
+					<td colspan="2" width="100px" height="50px"><%= md.getPrice() %></td>
+				</tr>
+				
+				<tr></tr>
+				<tr></tr>
+				<% i++; } %>
+			</table>
+		</div>
+		
+		<div id="paging" class="paging_comm" align="center">
+			<a onclick="location.href='<%=request.getContextPath()%>/show.pb?userid=<%= loginUser.getUserId()%>&userclass=<%=loginUser.getUserClass() %>'" class="link_fst" >
+							    	<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
+			<% if(currentPage <= 1) {%>
+				<a disabled class="link_prev" style="background:darkgray;"><</a>&#160;
+				
+			<% }else{ %>
+				<a onclick="location.href='<%=request.getContextPath()%>/show.pb?userid=<%= loginUser.getUserId()%>&userclass=<%=loginUser.getUserClass() %>&currentPage=<%=currentPage - 1%>'" class="link_prev" ><</a>&#160;
+			<% } %>
+			<% for(int p=startPage; p <= endPage; p++){ 
+				if(p == currentPage){
+			%>
+					<a disabled class="link_page" style="background:darkgray;"><%= p %></a> 
+			
+			<% }else{ %>
+					<a onclick="location.href='<%=request.getContextPath()%>/show.pb?userid=<%= loginUser.getUserId()%>&userclass=<%=loginUser.getUserClass() %>&currentPage=<%=p %>'" class="link_page"><%= p %></a>
+				<% } %>
+			<% } %>
+			
+			<% if(currentPage >= maxPage){ %>
+				&#160;<a disabled class="link_next" style="background:darkgray;">></a></a>&#160;
+			
+			<% }else { %>
+				&#160;<a onclick="location.href='<%=request.getContextPath()%>/show.pb?userid=<%= loginUser.getUserId()%>&userclass=<%=loginUser.getUserClass() %>&currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
+			
+			<% } %>
+				<a onclick="location.href='<%=request.getContextPath()%>/show.pb?userid=<%= loginUser.getUserId()%>&userclass=<%=loginUser.getUserClass() %>&currentPage=<%=maxPage%>'" class="link_lst">>></a>
+		</div>
 	</div>
 </body>
 </html>

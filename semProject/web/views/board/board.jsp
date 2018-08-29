@@ -9,7 +9,6 @@ int currentPage = pi.getCurrentPage();
 int maxPage = pi.getMaxPage();
 int startPage = pi.getStartPage();
 int endPage = pi.getEndPage();
-
 %>
 
 <!DOCTYPE html>
@@ -70,16 +69,7 @@ int endPage = pi.getEndPage();
    
   <%@ include file="../common/headBar.jsp" %>
     <div id="omcWrap" style="min-width:1400px;">
-    	<!-- header -->
-        
-   	    <!-- header -->
 		<main id="omcContainer" class="cont_main">
-			
-			<!-- aside --> 
-			
-			<!-- aside -->
-	    	
-			
 			<div id="cMain">
 				<article id="mContent" class="layout_community">
 					<header class="head_banner">

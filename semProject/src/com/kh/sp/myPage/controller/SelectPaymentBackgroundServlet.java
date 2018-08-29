@@ -10,23 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.sp.myPage.model.vo.PageInfo;
 import com.kh.sp.myPage.model.service.MypageDetailService;
 import com.kh.sp.myPage.model.vo.MypageDetail;
+import com.kh.sp.myPage.model.vo.PageInfo;
 
-@WebServlet("/select.ep")
-public class SelectEnrollProjectServlet extends HttpServlet {
+/**
+ * Servlet implementation class SelectPaymentBackgroundServlet
+ */
+@WebServlet("/show.pb")
+public class SelectPaymentBackgroundServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+    
+    public SelectPaymentBackgroundServlet() { super(); }
 
-	public SelectEnrollProjectServlet() {
-		super();
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		int userId = Integer.parseInt(request.getParameter("userid")); 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int userId = Integer.parseInt(request.getParameter("userid"));
 		String userClass = request.getParameter("userclass");
-		System.out.println(userClass);
+		//System.out.println(userClass);
 
 		// 페이징 처리
 		int currentPage; // 현재 페이지를 표시할 변수
@@ -45,7 +45,7 @@ public class SelectEnrollProjectServlet extends HttpServlet {
 		System.out.println("Servlet CurrentPage : " + currentPage);
 
 		// 전체 목록 갯수와 목록 전체를 리턴받음
-		int listCount = new MypageDetailService().getListCount(userId, userClass);
+		int listCount = new MypageDetailService().getListCountPayment(userId, userClass);
 		System.out.println("listCount : " + listCount);
 
 		// 한페이지에 보여줄 갯수
@@ -68,15 +68,15 @@ public class SelectEnrollProjectServlet extends HttpServlet {
 
 		// 페이지 정보를 공유할 vo객체 생성
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-		System.out.println("셀렉트 리스트 실행 전 currentPage : " + currentPage);
-		ArrayList<MypageDetail> list = new MypageDetailService().selectList(userId, currentPage, limit, userClass);
-		System.out.println("셀렉트 리스트 실행 후 currentPage : " + currentPage);
+		//System.out.println("셀렉트 리스트 실행 전 currentPage : " + currentPage);
+		ArrayList<MypageDetail> list = new MypageDetailService().selectListPayment(userId, currentPage, limit, userClass);
+		//System.out.println("셀렉트 리스트 실행 후 currentPage : " + currentPage);
 		String page = "";
 
 		if (list != null) {
-			page = "views/myPage/enrollProject.jsp";
+			page = "views/myPage/PaymentBackground.jsp";
 			request.setAttribute("list", list);
-			request.setAttribute("pi", pi);
+			request.setAttribute("pi", pi); 
 		} else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "참여/개설 프로젝트 조회 실패");
@@ -86,8 +86,11 @@ public class SelectEnrollProjectServlet extends HttpServlet {
 		view.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
