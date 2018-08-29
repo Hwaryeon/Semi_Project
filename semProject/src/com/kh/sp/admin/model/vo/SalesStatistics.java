@@ -5,16 +5,16 @@ import java.sql.Date;
 public class SalesStatistics {
     private String term;
     private int paymentCount;
-    private int paymentPrice;
+    private String paymentPrice;
     private int refundCount;
     private int paymentPercentage;
-    private int paymentCompletePrice;
-    private int netSales;
+    private String paymentCompletePrice;
+    private String netSales;
     
     public SalesStatistics(){}
 
-	public SalesStatistics(String term, int paymentCount, int paymentPrice, int refundCount, int paymentPercentage,
-			int paymentCompletePrice, int netSales) {
+	public SalesStatistics(String term, int paymentCount, String paymentPrice, int refundCount, int paymentPercentage,
+			String paymentCompletePrice, String netSales) {
 		super();
 		this.term = term;
 		this.paymentCount = paymentCount;
@@ -41,11 +41,11 @@ public class SalesStatistics {
 		this.paymentCount = paymentCount;
 	}
 
-	public int getPaymentPrice() {
+	public String getPaymentPrice() {
 		return paymentPrice;
 	}
 
-	public void setPaymentPrice(int paymentPrice) {
+	public void setPaymentPrice(String paymentPrice) {
 		this.paymentPrice = paymentPrice;
 	}
 
@@ -65,19 +65,19 @@ public class SalesStatistics {
 		this.paymentPercentage = paymentPercentage;
 	}
 
-	public int getPaymentCompletePrice() {
+	public String getPaymentCompletePrice() {
 		return paymentCompletePrice;
 	}
 
-	public void setPaymentCompletePrice(int paymentCompletePrice) {
+	public void setPaymentCompletePrice(String paymentCompletePrice) {
 		this.paymentCompletePrice = paymentCompletePrice;
 	}
 
-	public int getNetSales() {
+	public String getNetSales() {
 		return netSales;
 	}
 
-	public void setNetSales(int netSales) {
+	public void setNetSales(String netSales) {
 		this.netSales = netSales;
 	}
 
@@ -87,7 +87,7 @@ public class SalesStatistics {
 				+ ", refundCount=" + refundCount + ", paymentPercentage=" + paymentPercentage
 				+ ", paymentCompletePrice=" + paymentCompletePrice + ", netSales=" + netSales + "]";
 	}
-    
+
 	
     
 }

@@ -519,14 +519,7 @@ public class AdminDao {
 		int startRow = (currentPage -1 ) * limit + 1;
 		int endRow = startRow + limit - 1;
 		
-		if(term.equals("date")){
-			if(type.equals("all")){
-				query = prop.getProperty("selectAllSalesDate");
-			}else{
-				query = prop.getProperty("selectSalesTypeDate");
-			}
-			
-		}else if(term.equals("month")){
+		if(term.equals("month")){
 			if(type.equals("all")){
 				query = prop.getProperty("selectAllSalesMonth");
 			}else{
@@ -537,7 +530,6 @@ public class AdminDao {
 			if(type.equals("all")){
 				query = prop.getProperty("selectAllSalesYear");
 			}else{
-				//쿼리문 수정 요망
 				query = prop.getProperty("selectSalesTypeYear");
 			}
 			
@@ -571,13 +563,15 @@ public class AdminDao {
 				
 				result.setTerm(rset.getString("term"));
 				result.setPaymentCount(rset.getInt("payment_count"));
-				result.setPaymentPrice(rset.getInt("payment_price"));
+				result.setPaymentPrice(rset.getString("payment_price"));
 				result.setRefundCount(rset.getInt("refund_count"));
 				result.setPaymentPercentage(rset.getInt("payment_percentage"));
-				result.setPaymentCompletePrice(rset.getInt("payment_complete_price"));
-				result.setNetSales(rset.getInt("net_sales"));
+				result.setPaymentCompletePrice(rset.getString("payment_complete_price"));
+				result.setNetSales(rset.getString("net_sales"));
+				
 				
 				list.add(result);
+				System.out.println(result);
 			}
 			
 		} catch (SQLException e) {
@@ -742,18 +736,10 @@ public class AdminDao {
 
 		if(term == null){
 			if(type == null){
-				query = prop.getProperty("listSalesDateCount");
-			}else{
-				query = prop.getProperty("listSalesTypeDateCount");
-			}
-			
-		}else if(term.equals("month")){
-			if(type == null){
 				query = prop.getProperty("listSalesMonthCount");
 			}else{
 				query = prop.getProperty("listSalesTypeMonthCount");
 			}
-			
 		}else{
 			if(type == null){
 				query = prop.getProperty("listSalesYearCount");
