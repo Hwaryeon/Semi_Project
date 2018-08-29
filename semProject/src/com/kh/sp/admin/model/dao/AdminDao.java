@@ -389,6 +389,7 @@ public class AdminDao {
 			
 			result = pstmt.executeUpdate();
 		
+			 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -511,10 +512,10 @@ public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int 
 			int startRow = (currentPage -1) * limit + 1;
 			int endRow = startRow + limit -1;
 
+			pstmt.setString(1,  "심사");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-
 			rankList = new ArrayList<Member>();
 			rset = pstmt.executeQuery();
 			while(rset.next()){
@@ -540,15 +541,19 @@ public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int 
 
 	public int getInvRankListCount(Connection con) {
 
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		int listCount = 0;
 		ResultSet rset = null;
 
 		String query = prop.getProperty("invRankCount");
 
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, "심사");
+			
+			
+			rset =	pstmt.executeQuery();
 
 			if(rset.next()) {
 				listCount = rset.getInt(1);
@@ -557,7 +562,7 @@ public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
-			close(stmt);
+			close(pstmt);
 			close(rset);
 
 		}
@@ -569,18 +574,24 @@ public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int 
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = "";
-		
+		query = prop.getProperty("updateRank");
+
 		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, userId);
 			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "대기");
+			pstmt.setInt(2, userId);
+			
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
 		
-		return 0;
+		return result;
 	}
 
 

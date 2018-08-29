@@ -32,16 +32,16 @@ public class SelectOneMemberServlet extends HttpServlet {
 		
 		String page = null;
 		
-		if(m != null && user_id >= 100){
+		if(m != null && user_class.equals("general")){
 			page = "views/admin/searchMember.jsp";
 			request.setAttribute("m", m);
 			
-		}else if(m != null && user_id >= 50 && user_id < 100){
+		}else if(m != null &&user_class.equals("investor")){
 			page="views/admin/searchInvMember.jsp";
 			request.setAttribute("m", m);
 			
-		}else if(m != null && user_id >= 1 && user_id < 50){
-			page="views/admin/searchInvMember.jsp";
+		}else if(m != null && user_class.equals("business")){
+			page="views/admin/searchEnpMember.jsp";
 			request.setAttribute("m", m);
 		}else{
 			page = "views/common/errorPage.jsp";

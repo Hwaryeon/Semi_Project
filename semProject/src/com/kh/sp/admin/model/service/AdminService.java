@@ -164,6 +164,8 @@ public class AdminService {
 
 
 
+	
+	  	
 
 	//////////////////////////////여기서부터 별림이꺼///////////////////////////////////////
 		public ArrayList<SalesStatistics> selectSalesList(String type, String term, int currentPage, int limit) {
@@ -186,7 +188,8 @@ public class AdminService {
 			close(con);
 			return list;
 		}
-
+ 
+		 
 		public ArrayList<MemberStatistics> selectMemberList(String str, int currentPage, int limit) {
 			Connection con = getConnection();
 			ArrayList<MemberStatistics> list = new AdminDao().selectMemberList(con,str,currentPage,limit);
