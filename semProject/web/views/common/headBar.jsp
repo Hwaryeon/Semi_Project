@@ -215,8 +215,12 @@
 				
 				
 				<!-- 현재 테스트할겸 넣어놈 -->
-				<li><a id="getServerTestBtn" class="" onclick="messageList()">쪽지함</a></li>
-				<!--  -->
+				<li>
+				<a id="getServerTestBtn" class="" onclick="messageList()">
+				<img src="<%=request.getContextPath()%>/images/message/new.png" style="width:20px; height:20px; " id="newMsgArea" >
+				쪽지함
+				
+				</a></li>
 				
 				
 				
@@ -380,7 +384,7 @@ function send(){
 		
 		webSocket.send("");
 		
-		$inputMessage.val("");
+		$inputMessage.val("1");
 	
 }
 
@@ -401,8 +405,10 @@ function onMessage(event) {
 			success:function(data){
 				if(data > 0){
 					document.getElementById('getServerTestBtn').className="blinking";
+					document.getElementById('newMsgArea').style.display="";
 				}else{
 					document.getElementById('getServerTestBtn').className="";
+					document.getElementById('newMsgArea').style.display="none";
 				}
 				
 			},
@@ -415,6 +421,30 @@ function onMessage(event) {
 	
 }
 
+$(document).ready(function() { 
+	var id = "999";
+	
+	$.ajax({
+		url:"checkMessage",
+		data:{id:id},
+		type:"get",
+		success:function(data){
+			if(data > 0){
+				 document.getElementById('getServerTestBtn').className="blinking";
+				/* document.getElementById('newMsgArea').style.display="block"; */
+				document.getElementById('newMsgArea').style.display="";
+			}else{
+				/* document.getElementById('getServerTestBtn').className=""; */
+				document.getElementById('newMsgArea').style.display="none";
+			}
+			
+		},
+		error:function(data){
+			console.log("실패");
+		}
+	});
+	
+});
 
 </script>
 
