@@ -71,7 +71,7 @@ legend {
             </tr>
             
             <tr id="menubar" class="mypage enroll">
-               <td onclick="location.href='<%=request.getContextPath() %>/select.ep?userid='+<%= loginUser.getUserId() %>">
+               <td onclick="location.href='<%=request.getContextPath() %>/select.ep?userid=<%= loginUser.getUserId()%>&userclass=<%=loginUser.getUserClass() %>'">
               <% if(loginUser.getUserClass().equals("investor")) { %>참여 프로젝트
               <% } else if(loginUser.getUserClass().equals("business")) { %>개설 프로젝트
               <% } %> 
@@ -85,7 +85,10 @@ legend {
                <td onclick="location.href='<%=request.getContextPath() %>/views/myPage/updateRank.jsp'">투자등급 변경 신청</td>
             </tr>
             <tr id="menubar" class="investService payment">
-               <td onclick="location.href='<%= request.getContextPath() %>/views/myPage/PaymentBackground.jsp'">결제내역</td>
+               <td onclick="location.href='<%= request.getContextPath() %>/show.pb?userid=<%= loginUser.getUserId()%>&userclass=<%=loginUser.getUserClass() %>'">
+               <% if(loginUser.getUserClass().equals("investor")) { %>결제내역
+               <% } else if(loginUser.getUserClass().equals("business")) { %>투자받은 내역
+               <% } %></td>
             </tr>
             
             <tr class="certification">

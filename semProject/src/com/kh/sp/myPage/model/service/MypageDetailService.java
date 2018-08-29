@@ -3,6 +3,7 @@ package com.kh.sp.myPage.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.sp.board.model.dao.BoardDao;
 import com.kh.sp.board.model.vo.Attachment;
 import com.kh.sp.member.model.vo.Member;
 import com.kh.sp.myPage.model.dao.MypageDetailDao;
@@ -11,12 +12,13 @@ import static com.kh.sp.common.JDBCTemplate.*;
 
 public class MypageDetailService {
 
-	public ArrayList<MypageDetail> selectList(int userId) {
-		ArrayList<MypageDetail> list = new ArrayList<MypageDetail>();
+	public ArrayList<MypageDetail> selectList(int userId, int currentPage, int limit, String userClass) {
 		
+		//System.out.println("Service currentPage : " + currentPage);
 		Connection con = getConnection();
 		
-		list = new MypageDetailDao().selectList(con, userId);
+		
+		ArrayList<MypageDetail> list = new MypageDetailDao().selectList(con, userId, currentPage, limit, userClass);
 		
 		close(con);
 		
@@ -36,6 +38,37 @@ public class MypageDetailService {
 		}
 		close(con);
 		return result;
+	}
+
+	public int getListCount(int userid, String userclass) {
+		Connection con = getConnection();
+
+		int count = new MypageDetailDao().getListCount(con, userid, userclass);
+
+		close(con);
+
+		return count;
+	}
+
+	public int getListCountPayment(int userId, String userClass) {
+		Connection con = getConnection();
+		
+		int count = new MypageDetailDao().getListCountPayment(con, userId, userClass);
+		
+		close(con);
+		
+		return count;
+	}
+
+	public ArrayList<MypageDetail> selectListPayment(int userId, int currentPage, int limit, String userClass) {
+		Connection con = getConnection();
+		
+		
+		ArrayList<MypageDetail> list = new MypageDetailDao().selectListPayment(con, userId, currentPage, limit, userClass);
+		
+		close(con);
+		
+		return list;
 	}
 
 }
