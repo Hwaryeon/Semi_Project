@@ -47,6 +47,7 @@ public class WriteFundingServlet extends HttpServlet {
 		int result = new FundingService().insertFunding(p);
 		
 		if(result > 0){
+			request.setAttribute("product", p);
 			System.out.println("등록성공");
 			request.getRequestDispatcher("views/funding/funding1.jsp").forward(request, response);
 		}else{

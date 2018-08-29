@@ -244,7 +244,7 @@ textarea{
 				</div>
 				
 				<div class="text2">
-					<span class="title">4. 투자금 사용 계획</span> <br> <span
+					<span class="title">6. 투자금 사용 계획</span> <br> <span
 						style="margin-left: 25px;"> <textarea name="amount" cols="78" rows="5"
 							style="resize: none"></textarea>
 					</span>

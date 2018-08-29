@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*" %>
+    pageEncoding="UTF-8" import="com.kh.sp.funding.model.vo.*, java.util.*" %>
 
-<%HashMap<String,Object> hmap = (HashMap<String,Object>)request.getAttribute("hmap"); %>
+<%HashMap<String,Object> hmap = (HashMap<String,Object>)request.getAttribute("hmap");%>
     
 <!DOCTYPE html>
 <html>
@@ -264,7 +264,7 @@ textarea{
 			<div id="sort">채권</div>
 		</div>
 		<p id="p1">97<span id="p2">명 참여</span></p>
-		<p id="p1">194,500,000<span id="p2">원/목표액 185,000,000원</span></p>
+		<p id="p1">194,500,000<span id="p2">원/목표액 <%=hmap.get("closingAmount")%> 원</span></p>
 		<p id="p1">투자마감<span id="p2">(마감일 2018-xx-xx xx:00)</span></p>
 		<div id="bar"></div>
 		<div style=color:green;>xxx%</div>
@@ -274,7 +274,10 @@ textarea{
 		<br>
 		
 		<br><br><br><br><br><br><br><br><br>
-		
+		<div class="field_content article_intro" style="min-height:350px;">			
+							<%=hmap.get("content")%>				
+		</div>
+		<br><br><br><br><br><br><br><br><br>
 	</div>
 </div>
 <div class="integration">
@@ -416,11 +419,11 @@ textarea{
     	       IMP.init('imp67147309');  // 가맹점 식별 코드
 
     	       IMP.request_pay({
-    	          pg : 'inicis', // 결제방식
+    	           pg : 'inicis', // 결제방식
     	           pay_method : 'card',   // 결제 수단
     	           merchant_uid : 'merchant_' + new Date().getTime(),
     	           name : '<%=hmap.get("pId")%>',   // order 테이블에 들어갈 주문명 혹은 주문 번호
-    	           amount : '200', 	
+    	           amount : '<%=hmap.get("amount")%>', 	
     	           buyer_email : '<%=loginUser.getEmail()%>',// 구매자 email
     	           buyer_name :  '<%=loginUser.getUserName()%>'  // 구매자 이름 
     	       }, function(rsp) {

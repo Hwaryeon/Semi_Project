@@ -127,6 +127,7 @@ public class ProductDao {
 				hmap.put("pIntroduction",rset.getString("p_introduction"));
 				hmap.put("pPlan",rset.getString("p_plan"));
 				hmap.put("intro",rset.getString("intro"));
+				hmap.put("amount",rset.getInt("amount"));
 				hmap.put("fid",rset.getInt("fid"));
 				hmap.put("bid",rset.getInt("bid"));
 				hmap.put("originName",rset.getString("origin_name"));
@@ -137,7 +138,6 @@ public class ProductDao {
 				hmap.put("filePath",rset.getString("file_path"));
 				hmap.put("userId",rset.getInt("user_id"));
 				hmap.put("pType",rset.getInt("p_type"));
-				hmap.put("amount",rset.getInt("amount"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -210,10 +210,8 @@ public class ProductDao {
 			
 			pstmt.setInt(1, investId);
 			pstmt.setString(2, i.getStatus());
-			pstmt.setInt(3, i.getPrice());
+			pstmt.setString(3, i.getPrice()+"");
 			pstmt.setString(4, i.getStatus());
-			pstmt.setString(5, i.getStatus());
-			pstmt.setString(6, i.getStatus());
 			
 			result2 = pstmt.executeUpdate();
 			

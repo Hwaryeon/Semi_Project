@@ -33,12 +33,12 @@ public class ViewMainServlet extends HttpServlet {
 		ArrayList<Product> hotFList = new FundingService().hotFundingList();
 		ArrayList<Product> closeFList = new FundingService().closeFundingList();
 		
-<<<<<<< HEAD
+
 		if(list.size() > 0){
-=======
+
 			
 		/*if(list.size() > 0){*/
->>>>>>> refs/remotes/origin/sojin
+
 			request.setAttribute("list", list);
 			request.setAttribute("newFList", newFList);
 			request.setAttribute("mainFList", mainFList);
