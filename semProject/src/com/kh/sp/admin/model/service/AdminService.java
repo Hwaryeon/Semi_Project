@@ -164,6 +164,8 @@ public class AdminService {
 
 
 
+	
+	  	
 
 	//////////////////////////////여기서부터 별림이꺼///////////////////////////////////////
 		public ArrayList<SalesStatistics> selectSalesList(String type, String term, int currentPage, int limit) {
