@@ -124,7 +124,6 @@ display: inline-block;
    <tr>
    <th>
    <select>
-   <option id="date">일별</option>
    <option id="month">월별</option>
    <option id="year">년도별</option>
    </select>
@@ -134,7 +133,7 @@ display: inline-block;
    <th></th>
    <th></th>
    <th></th>
-   <th></th>
+   <th>금액 (단위:만원)</th>
    </tr>
    </thead>
    <tbody>
@@ -142,11 +141,11 @@ display: inline-block;
 				<tr>
 					<td><%= s.getTerm() %></td>
 					<td><%= s.getPaymentCount() %>건</td>
-					<td><%= s.getPaymentPrice() %>원</td>
+					<td><%= s.getPaymentPrice() %></td>
 					<td><%= s.getRefundCount() %>건</td>
 					<td><%= s.getPaymentPercentage() %>%</td>
-					<td><%= s.getPaymentCompletePrice() %>원</td>
-					<td><%= s.getNetSales() %>원</td>
+					<td><%= s.getPaymentCompletePrice() %></td>
+					<td><%= s.getNetSales() %></td>
 				</tr>
 				<% } %> 
    </tbody>
@@ -154,7 +153,7 @@ display: inline-block;
   </div>
   <%-- 페이지처리 --%>
 
-        <div class="pageArea" id="datePaging" align="center">
+		<div class="pageArea" id="monthPaging" align="center">
 			<a onclick="location.href='<%=request.getContextPath() %>/salesSt.adm?type=t3&currentPage=1'" class="link_fst">
 			<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
 			<% if (currentPage <= 1) { %>
@@ -174,34 +173,9 @@ display: inline-block;
 			<% if(currentPage >= maxPage) { %>
 				&#160;<a disabled class="link_next">></a>&#160;
 			<% } else { %>
-				&#160;<a onclick="location.href='<%=request.getContextPath()%>/salesSt.adm?type=t3&currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
+				&#160;<a onclick="location.href='<%=request.getContextPath()%>/salesSt.adm?ttype=t3&currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
 			<% } %>
 			<a onclick="location.href='<%=request.getContextPath()%>/salesSt.adm?type=t3&currentPage=<%=maxPage%>'" class="link_lst">>></a>
-		</div>
-        
-		<div class="pageArea" id="monthPaging" align="center">
-			<a onclick="location.href='<%=request.getContextPath() %>/salesSt.adm?term=month&type=t3&currentPage=1'" class="link_fst">
-			<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
-			<% if (currentPage <= 1) { %>
-				<a disabled class="link_prev"><</a>&#160;
-			<% } else { %>
-				<a onclick="location.href='<%=request.getContextPath() %>/salesSt.adm?term=month&type=t3&currentPage=<%=currentPage -1 %>'" class="link_prev"><</a>&#160;
-			<% } %>
-			
-			<% for(int p = startPage;p<= endPage;p++) { 
-					if(p==currentPage) { %>
-						<a disabled class="link_page" style="background:lightgray;"><%= p %></a>
-			<% 		} else { %>
-						<a onclick="location.href='<%=request.getContextPath()%>/salesSt.adm?term=month&type=t3&currentPage=<%=p %>'" class="link_page"><%= p %></a>
-			<%  	} %>
-			<% } %>
-			
-			<% if(currentPage >= maxPage) { %>
-				&#160;<a disabled class="link_next">></a>&#160;
-			<% } else { %>
-				&#160;<a onclick="location.href='<%=request.getContextPath()%>/salesSt.adm?term=month&type=t3&currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
-			<% } %>
-			<a onclick="location.href='<%=request.getContextPath()%>/salesSt.adm?term=month&type=t3&currentPage=<%=maxPage%>'" class="link_lst">>></a>
 		</div>
 		
 		<div class="pageArea" id="yearPaging" align="center">
@@ -233,34 +207,24 @@ display: inline-block;
 </div>
 <script>
 $(function(){
-	$("#datePaging").show();
 	$("#yearPaging").hide();
-	$("#monthPaging").hide();
+	$("#monthPaging").show();
 	
 
 	if(<%= num %>=="0"){
-		$("#date").attr("selected", "selected");
-		$("#yearPaging").hide();
-		$("#monthPaging").hide();
-		$("#datePaging").show();
-	}else if(<%= num %>=="1"){
 		$("#month").attr("selected", "selected");
 		$("#yearPaging").hide();
 		$("#monthPaging").show();
-		$("#datePaging").hide();
 	}else{
 		$("#year").attr("selected", "selected");
 		$("#yearPaging").show();
 		$("#monthPaging").hide();
-		$("#datePaging").hide();
 	}
 	
 	$('select').change(function(){
 	    if($("#year").is(':selected')) {
 	    	location.href = "<%= request.getContextPath() %>/salesSt.adm?term=year&type=t3&currentPage=1";
 	    }else if($("#month").is(':selected')){
-	    	location.href = "<%= request.getContextPath() %>/salesSt.adm?term=month&type=t3&currentPage=1";
-	    }else{
 	    	location.href = "<%= request.getContextPath() %>/salesSt.adm?type=t3&currentPage=1";
 	    }
 	});

@@ -60,54 +60,42 @@ public class SalesStatisticsServlet extends HttpServlet {
 	
 		if(type == null){
 			if(term == null){
-				list = new AdminService().selectSalesList("all", "date", currentPage, limit);
-				request.setAttribute("num","0");
-			}else if(term.equals("month")){
 				list = new AdminService().selectSalesList("all", "month", currentPage, limit);
-				request.setAttribute("num","1");
+				request.setAttribute("num","0");
 			}else{
 				list = new AdminService().selectSalesList("all", "year", currentPage, limit);
-				request.setAttribute("num","2");
+				request.setAttribute("num","1");
 			}
 		    request.setAttribute("list", list);
 		    request.getRequestDispatcher("views/admin/salesStatistics.jsp").forward(request, response);
 		
 		}else if(type.equals("t1")){
 			if(term == null){
-				list = new AdminService().selectSalesList("t1", "date", currentPage, limit);
-				request.setAttribute("num","0");
-			}else if(term.equals("month")){
 				list = new AdminService().selectSalesList("t1", "month", currentPage, limit);
-				request.setAttribute("num","1");
+				request.setAttribute("num","0");
 			}else{
 				list = new AdminService().selectSalesList("t1", "year", currentPage, limit);
-				request.setAttribute("num","2");
+				request.setAttribute("num","1");
 			}
 		    request.setAttribute("list", list);
 		    request.getRequestDispatcher("views/admin/salesStatistics2.jsp").forward(request, response);
 		}else if(type.equals("t2")){
 			if(term == null){
-				list = new AdminService().selectSalesList("t2", "date", currentPage, limit);
-				request.setAttribute("num","0");
-			}else if(term.equals("month")){
 				list = new AdminService().selectSalesList("t2", "month", currentPage, limit);
-				request.setAttribute("num","1");
+				request.setAttribute("num","0");
 			}else{
 				list = new AdminService().selectSalesList("t2", "year", currentPage, limit);
-				request.setAttribute("num","2");
+				request.setAttribute("num","1");
 			}
 		    request.setAttribute("list", list);
 		    request.getRequestDispatcher("views/admin/salesStatistics3.jsp").forward(request, response);
 		}else{
 			if(term == null){
-				list = new AdminService().selectSalesList("t3", "date", currentPage, limit);
-				request.setAttribute("num","0");
-			}else if(term.equals("month")){
 				list = new AdminService().selectSalesList("t3", "month", currentPage, limit);
-				request.setAttribute("num","1");
+				request.setAttribute("num","0");
 			}else{
 				list = new AdminService().selectSalesList("t3", "year", currentPage, limit);
-				request.setAttribute("num","2");
+				request.setAttribute("num","1");
 			}
 		    request.setAttribute("list", list);
 		    request.getRequestDispatcher("views/admin/salesStatistics4.jsp").forward(request, response);
