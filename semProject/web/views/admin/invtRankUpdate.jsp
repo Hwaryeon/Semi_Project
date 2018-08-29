@@ -108,7 +108,6 @@ table tr td a {
 
 		<form id="updateRankForm"
 			action="<%=request.getContextPath()%>/updateInvRank.adm" method="get">
-			<input type="hidden" id="userId" name="user_id">
 
 			<table align="center">
 				<thead>
@@ -125,9 +124,8 @@ table tr td a {
 					</tr>
 				</thead>
 				<%for (Member m : rankList) {%>
+					<input type="hidden" id="userId" name="user_id" value="<%=m.getUserId()%>">
 				<tr>
-					<input type="hidden" id="userId" name="user_id"
-						value="<%=m.getUserId()%>">
 					<td><%= m.getUserId() %></td>
 					<td><%= m.getUserName() %></td>
 					<td><%= m.getInvestorGrade() %></td>
@@ -207,7 +205,7 @@ table tr td a {
 							} else {
 						%>
 					<button
-						onclick="location.href='<%=request.getContextPath()%>//selectAllRank.adm?currentPage=<%=p%>'"><%=p%></button>
+						onclick="location.href='<%=request.getContextPath()%>/selectAllRank.adm?currentPage=<%=p%>'"><%=p%></button>
 					<%
 							}
 						%>
@@ -239,18 +237,30 @@ table tr td a {
 
 	</div>
 	<script>
+		$('.btn-xs').click(function(){
+			console.log("클릭");
+			var id = $(this).parent().parent().children().eq(0).text();
+			
+			console.log("id : " +id); 
+			$("#userId").val(id); 
+			$("#updateRankForm").submit(); 
+
+		});
+		
+
 	
+		<%-- function updateRank(){
+		
 
-		function updateRank(){
-
-			$("#updateRankForm").submit();
 			
 
 			var user_id = <%=m.getUserId()%>;
-			$("#userId").val(user_id);
+			var user_id = document.getElementById('userId').value;
+			/* $("#userId").val(user_id); */
+			console.log("user_id : " + user_id);
 			
 		
-		};
+		}; --%>
 	
 	</script>
 
