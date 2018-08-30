@@ -47,7 +47,8 @@ public class BoardDao {
 			/*pstmt.setInt(1, board.getwNo());*/
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getText());
-			pstmt.setString(3, "공지사항");
+			//3번 공지사항
+			pstmt.setString(3, "3");
 			pstmt.setString(4, board.getaText());
 			pstmt.setInt(5, board.getFileNum());
 			pstmt.setInt(6, board.getpView());

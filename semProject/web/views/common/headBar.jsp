@@ -86,7 +86,7 @@
 
 .headr-wrap .gnb-user {
 	display: inline-block;
-	margin-left: 4%;
+	margin-left: 3%;
 	width: auto;
 	height: 100%;
 	vertical-align: top;
@@ -200,8 +200,14 @@
 					<li><a href="<%=request.getContextPath()%>/views/funding/project.jsp">프로젝트 신청</a></li>
 					<li><a href="<%=request.getContextPath()%>/views/qna/guideMain.jsp">이용가이드</a></li>
 					<li><a href="<%=request.getContextPath()%>/allBoard">공지사항</a></li>
-					<li><a href="<%=request.getContextPath()%>/views/myPage/mypageIndex.jsp">마이페이지</a></li>
-					<li><a href="<%=request.getContextPath()%>/selectAllMember.adm">관리자페이지</a></li>
+					
+					<% if(loginUser != null) { %>
+						<% if(loginUser.getUserId() == 0) { %>
+							<li><a href="<%=request.getContextPath()%>/selectAllMember.adm">관리자페이지</a></li>
+						<% }else{ %>
+							<li><a href="<%=request.getContextPath()%>/views/myPage/mypageIndex.jsp">마이페이지</a></li>
+						<% } %>
+					<% } %>
 				</ul>
 			</div>
 
@@ -211,24 +217,17 @@
 			
 				<ul >
 				
-				
-				
-				
-				<!-- 현재 테스트할겸 넣어놈 -->
-				<li>
-				<a id="getServerTestBtn" class="" onclick="messageList()">
-				<img src="<%=request.getContextPath()%>/images/message/new.png" style="width:20px; height:20px; " id="newMsgArea" >
-				쪽지함
-				
-				</a></li>
-				
-				
-				
-				
 					<% if(loginUser == null) { %>
+					
 						<li><a href="<%=request.getContextPath()%>/views/member/loginForm.jsp">로그인</a></li>
 						<li><a href="<%=request.getContextPath()%>/views/member/memberJoinForm.jsp">회원가입</a></li>
 					<% } else { %>
+							<li>
+						<a id="getServerTestBtn" class="" onclick="messageList()">
+						<img src="<%=request.getContextPath()%>/images/message/new.png" style="width:20px; height:20px; " id="newMsgArea" >
+						쪽지함
+						
+						</a></li>
 						<li><%= loginUser.getNickName() %> 님</li>
 						<li><a href="<%=request.getContextPath()%>/logout.me">로그아웃</a></li>
 					<% } %>
@@ -384,7 +383,7 @@ function onMessage(event) {
 		var id = document.getElementById('loginId').value;
 		
 		$.ajax({
-			url:"checkMessage",
+			url:"<%=request.getContextPath()%>/checkMessage",
 			data:{id:id},
 			type:"get",
 			success:function(data){
@@ -410,7 +409,7 @@ $(document).ready(function() {
 	 var id = document.getElementById('loginId').value; 
 	
 	$.ajax({
-		url:"checkMessage",
+		url:"<%=request.getContextPath()%>/checkMessage",
 		data:{id:id},
 		type:"get",
 		success:function(data){

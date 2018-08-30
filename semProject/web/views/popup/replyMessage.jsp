@@ -216,9 +216,79 @@ button {
 			 
 			 
 			  } );
+		 
+		 function closePopup(){
+
+				var result = document.getElementById('msgId').submit();
+				
+					alert("메시지 전송 완료");
+					
+					connection();
+					
+			}
 		
 	
 	</script>
+	
+	<script>
+			
+			var webSocket = null;
+			
+			var $inputMessage = $('#inputMessage');
+			
+			function connection(){
+				webSocket = new WebSocket('ws://localhost:8001'+
+				'<%=request.getContextPath()%>/unicast');
+				
+				// 웹 소켓을 통해 연결이 이루어 질 때 동작할 메소드
+				webSocket.onopen = function(event){
+					
+					
+					// 웹 소켓을 통해 만든 채팅 서버에 참여한 내용을
+					// 메시지로 전달
+					// 내가 보낼 때에는 send / 서버로부터 받을 때에는 message
+					
+					webSocket.send("메세지 전송되냐??");
+				};
+				
+				// 서버로부터 메시지를 전달 받을 때 동작하는 메소드
+				webSocket.onmessage = function(event){
+					onMessage(event);
+				}
+				
+				// 서버에서 에러가 발생할 경우 동작할 메소드
+				webSocket.onerror = function(event){
+					onError(event);
+				}
+				
+				// 서버와의 연결이 종료될 경우 동작하는 메소드
+				webSocket.onclose = function(event){
+					//onClose(event);
+				}
+			}
+		
+			function send(){
+					
+					webSocket.send("메세지 전송되냐??");
+					
+					$inputMessage.val("");
+				
+			}
+			
+			// 서버로부터 메시지를 받을 때 수행할 메소드
+			function onMessage(event) {
+				var message = event.data;
+				
+				/* // 보낸 사람의 ID
+				var sender = message[0];
+				
+				// 전달한 내용
+				var content = message[1]; */
+				
+				/* alert(message); */
+			}
+			
+		</script>
 
 
 </body>
