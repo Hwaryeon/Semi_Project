@@ -29,7 +29,7 @@ public class readMessageServlet extends HttpServlet {
 		
 		System.out.println("type : " + type);
 		
-		Message m = new MessageService().readMessage(msgId);
+		Message m = new MessageService().readMessage(msgId, type);
 	
 		request.setAttribute("message", m);
 		request.setAttribute("type", type);

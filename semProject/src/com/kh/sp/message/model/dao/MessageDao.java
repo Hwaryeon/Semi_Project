@@ -79,6 +79,8 @@ public class MessageDao {
 				m.setReceive_id(rset.getInt("receive_id"));
 				m.setSend_date(rset.getDate("send_date"));
 				m.setReadYN(rset.getString("readyn"));
+				m.setReceive_UserName(rset.getString("user_name"));
+				m.setReceive_Nickname(rset.getString("nick_name"));
 				
 				System.out.println("m: " + m);
 				
@@ -178,6 +180,8 @@ public class MessageDao {
 				m.setSend_date(rset.getDate("send_date"));
 				m.setRead_date(rset.getDate("read_date"));
 				m.setReadYN(rset.getString("readyn"));
+				m.setReceive_UserName(rset.getString("user_name"));
+				m.setReceive_Nickname(rset.getString("nick_name"));
 				
 				
 				list.add(m);
@@ -330,7 +334,8 @@ public class MessageDao {
 				m.setSend_date(rset.getDate("send_date"));
 				m.setRead_date(rset.getDate("read_date"));
 				m.setReadYN(rset.getString("readyn"));
-				
+				m.setReceive_UserName(rset.getString("user_name"));
+				m.setReceive_Nickname(rset.getString("nick_name"));
 				
 				list.add(m);
 			}

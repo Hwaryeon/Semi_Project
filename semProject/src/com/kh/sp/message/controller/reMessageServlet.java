@@ -20,11 +20,13 @@ public class reMessageServlet extends HttpServlet {
 		System.out.println("??????");
 		
 		String userId = request.getParameter("user_id");
+		String nickname = request.getParameter("nickname");
 		
 		System.out.println("userid : " +userId);
+		System.out.println("nickname : " + nickname);
 		
 		request.setAttribute("userId", userId);
-		
+		request.setAttribute("nickname", nickname);
 		request.getRequestDispatcher("views/popup/replyMessage.jsp").forward(request, response);
 		
 	}

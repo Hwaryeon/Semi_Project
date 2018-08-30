@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, com.kh.sp.message.model.vo.*, com.kh.sp.board.model.vo.*"%>
+	pageEncoding="UTF-8" import="java.util.*, com.kh.sp.message.model.vo.*, com.kh.sp.board.model.vo.*, com.kh.sp.member.model.vo.*"%>
 <%
 
  String userId = (String)request.getAttribute("userId");
-
+Member loginUser = (Member)session.getAttribute("loginUser");
 %>
 <!doctype html>
 <html >
@@ -159,7 +159,7 @@ button {
 			  
 			  <div>
 			    <!-- 메시지 보내는 회원의 아이디 -->
-				    <input type="hidden" id="user_id" name="user_id" value="999">
+				    <input type="hidden" id="user_id" name="user_id" value="<%=loginUser.getUserId()%>">
 			    </div>
 			    
 			    <div class="form-group">

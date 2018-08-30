@@ -171,7 +171,24 @@ button {
 			    <div class="col-sm-10">
 			    <!-- 메시지 보내는 회원의 아이디 -->
 				    <input type="hidden" id="user_id" name="user_id" value="<%=message.getUser_id() %>">
-			      <input type="text" class="form-control" id="nickname" name="nickname" placeholder="<%=message.getUser_id() %>" readonly >
+				   <%--  <% if(message.getReceive_Nickname() != null){ %>
+														<input type="text" class="form-control" id="nickname" 
+			      	name="nickname" placeholder="<%= message.getReceive_Nickname() %>" 
+			      	value="<%= message.getReceive_Nickname() %>"
+			      	readonly >
+													<% }else if(message.getReceive_UserName() != null){ %>
+													
+													<input type="text" class="form-control" id="nickname" 
+			      	name="nickname" placeholder="<%= message.getReceive_UserName() %>"
+			      	value="<%= message.getReceive_Nickname() %>"
+			      	 readonly >
+														
+													<% }else{ %>
+														<input type="text" class="form-control" id="nickname" 
+			      	name="nickname" placeholder="익명"
+			      	value="<%= message.getReceive_Nickname() %>"
+			      	 readonly >
+													<% } %> --%>
 			    </div>
 			  </div>
 			  

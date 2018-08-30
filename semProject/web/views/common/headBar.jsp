@@ -284,38 +284,22 @@
 			</div>
 		</div>
 </div>
+<% if(loginUser != null ) {  %>
+	<input type="hidden" id="loginId" name="loginId" value="<%=loginUser.getUserId()%>"> 
+<% }else{ %>
+	<input type="hidden" id="loginId" name="loginId" value="-1"> 
+<% } %>
+
 <script>
-	
-	/* $(document).ready(function() { 
-		
-		var id = "999";
-		
-		$.ajax({
-			url:"checkMessage",
-			data:{id:id},
-			type:"get",
-			success:function(data){
-				if(data > 0){
-					document.getElementById('getServerTestBtn').className="blinking";
-				}else{
-					document.getElementById('getServerTestBtn').className="";
-				}
-				
-			},
-			error:function(data){
-				console.log("실패");
-			}
-		});
-		
-	});
-	 */
 	
 	</script>
 
 	<script>
 		function messageList(){
 		
-		var popUrl = "<%=request.getContextPath()%>/listMessage";	//팝업창에 출력될 페이지 URL
+		var userId = document.getElementById('loginId').value;
+		
+		var popUrl = "<%=request.getContextPath()%>/listMessage?userId="+userId;	//팝업창에 출력될 페이지 URL
 
 		var popOption = "width=895, height=720, resizable=no, left=300, top=50, scrollbars=no, status=no; ";    //팝업창 옵션(optoin)
 
@@ -396,7 +380,8 @@ function onMessage(event) {
 	var message = event.data;
 	
 	$(document).ready(function() { 
-		var id = "999";
+	
+		var id = document.getElementById('loginId').value;
 		
 		$.ajax({
 			url:"checkMessage",
@@ -422,7 +407,7 @@ function onMessage(event) {
 }
 
 $(document).ready(function() { 
-	var id = "999";
+	 var id = document.getElementById('loginId').value; 
 	
 	$.ajax({
 		url:"checkMessage",

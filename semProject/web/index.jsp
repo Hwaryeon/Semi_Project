@@ -505,11 +505,12 @@ $(function(){
 			href="#outer" title="맨 아래로"> <img src="images/common/bottom.PNG"></a>
 
 
-		<%-- <% if(loginUser != null) { %>
-			<% } %> --%>
-			<div id="messageArea"> 
-			 	<a onclick="messageopen()">1:1 메세지 보내기</a>
-			 </div>
+			<% if(loginUser != null) { %>
+		
+				<div id="messageArea"> 
+				 	<a onclick="messageopen()">1:1 메세지 보내기</a>
+				 </div>
+			<% } %>
 
 	</div>
 	<input type="hidden" value="11" id="chat_id" size="10"/>
@@ -524,9 +525,8 @@ $(function(){
 		
 	
 	
-	</script> --%>
+	</script> 
 
-	</script>
 
 
 	<%@ include file="/views/common/footer.jsp" %>

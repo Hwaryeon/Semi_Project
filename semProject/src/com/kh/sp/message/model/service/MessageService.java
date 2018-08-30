@@ -29,13 +29,13 @@ public class MessageService {
 		return result;
 	}
 
-	public Message readMessage(int msgId) {
+	public Message readMessage(int msgId, String type) {
 		
 		Connection con = getConnection();
 		
 		Message m = new MessageDao().readMessage(con, msgId);
 		
-		if(m != null){
+		if(m != null && (Integer.parseInt(type) == 1)){
 			int result = new MessageDao().readYMessage(con, msgId);
 			
 			if(result > 0){
