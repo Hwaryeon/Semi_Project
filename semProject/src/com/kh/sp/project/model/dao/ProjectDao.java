@@ -70,6 +70,7 @@ public class ProjectDao {
 			pstmt.setString(2, a.getProjectIntro());
 			pstmt.setString(3, a.getProjectPlan());
 			pstmt.setString(4, a.getIntro());
+			pstmt.setInt(5, a.getAmount());
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -103,7 +104,6 @@ public class ProjectDao {
 			close(rset);
 			
 		}
-		
 				
 		return pid;
 	}
@@ -125,8 +125,80 @@ public class ProjectDao {
 			if(i == 0) level = 0;
 			else level = 1;
 			
+			int pType = 0;
+			if( i == 0) pType = 0;
+			else pType = i + 2;
+			
 			pstmt.setInt(4, level);
-			pstmt.setInt(5, fileList.get(i).getPid());
+			pstmt.setInt(5, pType);
+			pstmt.setInt(6, fileList.get(i).getPid());
+			result = pstmt.executeUpdate();
+			
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		
+		close(pstmt);
+	}
+		return result;
+	}
+	public int insertAttachment2(Connection con, ArrayList<Attachment2> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		
+		String query = prop.getProperty("insertAttachment2");
+		
+	try {	
+		for(int i = 0; i< fileList.size(); i++) {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, fileList.get(i).getOriginName());
+			pstmt.setString(2, fileList.get(i).getChangeName());
+			pstmt.setString(3, fileList.get(i).getFilePath());
+			
+			int level = 0;
+			if(i == 0) level = 0;
+			else level = 1;
+			int pType=3;
+			pstmt.setInt(4, level);
+			pstmt.setInt(5, pType);
+			pstmt.setInt(6, fileList.get(i).getPid());
+			result = pstmt.executeUpdate();
+			
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		
+		close(pstmt);
+	}
+		return result;
+	}
+	
+	public int insertAttachment3(Connection con, ArrayList<Attachment2> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		
+		String query = prop.getProperty("insertAttachment3");
+		
+	try {	
+		for(int i = 0; i< fileList.size(); i++) {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, fileList.get(i).getOriginName());
+			pstmt.setString(2, fileList.get(i).getChangeName());
+			pstmt.setString(3, fileList.get(i).getFilePath());
+			
+			int level = 0;
+			if(i == 0) level = 0;
+			else level = 1;
+			int pType=4;
+			pstmt.setInt(4, level);
+			pstmt.setInt(5, pType);
+			pstmt.setInt(6, fileList.get(i).getPid());
 			result = pstmt.executeUpdate();
 			
 		}

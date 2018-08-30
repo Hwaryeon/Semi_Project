@@ -1,0 +1,58 @@
+package com.kh.sp.admin.controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.kh.sp.admin.model.service.AdminService;
+
+@WebServlet("/updateInvRank.adm")
+public class UpdateInvRankServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public UpdateInvRankServlet() {
+        super();
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	System.out.println("투자자 등급 변경 서블릿 호출");
+	
+	int userId = Integer.parseInt(request.getParameter("user_id"));
+	
+	System.out.println(userId);
+	int result = new AdminService().updateRank(userId);
+	
+	String page = "";
+	
+	if(result > 0){
+		page = "views/admin/invtRankUpdate.jsp";
+		request.setAttribute("msg", "성공성공");
+		
+	}else{
+		page ="views/common/errorPage.jsp";
+		request.setAttribute("msg", "업데이트 실패");
+	}
+	RequestDispatcher view = request.getRequestDispatcher(page);
+	view.forward(request, response);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

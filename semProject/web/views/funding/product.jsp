@@ -1,19 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*" %>
+    pageEncoding="UTF-8" import="com.kh.sp.funding.model.vo.*, java.util.*,com.kh.sp.board.model.vo.*" %>
 
-<%HashMap<String,Object> hmap = (HashMap<String,Object>)request.getAttribute("hamp"); %>
+<%HashMap<String,Object> hmap = (HashMap<String,Object>)request.getAttribute("hmap");%>
     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>상품 페이지</title>
+<link rel="stylesheet" href="css/bootstrap.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="http://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="js/bootstrap.js"></script>
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <style>
 
@@ -73,7 +81,28 @@
          background-color:#000;
          opacity: 0.8;
     }
-
+	
+	#popupDiv3 {
+    top : 0px;
+    position: absolute;
+    background: #fff;
+    width: 400px;
+    height: 220px;
+    display: none; 
+    text-align:center;
+    font-size:17pt;
+    }
+    
+    #popup_mask3 { 
+        position: fixed;
+        width: 100%;
+        height: 1000px;
+        top: 0px;
+        left: 0px;
+         display: none; 
+         background-color:#000;                
+         opacity: 0.8;
+    }
 
 .ttitle{
 	margin-bottom : 30px;
@@ -163,7 +192,7 @@ ul.tabs li.current{
 }
 .tab-content{
 	display : none;
-	background : #ededed;
+	background : white;
 	padding : 15px;
 }
 
@@ -242,6 +271,28 @@ textarea{
 	text-align:justify;
 }
 
+.paging_comm a {
+    cursor:pointer;
+}
+
+
+.layer{
+	color: #000000a3;
+    font-size: 20px;
+    font-weight: 400;
+
+}
+
+.btn_search{
+	cursor:pointer;
+}
+
+.body_group:hover{
+	background:#c3bebe;
+	cursor:pointer;
+	color:blue;
+}
+
 </style>
 
 
@@ -264,7 +315,7 @@ textarea{
 			<div id="sort">채권</div>
 		</div>
 		<p id="p1">97<span id="p2">명 참여</span></p>
-		<p id="p1">194,500,000<span id="p2">원/목표액 185,000,000원</span></p>
+		<p id="p1">194,500,000<span id="p2">원/목표액 <%=hmap.get("closingAmount")%> 원</span></p>
 		<p id="p1">투자마감<span id="p2">(마감일 2018-xx-xx xx:00)</span></p>
 		<div id="bar"></div>
 		<div style=color:green;>xxx%</div>
@@ -274,7 +325,10 @@ textarea{
 		<br>
 		
 		<br><br><br><br><br><br><br><br><br>
-		
+		<%-- <div class="field_content article_intro" style="min-height:350px;">			
+							<%=hmap.get("content")%>				
+		</div> --%>
+		<br><br><br><br><br><br><br><br><br>
 	</div>
 </div>
 <div class="integration">
@@ -283,12 +337,48 @@ textarea{
 			<li class="notitle"></li>
 			<li class="tab-link current" data-tab="tab-1">상품소식</li>
 			<li class="tab-link" data-tab="tab-2">상품Q&A</li>
-			<li classs="tab-link" data-tab="tab-3">투자자모임</li>
+			<li class="tab-link" data-tab="tab-3">투자자모임</li>
 		</ul>
 		
 		<hr>
 		<div id="tab-1" class="tab-content current">
-			상품소식 내용
+		<div class="container">
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>날짜</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>165</td>
+					<td>제목</td>
+					<td>인소진</td>
+					<td>2016.12.12</td>
+				</tr>
+				<tr>
+					<td>165</td>
+					<td>제목</td>
+					<td>인소진</td>
+					<td>2016.12.12</td>
+				</tr>
+				</tbody>
+			</table>
+			<hr/>
+			<button id="summernote"><a href="<%=request.getContextPath()%>/views/funding/insertnews.jsp">글쓰기</button>
+			
+			<div class="text-center">
+				<ul class="pagination">
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+				</ul>
+			</div>
 		</div>
 		<div id="tab-2" class="tab-content">
 			<div class="qsample">
@@ -334,13 +424,29 @@ textarea{
 <div id ="popup_mask2" ></div>
     
     <div id="popupDiv2">
-    	<div> 투자 상품 명 : 맛있는 쿠키</div>
-    	<div> 투자 금액 : 500원</div>
-    	<div> 구좌수 선택 : </div>
+    	<div> 투자 상품 명 : <%=hmap.get("pName") %></div>
+    	<div> 투자 금액 : <%=hmap.get("amount") %>원</div>
+    	  
     	<button id="confirm">결제 확인</button>
-    	<button id="popCloseBtn">취소</button>
+    	<button id="popCloseBtn2">취소</button>
     </div>
+   
+<div id ="popup_mask3" ></div>
     
+    <div id="popupDiv3">
+    	
+    	
+    	<div class="title1">타임라인 내용</div>
+		<div class="title2" style="border: 1.2px solid black;">
+
+			<input type="text" style="width: 100%; color: #8C8C8C;"
+				name="fundingTitle" id="fundingTitle" value="" />
+    	
+				
+    	<button id="confirm2">작성 완료</button>
+    	<button id="popCloseBtn3">취소</button>
+    </div>
+      
     <script>
     
     $(document).ready(function(){
@@ -385,13 +491,11 @@ textarea{
             $("body").css("overflow","hidden");
         });
         
-        $("#popCloseBtn").click(function(event){
+        $("#popCloseBtn2").click(function(event){
             $("#popup_mask2").css("display","none"); 
             $("#popupDiv2").css("display","none"); 
             $("body").css("overflow","auto");
         });
-     
-    
     });
 
     $(document).ready(function(){
@@ -405,11 +509,59 @@ textarea{
     		$(this).addClass('current');
     		$("#"+tab_id).addClass('current');
     	});
-
     });
  	
-    IMP.init('imp67147309');
+    $(document).ready(function(){
+    $("#confirm").click(function(event){
+    	 alert('전송');
+    	 
+    	    var IMP = window.IMP; // 생략가능
+    	       IMP.init('imp67147309');  // 가맹점 식별 코드
+
+    	       IMP.request_pay({
+    	           pg : 'inicis', // 결제방식
+    	           pay_method : 'card',   // 결제 수단
+    	           merchant_uid : 'merchant_' + new Date().getTime(),
+    	           name : '<%=hmap.get("pId")%>',   // order 테이블에 들어갈 주문명 혹은 주문 번호
+    	           amount : '<%=hmap.get("amount")%>', 	
+    	           buyer_email : '<%=loginUser.getEmail()%>',// 구매자 email
+    	           buyer_name :  '<%=loginUser.getUserName()%>'  // 구매자 이름 
+    	       }, function(rsp) {
+    	       if ( rsp.success ) { // 성공시
+    	          var msg = '결제가 완료되었습니다.';
+    	          msg += '고유ID : ' + rsp.imp_uid;
+    	         
+    	          msg += '결제 금액 : ' + rsp.paid_amount;
+    	          
+    	          $("#popup_mask2").css("display","none"); 
+    	            $("#popupDiv2").css("display","none"); 
+    	            $("body").css("overflow","auto");
+    	          //console.log();
+    	          var contextPath = '<%= request.getContextPath() %>';
+    	          var investId = rsp.imp_uid;
+    	          var userId = '<%=hmap.get("userId")%>';
+    	          var pId = '<%=hmap.get("pId")%>';
+    	          var price = rsp.paid_amount;
+    	          var status = rsp.status;
+    	          var loc = contextPath + '/Insert.pm?investId=' + investId + "&userId=" + userId + "&pId=" + pId + "&price=" + price + "&status=" + status;
+    	          
+    	          location.href=loc;
+    	       
+    	          /*m_redirect_url : // 결제 완료 후 보낼 컨트롤러의 메소드명 */
+    	       } else { // 실패시
+    	          var msg = '결제에 실패하였습니다.';
+    	          msg += '에러내용 : ' + rsp.error_msg;
+    	          
+    	       }
+    	    });
+    	 });
+    });
     
+  <%--   $(function(){
+		$("#summernote").click(function(){
+			location.href="<%=request.getContextPath()%>/insertnews.jsp";
+		})
+	}) --%>
     
     </script>
 </body>

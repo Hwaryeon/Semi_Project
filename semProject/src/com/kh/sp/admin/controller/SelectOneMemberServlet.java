@@ -23,8 +23,8 @@ public class SelectOneMemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("셀렉트 원 오니?");
 		
-		int user_id = Integer.parseInt(request.getParameter("userId2"));
-		String user_class = request.getParameter("userClass2");
+		int user_id = Integer.parseInt(request.getParameter("user_id"));
+		String user_class = request.getParameter("user_class");
 		
 		System.out.println("user_id = " + user_id);
 		System.out.println("user_class = " + user_class);
@@ -32,16 +32,16 @@ public class SelectOneMemberServlet extends HttpServlet {
 		
 		String page = null;
 		
-		if(m != null && user_id >= 100){
+		if(m != null && user_class.equals("general")){
 			page = "views/admin/searchMember.jsp";
 			request.setAttribute("m", m);
 			
-		}else if(m != null && user_id >= 50 && user_id < 100){
+		}else if(m != null &&user_class.equals("investor")){
 			page="views/admin/searchInvMember.jsp";
 			request.setAttribute("m", m);
 			
-		}else if(m != null && user_id >= 1 && user_id < 50){
-			page="views/admin/searchInvMember.jsp";
+		}else if(m != null && user_class.equals("business")){
+			page="views/admin/searchEnpMember.jsp";
 			request.setAttribute("m", m);
 		}else{
 			page = "views/common/errorPage.jsp";

@@ -547,9 +547,8 @@ cursor : pointer;
 					<ul class="lnb_depth">			
 						<li id="9 6b bgvt6 vg6tfvg7"class="link_depth" onclick="memberAll();">회원 조회</li>
 						<li id="comJoi_li" onclick="blackList();">블랙리스트 관리</li>
-						<li id="comFaq_li"><a href="/sp/views/admin/invtRankUpdate.jsp"
-							class="link_depth">투자자 등급
-								관리</a></li>
+						<li id="comFaq_li" class="link_depth" onclick="invRankAll();">
+						투자자 등급 관리</li>
 					</ul></li>
 				<li id="gstRoot"><a href="guest.jsp#gstRewPay"
 					class="link_cont">펀딩 관리</a>
@@ -587,6 +586,9 @@ function memberAll(){
 }
 function blackList(){
 	location.href="<%=request.getContextPath()%>/blackSelectAll.adm";
+}
+function invRankAll(){
+	location.href="<%=request.getContextPath()%>/selectAllRank.adm"
 }
 
 </script>

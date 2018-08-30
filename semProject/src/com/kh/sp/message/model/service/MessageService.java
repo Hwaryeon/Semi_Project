@@ -29,11 +29,22 @@ public class MessageService {
 		return result;
 	}
 
-	public Message readMessage(int msgId) {
+	public Message readMessage(int msgId, String type) {
 		
 		Connection con = getConnection();
 		
 		Message m = new MessageDao().readMessage(con, msgId);
+		
+		if(m != null && (Integer.parseInt(type) == 1)){
+			int result = new MessageDao().readYMessage(con, msgId);
+			
+			if(result > 0){
+				commit(con);
+			}else{
+				rollback(con);
+			}
+			
+		}
 		
 		close(con);
 		
@@ -76,6 +87,52 @@ public class MessageService {
 		Connection con = getConnection();
 
 		list = new MessageDao().listMsg(con, currentPage, limit, user_id);
+
+		close(con);
+
+		return list;
+	}
+
+	public int checkMessage(int id) {
+		
+		Connection con = getConnection();
+		
+		int result = new MessageDao().checkMessage(con, id);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int reWriteMsg(Message m) {
+		
+		Connection con = getConnection();
+		
+		int result = new MessageDao().reWriteMsg(con, m);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int getListCount2(int user_id) {
+		
+		Connection con = getConnection();
+
+		int count = new MessageDao().getListCount2(con, user_id);
+
+		close(con);
+
+		return count;
+	}
+
+	public ArrayList<Message> listMsg2(int currentPage, int limit, int user_id) {
+		
+		ArrayList<Message> list = new ArrayList<Message>();
+
+		Connection con = getConnection();
+
+		list = new MessageDao().listMsg2(con, currentPage, limit, user_id);
 
 		close(con);
 

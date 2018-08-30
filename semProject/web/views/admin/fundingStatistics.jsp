@@ -14,6 +14,11 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
 %>
 <html>
 <head>
+<script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js">
+      </script>
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['corechart','line']});  
+      </script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -101,10 +106,16 @@ display: inline-block;
 	
 
 <div id="text">
-<div id="container">
+<div id="totalCon">
+<div id="container2" class="con1">
    <ul class="nav nav-tabs">
 				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 개설 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 				<li role="presentation" style="font-size: 14px;"><a href="<%=request.getContextPath()%>/fundingSt2.adm">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 성공 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button id="chart" class="form-control btn btn-primary" style="width:100px;">차트 보기</button></li>
    </ul>
    <br>
    
@@ -149,8 +160,7 @@ display: inline-block;
    </tbody>
   </table>
   </div>
-</div>
-<%-- 페이지처리 --%>
+  <%-- 페이지처리 --%>
         
 		<div class="pageArea" id="monthPaging" align="center">
 			<a onclick="location.href='<%=request.getContextPath() %>/fundingSt.adm?currentPage=1'" class="link_fst">
@@ -201,6 +211,13 @@ display: inline-block;
 			<% } %>
 			<a onclick="location.href='<%=request.getContextPath()%>/fundingSt.adm?term=year&currentPage=<%=maxPage%>'" class="link_lst">>></a>
 		</div>
+		</div>
+</div>
+<div id="chartCon" style="display:none;">
+<div align="right"><button id="list" class="form-control btn btn-primary" style="width:100px">표로 보기</button>&nbsp;&nbsp;&nbsp;</div>
+<div id="container" class="con2" style="height:470px;">
+</div>
+</div>
 </div>
 <script>
     $(function(){
@@ -225,120 +242,61 @@ display: inline-block;
     	    }
     	});
     });
-   /*  $(function(){
-	   $("select").change(function(){
-		   $.ajax({
-	  		    url:"fundingSt.adm",
-	  			type:"get",
-	  			success:function(data){
-					console.log(data);
-					
-					$tableBody = $("#result tbody");
-					$tableBody.html('');
-					
-					$.each(data, function(index, value){
-						
-						var $tr = $("<tr>");
-						var $termTd = $("<td>").text(value.term);
-						var $enrollCountTd = $("<td>").text(value.enrollCount);
-						var $openCountTd = $("<td>").text(value.openCount);
-						var $approvalRateTd = $("<td>").text(value.approvalRate);
-						var $type1OpenCountTd = $("<td>").text(value.type1OpenCount);
-						var $type2OpenCountTd = $("<td>").text(value.type2OpenCount);
-						var $type3OpenCountTd = $("<td>").text(value.type3OpenCount);
-						
-					
-						$tr.append($termTd);
-						$tr.append($enrollCountTd);
-						$tr.append($openCountTd);
-						$tr.append($approvalRateTd);
-						$tr.append($type1OpenCountTd);
-						$tr.append($type2OpenCountTd);
-						$tr.append($type3OpenCountTd);
-						$tableBody.append($tr);
-					})
-					
-				},
-				error:function(){
-					console.log('에러');
-				}
-	  		  });
-	   });  */
-       /* $("#month").selected(function(){
-    	   $.ajax({
-  			 url:"fundingSt.adm",
-  			 data:{term:"month"},
-  			 type:"post",
-  			success:function(data){
-				console.log(data);
-				
-				$tableBody = $("#result tbody");
-				$tableBody.html('');
-				
-				$.each(data, function(index, value){
-					
-					var $tr = $("<tr>");
-					var $termTd = $("<td>").text(value.term);
-					var $enrollCountTd = $("<td>").text(value.enrollCount);
-					var $openCountTd = $("<td>").text(value.openCount);
-					var $approvalRateTd = $("<td>").text(value.approvalRate);
-					var $type1OpenCountTd = $("<td>").text(value.type1OpenCount);
-					var $type2OpenCountTd = $("<td>").text(value.type2OpenCount);
-					var $type3OpenCountTd = $("<td>").text(value.type3OpenCount);
-					
-				
-					$tr.append($termTd);
-					$tr.append($enrollCountTd);
-					$tr.append($openCountTd);
-					$tr.append($approvalRateTd);
-					$tr.append($type1OpenCountTd);
-					$tr.append($type2OpenCountTd);
-					$tr.append($type3OpenCountTd);
-					$tableBody.append($tr);
-				})
-				
-			},
-			error:function(){
-				console.log('에러');
-			}
-  		  });
-
-		   
-	   });
- 
-	   $("#year").selected(function(){
-		  $.ajax({
-			 url:"fundingSt.adm",
-			 data:{term:"year"},
-			 type:"post",
-			 success:function(data){
-					console.log(data);
-					
-					$tableBody = $("#result tbody");
-					$tableBody.html('');
-					
-					$.each(data, function(index, value){
-						
-						var $tr = $("<tr>");
-						var $noTd = $("<td>").text(value.userNo);
-						var $nameTd = $("<td>").text(decodeURIComponent(value.userName));
-						var $nationTd = $("<td>").text(decodeURIComponent(value.userNation));
-					
-						$tr.append($noTd);
-						$tr.append($nameTd);
-						$tr.append($nationTd);
-						$tableBody.append($tr);
-					})
-					
-				},
-				error:function(){
-					console.log('에러');
-				}
-		  });
-		   
-	   }); 
-   });*/
+    
+    $("#chart").click(function(){
+		makeChart();
+		$("#totalCon").hide();
+		$("#chartCon").show();
+	});
+	$("#list").click(function(){
+		$("#chartCon").hide();
+		$("#totalCon").show();
+	});
+  
 </script>
+<script language = "JavaScript">
+    function makeChart(){
+         function drawChart() {
+            // Define the chart to be drawn.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Term');
+            data.addColumn('number', '등록 건수');
+            data.addColumn('number', '개설 건수');
+            data.addColumn('number', '80%이상 상품개설');
+            data.addColumn('number', '100%도달 상품개설');
+            data.addColumn('number', '100%초과 상품개설');
+            data.addRows([
+            <%for(int i = 0; i < list.size(); i++){
+                if(i == 0){%>
+               ['<%= list.get(i).getTerm() %>',<%= list.get(i).getEnrollCount() %>,
+               <%= list.get(i).getOpenCount() %>, <%= list.get(i).getType1OpenCount() %>,
+               <%= list.get(i).getType2OpenCount() %>,<%= list.get(i).getType3OpenCount() %>]
+               <%}else{%>
+               ,['<%= list.get(i).getTerm() %>',<%= list.get(i).getEnrollCount() %>,
+                   <%= list.get(i).getOpenCount() %>, <%= list.get(i).getType1OpenCount() %>,
+                   <%= list.get(i).getType2OpenCount() %>,<%= list.get(i).getType3OpenCount() %>]
+               <%}}%>
+            ]);
+               
+            // Set chart options
+            var options = {'title' : '펀딩 개설 통계',
+               hAxis: {
+                  title: 'Term'
+               },
+               vAxis: {
+                  title: '펀딩 건수'
+               },   
+               'width':900,
+               'height':450	  
+            };
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.LineChart(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+    }
+      </script>
 
 <%--  <div><%@ include file="../common/footer.jsp" %></div> --%>
 

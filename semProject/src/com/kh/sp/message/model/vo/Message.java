@@ -15,6 +15,9 @@ public class Message implements Serializable{
 	private Date read_date;
 	private String readYN;
 	
+	private String receive_UserName;
+	private String receive_Nickname;
+	
 	public Message(){}
 	
 	public Message(String title, String msg, int user_id) {
@@ -31,7 +34,15 @@ public class Message implements Serializable{
 		this.msg = msg;
 		this.user_id = user_id;
 	}
-
+	
+	
+	public Message(String title, String msg, int user_id, int receive_id){
+		this.title = title;
+		this.msg = msg;
+		this.user_id = user_id;
+		this.receive_id = receive_id;
+	}
+	
 	public Message(int msg_id, String title, String msg, int user_id, int receive_id, Date send_date, String readYN) {
 		super();
 		this.msg_id = msg_id;
@@ -54,6 +65,21 @@ public class Message implements Serializable{
 		this.send_date = send_date;
 		this.read_date = read_date;
 		this.readYN = readYN;
+	}
+	
+	public Message(int msg_id, String title, String msg, int user_id, int receive_id, Date send_date, Date read_date,
+			String readYN, String receive_UserName, String receive_Nickname) {
+		super();
+		this.msg_id = msg_id;
+		this.title = title;
+		this.msg = msg;
+		this.user_id = user_id;
+		this.receive_id = receive_id;
+		this.send_date = send_date;
+		this.read_date = read_date;
+		this.readYN = readYN;
+		this.receive_UserName = receive_UserName;
+		this.receive_Nickname = receive_Nickname;
 	}
 
 	public int getMsg_id() {
@@ -120,12 +146,29 @@ public class Message implements Serializable{
 		this.read_date = read_date;
 	}
 
+	public String getReceive_UserName() {
+		return receive_UserName;
+	}
+
+	public void setReceive_UserName(String receive_UserName) {
+		this.receive_UserName = receive_UserName;
+	}
+
+	public String getReceive_Nickname() {
+		return receive_Nickname;
+	}
+
+	public void setReceive_Nickname(String receive_Nickname) {
+		this.receive_Nickname = receive_Nickname;
+	}
+
 	@Override
 	public String toString() {
 		return "Message [msg_id=" + msg_id + ", title=" + title + ", msg=" + msg + ", user_id=" + user_id
 				+ ", receive_id=" + receive_id + ", send_date=" + send_date + ", read_date=" + read_date + ", readYN="
-				+ readYN + "]";
+				+ readYN + ", receive_UserName=" + receive_UserName + ", receive_Nickname=" + receive_Nickname + "]";
 	}
 
+	
 	
 }

@@ -12,7 +12,29 @@ public class Application implements java.io.Serializable{
 	private String projectPrepare;
 	private String intro;
 	private String titleImg;
+	private int amount;
 	
+	
+	public Application(int pId, Date processingDate, Date applicationDate, String dlineCode, String projectPlan,
+			String projectIntro, String projectPrepare, String intro, String titleImg, int amount) {
+		super();
+		this.pId = pId;
+		this.processingDate = processingDate;
+		this.applicationDate = applicationDate;
+		this.dlineCode = dlineCode;
+		this.projectPlan = projectPlan;
+		this.projectIntro = projectIntro;
+		this.projectPrepare = projectPrepare;
+		this.intro = intro;
+		this.titleImg = titleImg;
+		this.amount = amount;
+	}
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
 	public String getIntro() {
 		return intro;
 	}
@@ -86,7 +108,8 @@ public class Application implements java.io.Serializable{
 	public String toString() {
 		return "Application [pId=" + pId + ", processingDate=" + processingDate + ", applicationDate=" + applicationDate
 				+ ", dlineCode=" + dlineCode + ", projectPlan=" + projectPlan + ", projectIntro=" + projectIntro
-				+ ", projectPrepare=" + projectPrepare + ", intro=" + intro + ", titleImg=" + titleImg + "]";
+				+ ", projectPrepare=" + projectPrepare + ", intro=" + intro + ", titleImg=" + titleImg + ", amount="
+				+ amount + "]";
 	}
 	
 	

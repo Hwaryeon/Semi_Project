@@ -32,7 +32,7 @@ public class BoardDao {
 			e.printStackTrace();
 		}
 	}
-
+ 
 	public int insertBoard(Connection con, Board board) {
 
 		int result = 0;
@@ -42,6 +42,7 @@ public class BoardDao {
 		String query = prop.getProperty("insertBoard");
 		
 		try {
+			
 			pstmt = con.prepareStatement(query);
 			/*pstmt.setInt(1, board.getwNo());*/
 			pstmt.setString(1, board.getTitle());

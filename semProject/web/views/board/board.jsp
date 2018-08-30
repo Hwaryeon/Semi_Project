@@ -153,12 +153,13 @@ int endPage = pi.getEndPage();
 									
 								</div>
 							</div>
-							
-								<div id= "registText" class="field_foot_btn">
-									<a href="<%=request.getContextPath()%>/views/board/boardWriter.jsp" class="link_list">글등록</a>
-								</div>
-							
-								
+								<% if(loginUser != null) { %>
+									<% if(loginUser.getUserId() == 0 ){ %>
+										<div id= "registText" class="field_foot_btn">
+											<a href="<%=request.getContextPath()%>/views/board/boardWriter.jsp" class="link_list">글등록</a>
+										</div>
+									<% } %>
+								<% } %>
 								
 									<%-- 페이지 처리 --%>
 		<div id="paging" class="paging_comm" >

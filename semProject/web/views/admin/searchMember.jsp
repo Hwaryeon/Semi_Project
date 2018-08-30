@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.kh.sp.member.model.vo.*"%>
 <%
-	Member m = (Member)request.getAttribute("m"); %>
+	Member m = (Member) request.getAttribute("m");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,10 +114,11 @@ th, td {
 					</tr>
 				</thead>
 				<tr>
-					<td><span><%=m.getUserId() %></span></td>
-					<td><span><%=m.getUserClass() %></span></td>
-					<td><span><%=m.getUserName() %></span></td>
-					<td><span><%=m.getNickName() %></span></td>
+
+					<td><span><%=m.getUserId()%></span></td>
+					<td><span><%=m.getUserClass()%></span></td>
+					<td><span><%=m.getUserName()%></span></td>
+					<td><span><%=m.getNickName()%></span></td>
 				</tr>
 			</table>
 			<br> <br> <br> <br> <br>
@@ -131,9 +133,10 @@ th, td {
 				</thead>
 
 				<tr>
-					<td><span><%=m.getEmail() %></span></td>
-					<td><span><%=m.getPhone() %></span></td>
-					<td><span><%=m.getEnrollDate() %></span></td>
+
+					<td><span><%=m.getEmail()%></span></td>
+					<td><span><%=m.getPhone()%></span></td>
+					<td><span><%=m.getEnrollDate()%></span></td>
 				</tr>
 			</table>
 		</form>
@@ -154,26 +157,52 @@ th, td {
 		<!-- Trigger the modal with a button -->
 
 		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">블랙리스트로 추가 하시겠습니까?</h4>
-					</div>
-					<div class="modal-body">
-						<p>블랙리스트 사유를 입력해 주세요.</p>
-						<input type="text" id="blackText">
-					</div>
-					<div class="modal-footer">
-						<button type="button" onclick="location.href='#'"
-							class="btn btn-default" data-dismiss="modal">추가하기</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">취소하기</button>
+		<form id="insertBlackForm"
+			action="<%=request.getContextPath()%>/insertBlackList.adm"
+			method="get">
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">블랙리스트로 추가 하시겠습니까?</h4>
+						</div>
+						<div class="modal-body">
+							<p>블랙리스트 사유를 입력해 주세요.</p>
+							<input type="text" name="text" id="blackText">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+						onclick="insertBlackList();"  id="plusBtn"
+								data-dismiss="modal">추가하기</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">취소하기</button>
+							<input type="hidden"  id="userId" name="user_id"
+								value="<%=m.getUserId()%>">
+						</div>
+
 					</div>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 
+
+	<script>
+	function insertBlackList() {
+			var user_id =<%=m.getUserId()%>;
+			
+			console.log(user_id);
+			$("#userId").val(user_id);
+   
+			
+			$("#insertBlackForm").submit();
+ 		};
+
+		/* function insertBlackList(){
+		$("#userId2").val($("#userId").val());
+		$("#insertBlackForm").submit();
+		} */
+	</script>
 </body>
 </html>

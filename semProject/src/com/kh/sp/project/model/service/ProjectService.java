@@ -48,6 +48,10 @@ public class ProjectService {
 		
 		int result2 = new ProjectDao().insertAttachment(con,fileList);
 		
+		/*int result3 = new ProjectDao().insertAttachment2(con, fileList);
+		
+		int result4 = new ProjectDao().insertAttachment3(con, fileList);*/
+		
 		if(result1 > 0 && result2 > 0) {
 			commit(con);
 			result = 1;

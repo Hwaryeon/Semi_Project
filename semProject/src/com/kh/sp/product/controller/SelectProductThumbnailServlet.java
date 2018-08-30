@@ -32,7 +32,7 @@ public class SelectProductThumbnailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//System.out.println("왔어?");
+		
 		
 		ArrayList<HashMap<String, Object>> list
 			= new ProductService().selectProductList();

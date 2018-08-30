@@ -25,7 +25,10 @@ String msg = (String)request.getAttribute("msg");
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 
 
-<script >
+<script>
+
+
+
 $(function(){
 	$('#news-container').vTicker({ 
 		speed: 500,
@@ -138,6 +141,7 @@ $(function(){
 				</strong> 
 					</div>
 			
+
 			<div class="funding_area1" >
 			
 				<%int k=0; %>
@@ -166,13 +170,22 @@ $(function(){
                                            <span class="amount"><%=str %>원 달성</span>
                                            
                                            	
-                                           	<span class="days"><%=p.getOpenDate() %>일 남음</span>
+                                           	<span class="days">
+											<% if(p.getOpenDate() < 1) { %>
+                                           		0일 남음
+                                           	<% }else{ %>
+                                           	<%=p.getOpenDate() %>일 남음
+                                           	<% } %>
+
+											</span>
                                            
                                        </dd>
                                    </dl>
                                 </div>
+
 					</div>
 					<div class="fCon" style="background:#a7d7ec;">
+
 						<p class="category"><em>마감임박</em><em class="type" >투자</em></p>
 						<p class="title"><%= p.getP_name() %>
 						<p class="pText"><%= p.getCorporate_name()%></p>
@@ -187,23 +200,11 @@ $(function(){
 				</div>
 				
 				
-				<% } %>
+				<% } %> 
 				
-			<!-- 	<div class="funding_p">
-					<div class="fPic" style="height:330px;">
-					<em class="picks-img">
-					<span class="scale" >
-					<img src="images/main/event.jpg" style="width: 100%; height:330px;">
-					</span>
-					</em>
-					</div>
-					<div class="fCon" style="height:170px; background:#c5e4c6; /* padding: 33px 20px; */">
-						<p class="title" id="fTitle">구매후기쓰고<br>선물 받으세요!</p>
-						<p class="text" id="fText">이미 지난 이벤트지만 <br> 노출/SNS 광고 혜택 받으세요!</p>
-					</div>
-				</div> -->
-				
+
 			</div>
+
 			
 			</div>
 		</div>
@@ -234,7 +235,6 @@ $(function(){
 					<div class="fPic2">
 					<em class="picks-img">
 					<span class="scale" >
-					<!-- <img src="images/main/h1_3.jpg" style="width: 100%; height:225px;"> -->
 					
 					<img src="<%=request.getContextPath()%>/board_uploadFiles/<%=p.getChange_name() %>" style="width: 100%; height:225px;">
 					
@@ -254,7 +254,13 @@ $(function(){
                                            <span class="amount"><%=str %>원 달성</span>
                                            
                                            <%-- <%=p.getTotal_amount() %> --%>	
-                                           	<span class="days"><%=p.getOpenDate() %>일 남음</span>
+                                           	<span class="days">
+                                           	<% if(p.getOpenDate() < 1) { %>
+                                           		0일 남음
+                                           	<% }else{ %>
+                                           	<%=p.getOpenDate() %>일 남음
+                                           	<% } %>
+                                           	</span>
                                            
                                        </dd>
                                    </dl>
@@ -330,7 +336,13 @@ $(function(){
                                            <span class="amount"><%=str %>원 달성</span>
                                            
                                            <%-- <%=p.getTotal_amount() %> --%>	
-                                           	<span class="days"><%=p.getOpenDate() %>일 남음</span>
+                                           	<span class="days">
+                                           	<% if(p.getOpenDate() < 1) { %>
+                                           		0일 남음
+                                           	<% }else{ %>
+                                           	<%=p.getOpenDate() %>일 남음
+                                           	<% } %>
+                                           	</span>
                                            
                                        </dd>
                                    </dl>
@@ -399,7 +411,14 @@ $(function(){
                                            <span class="amount"><%=str %>원 달성</span>
                                            
                                            <%-- <%=p.getTotal_amount() %> --%>	
-                                           	<span class="days"><%=p.getOpenDate() %>일 남음</span>
+                                           	<span class="days">
+											<% if(p.getOpenDate() < 1) { %>
+                                           		0일 남음
+                                           	<% }else{ %>
+                                           	<%=p.getOpenDate() %>일 남음
+                                           	<% } %>
+
+											</span>
                                            
                                        </dd>
                                    </dl>
@@ -487,39 +506,31 @@ $(function(){
 			href="#outer" title="맨 아래로"> <img src="images/common/bottom.PNG"></a>
 
 
+			<% if(loginUser != null) { %>
 		
-			<div id="messageArea">
-			 	<a onclick="messageopen()">1:1 메세지 보내기</a>
-			</div>
+				<div id="messageArea"> 
+				 	<a onclick="messageopen()">1:1 메세지 보내기</a>
+				 </div>
+			<% } %>
 
 	</div>
+	<input type="hidden" value="11" id="chat_id" size="10"/>
+	
 	<script>
 		$(".noticeArea").click(function(){
 			
-			var wNo = $(this).children('#wNo').val();
-			location.href='<%=request.getContextPath()%>/boardRead.jsp?num='+wNo;
-		});
+			var wNo = $(this).children('#wNo').val(); 
+			 location.href='<%=request.getContextPath()%>/boardRead.jsp?num='+wNo;
+		}); 
 			
-		function messageopen(){
-			
-			var popUrl = "<%=request.getContextPath()%>/views/popup/writeMessage.jsp";	//팝업창에 출력될 페이지 URL
-
-			var popOption = "width=450, height=390, resizable=no, left=500, top=200, scrollbars=no, status=no; ";    //팝업창 옵션(optoin)
-
-				window.open(popUrl,"",popOption);
-
-
-			
-		}
+		
 	
-		$(function(){
-	    	<%if(msg != null){ %>
-	    	    alert('<%= msg %>');
-	    	<% } %>
-	    });  
-		
-		
-	</script>
+	
+	</script> 
+
+
+
 	<%@ include file="/views/common/footer.jsp" %>
+
 </body>
 </html>

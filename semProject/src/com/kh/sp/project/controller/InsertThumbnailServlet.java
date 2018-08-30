@@ -61,22 +61,29 @@ public class InsertThumbnailServlet extends HttpServlet {
 			
 			while(files.hasMoreElements()) {
 				String name = files.nextElement();
+				String name2 = files.nextElement();
+				String name3 = files.nextElement();
 				
 				saveFiles.add(multiRequest.getFilesystemName(name));
 				originFiles.add(multiRequest.getOriginalFileName(name));
+				saveFiles.add(multiRequest.getFilesystemName(name2));
+				originFiles.add(multiRequest.getOriginalFileName(name2));
+				saveFiles.add(multiRequest.getFilesystemName(name3));
+				originFiles.add(multiRequest.getOriginalFileName(name3));
 			}
 			
 			String intro = multiRequest.getParameter("intro");
 			String projectPrepare = multiRequest.getParameter("projectPrepare");
 			String projectIntro = multiRequest.getParameter("projectIntro");
 			String projectPlan = multiRequest.getParameter("projectPlan");
-			
+			int amount = Integer.parseInt(multiRequest.getParameter("amount"));
 			
 			Application a = new Application();
 			a.setIntro(intro);
 			a.setProjectPrepare(projectPrepare);
 			a.setProjectIntro(projectIntro);
 			a.setProjectPlan(projectPlan);
+			a.setAmount(amount);
 			
 			
 			
