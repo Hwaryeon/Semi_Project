@@ -21,6 +21,7 @@ import java.util.Properties;
 import com.kh.sp.product.model.dao.ProductDao;
 import com.kh.sp.product.model.vo.Invest;
 import com.kh.sp.board.model.vo.Attachment;
+import com.kh.sp.board.model.vo.Board;
 import com.kh.sp.funding.model.vo.Product;
 
 
@@ -224,6 +225,29 @@ public class ProductDao {
 		}
 		
 		return result2;
+	}
+	public int insertNews(Connection con, Board b) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertNews");
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1,b.getTitle());
+			pstmt.setString(2,b.getaText());
+			
+			result=pstmt.executeUpdate();
+			
+			System.out.println(result);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 	
 	}

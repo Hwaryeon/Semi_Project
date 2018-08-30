@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.sp.funding.model.vo.*, java.util.*" %>
+    pageEncoding="UTF-8" import="com.kh.sp.funding.model.vo.*, java.util.*,com.kh.sp.board.model.vo.*" %>
 
 <%HashMap<String,Object> hmap = (HashMap<String,Object>)request.getAttribute("hmap");%>
     
@@ -7,13 +7,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>상품 페이지</title>
+<link rel="stylesheet" href="css/bootstrap.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="http://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="js/bootstrap.js"></script>
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <style>
 
@@ -73,7 +81,28 @@
          background-color:#000;
          opacity: 0.8;
     }
-
+	
+	#popupDiv3 {
+    top : 0px;
+    position: absolute;
+    background: #fff;
+    width: 400px;
+    height: 220px;
+    display: none; 
+    text-align:center;
+    font-size:17pt;
+    }
+    
+    #popup_mask3 { 
+        position: fixed;
+        width: 100%;
+        height: 1000px;
+        top: 0px;
+        left: 0px;
+         display: none; 
+         background-color:#000;                
+         opacity: 0.8;
+    }
 
 .ttitle{
 	margin-bottom : 30px;
@@ -163,7 +192,7 @@ ul.tabs li.current{
 }
 .tab-content{
 	display : none;
-	background : #ededed;
+	background : white;
 	padding : 15px;
 }
 
@@ -242,6 +271,28 @@ textarea{
 	text-align:justify;
 }
 
+.paging_comm a {
+    cursor:pointer;
+}
+
+
+.layer{
+	color: #000000a3;
+    font-size: 20px;
+    font-weight: 400;
+
+}
+
+.btn_search{
+	cursor:pointer;
+}
+
+.body_group:hover{
+	background:#c3bebe;
+	cursor:pointer;
+	color:blue;
+}
+
 </style>
 
 
@@ -274,9 +325,9 @@ textarea{
 		<br>
 		
 		<br><br><br><br><br><br><br><br><br>
-		<div class="field_content article_intro" style="min-height:350px;">			
+		<%-- <div class="field_content article_intro" style="min-height:350px;">			
 							<%=hmap.get("content")%>				
-		</div>
+		</div> --%>
 		<br><br><br><br><br><br><br><br><br>
 	</div>
 </div>
@@ -291,7 +342,43 @@ textarea{
 		
 		<hr>
 		<div id="tab-1" class="tab-content current">
-			상품소식 내용
+		<div class="container">
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>날짜</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>165</td>
+					<td>제목</td>
+					<td>인소진</td>
+					<td>2016.12.12</td>
+				</tr>
+				<tr>
+					<td>165</td>
+					<td>제목</td>
+					<td>인소진</td>
+					<td>2016.12.12</td>
+				</tr>
+				</tbody>
+			</table>
+			<hr/>
+			<button id="summernote"><a href="<%=request.getContextPath()%>/views/funding/insertnews.jsp">글쓰기</button>
+			
+			<div class="text-center">
+				<ul class="pagination">
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+				</ul>
+			</div>
 		</div>
 		<div id="tab-2" class="tab-content">
 			<div class="qsample">
@@ -343,6 +430,22 @@ textarea{
     	<button id="confirm">결제 확인</button>
     	<button id="popCloseBtn2">취소</button>
     </div>
+   
+<div id ="popup_mask3" ></div>
+    
+    <div id="popupDiv3">
+    	
+    	
+    	<div class="title1">타임라인 내용</div>
+		<div class="title2" style="border: 1.2px solid black;">
+
+			<input type="text" style="width: 100%; color: #8C8C8C;"
+				name="fundingTitle" id="fundingTitle" value="" />
+    	
+				
+    	<button id="confirm2">작성 완료</button>
+    	<button id="popCloseBtn3">취소</button>
+    </div>
       
     <script>
     
@@ -393,8 +496,6 @@ textarea{
             $("#popupDiv2").css("display","none"); 
             $("body").css("overflow","auto");
         });
-     
-    
     });
 
     $(document).ready(function(){
@@ -408,7 +509,6 @@ textarea{
     		$(this).addClass('current');
     		$("#"+tab_id).addClass('current');
     	});
-
     });
  	
     $(document).ready(function(){
@@ -456,7 +556,13 @@ textarea{
     	    });
     	 });
     });
-   
+    
+  <%--   $(function(){
+		$("#summernote").click(function(){
+			location.href="<%=request.getContextPath()%>/insertnews.jsp";
+		})
+	}) --%>
+    
     </script>
 </body>
 <br><br><br><br><br><br>
