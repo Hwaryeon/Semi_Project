@@ -237,6 +237,7 @@ public class ProductDao {
 			pstmt.setString(1,b.getTitle());
 			pstmt.setString(2,b.getaText());
 			
+			
 			result=pstmt.executeUpdate();
 			
 			System.out.println(result);
