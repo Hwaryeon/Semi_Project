@@ -29,6 +29,8 @@ public class sendMessageServlet extends HttpServlet {
 		System.out.println(msg);
 		System.out.println(id);*/
 		
+		System.out.println("서블릿에서 id : " + id);
+		
 		Message m = new Message(title, msg, id);
 		
 		int result = new MessageService().sendMessage(m);

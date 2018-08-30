@@ -24,7 +24,7 @@ String pageType = (String)request.getAttribute("pageType");
 
 %>
 <!doctype html>
-<html lang="en">
+<html >
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -121,12 +121,17 @@ String pageType = (String)request.getAttribute("pageType");
 										</div>
 
 										<form>
-											<% for(Message m : list) { 
-										
-									%>
+											<% for(Message m : list) { %>
 											<div class="tbl_row body_group important">
 												<div class="tbl_cell cell_num" id="bNo">
-													<%= m.getUser_id() %>
+													
+													<% if(m.getReceive_Nickname() != null){ %>
+														<%= m.getReceive_Nickname() %>
+													<% }else if(m.getReceive_UserName() != null){ %>
+														<%= m.getReceive_UserName() %>
+													<% }else{ %>
+														익명
+													<% } %>
 												</div>
 												<div class="tbl_cell cell_tit">
 													<% int type=1; %>
@@ -141,7 +146,7 @@ String pageType = (String)request.getAttribute("pageType");
 												<a class="titleField"
 													href="<%=request.getContextPath()%>/readMessage?num=<%= m.getMsg_id() %>&type=<%=type%>">
 
-
+													<img src="<%=request.getContextPath()%>/images/message/new.png" style="width:20px; height:20px; " id="newMsgArea" >
 													<%=m.getTitle() %></a>
 											</div>
 
@@ -260,7 +265,13 @@ String pageType = (String)request.getAttribute("pageType");
 									%>
 										<div class="tbl_row body_group important">
 											<div class="tbl_cell cell_num" id="bNo">
-												<%= m.getUser_id() %>
+												<% if(m.getReceive_Nickname() != null){ %>
+														<%= m.getReceive_Nickname() %>
+													<% }else if(m.getReceive_UserName() != null){ %>
+														<%= m.getReceive_UserName() %>
+													<% }else{ %>
+														?
+													<% } %>
 											</div>
 											<div class="tbl_cell cell_tit">
 												<% int type=2; %>

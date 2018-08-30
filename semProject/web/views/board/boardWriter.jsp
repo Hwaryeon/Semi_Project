@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.Date, java.text.SimpleDateFormat" %>
+<%
+	Date today = new Date();
+	SimpleDateFormat writeDate = new SimpleDateFormat("yyyy/MM/dd");
+%>	
+	
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -193,7 +198,8 @@ $(document).ready(function(){
 									<div class="item">
 										<dl>
 											<dt>등록일</dt>
-											<dd></dd>
+											<dd><%=writeDate.format(today) %>
+											</dd>
 										</dl>
 									</div>
 									<div class="item">

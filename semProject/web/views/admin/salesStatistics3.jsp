@@ -14,6 +14,11 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
 %>
 <html>
 <head>
+<script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js">
+      </script>
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['corechart','line']});  
+      </script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -101,12 +106,15 @@ display: inline-block;
 	
 
 <div id="text">
-<div id="container">
+<div id="totalCon">
+<div id="container2" class="con1">
    <ul class="nav nav-tabs">
 				<li role="presentation" style="font-size: 14px;"><a href="<%= request.getContextPath() %>/salesSt.adm">&nbsp;&nbsp;전체 매출 통계&nbsp;&nbsp;</a></li>
 				<li role="presentation" style="font-size: 14px;"><a href="<%= request.getContextPath() %>/salesSt.adm?type=t1">&nbsp;&nbsp;80%이상 성공 상품&nbsp;&nbsp;</a></li>
 				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;100%달성 마감 상품&nbsp;&nbsp;</a></li>
 				<li role="presentation" style="font-size: 14px;"><a href="<%= request.getContextPath() %>/salesSt.adm?type=t3">&nbsp;&nbsp;100%초과 마감 상품&nbsp;&nbsp;</a></li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button id="chart" class="form-control btn btn-primary" style="width:100px;">차트 보기</button></li>
    </ul>
    <br>
    <div style="height:390px">
@@ -203,7 +211,12 @@ display: inline-block;
 			<a onclick="location.href='<%=request.getContextPath()%>/salesSt.adm?term=year&type=t2&currentPage=<%=maxPage%>'" class="link_lst">>></a>
 		</div>
 </div>
-
+</div>
+<div id="chartCon" style="display:none;">
+<div align="right"><button id="list" class="form-control btn btn-primary" style="width:100px">표로 보기</button>&nbsp;&nbsp;&nbsp;</div>
+<div id="container" class="con2" style="height:470px;">
+</div>
+</div>
 </div>
 <script>
 $(function(){
@@ -228,9 +241,100 @@ $(function(){
 	    	location.href = "<%= request.getContextPath() %>/salesSt.adm?type=t2&currentPage=1";
 	    }
 	});
+	
+	$("#chart").click(function(){
+		makeChart();
+		$("#totalCon").hide();
+		$("#chartCon").show();
+	});
+	$("#list").click(function(){
+		$("#chartCon").hide();
+		$("#totalCon").show();
+	});
 });
 </script>
+<script language = "JavaScript">
+    function makeChart(){
+         function drawChart() {
+            // Define the chart to be drawn.
+            
+            var data = google.visualization.arrayToDataTable([
+               ['Term', '결제금액', '결제완료금액', '순매출액'],
+               <%for(int i = 0; i < list.size(); i++){
+            	   String str1 = %><% list.get(i).getPaymentPrice()%><%;%>
+            	   <%String str2 = %><% list.get(i).getPaymentCompletePrice()%><%;%>
+            	   <%String str3 = %><% list.get(i).getNetSales()%><%;%>
+            	   <%
+            	     str1 = str1.trim();
+            	     str2 = str2.trim();
+            	     str3 = str3.trim();
+            	     
+            	     int count = 0;
+            	     int price1 = 0;
+            	     for(int j = 0; j < str1.length(); j++){
+            	    	 if(str1.charAt(j) == ','){
+            	    		 count++;
+            	    	 }
+            	     }
+            	     if(count==0){
+            	    	 price1 = Integer.parseInt(str1);
+            	     }else{
+            	    	 String num1 = str1.split(",")[0];
+                	     String num2 = str1.split(",")[1];
+                	     String plus = num1+num2;
+                	     price1 = Integer.parseInt(plus);
+            	     }
+            	     
+            	     count = 0;
+            	     int price2 = 0;
+            	     for(int j = 0; j < str2.length(); j++){
+            	    	 if(str2.charAt(j) == ','){
+            	    		 count++;
+            	    	 }
+            	     }
+            	     if(count==0){
+            	    	 price2 = Integer.parseInt(str2);
+            	     }else{
+            	    	 String num3 = str2.split(",")[0];
+                	     String num4 = str2.split(",")[1];
+                	     String plus2 = num3+num4;
+                	     price2 = Integer.parseInt(plus2);
+            	     }
+            	     
+            	     count = 0;
+            	     int price3 = 0;
+            	     for(int j = 0; j < str3.length(); j++){
+            	    	 if(str3.charAt(j) == ','){
+            	    		 count++;
+            	    	 }
+            	     }
+            	     if(count==0){
+            	    	 price3 = Integer.parseInt(str3);
+            	     }else{
+            	    	 String num5 = str3.split(",")[0];
+                	     String num6 = str3.split(",")[1];
+                	     String plus3 = num5+num6;
+                	     price3 = Integer.parseInt(plus3);
+            	     }%>
+                   <%if(i == 0){%>
+                  ['<%= list.get(i).getTerm() %>',<%=price1%>,<%=price2%>,<%=price3%>]
+                  <%}else{%>
+                  ,['<%= list.get(i).getTerm() %>',<%=price1%>,<%=price2%>,<%=price3%>]
+                  <%}}%>  
+            ]);
 
+            var options = {title: '매출 통계(단위:만원)',
+               hAxis: {title: 'Term', titleTextStyle: {color: '#333'}},
+               vAxis: {minValue: 0}
+            };  
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.AreaChart(document.getElementById ('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+    }
+      </script>
 <%--  <div><%@ include file="../common/footer.jsp" %></div> --%>
 
 </body>

@@ -236,21 +236,51 @@ public class AdminService {
 	//////////////////////////////여기서부터 별림이꺼///////////////////////////////////////
 		public ArrayList<SalesStatistics> selectSalesList(String type, String term, int currentPage, int limit) {
 			Connection con = getConnection();
-			ArrayList<SalesStatistics> list = new AdminDao().selectSalesList(con,type,term,currentPage,limit);
+			ArrayList<SalesStatistics> list = null;
+			
+			if(term.equals("month")){
+				if(type.equals("all")){
+					list = new AdminDao().selectAllSalesMonthList(con,currentPage,limit);
+				}else{
+					list = new AdminDao().selectSalesTypeMonthList(con,type,currentPage,limit);
+				}
+				
+			}else{
+				if(type.equals("all")){
+					list = new AdminDao().selectAllSalesYearList(con,currentPage,limit);
+				}else{
+					list = new AdminDao().selectSalesTypeYearList(con,type,currentPage,limit);
+				}
+				
+			}
+			
 			close(con);
 			return list;
 		}
 
 		public ArrayList<OpenFundingStatistics> selectOpenFundingList(String str, int currentPage, int limit) {
 			Connection con = getConnection();
-			ArrayList<OpenFundingStatistics> list = new AdminDao().selectOpenFundingList(con,str,currentPage,limit);
+			ArrayList<OpenFundingStatistics> list = null;
+					
+			if(str.equals("month")){
+				list = new AdminDao().selectOpenFundingMonthList(con,currentPage,limit);
+			}else{
+				list = new AdminDao().selectOpenFundingYearList(con,currentPage,limit);
+			}	
+					
 			close(con);
 			return list;
 		}
 
 		public ArrayList<SuccessFundingStatistics> selectSuccessFundingList(String str, int currentPage, int limit) {
 			Connection con = getConnection();
-			ArrayList<SuccessFundingStatistics> list = new AdminDao().selectSuccessFundingList(con,str,currentPage,limit);
+			ArrayList<SuccessFundingStatistics> list = null;
+			if(str.equals("month")){
+				list = new AdminDao().selectSuccessFundingMonthList(con,currentPage,limit);
+			}else{
+				list = new AdminDao().selectSuccessFundingYearList(con,currentPage,limit);
+			}	
+					
 			close(con);
 			return list;
 		}
@@ -258,31 +288,77 @@ public class AdminService {
 		 
 		public ArrayList<MemberStatistics> selectMemberList(String str, int currentPage, int limit) {
 			Connection con = getConnection();
-			ArrayList<MemberStatistics> list = new AdminDao().selectMemberList(con,str,currentPage,limit);
+			ArrayList<MemberStatistics> list = null;
+			
+			if(str.equals("date")){
+				list = new AdminDao().selectMemberDateList(con,currentPage,limit);
+			}else if(str.equals("month")){
+				list = new AdminDao().selectMemberMonthList(con,currentPage,limit);
+			}else{
+				list = new AdminDao().selectMemberYearList(con,currentPage,limit);
+			}
+			
 			close(con);
 			return list;
 		}
+		
 		public int getSalesListCount(String term, String type) {
 			Connection con = getConnection();
-			int listCount = new AdminDao().getSalesListCount(con, term, type);
+			int listCount = 0;
+			if(term == null){
+				if(type == null){
+					listCount = new AdminDao().getSalesMonthListCount(con);
+				}else{
+					listCount = new AdminDao().getSalesTypeMonthListCount(con, type);
+				}
+			}else{
+				if(type == null){
+					listCount = new AdminDao().getSalesYearListCount(con);
+				}else{
+					listCount = new AdminDao().getSalesTypeYearListCount(con, type);
+				}
+				
+			}
+			 
 			close(con);
 			return listCount;
 		}
+		
 		public int getOpenFundingListCount(String term) {
 			Connection con = getConnection();
-			int listCount = new AdminDao().getOpenFundingListCount(con, term);
+			int listCount = 0;
+			if(term == null){
+				listCount = new AdminDao().getOpenFundingMonthListCount(con);
+			}else{
+				listCount = new AdminDao().getOpenFundingYearListCount(con);
+			}
 			close(con);
 			return listCount;
 		}
+		
 		public int getSuccessFundingListCount(String term) {
 			Connection con = getConnection();
-			int listCount = new AdminDao().getSuccessFundingListCount(con, term);
+			int listCount = 0;
+			if(term == null){
+				listCount = new AdminDao().getSuccessFundingMonthListCount(con);
+			}else{
+				listCount = new AdminDao().getSuccessFundingYearListCount(con);
+			}
+			
 			close(con);
 			return listCount;
 		}
+		
 		public int getMemberListCount(String term) {
 			Connection con = getConnection();
-			int listCount = new AdminDao().getMemberListCount(con, term);
+			int listCount = 0;
+			if(term == null){
+				listCount = new AdminDao().getMemberDateListCount(con, term);
+			}else if(term.equals("month")){
+				listCount = new AdminDao().getMemberMonthListCount(con, term);
+			}else{
+				listCount = new AdminDao().getMemberYearListCount(con, term);
+			}
 			close(con);
 			return listCount;
 		}

@@ -215,8 +215,12 @@
 				
 				
 				<!-- 현재 테스트할겸 넣어놈 -->
-				<li><a id="getServerTestBtn" class="" onclick="messageList()">쪽지함</a></li>
-				<!--  -->
+				<li>
+				<a id="getServerTestBtn" class="" onclick="messageList()">
+				<img src="<%=request.getContextPath()%>/images/message/new.png" style="width:20px; height:20px; " id="newMsgArea" >
+				쪽지함
+				
+				</a></li>
 				
 				
 				
@@ -280,38 +284,22 @@
 			</div>
 		</div>
 </div>
+<% if(loginUser != null ) {  %>
+	<input type="hidden" id="loginId" name="loginId" value="<%=loginUser.getUserId()%>"> 
+<% }else{ %>
+	<input type="hidden" id="loginId" name="loginId" value="-1"> 
+<% } %>
+
 <script>
-	
-	/* $(document).ready(function() { 
-		
-		var id = "999";
-		
-		$.ajax({
-			url:"checkMessage",
-			data:{id:id},
-			type:"get",
-			success:function(data){
-				if(data > 0){
-					document.getElementById('getServerTestBtn').className="blinking";
-				}else{
-					document.getElementById('getServerTestBtn').className="";
-				}
-				
-			},
-			error:function(data){
-				console.log("실패");
-			}
-		});
-		
-	});
-	 */
 	
 	</script>
 
 	<script>
 		function messageList(){
 		
-		var popUrl = "<%=request.getContextPath()%>/listMessage";	//팝업창에 출력될 페이지 URL
+		var userId = document.getElementById('loginId').value;
+		
+		var popUrl = "<%=request.getContextPath()%>/listMessage?userId="+userId;	//팝업창에 출력될 페이지 URL
 
 		var popOption = "width=895, height=720, resizable=no, left=300, top=50, scrollbars=no, status=no; ";    //팝업창 옵션(optoin)
 
@@ -380,7 +368,7 @@ function send(){
 		
 		webSocket.send("");
 		
-		$inputMessage.val("");
+		$inputMessage.val("1");
 	
 }
 
@@ -392,7 +380,8 @@ function onMessage(event) {
 	var message = event.data;
 	
 	$(document).ready(function() { 
-		var id = "999";
+	
+		var id = document.getElementById('loginId').value;
 		
 		$.ajax({
 			url:"checkMessage",
@@ -401,8 +390,10 @@ function onMessage(event) {
 			success:function(data){
 				if(data > 0){
 					document.getElementById('getServerTestBtn').className="blinking";
+					document.getElementById('newMsgArea').style.display="";
 				}else{
 					document.getElementById('getServerTestBtn').className="";
+					document.getElementById('newMsgArea').style.display="none";
 				}
 				
 			},
@@ -415,6 +406,30 @@ function onMessage(event) {
 	
 }
 
+$(document).ready(function() { 
+	 var id = document.getElementById('loginId').value; 
+	
+	$.ajax({
+		url:"checkMessage",
+		data:{id:id},
+		type:"get",
+		success:function(data){
+			if(data > 0){
+				 document.getElementById('getServerTestBtn').className="blinking";
+				/* document.getElementById('newMsgArea').style.display="block"; */
+				document.getElementById('newMsgArea').style.display="";
+			}else{
+				/* document.getElementById('getServerTestBtn').className=""; */
+				document.getElementById('newMsgArea').style.display="none";
+			}
+			
+		},
+		error:function(data){
+			console.log("실패");
+		}
+	});
+	
+});
 
 </script>
 

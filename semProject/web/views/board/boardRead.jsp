@@ -191,45 +191,9 @@
 												
 												<% } %>
 										</div>
-									
-								<%-- 	<button onclick="location.href='<%=request.getContextPath()%>/downloadBoard?num=<%=attachFile1.getFid()%>'">다운로드</button>
-								 --%>
 								 <br>
 								 <br>
 								 <% } %>
-								
-								
-								
-								
-							<%-- 	<div id="insertFileDiv" class="field_content article_intro file_input">
-									<span>첨부파일 다운로드</span>
-									<br>
-									<span>
-									<% if( attachFile1 != null) {%>
-									<%= attachFile1.getOriginName() %>
-									
-									<button onclick="location.href='<%=request.getContextPath()%>/downloadBoard?num=<%=attachFile1.getFid()%>'">다운로드</button>
-									<% } %>
-									</span>
-					
-									<br>
-									<span>
-									<% if( attachFile2 != null) {%>
-									<%= attachFile2.getOriginName() %>
-									<button onclick="location.href='<%=request.getContextPath()%>/downloadBoard?num=<%=attachFile2.getFid()%>'">다운로드</button>
-									<% } %>
-									</span>
-									<br>
-									<span>
-									<% if( attachFile3 != null) {%>
-									<%= attachFile3.getOriginName() %>
-									<button onclick="location.href='<%=request.getContextPath()%>/downloadBoard?num=<%=attachFile3.getFid()%>'">다운로드</button>
-									<% } %>
-									</span>
-								
-								</div> --%>
-								
-								
 		
 								<div class="siblings_post">
 									<div class="previous">
@@ -274,7 +238,13 @@
 		
 								<div class="field_foot_btn">
 									<a onclick="allBoard();" class="link_list">목록</a>
-									<button style="margin-left: 30px;"onclick="updateBoard();" id="save" class="link_list">수정</button>
+									
+									<% if(loginUser != null){ %>
+										<% if(loginUser.getUserId() == 0) { %>
+											<button style="margin-left: 30px;"onclick="updateBoard();" id="save" class="link_list">수정</button>
+										<% } %>
+									<% } %>
+									
 								</div>
 								<script>
 								function allBoard(){

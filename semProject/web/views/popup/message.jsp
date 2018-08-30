@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.sp.member.model.vo.*" %>
+<% Member loginUser = (Member)session.getAttribute("loginUser"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +71,13 @@ button {
 			  
 			    <div>
 			    <!-- 메시지 보내는 회원의 아이디 -->
-				    <input type="hidden" id="user_id" name="user_id" value="21">
+			    
+			    <% if(loginUser != null) { %>
+				    <input type="hidden" id="user_id" name="user_id" value="<%= loginUser.getUserId() %>">
+			  
+			    <% } %>
+			    <input type="text" id="user_id" name="user_id" value="<%= loginUser.getUserId() %>">
+			  
 			    </div>
 			
 			  <div>

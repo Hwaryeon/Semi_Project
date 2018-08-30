@@ -28,10 +28,11 @@ public class UpdateInvestorMemberServlet extends HttpServlet {
 		
 		if(result > 0){
 			request.setAttribute("msg", "투자자로 회원정보 변경이 완료되었습니다. 재로그인 해주세요");
+			request.getSession().invalidate();
 		}else{
 			request.setAttribute("msg", "투자자로 회원정보 변경에 실패하였습니다.");
 		}
-		request.getSession().invalidate();
+		
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/member/loginForm.jsp");
 		view.forward(request, response);

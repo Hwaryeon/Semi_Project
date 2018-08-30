@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8" import="com.kh.sp.member.model.vo.*" %>
+<% Member loginUser = (Member)session.getAttribute("loginUser"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,7 +92,10 @@ button {
 			  
 			  <div>
 			    <!-- 메시지 보내는 회원의 아이디 -->
-				    <input type="hidden" id="user_id" name="user_id" value="21">
+			    <% if(loginUser != null) { %>
+				    <input type="hidden" id="user_id" name="user_id" value="<%= loginUser.getUserId() %>">
+			    <% } %>
+			  
 			    </div>
 			  
 			   <div class="form-group">
@@ -139,6 +143,9 @@ button {
 					// 내가 보낼 때에는 send / 서버로부터 받을 때에는 message
 					
 					webSocket.send("메세지 전송되냐??");
+					/* popClose(); */
+					alert("쪽지 전송하였습니다.");
+					window.close();
 				};
 				
 				// 서버로부터 메시지를 전달 받을 때 동작하는 메소드
@@ -162,6 +169,10 @@ button {
 					webSocket.send("메세지 전송되냐??");
 					
 					$inputMessage.val("");
+					
+					console.log("11");
+					
+					popClose();
 				
 			}
 			
@@ -176,6 +187,14 @@ button {
 				var content = message[1]; */
 				
 				/* alert(message); */
+				
+			}
+			
+			function popClose(){
+				
+				console.log("22");
+				
+				window.close();
 			}
 			
 		</script>

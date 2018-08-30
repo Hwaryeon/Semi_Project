@@ -30,7 +30,14 @@ public class ListMessageServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 
-		int user_id = 999 ;   // 임시로 입력    (메시지를 보는 사람의 아이디)
+		/*int user_id = 999 ;   // 임시로 입력    (메시지를 보는 사람의 아이디)
+		 */
+		
+		int user_id = -1;
+		
+		if(request.getParameter("userId") != null){
+			user_id = Integer.parseInt(request.getParameter("userId"));
+		}
 
 		//페이징 처리
 		int currentPage;		//현재 페이지를 표시할 변수

@@ -168,7 +168,7 @@ public class FundingDao {
 			
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "펀딩모집");
+			pstmt.setString(1, "enrollApproval");
 			
 			rset = pstmt.executeQuery();
 
@@ -179,10 +179,10 @@ public class FundingDao {
 				p.setP_code(rset.getInt("p_code")+"");
 				p.setUser_id(rset.getInt("user_id"));
 				p.setP_name(rset.getString("p_name"));
-				p.setOpenDate(Math.round(rset.getInt("(r.END_DATE-sysdate)")));
+				p.setOpenDate(Math.round(rset.getInt("((r.START_DATE+p.OPEN_DATE)-sysdate)")));
 				p.setcAmount(rset.getInt("CLOSING_AMOUNT")+"");
 				p.setP_intro(rset.getString("intro"));
-				p.setOpenDate(rset.getInt("(r.END_DATE-sysdate)"));
+				p.setOpenDate(rset.getInt("((r.START_DATE+p.OPEN_DATE)-sysdate)"));
 				p.setCorporate_name(rset.getString("CORPORATE_NAME"));
 				p.setOrigin_name(rset.getString("ORIGIN_NAME"));
 				p.setChange_name(rset.getString("CHANGE_NAME"));
@@ -212,7 +212,7 @@ public class FundingDao {
 
 		try {
 			pstmt =con.prepareStatement(query);
-			pstmt.setString(1, "펀딩모집");
+			pstmt.setString(1, "enrollApproval");
 
 			rset = pstmt.executeQuery();
 
@@ -246,7 +246,7 @@ public class FundingDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "펀딩모집");
+			pstmt.setString(1, "enrollApproval");
 			rset = pstmt.executeQuery();
 
 			while(rset.next()){
@@ -256,10 +256,10 @@ public class FundingDao {
 				p.setP_code(rset.getInt("p_code")+"");
 				p.setUser_id(rset.getInt("user_id"));
 				p.setP_name(rset.getString("p_name"));
-				p.setOpenDate(Math.round(rset.getInt("(r.END_DATE-sysdate)")));
+				p.setOpenDate(Math.round(rset.getInt("((r.START_DATE+p.OPEN_DATE)-sysdate)")));
 				p.setcAmount(rset.getInt("CLOSING_AMOUNT")+"");
 				p.setP_intro(rset.getString("intro"));
-				p.setOpenDate(rset.getInt("(r.END_DATE-sysdate)"));
+				p.setOpenDate(rset.getInt("((r.START_DATE+p.OPEN_DATE)-sysdate)"));
 				p.setCorporate_name(rset.getString("CORPORATE_NAME"));
 				p.setOrigin_name(rset.getString("ORIGIN_NAME"));
 				p.setChange_name(rset.getString("CHANGE_NAME"));
@@ -289,7 +289,7 @@ public class FundingDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "펀딩모집");
+			pstmt.setString(1, "enrollApproval");
 			rset = pstmt.executeQuery();
 
 			while(rset.next()){
@@ -299,10 +299,10 @@ public class FundingDao {
 				p.setP_code(rset.getInt("p_code")+"");
 				p.setUser_id(rset.getInt("user_id"));
 				p.setP_name(rset.getString("p_name"));
-				p.setOpenDate(Math.round(rset.getInt("(r.END_DATE-sysdate)")));
+				p.setOpenDate(Math.round(rset.getInt("((r.START_DATE+p.OPEN_DATE)-sysdate)")));
 				p.setcAmount(rset.getInt("CLOSING_AMOUNT")+"");
 				p.setP_intro(rset.getString("intro"));
-				p.setOpenDate(rset.getInt("(r.END_DATE-sysdate)"));
+				p.setOpenDate(rset.getInt("((r.START_DATE+p.OPEN_DATE)-sysdate)"));
 				p.setCorporate_name(rset.getString("CORPORATE_NAME"));
 				p.setOrigin_name(rset.getString("ORIGIN_NAME"));
 				p.setChange_name(rset.getString("CHANGE_NAME"));
@@ -344,11 +344,11 @@ public class FundingDao {
 			}
 
 
-			for(int i=0; i < pList.size(); i++){
+			/*for(int i=0; i < pList.size(); i++){
 				if(pList.get(i).getTotal_amount() <= 0){
 					pList.remove(i);
 				}
-			}
+			}*/
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -358,9 +358,26 @@ public class FundingDao {
 		}
 
 
-		if(pList.size() > 0){
+		/*if(pList.size() > 0){
 			pList.remove(pList.size()-1);
 
+		}*/
+		
+		/*for(int i=0; i<pList.size(); i++){
+			System.out.println(i+" : " + pList.get(i));
+		}*/
+		for(int i=0; i < pList.size(); i++){
+			if(pList.get(i).getTotal_amount() <= 0){
+				pList.remove(i);
+			}
+		}
+		for(int i=0; i < pList.size(); i++){
+			if(pList.get(i).getTotal_amount() <= 0){
+				pList.remove(i);
+			}
+		}
+		for(int i=0; i<pList.size(); i++){
+			System.out.println(i+" : " + pList.get(i));
 		}
 		
 		return pList;
@@ -376,7 +393,7 @@ public class FundingDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "펀딩모집");
+			pstmt.setString(1, "enrollApproval");
 			rset = pstmt.executeQuery();
 
 			while(rset.next()){
@@ -386,10 +403,10 @@ public class FundingDao {
 				p.setP_code(rset.getInt("p_code")+"");
 				p.setUser_id(rset.getInt("user_id"));
 				p.setP_name(rset.getString("p_name"));
-				p.setOpenDate(Math.round(rset.getInt("(r.END_DATE-sysdate)")));
+				p.setOpenDate(Math.round(rset.getInt("((r.START_DATE+p.OPEN_DATE)-sysdate)")));
 				p.setcAmount(rset.getInt("CLOSING_AMOUNT")+"");
 				p.setP_intro(rset.getString("intro"));
-				p.setOpenDate(rset.getInt("(r.END_DATE-sysdate)"));
+				p.setOpenDate(rset.getInt("((r.START_DATE+p.OPEN_DATE)-sysdate)"));
 				p.setCorporate_name(rset.getString("CORPORATE_NAME"));
 				p.setOrigin_name(rset.getString("ORIGIN_NAME"));
 				p.setChange_name(rset.getString("CHANGE_NAME"));

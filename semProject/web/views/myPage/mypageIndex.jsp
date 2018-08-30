@@ -71,7 +71,7 @@ legend {
             </tr>
             
             <tr id="menubar" class="mypage enroll">
-               <td onclick="location.href='<%=request.getContextPath() %>/select.ep?userid='+<%= loginUser.getUserId() %>">
+               <td onclick="location.href='<%=request.getContextPath() %>/select.ep?userid=<%= loginUser.getUserId()%>&userclass=<%=loginUser.getUserClass() %>'">
               <% if(loginUser.getUserClass().equals("investor")) { %>참여 프로젝트
               <% } else if(loginUser.getUserClass().equals("business")) { %>개설 프로젝트
               <% } %> 
@@ -82,10 +82,13 @@ legend {
                <td id="menutitle"><b>투자서비스</b></td>
             </tr>
             <tr id="menubar" class="investService updateRank">
-               <td onclick="location.href='<%=request.getContextPath() %>/views/myPage/updateRank.jsp'">투자등급 변경 신청</td>
+               <td onclick="location.href='<%=request.getContextPath() %>/views/myPage/updateRank.jsp'">투자등급 변경 신청</td> 
             </tr>
             <tr id="menubar" class="investService payment">
-               <td onclick="location.href='<%= request.getContextPath() %>/views/myPage/PaymentBackground.jsp'">결제내역</td>
+               <td onclick="location.href='<%= request.getContextPath() %>/show.pb?userid=<%= loginUser.getUserId()%>&userclass=<%=loginUser.getUserClass() %>'">
+               <% if(loginUser.getUserClass().equals("investor")) { %>결제내역
+               <% } else if(loginUser.getUserClass().equals("business")) { %>투자받은 내역
+               <% } %></td>
             </tr>
             
             <tr class="certification">
@@ -105,7 +108,8 @@ legend {
   	<% if(loginUser.getUserClass().equals("investor")) { %>
          //로그인 한 유저가 투자자일 경우
          $(".certification").hide(); //투자자 인증창 숨기기
-      <% if(loginUser.getInvestorGrade().equals("PI")) { %>
+      <% if(loginUser.getInvestorGrade().equals("PI") || loginUser.getGradingStatus().equals("evaluate")) { 
+      		System.out.println("gradingStatus : " + loginUser.getGradingStatus());%>
          //전문 투자자인 경우
             $(".updateRank").hide();//투자등급 올리기 메뉴 숨기기
       <% } %>
