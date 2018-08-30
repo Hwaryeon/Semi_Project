@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+import com.kh.sp.board.model.vo.Board;
 import com.kh.sp.product.model.dao.ProductDao;
 import com.kh.sp.product.model.vo.Invest;
 import com.kh.sp.product.model.vo.Product2;
@@ -54,6 +54,23 @@ Connection con = getConnection();
 		
 		return result;
 	}
+
+	public int insertNews(Board b) {
+		Connection con = getConnection();
+		int result = 0;
+		result = new ProductDao().insertNews(con,b);
+	
+	
+	
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+
+	
+	return result;
+}
 }
 
 	

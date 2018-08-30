@@ -53,7 +53,7 @@ public class InvestRecord {
 		return "InvestRecord [recordId=" + recordId + ", investId=" + investId + ", payClass=" + payClass + ", price="
 				+ price + ", payDate=" + payDate + ", Status=" + Status + "]";
 	}
-	public InvestRecord(int recordId, int investId, String payClass, iny price, Date payDate, String status) {
+	public InvestRecord(int recordId, int investId, String payClass, int price, Date payDate, String status) {
 		super();
 		this.recordId = recordId;
 		this.investId = investId;
