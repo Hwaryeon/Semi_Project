@@ -14,6 +14,11 @@ int endPage = pi.getEndPage();
 %>
 <html>
 <head>
+<script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js">
+      </script>
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['corechart','line']});  
+      </script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -100,10 +105,16 @@ display: inline-block;
 	
 
 <div id="text">
-<div id="container">
+<div id="totalCon">
+<div id="container2" class="con1">
    <ul class="nav nav-tabs">
 				<li role="presentation" style="font-size: 14px;"><a href="<%=request.getContextPath()%>/fundingSt.adm">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 개설 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;펀딩 성공 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button id="chart" class="form-control btn btn-primary" style="width:100px;">차트 보기</button></li>
    </ul>
    <br>
    <div style="height:390px">
@@ -198,7 +209,12 @@ display: inline-block;
 			<a onclick="location.href='<%=request.getContextPath()%>/fundingSt2.adm?term=year&currentPage=<%=maxPage%>'" class="link_lst">>></a>
 		</div>
 </div>
-
+</div>
+<div id="chartCon" style="display:none;">
+<div align="right"><button id="list" class="form-control btn btn-primary" style="width:100px">표로 보기</button>&nbsp;&nbsp;&nbsp;</div>
+<div id="container" class="con2" style="height:470px;">
+</div>
+</div>
 </div>
 <script>
 $(function(){
@@ -222,8 +238,49 @@ $(function(){
 	    	location.href = "<%= request.getContextPath() %>/fundingSt2.adm?currentPage=1";
 	    }
 	});
+	$("#chart").click(function(){
+		makeChart();
+		$("#totalCon").hide();
+		$("#chartCon").show();
+	});
+	$("#list").click(function(){
+		$("#chartCon").hide();
+		$("#totalCon").show();
+	});
 });
 </script>
+<script language = "JavaScript">
+    function makeChart(){
+         function drawChart() {
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable([
+               ['Term', '마감 건수', '성공 건수', '성공 비율'],
+               <%for(int i = 0; i < list.size(); i++){
+                   if(i == 0){%>
+                  ['<%= list.get(i).getTerm() %>',<%= list.get(i).getEndCount() %>,
+                  <%= list.get(i).getSuccessCount() %>, <%= list.get(i).getSuccessRate() %>]
+                  <%}else{%>
+                  ,['<%= list.get(i).getTerm() %>',<%= list.get(i).getEndCount() %>,
+                      <%= list.get(i).getSuccessCount() %>,<%= list.get(i).getSuccessRate() %>]
+                  <%}}%>   
+            ]);
+              
+            // Set chart options
+            var options = {
+               title : '펀딩 성공 통계',
+               vAxis: {title: 'Funding'},
+               hAxis: {title: 'Term'},
+               seriesType: 'bars',
+               series: {2: {type: 'line'}}
+            };
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.ComboChart(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+    }
+      </script>
 <%--  <div><%@ include file="../common/footer.jsp" %></div> --%>
 
 </body>

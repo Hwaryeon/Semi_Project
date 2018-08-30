@@ -14,6 +14,11 @@ int endPage = pi.getEndPage();
 %>
 <html>
 <head>
+<script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js">
+      </script>
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['corechart']});     
+      </script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -85,6 +90,9 @@ display: inline-block;
 .pageArea a:hover{
           color: #999; 
        }
+       
+
+
 </style>
 
 <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js">
@@ -110,10 +118,17 @@ display: inline-block;
 	
 
 <div id="text">
-<div id="container">
+
+<div id="totalCon">
+<div id="container2" class="con1">
    <ul class="nav nav-tabs">
 				<li role="presentation" class="active" style="font-size: 14px;"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;가입자 통계&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button id="chart" class="form-control btn btn-primary" style="width:100px;">차트 보기</button></li>
    </ul>
    <br>
    <div style="height:390px">
@@ -228,16 +243,20 @@ display: inline-block;
 			<a onclick="location.href='<%=request.getContextPath()%>/memberSt.adm?term=year&currentPage=<%=maxPage%>'" class="link_lst">>></a>
 		</div>
 </div>
-
 </div>
-
+<div id="chartCon" style="display:none;">
+<div align="right"><button id="list" class="form-control btn btn-primary" style="width:100px">표로 보기</button>&nbsp;&nbsp;&nbsp;</div>
+<div id="container" class="con2" style="height:470px;">
+</div>
+</div>
+</div>
+ 
 <script>
 $(function(){
 	$("#datePaging").show();
 	$("#yearPaging").hide();
 	$("#monthPaging").hide();
 	
-
 	if(<%= num %>=="0"){
 		$("#date").attr("selected", "selected");
 		$("#yearPaging").hide();
@@ -264,8 +283,44 @@ $(function(){
 	    	location.href = "<%= request.getContextPath() %>/memberSt.adm?&currentPage=1";
 	    }
 	});
+	$("#chart").click(function(){
+		makeChart();
+		$("#totalCon").hide();
+		$("#chartCon").show();
+	});
+	$("#list").click(function(){
+		$("#chartCon").hide();
+		$("#totalCon").show();
+	});
+	
 });
 </script>
+ <script language = "JavaScript">
+ 	function makeChart(){
+         function drawChart() {
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable([
+               ['Year', 'Email', 'Naver', 'Kakao'],
+               <% for(int i = 0; i < list.size(); i++){
+                    if(i == 0){%> 
+            	     ['<%= list.get(i).getTerm()%>',<%= list.get(i).getEmailMemberCount()%>,
+            	     <%= list.get(i).getNaverMemberCount()%>, <%= list.get(i).getKakaoMemberCount()%>]
+                 <%}else{%>
+                    ,['<%= list.get(i).getTerm()%>',<%= list.get(i).getEmailMemberCount()%>,
+            	     <%= list.get(i).getNaverMemberCount()%>, <%= list.get(i).getKakaoMemberCount()%>]
+                 <%}}%>
+            ]);
+
+            var options = {title: '가입자 통계', isStacked:true};  
+
+         // Instantiate and draw the chart.
+            var chart = new google.visualization.BarChart(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+          google.charts.setOnLoadCallback(drawChart); 
+ 	}
+ 	
+      </script>
 <%--  <div><%@ include file="../common/footer.jsp" %></div> --%>
 
 </body>
