@@ -71,6 +71,9 @@
 					<th colspan="2" width="100px" height="50px">날짜</th>
 					<th colspan="6" width="300px" height="50px">상품명</th>
 					<th colspan="2" width="100px" height="50px">금액</th>
+					<% if(loginUser.getUserClass().equals("investor")) { %>
+					<th colspan="2" width="100px" height="50px">구분</th>
+					<% } %>
 				</tr>
 				<% int i=1;
 					for(MypageDetail md : list) { %>
@@ -79,6 +82,11 @@
 					<td colspan="2" width="100px" height="50px"><%= md.getPay_date() %></td>
 					<td colspan="6" width="300px" height="50px"><%= md.getP_name() %></td>
 					<td colspan="2" width="100px" height="50px"><%= md.getPrice() %></td>
+					<% if(md.getPay_class() != null) { %>
+						<td colspan="2" width="100px" height="50px">
+						<% if(md.getPay_class().equals("paid")) { %>결제완료
+						<% } else if(md.getPay_class().equals("refund")) { %>환불<% } %></td>
+					<% } %>
 				</tr>
 				
 				<tr></tr>
