@@ -137,7 +137,7 @@ public class AdminService {
 		int listCount = new AdminDao().getInvRankListCount(con);
 		
 		close(con);
-		 
+		  
 		return listCount;
 	}
 	//투자자 등급 변경 요청자 출력 메소드 정태
