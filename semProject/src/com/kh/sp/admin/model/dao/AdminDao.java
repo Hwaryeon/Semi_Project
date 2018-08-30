@@ -14,6 +14,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.sp.admin.model.vo.CheckProject;
+import com.kh.sp.admin.model.vo.DetailMember;
 import com.kh.sp.admin.model.vo.MemberStatistics;
 import com.kh.sp.admin.model.vo.OpenFundingStatistics;
 import com.kh.sp.admin.model.vo.SalesStatistics;
@@ -594,6 +596,271 @@ public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int 
 		return result;
 	}
 
+public int getProjectListCount(Connection con) {
+	Statement stmt = null;
+	int listCount = 0;
+	ResultSet rset = null;
+
+	String query = prop.getProperty("projectAllListCount");
+
+	try {
+		stmt = con.createStatement();
+		rset = stmt.executeQuery(query);
+
+		if(rset.next()) {
+			listCount = rset.getInt(1);
+
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally{
+		close(stmt);
+		close(rset);
+
+	}
+
+
+	return listCount;
+}
+
+//프로젝트 전체 조회
+public ArrayList<CheckProject> selectAllProject(Connection con, int currentPage, int limit) {
+	ArrayList<CheckProject> list = null;
+
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	System.out.println("dao까지는 오는거지?");
+	String query = prop.getProperty("projectSelectAll");
+
+	try {
+		pstmt = con.prepareStatement(query);
+
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit -1;
+
+		pstmt.setString(1, "enrollApproval");
+		pstmt.setInt(2, startRow);
+		pstmt.setInt(3, endRow);
+
+		rset = pstmt.executeQuery();
+
+		list = new ArrayList<CheckProject>();
+
+		while(rset.next()){
+			CheckProject cp = new CheckProject();
+			
+			cp.setP_pName(rset.getString("p_Name"));				
+			cp.setM_userName(rset.getString("user_Name"));
+			cp.setP_closingAmount(rset.getInt("closing_Amount"));
+			cp.setTest(rset.getDate("test"));
+			cp.setPt_pName(rset.getString("p_Name_1"));
+			cp.setP_interestRate(rset.getString("interest_Rate"));
+			cp.setResult(rset.getInt("result"));
+			cp.setPr_status(rset.getString("status"));
+			
+			
+			list.add(cp);
+		}
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally{
+		close(pstmt);
+		close(rset);
+	}
+
+	System.out.println("list 출력 : " + list);
+	return list;
+}
+
+//펀딩 정렬 메소드
+public ArrayList<CheckProject> sortProject(Connection con, int currentPage, int limit, String sort) {
+
+	ArrayList<CheckProject> list = null;
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+
+	String query1 = prop.getProperty("sortProjectP_name");
+	String query2 = prop.getProperty("sortProjectUser_name");
+	String query3 = prop.getProperty("sortProjectTest");
+	String query4 = prop.getProperty("sortProjectResult");
+	
+
+	try {
+		if(sort.equals("p_name")){
+			pstmt = con.prepareStatement(query1);
+		}else if(sort.equals("user_name")){
+			pstmt = con.prepareStatement(query2);
+		}else if(sort.equals("test")){
+			pstmt = con.prepareStatement(query3);
+		}else if(sort.equals("result")){
+			pstmt = con.prepareStatement(query4);
+		}
+		
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit -1;
+
+		pstmt.setInt(1, startRow);
+		pstmt.setInt(2, endRow);
+
+		rset = pstmt.executeQuery();
+
+		list = new ArrayList<CheckProject>();
+
+		while(rset.next()){
+			CheckProject cp = new CheckProject();
+			
+			cp.setP_pName(rset.getString("p_Name"));				
+			cp.setM_userName(rset.getString("user_Name"));
+			cp.setP_closingAmount(rset.getInt("closing_Amount"));
+			cp.setTest(rset.getDate("test"));
+			cp.setPt_pName(rset.getString("p_Name_1"));
+			cp.setP_interestRate(rset.getString("interest_Rate"));
+			cp.setResult(rset.getInt("result"));
+			cp.setPr_status(rset.getString("status"));
+			
+			
+			list.add(cp);
+		}
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+		close(rset);
+	}
+
+
+	System.out.println("Project list 가져왔어요" + list);
+	return list;
+
+}
+
+//펀딩 검색 메소드
+public ArrayList<CheckProject> searchProject(Connection con, int currentPage, int limit, String text) {
+	ArrayList<CheckProject> list = null;
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+
+	String query = prop.getProperty("searchProject");
+	System.out.println("제발 여기까진 와주라");
+	try {
+		pstmt= con.prepareStatement(query);
+
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit -1;
+
+		pstmt.setString(1, text);
+		pstmt.setString(2, text);
+		pstmt.setInt(3, startRow);
+		pstmt.setInt(4, endRow);
+
+		list = new ArrayList<CheckProject>();
+		rset = pstmt.executeQuery();
+		while(rset.next()){
+			CheckProject cp = new CheckProject();
+			
+			cp.setP_pName(rset.getString("p_Name"));				
+			cp.setM_userName(rset.getString("user_Name"));
+			cp.setP_closingAmount(rset.getInt("closing_Amount"));
+			cp.setTest(rset.getDate("test"));
+			cp.setPt_pName(rset.getString("p_Name_1"));
+			cp.setP_interestRate(rset.getString("interest_Rate"));
+			cp.setResult(rset.getInt("result"));
+			cp.setPr_status(rset.getString("status"));
+			
+			
+			list.add(cp);
+		}
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally{
+		close(pstmt);
+		close(rset);
+	}
+	System.out.println("리스트는~" + list);
+
+	return list;
+}
+
+public int searchProjectListCount(Connection con, String text) {
+	PreparedStatement pstmt = null;
+	int searchList = 0;
+	ResultSet rset = null;
+
+	String query = prop.getProperty("searchProjectCount");
+
+	try {
+		pstmt = con.prepareStatement(query);
+
+		pstmt.setString(1, text);
+		pstmt.setString(2, text);
+		
+		
+
+		rset = pstmt.executeQuery();
+
+		if(rset.next()) {
+			searchList = rset.getInt(1);
+
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally{
+		close(pstmt);
+		close(rset);
+
+	}
+
+
+	return searchList;
+}
+//투자자 일 때 상세 정보 메소드
+public DetailMember selectOneInv(Connection con, int user_id) {
+	return null;
+}
+//사업자 일 때 상세 정보 메소드
+public DetailMember selectOneEnp(Connection con, int user_id) {
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+
+	DetailMember dm = null;
+
+	String query = prop.getProperty("selectOneEnp");
+
+	try {
+		pstmt = con.prepareStatement(query);
+		pstmt.setInt(1, user_id);
+		pstmt.setInt(2, user_id);
+		pstmt.setInt(3, user_id);
+		
+		rset = pstmt.executeQuery();
+
+		if(rset.next()) {
+			dm = new DetailMember();
+
+			dm.setUserId(rset.getInt("user_id"));
+			dm.setUserClass(rset.getString("user_class"));
+			dm.setUserName(rset.getString("user_name"));
+			dm.setCorporateName(rset.getString("corporate_name"));
+			dm.setNickName(rset.getString("nick_name"));
+			dm.setEmail(rset.getString("email"));
+			dm.setPhone(rset.getString("phone"));
+			dm.setEnrollDate(rset.getDate("enroll_date"));
+			dm.setProductCount(rset.getInt("product_count"));
+			dm.setFinalResult(rset.getInt("finalresult"));
+
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+		close(rset);
+	}
+	System.out.println("객체 dm 은 ? = " + dm);
+	return dm;
+}
 
 	
 	
@@ -974,4 +1241,3 @@ public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int 
 
 	
 }
-

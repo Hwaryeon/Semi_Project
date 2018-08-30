@@ -1,6 +1,6 @@
 package com.kh.sp.admin.model.vo;
 
-public class MemberStatistics {
+public class MemberStatistics  implements java.io.Serializable{
      private String term;
      private int memberCount;
      private int emailMemberCount;

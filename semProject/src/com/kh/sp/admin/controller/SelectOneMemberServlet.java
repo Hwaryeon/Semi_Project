@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.sp.admin.model.service.AdminService;
+import com.kh.sp.admin.model.vo.DetailMember;
 import com.kh.sp.member.model.vo.Member;
 
 @WebServlet("/selectOneMember.adm")
@@ -28,25 +29,37 @@ public class SelectOneMemberServlet extends HttpServlet {
 		
 		System.out.println("user_id = " + user_id);
 		System.out.println("user_class = " + user_class);
-		Member m = new AdminService().selectOne(user_id);
 		
 		String page = null;
-		
-		if(m != null && user_class.equals("general")){
+		if(user_class.equals("general")){
+			Member m = new AdminService().selectOne(user_id);
+			if(m != null){
 			page = "views/admin/searchMember.jsp";
 			request.setAttribute("m", m);
-			
-		}else if(m != null &&user_class.equals("investor")){
-			page="views/admin/searchInvMember.jsp";
-			request.setAttribute("m", m);
-			
-		}else if(m != null && user_class.equals("business")){
+			}else{
+				page = "views/common/errorPage.jsp";
+				request.setAttribute("msg", "회원 상세 조회 실패");
+			}
+		}if(user_class.equals("investor")){
+			DetailMember dm = new AdminService().selectOneInv(user_id);
+			if(dm != null){
+				page = "views/admin/searchInvMember.jsp";
+				request.setAttribute("dm", dm);
+			}else{
+				page = "views/common/errorPage.jsp";
+				request.setAttribute("msg", "회원 상세 조회 실패");
+			}
+		}if(user_class.equals("business")){
+			DetailMember dm = new AdminService().selectOneEnp(user_id);
 			page="views/admin/searchEnpMember.jsp";
-			request.setAttribute("m", m);
+			request.setAttribute("dm", dm);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "회원 상세 조회 실패");
 		}
+		
+		
+		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 		

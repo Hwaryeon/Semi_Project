@@ -188,8 +188,8 @@ element {
 
 
 			<%@ include file="../common/sideMenu2.jsp"%>
-			<%-- <%@ include file="../views/sideMenu.jsp" %> --%>
 			<div>
+			
 				<div id="text" style="margin-left: 90px;">
 					<h2 id="web-font">
 						<b>회원 관리 > 회원 조회</b>
@@ -395,7 +395,7 @@ element {
 						 $("#userId2").val(user_id);
 						$("#userClass2").val(user_class);
 						/*console.log(user_id);*/
-						$("#selectOne").submit();  
+						$("#selectOne").submit(); 
 						
 				/* 		$("#userId2").val($("#userId").val());
 						$("#userClass2").val($("#userClass").val()); */

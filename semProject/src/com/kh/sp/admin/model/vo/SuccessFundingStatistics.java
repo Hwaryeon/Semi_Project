@@ -2,7 +2,7 @@ package com.kh.sp.admin.model.vo;
 
 import java.sql.Date;
 
-public class SuccessFundingStatistics {
+public class SuccessFundingStatistics  implements java.io.Serializable{
     private String term;
     private int endCount;
     private int successCount;

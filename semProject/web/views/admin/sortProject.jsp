@@ -200,10 +200,10 @@ element {
 							<th>이자률</th>
 							<th>달성률</th>
 							<th>진행 상태</th>
-							<option name="sortCondition" value="project_id">펀딩명</option>
-							<option name="sortCondition" value="_name">이름</option>
-							<option name="sortCondition" value="nickname">마감임박순</option>
-							<option name="sortCondition" value="email">달성률순</option>
+							<option name="sortCondition" value="p_name">펀딩명</option>
+							<option name="sortCondition" value="user_name">이름</option>
+							<option name="sortCondition" value="test">마감임박순</option>
+							<option name="sortCondition" value="result">달성률순</option>
 						</select>
 						<button id="sortBtn" type="submit">정렬하기</button>
 					</div>
@@ -279,7 +279,7 @@ element {
 	<%-- 페이지처리 --%>
 					<div class="pageArea" align="center">
 						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=1'"><<</button>
+							onclick="location.href='<%=request.getContextPath()%>/sortProject.adm?currentPage=1'"><<</button>
 						<%
 							if (currentPage <= 1) {
 						%>
@@ -288,7 +288,7 @@ element {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=currentPage - 1%>'"><</button>
+							onclick="location.href='<%=request.getContextPath()%>/sortProject.adm?currentPage=<%=currentPage - 1%>'"><</button>
 						<%
 							}
 						%>
@@ -301,7 +301,7 @@ element {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=p%>'"><%=p%></button>
+							onclick="location.href='<%=request.getContextPath()%>/sortProject.adm?currentPage=<%=p%>'"><%=p%></button>
 						<%
 							}
 						%>
@@ -318,12 +318,12 @@ element {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=currentPage + 1%>'">></button>
+							onclick="location.href='<%=request.getContextPath()%>/sortProject.adm?currentPage=<%=currentPage + 1%>'">></button>
 						<%
 							}
 						%>
 						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=maxPage%>'">>></button>
+							onclick="location.href='<%=request.getContextPath()%>/sortProject.adm.adm?currentPage=<%=maxPage%>'">>></button>
 
 					</div>
 				</div>

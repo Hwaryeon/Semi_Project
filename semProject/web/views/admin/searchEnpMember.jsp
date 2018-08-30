@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.kh.sp.admin.model.vo.*"%>
+<%
+	DetailMember dm = (DetailMember) request.getAttribute("dm");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,12 +15,14 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css"  href="<%=request.getContextPath()%>/css/admin/admin.css">
-	
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/admin/admin.css">
+
 <style>
 html {
-	    margin-top: 86px;
+	margin-top: 86px;
 }
+
 .adminBtn {
 	background: #5bc0de;
 	heignt: 50px;
@@ -30,6 +35,7 @@ html {
 	border: 1px solid transparent;
 	white-space: nowrap;
 }
+
 table {
 	width: 100%;
 	border: 1px solid #444444;
@@ -38,8 +44,7 @@ table {
 
 th, td {
 	border: 1px solid white;
-	text-align:center;
-	
+	text-align: center;
 }
 
 #box {
@@ -74,27 +79,32 @@ th, td {
 	margin-left: auto;
 	margin-right: auto;
 }
-#blackText{
- width:600px;
-  height:200px;
- }
+
+#blackText {
+	width: 600px;
+	height: 200px;
+}
 </style>
 </head>
 <body>
-		<%@ include file="../common/headBar.jsp" %>
+	<%@ include file="../common/headBar.jsp"%>
 	<header class="head_banner" style="margin-bottom: 65px;">
-						<div class="hero"><img src="<%=request.getContextPath()%>/images/common/admin.jpg" style="width:100%;"alt="공지사항 배경 이미지 입니다." class="img_rwd"></div>
-						<div class="layer">
-							<!-- <h1 class="tit_comm">Manager</h1>
+		<div class="hero">
+			<img src="<%=request.getContextPath()%>/images/common/admin.jpg"
+				style="width: 100%;" alt="공지사항 배경 이미지 입니다." class="img_rwd">
+		</div>
+		<div class="layer">
+			<!-- <h1 class="tit_comm">Manager</h1>
 							<p class="txt_comm">관리자 페이지</p> -->
-						</div>
-					</header>
-	<%@ include file="../common/sideMenu2.jsp" %>
-		<div id="text">
-			<h3>회원관리 > 회원조회 > 상세조회</h3><br>
-			<form action="" method="get">
+		</div>
+	</header>
+	<%@ include file="../common/sideMenu2.jsp"%>
+	<div id="text">
+		<h3>회원관리 > 회원조회 > 상세조회</h3>
+		<br>
+		<form action="" method="get">
 
-				<table align="center" border="1">
+			<table align="center" border="1">
 				<thead>
 					<tr>
 						<th>아이디</th>
@@ -103,33 +113,53 @@ th, td {
 						<th>업체명</th>
 						<th>별명</th>
 						<th width="260px">이메일</th>
-						<th width="200px">연락처</th>
-						
+
 					</tr>
 				</thead>
-				</table>
-				<br><br><br><br><br>
-				<table align="center" border="1">
+				<tr>
+					<td><span><%=dm.getUserId()%></span></td>
+					<td><span><%=dm.getUserClass()%></span></td>
+					<td><span><%=dm.getUserName()%></span></td>
+					<td><span><%=dm.getCorporateName()%></span></td>
+					<td><span><%=dm.getNickName()%></span></td>
+					<td><span><%=dm.getEmail()%></span></td>
+				</tr>
+			</table>
+			<br> <br> <br> <br> <br>
+			<table align="center" border="1">
 				<thead>
 					<tr>
-						<th rowspan="2" width="300px">주소</th>
-						<th rowspan="2">프로젝트 개설 횟수</th>
-						<th rowspan="2">투자받은 금액</th>
+						<th width="200px">연락처</th>
 						<th rowspan="2">가입일</th>
+						<th rowspan="2">프로젝트 개설 횟수</th>
+						<th rowspan="2">투자받은 총 금액</th>
 					</tr>
+
+					<!-- dm.setPhone(rset.getString("phone"));
+				dm.setEnrollDate(rset.getDate("enroll_date"));
+				dm.setProductCount(rset.getInt("product_count"));
+				dm.setFinalResult(rset.getInt("finalresult")); -->
 				</thead>
-				</table>
-			</form>
-			<br><br><br><br><br><br><br><br><br>
+				<tr>
+					<td><span><%=dm.getPhone()%></span></td>
+					<td><span><%=dm.getEnrollDate()%></span></td>
+					<td><span><%=dm.getProductCount()%></span></td>
+					<td><span><%=dm.getFinalResult()%></span></td>
+				</tr>
+			</table>
+		</form>
+		<br> <br> <br> <br> <br> <br> <br>
+		<br> <br>
 		<div class="btn-box">
-			<button class="adminBtn" onclick="location.href='admin/managerPage.jsp'">돌아가기</button>
+			<button class="adminBtn"
+				onclick="location.href='admin/managerPage.jsp'">돌아가기</button>
 			&nbsp;
 			<button type="button" id="blackBtn" class="adminBtn"
 				data-toggle="modal" data-target="#myModal">블랙리스트 추가하기</button>
 
 		</div>
-		</div>
-		<div class="container">
+	</div>
+	<div class="container">
 		<!-- Trigger the modal with a button -->
 
 		<!-- Modal -->
@@ -145,7 +175,8 @@ th, td {
 						<input type="text" id="blackText">
 					</div>
 					<div class="modal-footer">
-						<button type="button" onclick="location.href='#'" class="btn btn-default" data-dismiss="modal">추가하기</button>
+						<button type="button" onclick="location.href='#'"
+							class="btn btn-default" data-dismiss="modal">추가하기</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소하기</button>
 					</div>
 				</div>

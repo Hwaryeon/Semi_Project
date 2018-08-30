@@ -546,17 +546,14 @@ cursor : pointer;
 						관리</a>
 					<ul class="lnb_depth">			
 						<li id="9 6b bgvt6 vg6tfvg7"class="link_depth" onclick="memberAll();">회원 조회</li>
-						<li id="comJoi_li" onclick="blackList();">블랙리스트 관리</li>
-						<li id="comFaq_li" class="link_depth" onclick="invRankAll();">
-						투자자 등급 관리</li>
+						<li id="9 6b bgvt6 vg6tfvg7"class="link_depth" onclick="blackList();">블랙리스트 관리</li>
+						<li id="9 6b bgvt6 vg6tfvg7"class="link_depth" onclick="invRankAll();">투자자 등급 관리</li>
 					</ul></li>
 				<li id="gstRoot"><a href="guest.jsp#gstRewPay"
 					class="link_cont">펀딩 관리</a>
 					
 							<ul class="lnb_depth">
-							<li id="gstRewPay_li"><a href="/sp/views/admin/searchProject.jsp"
-									class="link_depth">펀딩
-										관리</a></li>
+						<li id="9 6b bgvt6 vg6tfvg7"class="link_depth" onclick="selectAllProject();">펀딩 조회</li>
 								<li id="gstRewPay_li"><a href="/sp/views/admin/confirmProject.jsp"
 									class="link_depth">펀딩
 										심사</a></li>
@@ -588,7 +585,10 @@ function blackList(){
 	location.href="<%=request.getContextPath()%>/blackSelectAll.adm";
 }
 function invRankAll(){
-	location.href="<%=request.getContextPath()%>/selectAllRank.adm"
+	location.href="<%=request.getContextPath()%>/selectAllRank.adm";
+}
+function selectAllProject(){
+	location.href="<%=request.getContextPath()%>/selectAllProject.adm";
 }
 
 </script>

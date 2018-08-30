@@ -2,7 +2,7 @@ package com.kh.sp.admin.model.vo;
 
 import java.sql.Date;
 
-public class SalesStatistics {
+public class SalesStatistics  implements java.io.Serializable{
     private String term;
     private int paymentCount;
     private String paymentPrice;

@@ -2,7 +2,7 @@ package com.kh.sp.admin.model.vo;
 
 import java.sql.Date;
 
-public class OpenFundingStatistics {
+public class OpenFundingStatistics  implements java.io.Serializable{
 	private String term;
 	private int enrollCount;
 	private int openCount;

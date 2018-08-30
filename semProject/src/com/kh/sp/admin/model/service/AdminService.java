@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.sp.admin.model.dao.AdminDao;
+import com.kh.sp.admin.model.vo.CheckProject;
+import com.kh.sp.admin.model.vo.DetailMember;
 import com.kh.sp.admin.model.vo.MemberStatistics;
 import com.kh.sp.admin.model.vo.OpenFundingStatistics;
 import com.kh.sp.admin.model.vo.SalesStatistics;
@@ -67,7 +69,7 @@ public class AdminService {
 		Connection con = getConnection();
 				
 		Member m = new AdminDao().selectOne(con, user_id);
-		
+	
 		close(con);
 		
 		return m;
@@ -138,7 +140,7 @@ public class AdminService {
 		
 		return listCount;
 	}
-	
+	//투자자 등급 변경 요청자 출력 메소드 정태
 	public ArrayList<Member> selectInvRankList(int currentPage, int limit) {
 		Connection con = getConnection();
 		
@@ -148,6 +150,7 @@ public class AdminService {
 		
 		return rankList;
 	}
+	//투자자 등급 변경 메소드 정태
 	public int updateRank(int userId) {
 		Connection con = getConnection();
 		int result = new AdminDao().updateRank(con, userId);
@@ -161,6 +164,69 @@ public class AdminService {
 		
 		return result;
 	}
+//펀딩 전체 리스트 카운트 정태
+	public int getProjectListCount() {
+		Connection con = getConnection();
+		
+		int listCount = new AdminDao().getProjectListCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+	//펀딩 전체 조회 메소드 정태
+	public ArrayList<CheckProject> selectAllProject(int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<CheckProject> list = new AdminDao().selectAllProject(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;	
+	}
+	//펀딩 정렬 메소드 정태
+	public ArrayList<CheckProject> sortProject(int currentPage, int limit, String sort) {
+		Connection con = getConnection();
+		ArrayList<CheckProject> list = new AdminDao().sortProject(con, currentPage, limit, sort);
+		close(con);
+		return list;
+		
+	}
+	//펀딩 검색 리스트 카운트 메소드 정태
+	public int searchProjectListCount(String text) {
+		Connection con = getConnection();
+		
+		int searchList = new AdminDao().searchProjectListCount(con, text);
+		
+		close(con);
+		
+		return searchList;
+	}
+	//펀딩 검색 메소드 정태
+	public ArrayList<CheckProject> searchProject(int currentPage, int limit, String text) {
+		
+		Connection con = getConnection();
+		ArrayList<CheckProject> list = new AdminDao().searchProject(con, currentPage, limit,text);
+		close(con);
+		return list;
+	}
+	//투자자일 때, 회원 상세보기 정태
+	public DetailMember selectOneInv(int user_id) {
+		Connection con = getConnection();
+		DetailMember dm = new AdminDao().selectOneInv(con, user_id);
+		close(con);
+
+		return dm;
+	}
+	//사업자일 때, 회원 상세보기 정태
+	public DetailMember selectOneEnp(int user_id) {
+		Connection con = getConnection();
+		DetailMember dm = new AdminDao().selectOneEnp(con, user_id);
+		close(con);
+		
+		return dm;
+	}
+
 
 
 
@@ -221,6 +287,4 @@ public class AdminService {
 			return listCount;
 		}
 	
-	
-
 }

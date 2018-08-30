@@ -8,6 +8,8 @@
  <meta charset= "UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"  href="<%=request.getContextPath()%>/css/admin/admin.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 html {
 	    margin-top: 86px;
@@ -58,6 +60,10 @@ thead {
 	
 	<%@ include file="../common/sideMenu2.jsp" %>
 <div id="text">
+				<form class="form-horizontal" id="pFile"action="<%=request.getContextPath() %>/pFileDown" method="post">
+				
+				
+				<!-- 여기안에 반복문으로 프로젝트 리스트 가져와야함 -->
 				<h2>펀딩관리 > 펀딩심사</h2><br>
 				<table align="center">
 				<thead>
@@ -71,13 +77,37 @@ thead {
 				<tr>
 						<td>1</td>
 						<td>세미프로젝트</td>
-						<td><button>파일 열람</button></td>
+						<td><button class="downBtn">파일 열람</button></td>
 						<td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span>승인</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>미승인</a></td>
 
 				</tr>
 				</table>
+				
+				<!-- 여기까지 -->
+				
+				
+				<input type="hidden" id="projectId" name="projectId" value="">
+				</form>
 	
 	</div>
+	<script>
+	$('.downBtn').click(function(){
+		var checkBtn = $(this);
+		var tr = checkBtn.parent().parent();
+		var td = tr.children();
+		
+		var no = td.eq(0).text();
+		
+		console.log(no);
+		
+		document.getElementById('projectId').value=no;
+		
+		
+	
+	
+	});
+	
+	</script>
 
 </body>
 </html>
