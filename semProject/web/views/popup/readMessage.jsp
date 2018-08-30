@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.sp.message.model.vo.*"%>
+    pageEncoding="UTF-8" import="com.kh.sp.message.model.vo.*, com.kh.sp.member.model.vo.*"%>
 <%
 	Message message = (Message)request.getAttribute("message");
 	String type = (String)request.getAttribute("type");
+	Member loginUser = (Member)session.getAttribute("loginUser");
 %>
 <!DOCTYPE html>
 <html >
@@ -169,26 +170,8 @@ button {
 			  <div class="form-group">
 			    <label for="inputEmail3" class="col-sm-2 control-label" style="width:84px;">보낸이</label>
 			    <div class="col-sm-10">
-			    <!-- 메시지 보내는 회원의 아이디 -->
-				    <input type="hidden" id="user_id" name="user_id" value="<%=message.getUser_id() %>">
-				   <%--  <% if(message.getReceive_Nickname() != null){ %>
-														<input type="text" class="form-control" id="nickname" 
-			      	name="nickname" placeholder="<%= message.getReceive_Nickname() %>" 
-			      	value="<%= message.getReceive_Nickname() %>"
-			      	readonly >
-													<% }else if(message.getReceive_UserName() != null){ %>
-													
-													<input type="text" class="form-control" id="nickname" 
-			      	name="nickname" placeholder="<%= message.getReceive_UserName() %>"
-			      	value="<%= message.getReceive_Nickname() %>"
-			      	 readonly >
-														
-													<% }else{ %>
-														<input type="text" class="form-control" id="nickname" 
-			      	name="nickname" placeholder="익명"
-			      	value="<%= message.getReceive_Nickname() %>"
-			      	 readonly >
-													<% } %> --%>
+			    	<input type="hidden" id="send_userId" name="send_userId" class="send_userId" value="<%=message.getUser_id()%>">
+				    <input type="text" class="form-control" id="nickname" name="nickname" value="<%=message.getReceive_Nickname() %>" placeholder="<%=message.getReceive_Nickname() %>" readonly >
 			    </div>
 			  </div>
 			  
@@ -218,6 +201,7 @@ button {
 			      
 			    </div>
 			  </div>
+			  <input type="hidden" id="userId" name="userId" value="<%=loginUser.getUserId() %>" >
 			</form>
 			
 			

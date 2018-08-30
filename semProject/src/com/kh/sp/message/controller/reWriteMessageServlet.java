@@ -23,22 +23,27 @@ public class reWriteMessageServlet extends HttpServlet {
 		System.out.println("답장 db 전송 서블릿");
 	
 		String title = request.getParameter("title");
-		String userId = request.getParameter("user_id");
+		String userId = request.getParameter("userId");
 		String receive_id = request.getParameter("receive_id");
 		String msg = request.getParameter("msg");
 		
-		/*System.out.println(title);
+		System.out.println(title);
 		System.out.println(userId);
 		System.out.println(receive_id);
-		System.out.println(msg);*/
+		System.out.println(msg);
 		
 		Message m = new Message(title, msg, Integer.parseInt(userId), Integer.parseInt(receive_id));
 		
 		int result = new MessageService().reWriteMsg(m);
 	
 		if(result > 0){
+			
+			
 			String page = "listMessage";
-			response.sendRedirect(page);
+			request.setAttribute("user_id", userId);
+			
+			request.getRequestDispatcher("listMessage").forward(request, response);
+			/*response.sendRedirect(page);*/
 		}
 	
 	}

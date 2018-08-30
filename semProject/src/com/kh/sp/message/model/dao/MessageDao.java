@@ -38,7 +38,7 @@ public class MessageDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, 999);
+			pstmt.setInt(1, m.getReceive_id());
 			pstmt.setInt(2, m.getUser_id());
 			pstmt.setString(3, m.getTitle());
 			pstmt.setString(4, m.getMsg());

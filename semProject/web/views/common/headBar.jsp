@@ -78,7 +78,7 @@
 	line-height: 56px;
 	color: #44484b;
 	font-weight: 700;
-	margin: 0 4%;
+	margin: 0 3%;
 	font-size: 16px;
 	font-family: Roboto, 'Noto Sans KR', sans-serif;
 	/* font-family: 'Jua', sans-serif; */
@@ -188,7 +188,7 @@
 </head>
 <body style="" style="width:1500px; overflow:hidden;" onload="webConnect();">
 	<div >
-		<div class="headr-wrap navbar navbar-default navbar-static-top" id="headr-wrap" style="width:1550px;max-height:87px;">
+		<div class="headr-wrap navbar navbar-default navbar-static-top" id="headr-wrap" style="width:1400px;max-height:87px;">
 
 
 			<h1 class="lg" ><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/common/logo.png" width="100" height="200" ></a></h1>

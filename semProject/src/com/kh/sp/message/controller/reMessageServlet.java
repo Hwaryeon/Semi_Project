@@ -19,7 +19,7 @@ public class reMessageServlet extends HttpServlet {
 
 		System.out.println("??????");
 		
-		String userId = request.getParameter("user_id");
+		String userId = request.getParameter("send_userId");
 		String nickname = request.getParameter("nickname");
 		
 		System.out.println("userid : " +userId);

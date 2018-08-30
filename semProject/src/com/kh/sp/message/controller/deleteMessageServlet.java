@@ -24,15 +24,16 @@ public class deleteMessageServlet extends HttpServlet {
 		System.out.println("삭제 서블릿 호출");
 	
 		String msgId = request.getParameter("msgId");
-		
+		String userId = request.getParameter("userId");
 		/*System.out.println("msgId : " + msgId);*/
 		
 		int result = new MessageService().deleteMsg(msgId);
 		
 		if(result > 0){
 			String page = "listMessage";
+			request.setAttribute("user_id", userId);
 			
-			response.sendRedirect(page);
+			request.getRequestDispatcher("listMessage").forward(request, response);
 		}
 		
 	}

@@ -3,6 +3,7 @@
 <%
 
  String userId = (String)request.getAttribute("userId");
+ String nickname = (String)request.getAttribute("nickname");
 Member loginUser = (Member)session.getAttribute("loginUser");
 %>
 <!doctype html>
@@ -159,13 +160,17 @@ button {
 			  
 			  <div>
 			    <!-- 메시지 보내는 회원의 아이디 -->
-				    <input type="hidden" id="user_id" name="user_id" value="<%=loginUser.getUserId()%>">
+				   <%--  <input type="hidden" id="user_id" name="user_id" value="<%=loginUser.getUserId()%>"> --%>
 			    </div>
 			    
 			    <div class="form-group">
 			    <label for="inputEmail3" class="col-sm-2 control-label">받는사람</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" value="<%=userId %>" id="receive_id" name="receive_id" placeholder="<%=userId %>" readonly >
+			    
+			      <input type="text" class="form-control" value="<%=nickname %>" id="nickname" name="nickname" placeholder="<%=nickname %>" readonly >
+			  	<input type="hidden" class="form-control" value="<%=userId %>" id="receive_id" name="receive_id"   >
+			  
+			  
 			    </div>
 			  </div>
 			  
@@ -182,6 +187,7 @@ button {
 			      <button type="submit" class="btn btn-default" onclick="closePopup();">보내기</button>
 			    </div>
 			  </div>
+			  <input type="hidden" id="userId" name="userId" value="<%=loginUser.getUserId() %>" >
 			</form>
 			
 			
