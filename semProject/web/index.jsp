@@ -6,6 +6,7 @@ ArrayList<Product> newFList = (ArrayList<Product>)request.getAttribute("newFList
 ArrayList<Product> mainFList = (ArrayList<Product>)request.getAttribute("mainFList");
 ArrayList<Product> hotFList = (ArrayList<Product>)request.getAttribute("hotFList");
 ArrayList<Product> closeFList = (ArrayList<Product>)request.getAttribute("closeFList");
+String msg = (String)request.getAttribute("msg");
 %>    
 
 <!DOCTYPE html>

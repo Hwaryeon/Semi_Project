@@ -39,7 +39,7 @@ public class InsertApplicationServlet extends HttpServlet {
 			
 			String root = request.getSession().getServletContext().getRealPath("/");
 			//System.out.println("경로 : " + root);
-			String savePath = root + "updateRanking_uploadFiles/";
+			String savePath = root + "updateRanking_uploadFiles\\";
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
 			//저장할 파일의 이름을 저장할 arrayList

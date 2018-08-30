@@ -108,7 +108,8 @@ legend {
   	<% if(loginUser.getUserClass().equals("investor")) { %>
          //로그인 한 유저가 투자자일 경우
          $(".certification").hide(); //투자자 인증창 숨기기
-      <% if(loginUser.getInvestorGrade().equals("PI")) { %>
+      <% if(loginUser.getInvestorGrade().equals("PI") || loginUser.getGradingStatus().equals("evaluate")) { 
+      		System.out.println("gradingStatus : " + loginUser.getGradingStatus());%>
          //전문 투자자인 경우
             $(".updateRank").hide();//투자등급 올리기 메뉴 숨기기
       <% } %>

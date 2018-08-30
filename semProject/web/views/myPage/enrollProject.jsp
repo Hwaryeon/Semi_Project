@@ -67,19 +67,30 @@
 		<div class="product">
 			<table align="center">
 				<tr>
-					<th colspan="2" width="100px" height="50px">번호</td>
-					<th colspan="6" width="300px" height="50px">제목</td>
-					<th colspan="2" width="100px" height="50px">상태</td>
+					<th colspan="2" width="100px" height="50px">번호</th>
+					<th colspan="6" width="300px" height="50px">제목</th>
+					<th colspan="2" width="100px" height="50px">상태</th>
+					<% if(loginUser.getUserClass().equals("investor")) { %>
+						<th colspan="2" width="100px" height="50px">비고</th>
+					<% } %>
 				</tr>
 				<% int i=1;
 					for(MypageDetail md : list) { %>
 				<tr>
 					<td colspan="2" width="100px" height="50px"><%=i %>번</td>
 					<td colspan="6" width="300px" height="50px"><%= md.getP_name() %></td>
-					<td colspan="2" width="100px" height="50px"><%= md.getStatus() %>
-					<%-- <% if(md.getStatus().equals("enroll")) { %> 승인대기중
+					<td colspan="2" width="100px" height="50px"><%-- <%= md.getStatus() %> --%>
+					<% if(md.getStatus().equals("enroll")) { %> 승인대기중
 					<% } else if(md.getStatus().equals("enrollApproval")) {%>모집중
-					<% } else if(md.getStatus().equals("submit")) {%>신청중<% } %> --%>
+					<% } else if(md.getStatus().equals("end")) {%>모집완료
+					<% } else if(md.getStatus().equals("endApproval")) {%>채권 지급 완료
+					<% } else if(md.getStatus().equals("repay")) { %>상환완료<% } %>
+					</td>
+					<td>
+					<% if(loginUser.getUserClass().equals("investor")) { 
+						if(md.getStatus().equals("enrollApproval")) { %>
+					<button class="btn-primary btn">환불하기</button>
+					<% } } %>
 					</td>
 				</tr>
 				

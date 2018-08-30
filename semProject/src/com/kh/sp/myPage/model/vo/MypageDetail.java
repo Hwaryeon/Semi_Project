@@ -8,10 +8,11 @@ public class MypageDetail {
 	private String status;//상태
 	private String pay_date;//결제날짜
 	private int price;//금액
+	private String pay_class;//결제/환불 여부
 	
 	public MypageDetail(){}
 
-	public MypageDetail(int p_id, int user_id, String p_name, int invest_id, String status, String pay_date, int price) {
+	public MypageDetail(int p_id, int user_id, String p_name, int invest_id, String status, String pay_date, int price, String pay_class) {
 		this.p_id = p_id;
 		this.user_id = user_id;
 		this.p_name = p_name;
@@ -19,6 +20,7 @@ public class MypageDetail {
 		this.status = status;
 		this.pay_date = pay_date;
 		this.price = price;
+		this.pay_class = pay_class;
 	}
 
 	public int getP_id() {
@@ -75,6 +77,14 @@ public class MypageDetail {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public String getPay_class() {
+		return pay_class;
+	}
+
+	public void setPay_class(String pay_class) {
+		this.pay_class = pay_class;
 	}
 	
 	

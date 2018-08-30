@@ -70,7 +70,7 @@ p {
 			* 회원님께서 남기신 게시글,댓글 및<br>
 			펀딩한 프로젝트의 투자(참여)목록 등 투자이력은 삭제되지 않습니다.<br><br>
 		</p>
-		<button class="btn btn-primary">
+		<button class="btn btn-primary" onclick="location.href='<%= request.getContextPath() %>/delete.me?userid=<%= loginUser.getUserId() %>'">
 			<!-- onclick="deleteMember();" -->
 			탈퇴하기
 		</button>

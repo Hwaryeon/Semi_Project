@@ -503,46 +503,70 @@ private Properties prop = new Properties();
 	public int updateMember(Connection con, Member m) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "";
-		if(m.getPlatformType().equals("email") && (m.getUserPwd() != null)) {	
-			query = prop.getProperty("updateMember1");
+		String query = prop.getProperty("updateMember1");
 			
-			try {
-				pstmt = con.prepareStatement(query);
-				pstmt.setString(1, m.getNickName());//닉네임 set
-				pstmt.setString(2, m.getUserPwd());//비밀번호 set
-				pstmt.setString(3, m.getPhone());//전화번호 set
-				pstmt.setString(4, m.getUserName());//이름 set
-				pstmt.setInt(5, m.getUserId());//where절
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, m.getNickName());//닉네임 set
+			pstmt.setString(2, m.getUserPwd());//비밀번호 set
+			pstmt.setString(3, m.getPhone());//전화번호 set
+			pstmt.setString(4, m.getUserName());//이름 set
+			pstmt.setInt(5, m.getUserId());//where절
 				
-				result = pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(pstmt);
-			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateMember2(Connection con, Member m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updateMember2");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, m.getNickName());//닉네임 set
+			pstmt.setString(2, m.getPhone());//전화번호 set
+			//System.out.println(m.getUserName());
+			pstmt.setString(3, m.getUserName());//이름 set
+			pstmt.setInt(4, m.getUserId());//where절
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int deleteMember(Connection con, Member m) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteMember");
+		System.out.println(query);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, m.getUserId());
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println(result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
 		
-		else {
-			query = prop.getProperty("updateMember2");
-			
-			try {
-				pstmt = con.prepareStatement(query);
-				pstmt.setString(1, m.getNickName());//닉네임 set
-				pstmt.setString(2, m.getPhone());//전화번호 set
-				//System.out.println(m.getUserName());
-				pstmt.setString(3, m.getUserName());//이름 set
-				pstmt.setInt(4, m.getUserId());//where절
-				
-				result = pstmt.executeUpdate();
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(pstmt);
-			}
-		}
 		return result;
 	}
 

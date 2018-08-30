@@ -161,7 +161,12 @@ public class MemberService {
 	
 	public int updateMember(Member m) {
 		Connection con = getConnection();
-		int result = new MemberDao().updateMember(con, m);
+		int result = 0;
+		if(m.getUserPwd() != null) {
+			result =  new MemberDao().updateMember(con, m);
+		} else {
+			result = new MemberDao().updateMember2(con, m);
+		}
 		
 		if(result > 0){
 			commit(con);
@@ -182,6 +187,22 @@ public class MemberService {
 		m = new MemberDao().checkEmail(con, userId);
 		close(con);
 		return m;
+	}
+
+	public int deleteMember(Member m) {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().deleteMember(con, m);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
 	}
 
 

@@ -159,8 +159,9 @@ label {
 		<br> <br>
 		<div class="btns" align="center">
 			<button class="btn update btn-primary" onclick="update();">수정하기</button>
-			
+			<% if(loginUser.getPlatformType().equals("email")) { %>
 			<button class="btn delete btn-primary" onclick="deleteMember();">탈퇴하기</button>
+			<% } %>
 		</div>
 	</div>
 	<script>
