@@ -1,23 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.sp.admin.model.vo.*"%>
-    
-    <%
-    ArrayList<CheckProject> list = (ArrayList<CheckProject>) request.getAttribute("list");
-	PageInfo pi = (PageInfo) request.getAttribute("pi");
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
+	pageEncoding="UTF-8" import="java.util.*, com.kh.sp.member.model.vo.*, 
+	com.kh.sp.admin.model.vo.*"%>
+<%
+	
+ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+PageInfo pi = (PageInfo)request.getAttribute("pi");
+int listCount = pi.getListCount();
+int currentPage = pi.getCurrentPage();
+int maxPage = pi.getMaxPage();
+int startPage = pi.getStartPage();
+int endPage = pi.getEndPage();
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset= "UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css"  href="<%=request.getContextPath()%>/css/admin/admin.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
 	rel="stylesheet">
@@ -30,10 +28,12 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/admin/admin.css">
+<link rel="stylesheet" type="text/css"  href="<%=request.getContextPath()%>/css/admin/admin.css">
 
 <style>
+html {
+	    margin-top: 86px;
+}
 #sortBtn {
 	width: 60px;
 }
@@ -47,10 +47,9 @@
 .container, .row {
 	width: 300px;
 }
-
-.row {
-	margin-left: -325px;
-	margin-regih: -15px;
+.row{
+    margin-left: -75px;
+	margin-regih:-15px;
 }
 
 .search {
@@ -119,6 +118,7 @@ th, td {
 	font-family: 'Nanum Gothic Coding', monospace;
 	border: 1px solid #444444;
 	color: black;
+	background: white;
 	text-align: center;
 }
 
@@ -161,7 +161,6 @@ th, td {
  */
 html {
 	background-color: white;
-	margin-top: -1px;
 }
 
 element {
@@ -169,8 +168,10 @@ element {
 }
 </style>
 </head>
+
+
 <body>
-		<%@ include file="../common/headBar.jsp" %>
+	<%@ include file="../common/headBar.jsp" %>
 	<header class="head_banner" style="margin-bottom: 65px;">
 						<div class="hero"><img src="<%=request.getContextPath()%>/images/common/admin.jpg" style="width:100%;"alt="공지사항 배경 이미지 입니다." class="img_rwd"></div>
 						<div class="layer">
@@ -179,158 +180,114 @@ element {
 						</div>
 					</header>
 	<%@ include file="../common/sideMenu2.jsp" %>
-	
-<div>
-
-		<div id="text" style="margin-left: 90px;">
-				<h2 id="web-font">
-			<h3>펀딩 관리 > 펀딩 조회</h3><br>
-			
-			<!--  여기는 정렬 form -->
-		<form action="<%=request.getContextPath()%>/sortProject.adm"
-						method="get">			
-							<div id="box">
-							<div id="sortBox" border="1">
+	<%-- <%@ include file="../views/sideMenu.jsp" %> --%>
+	<div>
+		<div id="text">
+			<h2 id="web-font">
+				<b>회원 관리 > 회원 조회</b>
+			</h2>
+			<br>
+			<!-- 여기는 정렬 form  -->
+			<form action="<%=request.getContextPath()%>/sortMember.adm"
+				method="get">
+				<div id="box">
+					<div id="sortBox" border=1>
 						<select name="sort">
-							<th>프로젝트명</th>
-							<th>사업자 이름</th>
-							<th>마감 금액</th>
-							<th>종료 날짜</th>
-							<th>마감방식</th>
-							<th>이자률</th>
-							<th>달성률</th>
-							<th>진행 상태</th>
-							<option name="sortCondition" value="project_id">펀딩명</option>
-							<option name="sortCondition" value="_name">이름</option>
-							<option name="sortCondition" value="nickname">마감임박순</option>
-							<option name="sortCondition" value="email">달성률순</option>
+							<option value="user_id">아이디순</option>
+							<option value="user_class">회원구분</option>
+							<option value="user_name">이름</option>
+							<option value="nickname">별명</option>
+							<option value="email">이메일</option>
+							<option value="phone">연락처</option>
 						</select>
-						<button id="sortBtn" type="submit">정렬하기</button>
-					</div>
-									</form>
-					<form action="<%=request.getContextPath()%>/searchProject.adm"
-								method="get">
-			
-				<div class="container">
-								<div class="row">
-									<!-- 여기 div name, id -->
-									<div name="searchCondition" id="search" value="search"
-										class="search">
-										<!-- 여기가 입력창 -->
-										<input type="text" class="form-control input-sm"
-											maxlength="64" placeholder="Search" id="search1"
-											name="searchValue" value="search" />
-										<button type="submit" class="btn btn-primary btn-sm">검색하기</button>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</form>
-					
-					
-				<br><br><br>
-				
-		
-		
-				
-					<table id="memberTable" border="1">
-		<thead>
-		<tr>
-			<th>프로젝트명</th>
-			<th>사업자 이름</th>
-			<th>마감 금액</th>
-			<th>종료 날짜</th>
-			<th>마감방식</th>
-			<th>이자률</th>
-			<th>달성률</th>
-			<th>진행 상태</th>
-		</tr>
-		</thead>
-		<!--  여기 이제 값 뿌려줘해~ -->
-		<%
-			for (CheckProject cp : list) {
-		%>
-			
-		<tr>
-			<td><%= cp.getP_pName() %></td>
-			<td><%= cp.getM_userName() %></td>
-			<td><%= cp.getP_closingAmount() %></td>
-			<td><%= cp.getTest() %></td>
-			<td><%= cp.getPt_pName() %></td>
-			<td><%= cp.getP_interestRate() %>%</td>
-			<td><%= cp.getResult() %>%</td>
-			<% if(cp.getPr_status().equals("enrollApproval")){ %>
-			<td>펀딩모집중</td>
-			<%
-			}
-			%>
-			
-			
-		
-		</tr>
-		<%
-		}
-		%>
-		</table>
-			
-		
-		
-	<%-- 페이지처리 --%>
-					<div class="pageArea" align="center">
-						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?currentPage=1'"><<</button>
-						<%
-							if (currentPage <= 1) {
-						%>
-						<button disabled><</button>
-						<%
-							} else {
-						%>
-						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?currentPage=<%=currentPage - 1%>'"><</button>
-						<%
-							}
-						%>
-						<%
-							for (int p = startPage; p <= endPage; p++) {
-								if (p == currentPage) {
-						%>
-						<button disabled><%=p%></button>
-						<%
-							} else {
-						%>
-						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?currentPage=<%=p%>'"><%=p%></button>
-						<%
-							}
-						%>
-
-						<%
-							}
-						%>
-
-						<%
-							if (currentPage >= maxPage) {
-						%>
-						<button disabled>></button>
-						<%
-							} else {
-						%>
-						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?currentPage=<%=currentPage + 1%>'">></button>
-						<%
-							}
-						%>
-						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?currentPage=<%=maxPage%>'">>></button>
-
+						<button id="sortBtn" width="300px" type="submit">정렬하기</button>
 					</div>
 				</div>
+			</form>
+			<!-- 여기는 검색 form   -->
+			<form action="<%=request.getContextPath() %>/searchMember.adm"
+				method="get">
+
+				<div id="searchBox">
+					<div class="container">
+						<div class="row">
+							<div name="searchCondition" id="search" value="search"
+								class="search">
+								<!-- 여기가 입력창 -->
+								<input type="text" class="form-control input-sm" maxlength="64"
+									placeholder="Search" id="search" name="searchValue"
+									value="search" />
+								<button type="submit" class="btn btn-primary btn-sm">검색하기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</form>
+
+			<br> <br> <br>
+			<table align="center" border="1">
+				<thead>
+					<tr>
+						<th>아이디</th>
+						<th>회원구분</th>
+						<th>이름</th>
+						<th>별명</th>
+						<th>이메일</th>
+						<th>연락처</th>
+					</tr>
+
+				</thead>
+				<% for(Member m : list){ %>
+				<tr>
+					<td><%= m.getUserId() %></td>
+					<td><%= m.getUserClass() %></td>
+					<td><%= m.getUserName() %></td>
+					<td><%= m.getNickName() %></td>
+					<td><%= m.getEmail() %></td>
+					<td><%= m.getPhone() %></td>
+				</tr>
+				<% } %>
+			</table>
+
+
+
+			<%-- 페이지처리 --%>
+			<div class="pageArea" align="center">
+			
+			
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=1'"><<</button>
+				<% if(currentPage <= 1){ %>
+				<button disabled><</button>
+				<% }else{ %>
+				
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=<%=currentPage - 1%>'"><</button>
+				<% } %>
+				<% for(int p = startPage; p <= endPage; p++){
+				 if(p == currentPage){
+			%>
+				<button disabled><%= p %></button>
+				<%   }else{ %>
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=<%= p %>'"><%= p %></button>
+				<%   } %>
+
+				<% } %>
+
+				<% if(currentPage >= maxPage){ %>
+				<button disabled>></button>
+				<% }else{ %>
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=<%= currentPage + 1%>'">></button>
+				<% } %>
+				<button
+					onclick="location.href='<%=request.getContextPath()%>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=<%= maxPage %>'">>></button>
+
 			</div>
 		</div>
-			</div>
-	
-	
+	</div>
+
 </body>
 </html>

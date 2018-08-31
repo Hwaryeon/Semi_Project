@@ -148,7 +148,7 @@ th, td {
 				</tr>
 			</table>
 		</form>
-		<br> <br> <br> <br> <br> <br> <br>
+		<br> <br> <br> <br> <br> 
 		<br> <br>
 		<div class="btn-box">
 			<button class="adminBtn"
@@ -163,25 +163,45 @@ th, td {
 		<!-- Trigger the modal with a button -->
 
 		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">블랙리스트로 추가 하시겠습니까?</h4>
-					</div>
-					<div class="modal-body">
-						<p>블랙리스트 사유를 입력해 주세요.</p>
-						<input type="text" id="blackText">
-					</div>
-					<div class="modal-footer">
-						<button type="button" onclick="location.href='#'"
-							class="btn btn-default" data-dismiss="modal">추가하기</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">취소하기</button>
+			<form id="insertBlackForm"
+			action="<%=request.getContextPath()%>/insertBlackList.adm"
+			method="get">
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">블랙리스트로 추가 하시겠습니까?</h4>
+						</div>
+						<div class="modal-body">
+							<p>블랙리스트 사유를 입력해 주세요.</p>
+							<input type="text" name="text" id="blackText">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+						onclick="insertBlackList();"  id="plusBtn"
+								data-dismiss="modal">추가하기</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">취소하기</button>
+							<input type="hidden"  id="userId" name="user_id"
+								value="<%=dm.getUserId()%>">
+						</div>
+
 					</div>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
+	<script>
+	function insertBlackList() {
+			var user_id =<%=dm.getUserId()%>;
+			
+			console.log(user_id);
+			$("#userId").val(user_id);
+   
+			
+			$("#insertBlackForm").submit();
+ 		};
+</script>
 </body>
 </html>

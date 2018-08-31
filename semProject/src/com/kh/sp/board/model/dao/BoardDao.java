@@ -506,7 +506,7 @@ public class BoardDao {
 		
 		String query = prop.getProperty("downloadAttachment");
 		
-		try {
+		try { 
 			pstmt = con.prepareStatement(query);
 			
 			pstmt.setInt(1, num);
