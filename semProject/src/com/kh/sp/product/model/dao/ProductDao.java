@@ -236,8 +236,8 @@ public class ProductDao {
 			
 			pstmt.setString(1,b.getTitle());
 			pstmt.setString(2,b.getaText());
-			
-			
+			pstmt.setInt(3, b.getpId());
+			pstmt.setInt(4, b.getuId());
 			result=pstmt.executeUpdate();
 			
 			System.out.println(result);
@@ -249,6 +249,147 @@ public class ProductDao {
 		}
 		
 		return result;
+	}
+	public HashMap<String, Object> InsertOneBoard(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		HashMap<String, Object> hmap = null;
+		
+		String query = prop.getProperty("selectOneBoard");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			hmap = new HashMap<String,Object>();
+			while(rset.next()) {
+				hmap.put("pId",rset.getInt("p_id"));
+				hmap.put("pCode",rset.getString("p_code"));
+				hmap.put("pName",rset.getString("p_name"));
+				hmap.put("content",rset.getString("content"));
+				hmap.put("openDate",rset.getInt("open_date"));
+				hmap.put("closingAmount",rset.getInt("closing_amount"));
+				hmap.put("interestRate",rset.getString("interest_rate"));
+				hmap.put("pPreparation",rset.getString("p_preparation"));
+				hmap.put("pIntroduction",rset.getString("p_introduction"));
+				hmap.put("pPlan",rset.getString("p_plan"));
+				hmap.put("intro",rset.getString("intro"));
+				hmap.put("amount",rset.getInt("amount"));
+				hmap.put("fid",rset.getInt("fid"));
+				hmap.put("bid",rset.getInt("bid"));
+				hmap.put("originName",rset.getString("origin_name"));
+				hmap.put("changeName",rset.getString("change_name"));
+				hmap.put("uploadDate",rset.getDate("upload_date"));
+				hmap.put("fileLevel",rset.getInt("file_level"));
+				hmap.put("status",rset.getString("status"));
+				hmap.put("filePath",rset.getString("file_path"));
+				hmap.put("userId",rset.getInt("user_id"));
+				hmap.put("pType",rset.getInt("p_type"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		return hmap;
+	}
+	public ArrayList<HashMap<String, Object>> selectNewsList(Connection con, int num) {
+		ArrayList<HashMap<String, Object>> list = null;
+		HashMap<String, Object> h = null;
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectNews");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			list = new ArrayList<HashMap<String, Object>>();
+			
+			while(rset.next()) {
+				h = new HashMap<String, Object>();
+				
+				
+				h.put("writtingNo",rset.getInt("WRITTING_NO"));
+				h.put("title",rset.getString("TITLE"));
+				h.put("text",rset.getString("TEXT"));
+				h.put("boardType",rset.getString("BOARD_TYPE"));
+				h.put("registDate", rset.getDate("REGIST_DATE"));
+				h.put("pageView",rset.getInt("PAGE_VIEW"));
+				h.put("pId", rset.getString("P_ID"));
+				h.put("userId",rset.getString("USER_ID"));
+				h.put("status",rset.getString("STATUS"));
+				
+				list.add(h);		
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return list;
+	}
+	public HashMap<String, Object> selectNewsList2(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		HashMap<String, Object> hm = null;
+		
+		Product p = null;
+		Attachment a = null;
+		System.out.println("최종적으로 보내기전 num은??"+num);
+		String query = prop.getProperty("select");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			hm = new HashMap<String,Object>();
+			while(rset.next()) {
+				hm.put("pId",rset.getInt("p_id"));
+				hm.put("pCode",rset.getString("p_code"));
+				hm.put("pName",rset.getString("p_name"));
+				hm.put("content",rset.getString("content"));
+				hm.put("openDate",rset.getInt("open_date"));
+				hm.put("closingAmount",rset.getInt("closing_amount"));
+				hm.put("interestRate",rset.getString("interest_rate"));
+				hm.put("pPreparation",rset.getString("p_preparation"));
+				hm.put("pIntroduction",rset.getString("p_introduction"));
+				hm.put("pPlan",rset.getString("p_plan"));
+				hm.put("intro",rset.getString("intro"));
+				hm.put("amount",rset.getInt("amount"));
+				hm.put("fid",rset.getInt("fid"));
+				hm.put("bid",rset.getInt("bid"));
+				hm.put("originName",rset.getString("origin_name"));
+				hm.put("changeName",rset.getString("change_name"));
+				hm.put("uploadDate",rset.getDate("upload_date"));
+				hm.put("fileLevel",rset.getInt("file_level"));
+				hm.put("status",rset.getString("status"));
+				hm.put("filePath",rset.getString("file_path"));
+				hm.put("userId",rset.getInt("user_id"));
+				hm.put("pType",rset.getInt("p_type"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		return hm;
 	}
 	
 	}

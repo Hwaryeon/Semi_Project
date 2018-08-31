@@ -1,6 +1,8 @@
 package com.kh.sp.product.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,20 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.sp.board.model.vo.Board;
 import com.kh.sp.product.model.service.ProductService;
 
 /**
- * Servlet implementation class InsertNews
+ * Servlet implementation class SelectNews
  */
-@WebServlet("/InsertNews.pm")
-public class InsertNews extends HttpServlet {
+@WebServlet("/SelectNews.pm")
+public class SelectNews extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertNews() {
+    public SelectNews() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,32 +32,22 @@ public class InsertNews extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("newsTitle");	
-		String text = request.getParameter("mainText");
 		int num = Integer.parseInt(request.getParameter("num"));
-		int userId = Integer.parseInt(request.getParameter("userId"));
-		
-		System.out.println(title);
-		System.out.println(text);
-		System.out.println(num);
-		
-		Board b = new Board();
-		b.setTitle(title);
-		b.setaText(text);
-		b.setpId(num);
-		b.setuId(userId);
-		System.out.println(b.getTitle());
-		System.out.println(b.getaText());
-		System.out.println(b.getuId());
-		int result = new ProductService().insertNews(b);
-		
-		if(result > 0) {
-			request.setAttribute("b", b);
-			response.sendRedirect(request.getContextPath() + "/SelectNews.pm?num=" + num);
+		System.out.println("num은 말이야"+ num);
+		ArrayList<HashMap<String, Object>> newsList
+		= new ProductService().selectNewsList(num);
+		HashMap<String, Object> hm = new ProductService().selectNewsList2(num);
+		System.out.println(newsList);
+		String page = "/views/funding/product2.jsp";
+		if(newsList != null) {
+			request.setAttribute("hm", hm);
+			request.setAttribute("newsList", newsList);	
+		}else {
+			System.out.println("조회 실패");
 		}
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
 	}
-	
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

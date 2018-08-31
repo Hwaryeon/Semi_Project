@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.sp.funding.model.vo.*, java.util.*,com.kh.sp.board.model.vo.*" %>
 
-<%HashMap<String,Object> hmap = (HashMap<String,Object>)request.getAttribute("hmap");%>
+<%HashMap<String,Object> hmap2 = (HashMap<String,Object>)request.getAttribute("hmap2");%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -209,10 +209,12 @@ $(document).ready(function(){
 									function insertFunding(){
 									
 										var code = $('#summernote').summernote('code');
-										
+										var num = '<%=hmap2.get("pId")%>';
+										var userId = '<%=loginUser.getUserId()%>';
 										$('#mainText').val(code);
 										
-										$("#insertForm").attr("action","<%=request.getContextPath()%>/InsertNews.pm");
+										$("#insertForm").attr("action","<%=request.getContextPath()%>/InsertNews.pm?num=" + num + "&userId=" + userId);
+										
 										
 									}
 								

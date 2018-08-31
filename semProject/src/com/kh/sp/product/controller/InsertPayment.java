@@ -50,18 +50,19 @@ public class InsertPayment extends HttpServlet {
 		int result = new ProductService().InsertPayment(i);
 		
 		
-		
+		String page = "";
 		if(result > 0) {
 			
 			System.out.println("등록성공");
-			
+			page = "views/myPage/PaymentBackground.jsp";
 		}else {
-			/*page = "views/common/errorPage.jsp";
+			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 등록 실패!!");
-			RequestDispatcher view = request.getRequestDispatcher(page);
-			view.forward(request, response);*/
+			
 			System.out.println("실패");
 		}
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
 	}
 
 	/**
