@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.kh.sp.funding.model.vo.*, java.util.*"%>
+	pageEncoding="UTF-8" import="com.kh.sp.funding.model.vo.*, java.util.*, java.text.SimpleDateFormat, com.kh.sp.member.model.vo.*"%>
 <%
 	ProductType productType1 = null;
 	ProductType productType2 = null;
@@ -13,10 +13,13 @@
 			case 1 : productType2 = productType.get(i); break;
 			case 2 : productType3 = productType.get(i); break;
 		}
-		
 	}
 
+	Date today = new Date();
+	SimpleDateFormat writeDate = new SimpleDateFormat("yyyy/MM/dd");
 %>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -203,13 +206,23 @@ $(document).ready(function(){
 									<div class="item">
 										<dl>
 											<dt>등록일</dt>
-											<dd></dd>
+											<dd><%=writeDate.format(today) %></dd>
 										</dl>
 									</div>
 									<div class="item">
 										<dl>
 											<dt>등록자</dt>
-											<dd></dd>
+											<dd>
+											<% if(loginUser != null) { %>
+											
+												<%if(loginUser.getUserName() != null){ %>
+													<%= loginUser.getUserName() %>
+													<% }else {%>
+													<%= loginUser.getNickName() %>
+													<% } %>
+											<% } %>
+											
+											</dd>
 										</dl>
 									</div>
 								</div>
@@ -251,14 +264,15 @@ $(document).ready(function(){
 							</ul>
 									
 									
-									
+								<br>	
+								&nbsp; &nbsp;<span style="color:#67b737;"> * 펀딩 성공여부를 판단할 기준을 선택해주세요.</span>
 								</div>
 							</div>
 
 							<br>
 
 							<div class="boardType">
-								<div class="type1">수수료</div>
+								<div class="type1">지급률</div>
 								<div class="type2">
 									<!-- <label><input type="radio"
 										style="width: 16px; height: 16px;" name="feeType"
@@ -309,7 +323,8 @@ $(document).ready(function(){
 							    </li>
 							</ul>	
 										
-										
+									<br>	
+								&nbsp; &nbsp;<span style="color:#67b737;"> * 성공시 투자자에게 지급할 이익률</span>	
 								</div>
 							</div>
 							
@@ -321,6 +336,7 @@ $(document).ready(function(){
 								<label>
 									<input type="number" id="cAmount" name="cAmount" min="10000" value="100000" step="100000" style="text-align: right;width: 188px;border: 1px solid black;">
 								</label>
+								&nbsp; &nbsp;<span style="color:#67b737;"> * 펀딩 목표 금액을 입력해주세요.</span>	
 							</div>
 							
 							<div class="boardType" style="margin-bottom:0px;">
@@ -329,6 +345,7 @@ $(document).ready(function(){
 									<input type="number" id="openDate" name="openDate" 
 									min="1" value="30" max="90" step="1" style="text-align: right;width: 188px;border: 1px solid black;">
 								</label>
+								&nbsp; &nbsp;<span style="color:#67b737;"> * 펀딩 모집 시작이 되고부터 종료할때 까지의 기간입니다.</span>	
 							</div>
 
 							
@@ -341,7 +358,7 @@ $(document).ready(function(){
 
 
 							<div class="field_foot_btn">
-								<a onclick="allBoard();" class="link_list">목록</a>
+								<a onclick="allBoard();" class="link_list" style="margin-right:43px;">목록</a>
 								<button onclick="insertFunding();" id="save" class="link_list">등록</button>
 							</div>
 						</div>

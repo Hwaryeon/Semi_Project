@@ -269,8 +269,12 @@ textarea{
 				
 				<div class="text2">
 					<span class="title">6. 투자금 사용 계획</span> <br> <span
-						style="margin-left: 25px;"> <textarea name="amount" cols="78" rows="5"
-							style="resize: none"></textarea>
+						style="margin-left: 25px;"> 
+						<!-- <textarea name="amount" cols="78" rows="5"
+							style="resize: none"></textarea> -->
+									<input type="number" id="amount" name="amount" min="10000" value="10000" step="10000" style="text-align: right;width: 188px;border: 1px solid black;">
+								&nbsp; &nbsp;<span style="margin-left:23px; color:#67b737;"> * 금액을 입력해주세요.</span>	
+							
 					</span>
 				</div>
 				<div class="fund_bu">
