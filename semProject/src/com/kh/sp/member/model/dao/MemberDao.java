@@ -38,6 +38,9 @@ private Properties prop = new Properties();
 		
 		String query = prop.getProperty("loginSelect");
 		
+		System.out.println(email);
+		System.out.println(userPwd);
+		
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, email);

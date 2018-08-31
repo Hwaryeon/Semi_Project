@@ -16,7 +16,7 @@ public class Attachment implements Serializable{
 	private int downloadCount;
 	private String status;
 	private String userId;
-	
+	private int pType;
 	
 
 	public Attachment(){}
@@ -30,22 +30,7 @@ public class Attachment implements Serializable{
 		this.userId = userId;
 	}
 	
-	public Attachment(int fid, int bid, String originName, String changeName, String filePath, String upload,
-			Date uploadDate, int fileLevel, int downloadCount, String status, String userId) {
-		super();
-		this.fid = fid;
-		this.bid = bid;
-		this.originName = originName;
-		this.changeName = changeName;
-		this.filePath = filePath;
-		this.upload = upload;
-		this.uploadDate = uploadDate;
-		this.fileLevel = fileLevel;
-		this.downloadCount = downloadCount;
-		this.status = status;
-		this.userId = userId;
-	}
-
+	
 	public int getFid() {
 		return fid;
 	}
@@ -126,12 +111,43 @@ public class Attachment implements Serializable{
 		this.status = status;
 	}
 
+
+	public int getpType() {
+		return pType;
+	}
+
+
+	public void setpType(int pType) {
+		this.pType = pType;
+	}
+
+
+	public Attachment(int fid, int bid, String originName, String changeName, String filePath, String upload,
+			Date uploadDate, int fileLevel, int downloadCount, String status, String userId, int pType) {
+		super();
+		this.fid = fid;
+		this.bid = bid;
+		this.originName = originName;
+		this.changeName = changeName;
+		this.filePath = filePath;
+		this.upload = upload;
+		this.uploadDate = uploadDate;
+		this.fileLevel = fileLevel;
+		this.downloadCount = downloadCount;
+		this.status = status;
+		this.userId = userId;
+		this.pType = pType;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Attachment [fid=" + fid + ", bid=" + bid + ", originName=" + originName + ", changeName=" + changeName
 				+ ", filePath=" + filePath + ", upload=" + upload + ", uploadDate=" + uploadDate + ", fileLevel="
-				+ fileLevel + ", downloadCount=" + downloadCount + ", status=" + status + ", userId=" + userId + "]";
+				+ fileLevel + ", downloadCount=" + downloadCount + ", status=" + status + ", userId=" + userId
+				+ ", pType=" + pType + "]";
 	}
+
 	
 	
 	

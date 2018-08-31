@@ -12,6 +12,7 @@ import com.kh.sp.admin.model.vo.MemberStatistics;
 import com.kh.sp.admin.model.vo.OpenFundingStatistics;
 import com.kh.sp.admin.model.vo.SalesStatistics;
 import com.kh.sp.admin.model.vo.SuccessFundingStatistics;
+import com.kh.sp.board.model.vo.Attachment;
 import com.kh.sp.member.model.vo.Member;
 
 
@@ -361,6 +362,13 @@ public class AdminService {
 			}
 			close(con);
 			return listCount;
+		}
+		public Attachment downloadFileAttachment(int num) {
+			Connection con = getConnection();
+			
+			Attachment file = new AdminDao().downloadFileAttachment(con, num);
+			
+			return null;
 		}
 	
 }

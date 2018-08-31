@@ -40,7 +40,7 @@ public class SelectOneMemberServlet extends HttpServlet {
 				page = "views/common/errorPage.jsp";
 				request.setAttribute("msg", "회원 상세 조회 실패");
 			}
-		}if(user_class.equals("investor")){
+		}else if(user_class.equals("investor")){
 			DetailMember dm = new AdminService().selectOneInv(user_id);
 			if(dm != null){
 				page = "views/admin/searchInvMember.jsp";
@@ -49,21 +49,19 @@ public class SelectOneMemberServlet extends HttpServlet {
 				page = "views/common/errorPage.jsp";
 				request.setAttribute("msg", "회원 상세 조회 실패");
 			}
-		}if(user_class.equals("business")){
+		}else if(user_class.equals("business")){
 			DetailMember dm = new AdminService().selectOneEnp(user_id);
+			if(dm != null){
 			page="views/admin/searchEnpMember.jsp";
 			request.setAttribute("dm", dm);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "회원 상세 조회 실패");
 		}
-		
-		
-		
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
-		
-		
+		}
+			RequestDispatcher view = request.getRequestDispatcher(page);
+			view.forward(request, response);
+			
 		
 	}
 

@@ -38,7 +38,7 @@ public class BlackListInsertServlet extends HttpServlet {
 	String page = "";
 	
 	if(result > 0){
-		page = "views/admin/searchMember.jsp";
+		page = "selectAllMember.adm";
 	}else{
 		page = "views/common/errorPage.jsp";
 	}
