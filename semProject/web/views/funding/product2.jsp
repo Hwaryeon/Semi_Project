@@ -469,7 +469,7 @@ textarea{
         $("login").click(function(event)){
         	var contextPath = '<%= request.getContextPath() %>';
         	var loc = contextPath + '/views/member/loginForm.jsp';
-        	
+        		
         	location.href=loc;
         });
         $("#popCloseBtn").click(function(event){
