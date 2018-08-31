@@ -16,6 +16,7 @@
 <style>
 .cmntitle {
 		margin-top:10%;
+		font-size:20px;
 	}
 	
 .container {

@@ -21,6 +21,7 @@
 <style>
 .cmntitle {
 		margin-top:10%;
+		font-size:20px;
 	}
 .product {
 	display: block;
