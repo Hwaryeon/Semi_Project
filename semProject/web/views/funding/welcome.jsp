@@ -72,32 +72,7 @@
 		position:relative;
 		background:#f5f5f5;
 	}
-	.slide ul{
-		width:4800px;
-		list-style: none;
-		font-size:0;
-	}
-	.slide ul li{
-		display: inline-block;
-		}
-	.slide button.prev{
-		border:0;
-		background:none;
-		width:100px;
-		height:50px;
-		position: absolute;
-		left:70px;
-		top:110px;
-		}
-	.slide button.next{
-		border:0;
-		background:none;
-		position:absolute;
-		width:100px;
-		height:50px;
-		left : 1050px;
-		top:110px;
-	} 
+
 	.sort{
 		margin:0 auto;
 		width:100%;
@@ -171,6 +146,10 @@
 		cursor:pointer;
 		opacity:0.8;
 	}
+	#mainpic{
+		width:80%;
+		height:300px;
+	}
 </style>
 </head>
 <body>
@@ -178,19 +157,20 @@
 	
 	<%@ include file="../common/headBar.jsp"%>
 	
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<div class="slide">
-		<button class="prev" type="button"><img src="../images/left.png" alt=""/></button>
+	<br><br><br><br>
+	<div class>
+		<!-- <button class="prev" type="button"><img src="../images/left.png" alt=""/></button>
 		<ul>
 			<li><img src="../../images/coffee.png" alt=""/></li>
-			<!-- <li><img src="images/summer.jpg" alt=""/></li>
+			<<li><img src="images/summer.jpg" alt=""/></li>
 			<li><img src="images/summer.jpg" alt=""/></li>
-			<li><img src="images/summer.jpg" alt=""/></li> -->
+			<li><img src="images/summer.jpg" alt=""/></li>
 		</ul>
-		<button class="next" type="button"><img src="../images/right.png" alt=""/></button>
+		<button class="next" type="button"><img src="../images/right.png" alt=""/></button> -->
+		<img id="mainpic" src="images/common/img_media_news1.jpg">
 	</div>
 		
-	<div class="sort">
+	<!-- <div class="sort">
 		<div class="box1">
 			<select style=height:40px;>
 				<option value="test1">선택1</option>
@@ -205,7 +185,7 @@
 				<option value="3">최신순</option>
 			</select>
 		</div>			
-	</div>
+	</div> -->
 <div class="productArea">
  	<br>
  	<h2 align="center">제품list</h2>
@@ -227,7 +207,7 @@
 		$(".p_list2").click(function(){
 			/* var num = $(this).children().children().eq(1).val(); */
 			var num = $(this).children().eq(1).val();
-			location.href="<%=request.getContextPath()%>/SelectOne.tn?num=" + num;
+			location.href="<%=request.getContextPath()%>/SelectNews.pm?num=" + num;
 		});
 	});
 </script>

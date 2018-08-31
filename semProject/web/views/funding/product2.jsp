@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.sp.funding.model.vo.*, java.util.*,com.kh.sp.board.model.vo.*" %>
 
-<%HashMap<String,Object> hmap = (HashMap<String,Object>)request.getAttribute("hmap");%>
+<%HashMap<String,Object> hm = (HashMap<String,Object>)request.getAttribute("hm");
+ ArrayList<HashMap<String,Object>> newsList =(ArrayList<HashMap<String,Object>>)request.getAttribute("newsList");
+ %>
     
 <!DOCTYPE html>
 <html>
@@ -306,8 +308,8 @@ textarea{
 
 
 <div class="contents">
-	<div id="pic">
-		<img id="picture" src="/sp/thumbnail_uploadFiles/<%=hmap.get("changeName")%>" width="300px" height="200px">
+	 <div id="pic">
+		<img id="picture" src="/sp/thumbnail_uploadFiles/<%=hm.get("changeName")%>" width="300px" height="200px">
 	</div>
 	<div id="text">
 		<br>
@@ -315,18 +317,17 @@ textarea{
 			<div id="sort">채권</div>
 		</div>
 		<p id="p1">97<span id="p2">명 참여</span></p>
-		<p id="p1">194,500,000<span id="p2">원/목표액 <%=hmap.get("closingAmount")%> 원</span></p>
+		<p id="p1">194,500,000<span id="p2">원/목표액 <%=hm.get("closingAmount")%> 원</span></p>
 		<p id="p1">투자마감<span id="p2">(마감일 2018-xx-xx xx:00)</span></p>
 		<div id="bar"></div>
 		<div style=color:green;>xxx%</div>
 		<br>
 		<button id="select" type="button">투자하기</button>
-		<button id="invest" type="button">투자하기2</button>
 		<br>
 		
 		<br><br><br><br><br><br><br><br><br>
-		<%-- <div class="field_content article_intro" style="min-height:350px;">			
-							<%=hmap.get("content")%>				
+		<%--  <div class="field_content article_intro" style="min-height:350px;">			
+							<%=hm.get("content")%>				
 		</div> --%>
 		<br><br><br><br><br><br><br><br><br>
 	</div>
@@ -343,32 +344,32 @@ textarea{
 		<hr>
 		<div id="tab-1" class="tab-content current">
 		<div class="container">
+	<%if(newsList != null) {%>
+		 <% for(int i = 0; i < newsList.size(); i++){
+ 			HashMap<String,Object> h = newsList.get(i);
+ 		%>
 			<table class="table table-striped">
 				<thead>
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
-					<th>작성자</th>
+					<th>상품명</th>
 					<th>날짜</th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr>
-					<td>165</td>
-					<td>제목</td>
-					<td>인소진</td>
-					<td>2016.12.12</td>
-				</tr>
-				<tr>
-					<td>165</td>
-					<td>제목</td>
-					<td>인소진</td>
-					<td>2016.12.12</td>
+					<td><%=h.get("writtingNo") %></td>
+					<td><%=h.get("title") %></td>
+					<td><%=hm.get("pName") %></td>
+					<td><%=h.get("registDate") %></td>
 				</tr>
 				</tbody>
 			</table>
-			<hr/>
-			<button id="summernote"><a href="<%=request.getContextPath()%>/views/funding/insertnews.jsp">글쓰기</button>
+			<% } %>
+			<%} %>
+			<hr/> 
+			<button id="write">글쓰기</button>
 			
 			<div class="text-center">
 				<ul class="pagination">
@@ -385,7 +386,7 @@ textarea{
 				<br><br><br><br>
 				<ul id="textin">
 					<li>Q&A게시판은 회원으로 로그인한 분만 글을 작성할 수 있으며 프로젝트 개설자는 투자자들의 질문과 의견을 임의로 삭제하거나 수정하지 않습니다.</li>
-					<li>본 게시판에 타인의 참여를 유도할 목적으로 허위의 의사표시를 하는 경우 부정거래행위 등으로 처벌받을 수 있습니다.</li>
+					<li>본 게시판에 타인의 참여1를 유도할 목적으로 허위의 의사표시를 하는 경우 부정거래행위 등으로 처벌받을 수 있습니다.</li>
 					<li>개설자와 이해관계가 있는 자는 해당 이해관계 등을 명확히 표시하고 의견을 제시해야 합니다.</li>
 				</ul>
 				</div>
@@ -424,14 +425,14 @@ textarea{
 <div id ="popup_mask2" ></div>
     
     <div id="popupDiv2">
-    	<div> 투자 상품 명 : <%=hmap.get("pName") %></div>
-    	<div> 투자 금액 : <%=hmap.get("amount") %>원</div>
+    	<div> 투자 상품 명 : <%=hm.get("pName") %></div>
+    	<div> 투자 금액 : <%=hm.get("amount") %>원</div>
     	  
     	<button id="confirm">결제 확인</button>
     	<button id="popCloseBtn2">취소</button>
-    </div>
+    </div> 
    
-<div id ="popup_mask3" ></div>
+<!-- <div id ="popup_mask3" ></div>
     
     <div id="popupDiv3">
     	
@@ -445,14 +446,13 @@ textarea{
 				
     	<button id="confirm2">작성 완료</button>
     	<button id="popCloseBtn3">취소</button>
-    </div>
+    </div>-->
       
     <script>
     
     $(document).ready(function(){
-        
         $("#select").click(function(event){   
- 
+        	<% if(loginUser.getUserClass().equals("general")) { %>
              $("#popupDiv").css({
                 "top": (($(window).height()-$("#popupDiv").outerHeight())/4+$(window).scrollTop())+"px",
                 "left": (($(window).width()-$("#popupDiv").outerWidth())/2+$(window).scrollLeft())+"px"
@@ -466,18 +466,20 @@ textarea{
             $("body").css("overflow","hidden");
         });
         
+        $("login").click(function(event)){
+        	var contextPath = '<%= request.getContextPath() %>';
+        	var loc = contextPath + '/views/member/loginForm.jsp';
+        		
+        	location.href=loc;
+        });
         $("#popCloseBtn").click(function(event){
             $("#popup_mask").css("display","none"); 
             $("#popupDiv").css("display","none"); 
             $("body").css("overflow","auto");
         });
     });
- 
-    
-    $(document).ready(function(){
-        
-        $("#invest").click(function(event){   
- 
+    <% } else if(loginUser.getUserClass().equals("investor")) { %>  
+ 	
              $("#popupDiv2").css({
                 "top": (($(window).height()-$("#popupDiv2").outerHeight())/4+$(window).scrollTop())+"px",
                 "left": (($(window).width()-$("#popupDiv2").outerWidth())/2+$(window).scrollLeft())+"px"
@@ -496,10 +498,9 @@ textarea{
             $("#popupDiv2").css("display","none"); 
             $("body").css("overflow","auto");
         });
-    });
-
+     }); 
+	<% } %>
     $(document).ready(function(){
-    	
     	$('ul.tabs li').click(function(){
     		var tab_id = $(this).attr('data-tab');
 
@@ -511,6 +512,7 @@ textarea{
     	});
     });
  	
+    
     $(document).ready(function(){
     $("#confirm").click(function(event){
     	 alert('전송');
@@ -522,9 +524,9 @@ textarea{
     	           pg : 'inicis', // 결제방식
     	           pay_method : 'card',   // 결제 수단
     	           merchant_uid : 'merchant_' + new Date().getTime(),
-    	           name : '<%=hmap.get("pId")%>',   // order 테이블에 들어갈 주문명 혹은 주문 번호
-    	           amount : '<%=hmap.get("amount")%>', 	
-    	           buyer_email : '<%=loginUser.getEmail()%>',// 구매자 email
+    	           name : '<%=hm.get("pId")%>',   // order 테이블에 들어갈 주문명 혹은 주문 번호
+    	           amount : '<%=hm.get("amount")%>', 	
+    	           buyer_email : '<%=loginUser.getEmail()%>', // 구매자 email
     	           buyer_name :  '<%=loginUser.getUserName()%>'  // 구매자 이름 
     	       }, function(rsp) {
     	       if ( rsp.success ) { // 성공시
@@ -539,8 +541,8 @@ textarea{
     	          //console.log();
     	          var contextPath = '<%= request.getContextPath() %>';
     	          var investId = rsp.imp_uid;
-    	          var userId = '<%=hmap.get("userId")%>';
-    	          var pId = '<%=hmap.get("pId")%>';
+    	          var userId = '<%=loginUser.getUserId()%>';
+    	          var pId = '<%=hm.get("pId")%>';
     	          var price = rsp.paid_amount;
     	          var status = rsp.status;
     	          var loc = contextPath + '/Insert.pm?investId=' + investId + "&userId=" + userId + "&pId=" + pId + "&price=" + price + "&status=" + status;
@@ -557,11 +559,16 @@ textarea{
     	 });
     });
     
-  <%--   $(function(){
-		$("#summernote").click(function(){
-			location.href="<%=request.getContextPath()%>/insertnews.jsp";
+    $(function(){
+		$("#write").click(function(){
+			var num = '<%=hm.get("pId")%>';
+			var userId = '<%=hm.get("userId")%>';
+			var contextPath = '<%= request.getContextPath() %>'; 
+			var loc = contextPath + '/InsertNews1.pm?num=' + num;
+			
+			location.href=loc;
 		})
-	}) --%>
+	})
     
     </script>
 </body>

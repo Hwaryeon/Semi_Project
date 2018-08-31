@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.sp.board.model.vo.Board;
+import com.kh.sp.product.controller.Hashmap;
 import com.kh.sp.product.model.dao.ProductDao;
 import com.kh.sp.product.model.vo.Invest;
 import com.kh.sp.product.model.vo.Product2;
@@ -59,7 +60,7 @@ Connection con = getConnection();
 		Connection con = getConnection();
 		int result = 0;
 		result = new ProductDao().insertNews(con,b);
-	
+		
 	
 	
 		if(result > 0) {
@@ -71,6 +72,35 @@ Connection con = getConnection();
 	
 	return result;
 }
+
+	public HashMap<String, Object> InsertOneboard(int num) {
+		Connection con = getConnection();
+		
+		
+		HashMap<String,Object> hmap = new ProductDao().InsertOneBoard(con,num);
+		
+		close(con);
+		
+		return hmap; 
+	}
+
+	public ArrayList<HashMap<String, Object>> selectNewsList(int num) {
+		Connection con = getConnection();
+		ArrayList<HashMap<String, Object>> list = new ProductDao().selectNewsList(con,num);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public HashMap<String, Object> selectNewsList2(int num) {
+		Connection con = getConnection();
+		HashMap<String, Object> hm = new ProductDao().selectNewsList2(con,num);
+		
+		close(con);
+		
+		return hm;
+	}
 }
 
 	
