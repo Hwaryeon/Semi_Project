@@ -82,15 +82,16 @@
 	border: 1px solid black;
 	background: #ffffff;
 	padding-bottom: 30px;
+	margin-bottom: 88px;
 }
 
 .text1 {
 	margin-left: 0 auto;
-	margin-right: 0 auto;
-	margin-top : 1px;
-	position: absolute;
-    left: 610px;
-    top: 280px;
+    margin-right: 0 auto;
+    margin-top: 1px;
+    /* margin-top: 30px; */
+    /* margin-left: 28px; */
+    float: right;
 }
 
 
@@ -99,6 +100,13 @@
 	font-weight:bold;
 	font-size:1.15em;
 	color:black;
+}
+
+.text1 .title, .text2 .title{
+	font-weight:bold;
+	font-size:1.15em;
+	margin-bottom:0.1px;
+	    text-align: left;
 }
 
 .text2 {
@@ -111,7 +119,7 @@
 }
 
 .text2 textarea {
-	margin-top: 10px;
+	margin-top: -41px;
 }
 
 .fund_bu {
@@ -122,6 +130,7 @@
 }
 .fund_bu .ui-button{
 	background:#00cca3;
+	width: 100px;
 }
 .img1{
 	margin-top : 30px;
@@ -131,7 +140,7 @@
 }
 #thumbnail{
 	width:100%;
-	height:280px;
+	height:236px;;
 	background-color:#fff;
 	border-bottom : 1px solid black;
 }
@@ -153,11 +162,12 @@ textarea{
 #titleImg{
 	background-color:#66CCFF;
 	width:321px;
-	height:60px;
+	height:108px;
 	margin : 0 auto;
-  	position: absolute;
+  	/* position: absolute; */
     left: 610px;
     top: 220px
+        margin-left: 10px;
 }
 #titleImgArea:hover{
 	cursor:pointer;
@@ -166,9 +176,9 @@ textarea{
 	margin : 0 auto;
 }
 #tarea{
-	position: absolute;
-    left: 650px;
-    top: 240px
+	/* position: absolute;
+    left: 493px;
+    top: 212px; */
 }
 #titleImgAreadiv{
 	width: 320px;
@@ -179,8 +189,15 @@ textarea{
 	margin-top:10px;
 	margin-left:16.2px;	
 }
-</style>
+.fileTitle{
+    font-size: 17px;
+    color: black;
+    font-family: 'Limelight';
+    margin-left: 30px;
+}
 
+
+</style>
 
 
 
@@ -198,15 +215,22 @@ textarea{
 					<div id="thumbnail"><span class="title" id="firsttext">1.썸내일 내용 제출</span>
 					<br><br>
 						<div id="tle">
-							<div id="titleImgAreadiv">
-								<img id="titleImg"><span id="tarea">클릭하여 대표 이미지를 등록하시오</span>
+							<div id="titleImgAreadiv" style="float:left; position: relative;">
+								<img id="titleImg"><span id="tarea"
+								style="position: relative; left: 56px; top: -66px;">클릭하여 대표 이미지를 등록하시오</span>
 							</div>
-							 <input type="file" id="image_uploads" name="uploads2" accept=".jpg, .jpeg, .png" multiple>
-							  <input type="file" id="image_uploads2" name="uploads3" accept=".pdf, .jpeg, .png" multiple>
-							
 							<div class="text1">
-								<textarea name="intro" id="intro" cols="42" rows="5" style="resize: none"  onclick="removeContent()"> : 상품에 대한 간단한 소개를 작성해주세요.</textarea>
+								<textarea name="intro" id="intro" cols="42" rows="5" style="resize: none;margin-right: 18px;"  onclick="removeContent()"> : 상품에 대한 간단한 소개를 작성해주세요.</textarea>
 							</div> 
+							<br><br>
+							<div style="margin-top: 91px;">
+							<span  class="fileTitle" style="float:left; margin-right:10px; width: 214px;">1번 첨부파일</span>
+							
+							 <input style="float:left;" type="file" id="image_uploads" name="uploads2" accept=".jpg, .jpeg, .png" multiple>
+							<span  class="fileTitle" style="float:left; margin-right:10px; width: 214px;">2번 첨부파일</span>
+							 <input style="float:left;" type="file" id="image_uploads2" name="uploads3" accept=".pdf, .jpeg, .png" multiple>
+							</div>
+							<br>
  						</div>
  						<br><br><br><br>
  					</div>
@@ -335,6 +359,6 @@ textarea{
 	    	})
 	    })
 	</script>
-
+<%@ include file="/views/common/footer.jsp" %>
 </body>
 </html>

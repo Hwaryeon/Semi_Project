@@ -20,6 +20,7 @@ import com.kh.sp.admin.model.vo.MemberStatistics;
 import com.kh.sp.admin.model.vo.OpenFundingStatistics;
 import com.kh.sp.admin.model.vo.SalesStatistics;
 import com.kh.sp.admin.model.vo.SuccessFundingStatistics;
+import com.kh.sp.board.model.vo.Attachment;
 import com.kh.sp.member.model.vo.Member;
 
 public class AdminDao {
@@ -514,7 +515,7 @@ public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int 
 			int startRow = (currentPage -1) * limit + 1;
 			int endRow = startRow + limit -1;
 
-			pstmt.setString(1,  "심사");
+			pstmt.setString(1,  "evaluate");
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
 			
@@ -552,7 +553,7 @@ public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int 
 		try {
 			pstmt = con.prepareStatement(query);
 			
-			pstmt.setString(1, "심사");
+			pstmt.setString(1, "evaluate");
 			
 			
 			rset =	pstmt.executeQuery();
@@ -581,7 +582,7 @@ public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int 
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "대기");
+			pstmt.setString(1, "wait");
 			pstmt.setInt(2, userId);
 			
 			result = pstmt.executeUpdate();
@@ -1661,6 +1662,53 @@ public DetailMember selectOneEnp(Connection con, int user_id) {
 		}
 
 		return listCount;
+	}
+
+	public Attachment downloadFileAttachment(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Attachment file = null;
+		
+		String query = prop.getProperty("downloadAttachment");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				file = new Attachment();
+/*				(FID, ORIGIN_NAME, CHANGE_NAME, FILE_PATH, 
+				* UPLOAD_DATE, P_TYPE, STATUS, USER_ID) 
+*/
+				file.setFid(rset.getInt("fid"));
+				file.setOriginName(rset.getString("origin_name"));
+				file.setChangeName(rset.getString("change_name"));
+				file.setFilePath(rset.getString("file_path"));
+				file.setUploadDate(rset.getDate("upload_date"));
+				file.setpType(rset.getInt("p_type"));
+				file.setStatus(rset.getString("status"));
+				file.setUserId(rset.getString("user_id"));
+
+				
+			}
+			
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		
+		
+		
+		return file;
 	}
 
 }

@@ -140,7 +140,7 @@ th, td {
 				</tr>
 			</table>
 		</form>
-		<br> <br> <br> <br> <br> <br> <br>
+		<br> <br> <br> <br> <br> 
 		<br> <br>
 		<div class="btn-box">
 			<button class="adminBtn"
@@ -151,7 +151,6 @@ th, td {
 
 		</div>
 	</div>
-<body>
 
 	<div class="container">
 		<!-- Trigger the modal with a button -->
@@ -198,7 +197,6 @@ th, td {
 			
 			$("#insertBlackForm").submit();
  		};
-
 		/* function insertBlackList(){
 		$("#userId2").val($("#userId").val());
 		$("#insertBlackForm").submit();

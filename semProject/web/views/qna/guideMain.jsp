@@ -268,13 +268,13 @@ $(document).on("click",".tit_target",function(){
 
    	    <!-- header -->
 <main id="omcContainer" class="cont_guide">
-	<div id="cMain">
+	<div id="cMain" style="margin-bottom:400px;">
 	<div class="head_guide">
 				<div class="wrap_txt">
-					<h3 class="tit_gudie" style="color: black;">
-						이용가이드 <span class="sub_tit">Funding Guide</span>
+					<h3 class="tit_gudie" style="color: black;">&nbsp;
+					<span class="sub_tit">&nbsp;</span>
 					</h3>
-					<p class="sub_txt" style="color: black;">펀딩 관련 서비스에 대해 안내드립니다.</p>
+					<p class="sub_txt" style="color: black;">&nbsp;</p>
 				</div>
 			</div>
 		<article id="mContent" class="guide_top">
@@ -575,8 +575,8 @@ function fn_addClass(litype){
 				
 		<!-- footer -->
 
-
+<%@ include file="/views/common/footer.jsp" %>
 	</div>
-		
 </body>
+
 </html>  

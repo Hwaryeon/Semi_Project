@@ -531,7 +531,7 @@ $(document).ready(function(){
 	</div>
 	</main>
 
-
+<%@ include file="/views/common/footer.jsp" %>
 	</div>
 </body>
 </html>

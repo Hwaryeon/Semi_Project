@@ -80,13 +80,13 @@ function fn_addClass(litype){
 
 		<!-- header -->
 		<main id="omcContainer">
-		<div id="cMain">
+		<div id="cMain" style="margin-bottom:1800px;">
 			<div class="head_guide">
 				<div class="wrap_txt">
 					<h3 class="tit_gudie" style="color: black;">
-						이용가이드 <span class="sub_tit">Funding Guide</span>
+						&nbsp; <span class="sub_tit">&nbsp;</span>
 					</h3>
-					<p class="sub_txt" style="color: black;">펀딩 관련 서비스에 대해 안내드립니다.</p>
+					<p class="sub_txt" style="color: black;">&nbsp;</p>
 				</div>
 			</div>
 			<article id="mContent" class="guide_cont">
@@ -377,26 +377,8 @@ function fn_addClass(litype){
 		</div>
 		</main>
 
-		<!-- footer -->
+<%@ include file="/views/common/footer.jsp" %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<!-- footer -->
 	</div>
 
 </body>

@@ -8,7 +8,7 @@ ArrayList<Product> hotFList = (ArrayList<Product>)request.getAttribute("hotFList
 ArrayList<Product> closeFList = (ArrayList<Product>)request.getAttribute("closeFList");
 String msg = (String)request.getAttribute("msg");
 %>    
-
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,7 @@ String msg = (String)request.getAttribute("msg");
   
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 
-
+ 
 <script>
 
 
