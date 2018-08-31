@@ -608,7 +608,7 @@ $(document).ready(function(){
 		</article>
 	</div>
 	</main>
-
+<%@ include file="/views/common/footer.jsp" %>
 
 	</div>
 </body>

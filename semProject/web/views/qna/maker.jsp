@@ -31,13 +31,13 @@
 
 		<!-- header -->
 		<main id="omcContainer">
-		<div id="cMain">
+		<div id="cMain" style="margin-bottom: 5500px;">
 			<div class="head_guide">
 				<div class="wrap_txt">
 					<h3 class="tit_gudie" style="color: black;">
-						이용가이드 <span class="sub_tit">Funding Guide</span>
+						&nbsp;<span class="sub_tit">&nbsp;</span>
 					</h3>
-					<p class="sub_txt" style="color: black;">펀딩 관련 서비스에 대해 안내드립니다.</p>
+					<p class="sub_txt" style="color: black;">&nbsp;</p>
 				</div>
 			</div>
 			<article id="mContent" class="guide_cont">
@@ -212,7 +212,7 @@
                                     <li>좋은 예 보러가기 : <strong><a href="https://www.ohmycompany.com/reward/1126" target="_blank">agust</a></strong></li>                                    
                                     <li>[수량 한정] 크라우드펀딩은 오픈 초반, 확산이 중요하므로 초기 참여자에게 펀딩 가격이나 상품의 혜택을 주어야 합니다.(ex.선착순 리워드 상품, 리워드 가격, 펀딩 할인가, 한정판 등)</li>
                                     <li>좋은 예 보러가기 : <strong><a href="https://www.ohmycompany.com/reward/1169" target="_blank">제주올레</a></strong></li>                                    
-                                    <li>오마이컴퍼니 플랫폼을 최대한 활용해 리워드 이벤트를 기획해보세요. (ex. 참여자 랜덤이벤트, 응원댓글 이벤트, SNS 공유 이벤트등)</li>
+                                    <li>iCrowd 플랫폼을 최대한 활용해 리워드 이벤트를 기획해보세요. (ex. 참여자 랜덤이벤트, 응원댓글 이벤트, SNS 공유 이벤트등)</li>
                                     <li>펀딩 오픈 후에 리워드 수정이 불가능합니다. 크라우드펀딩 종료 후 제공 가능한 리워드로 준비하세요.</li>
                                 </ul>
                                 <p class="txt_guide"><strong>- 리워드 배송</strong></p>
@@ -278,7 +278,7 @@
                         <ol class="list_guide">
                             <li>
                                 <h3 class="tit_list">1) 정산 수수료</h3>
-                                <p class="txt_guide">오마이컴퍼니 플랫폼 이용 수수료와 결제 대행사 수수료가 있으며, 플랫폼 이용 수수료는 진행방식에 따라 다릅니다.</p>
+                                <p class="txt_guide">iCrowd 플랫폼 이용 수수료와 결제 대행사 수수료가 있으며, 플랫폼 이용 수수료는 진행방식에 따라 다릅니다.</p>
                                 <span class="wrap_img"><img src="../../images/qna/reward_fee_0219.png" alt="플랫폼이용수수료" class="img_rwd"></span>
                             </li>
                             <li>
@@ -294,7 +294,7 @@
                                 <ul class="list_sub_guide">
                                     <li>약속한 기간 내 배송이 시작되면 참여자분에게 메일 또는 문자로 배송안내를 하세요.</li>
                                     <li>배송된 리워드는 개설자 전용 페이지▶리워드 제공관리에서 배송형 리워드인 경우 택배사와 송장번호를 입력하며, 배송형 리워드가 아닌 경우 제공여부를 체크하여 저장합니다.</li>
-                                    <li>리워드 배송 완료 후(서비스의 경우 제공 완료 후) 오마이컴퍼니에 펀딩 후기를 전달해 주세요. 펀딩 후기는 오마이컴퍼니 메인 내 인터뷰 카테고리와 SNS등에 업로드될 예정이며, 프로젝트 내용과 개설자에 대하여 2차적인 홍보 효과를 누릴 수 있습니다.</li>
+                                    <li>리워드 배송 완료 후(서비스의 경우 제공 완료 후) iCrowd에 펀딩 후기를 전달해 주세요. 펀딩 후기는 iCrowd 메인 내 인터뷰 카테고리와 SNS등에 업로드될 예정이며, 프로젝트 내용과 개설자에 대하여 2차적인 홍보 효과를 누릴 수 있습니다.</li>
                                 </ul>
                             </li>
                         </ol>
@@ -325,7 +325,7 @@
                                 <li id="mkrRewFaq17" class="tit_down"> <!-- 활성화 클래스 : down  -->
                                     <em class="tit_accor">펀딩 진행 기간 중에 프로젝트 내용과 리워드를 변경하고 싶습니다.</em>
                                     <div class="cont_accor">
-                                        <p>- 펀딩 진행이 시작되면 리워드, 펀딩 진행 방식(Keep it all, All or nothing) 등은 변경 불가능합니다. <br /><br />- 프로젝트 내용, 대표 이미지, 영상, 목표 금액은 수정이 가능합니다. 해당 수정사항은 관리자로 문의주시거나 오마이컴퍼니 메일 <a href="mailto:omc@ohmycompany.com">omc@ohmycompany.com</a>로 전달해주시길 바랍니다.</p>
+                                        <p>- 펀딩 진행이 시작되면 리워드, 펀딩 진행 방식(Keep it all, All or nothing) 등은 변경 불가능합니다. <br /><br />- 프로젝트 내용, 대표 이미지, 영상, 목표 금액은 수정이 가능합니다. 해당 수정사항은 관리자로 문의주시거나 iCrowd 메일 <a href="mailto:omc@ohmycompany.com">omc@ohmycompany.com</a>로 전달해주시길 바랍니다.</p>
                                     </div>
                                 </li>
                                 
@@ -366,7 +366,7 @@
                                     <em class="tit_accor">정산받는 금액의 회계처리는 어떻게 해야 하나요?</em>
                                     <div class="cont_accor">
                                         <p>- 프로젝트 모집금액은 현금이체로 정산 받으실 수 있으며 기업에서 일반상품, 현금매출로 기장하시면 됩니다.<br /><br /></p>
-<p>- 또한, 프로젝트 진행자(개설자)는 별도의 세금계산서 발행이 필요하지 않으며 오마이컴퍼니에서 펀딩 수수료(플랫폼이용수수료 + PG 결제수수료)에 관한 세금계산서 발행이 됩니다.</p>
+<p>- 또한, 프로젝트 진행자(개설자)는 별도의 세금계산서 발행이 필요하지 않으며 iCrowd에서 펀딩 수수료(플랫폼이용수수료 + PG 결제수수료)에 관한 세금계산서 발행이 됩니다.</p>
                                     </div>
                                 </li>
                                 
@@ -394,27 +394,7 @@
 			</article>
 		</div>
 		</main>
-
-		<!-- footer -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<!-- footer -->
+<%@ include file="/views/common/footer.jsp" %>
 	</div>
 
 </body>

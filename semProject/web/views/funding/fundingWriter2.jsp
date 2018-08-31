@@ -5,24 +5,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script> -->
 
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300"
 	rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css?family=Limelight|Sunflower:300"
 	rel="stylesheet">
+	
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  -->
 <script>
 	$(function() {
 		$(".widget input[type=submit], .widget a, .widget button").button();
@@ -33,7 +35,7 @@
 </script>
 <style>
 .wrap {
-	margin-top: 150px;
+	/* margin-top: 150px; */
 	min-height: 1000px;
 	font-size: 14px;
 }
@@ -64,7 +66,10 @@
 .text1 .title, .text2 .title{
 	font-weight:bold;
 	font-size:1.15em;
+	margin-bottom:0.1px;
+	    text-align: left;
 }
+
 
 .text2 {
 	width: 95%;
@@ -76,7 +81,7 @@
 }
 
 .text2 textarea {
-	margin-top: 10px;
+	margin-top: -36px;
 }
 
 .fund_bu {
@@ -96,8 +101,19 @@
 
 <body>
 	<%@ include file="../common/headBar.jsp"%>
-
+	<header class="head_banner">
+				<div class="hero">
+					<img
+						src="<%=request.getContextPath()%>/images/common/img_qna1.jpg" style="width:100%"
+						alt="공지사항 배경 이미지 입니다." class="img_rwd">
+				</div>
+				<div class="layer">
+					<h1 class="tit_comm">&nbsp;</h1>
+					&nbsp;<p class="txt_comm">&nbsp;</p>
+				</div>
+			</header>
 	<div class="wrap">
+	
 		<form>
 			<div class="textMain">
 				<div class="text1">
@@ -149,6 +165,6 @@
 	</div>
 
 
-
+<%@ include file="/views/common/footer.jsp" %>
 </body>
 </html>

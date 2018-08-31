@@ -32,13 +32,13 @@
 
 		<!-- header -->
 		<main id="omcContainer">
-		<div id="cMain">
+		<div id="cMain" style="margin-bottom: 3000px;">
 			<div class="head_guide">
 				<div class="wrap_txt">
 					<h3 class="tit_gudie" style="color: black;">
-						이용가이드 <span class="sub_tit">Funding Guide</span>
+						&nbsp; <span class="sub_tit">&nbsp;</span>
 					</h3>
-					<p class="sub_txt" style="color: black;">펀딩 관련 서비스에 대해 안내드립니다.</p>
+					<p class="sub_txt" style="color: black;">&nbsp;</p>
 				</div>
 			</div>
 			<article id="mContent" class="guide_cont">
@@ -145,7 +145,7 @@
 						<ol class="list_guide">
 							<li>
 								<h3 class="tit_list">1) 회원가입</h3>
-								<p class="txt_guide">증권형 프로젝트 개설 신청을 위해서는 오마이컴퍼니 법인회원으로 회원가입을 진행해주세요.</p>
+								<p class="txt_guide">증권형 프로젝트 개설 신청을 위해서는 iCrowd 법인회원으로 회원가입을 진행해주세요.</p>
 								<ul class="list_sub_guide">
 									<li>사이트 우측 상단 ‘회원가입’ 클릭</li>
 									<li>회원유형 중 ‘법인’ 선택</li>
@@ -171,7 +171,7 @@
 							</li>
 							<li>
 								<h3 class="tit_list">2) 기업사실확인</h3>
-								<p class="txt_guide">기업에서 제출한 자료 및 수집된 정보를 바탕으로 오마이컴퍼니 심사팀에서 사실 확인 및 점검을 진행합니다.</p>
+								<p class="txt_guide">기업에서 제출한 자료 및 수집된 정보를 바탕으로 iCrowd 심사팀에서 사실 확인 및 점검을 진행합니다.</p>
 								<p class="txt_guide">이 과정에서 제출 된 내용과 사실이 다를 경우 펀딩 진행이 취소될 수 있습니다. </p>
 							</li>
 						</ol>
@@ -181,17 +181,17 @@
 						<ol class="list_guide">
 							<li>
 								<h3 class="tit_list">1) 발행조건 협의 및 중개계약 체결</h3>
-								<p class="txt_guide">크라우드펀딩을 통해 발행될 증권의 세부 조건을 협의하고 발행예정기업과 오마이컴퍼니 간의 온라인소액투자중개 계약을 체결합니다.</p>
+								<p class="txt_guide">크라우드펀딩을 통해 발행될 증권의 세부 조건을 협의하고 발행예정기업과 iCrowd 간의 온라인소액투자중개 계약을 체결합니다.</p>
 							</li>
 							<li>
 								<h3 class="tit_list">2) 펀딩 등록을 위한 서류 준비</h3>
 								<p class="txt_guide">유관기관 등록에 필요한 서류들을 준비하여야 합니다.</p>
-								<p class="txt_guide">요청서류에 관련하여서는 오마이컴퍼니에서 친절히 안내드리겠습니다.</p>
+								<p class="txt_guide">요청서류에 관련하여서는 iCrowd에서 친절히 안내드리겠습니다.</p>
 							</li>
 							<li>
 								<h3 class="tit_list">3) 온라인 IR 준비</h3>
 								<p class="txt_guide">투자자분들께 펀딩에 대해 소개하는 IR 자료를 준비합니다.</p>
-								<p class="txt_guide">IR자료에는 투자핵심정보, 기업과 사업에 대한 소개, 투자금 사용 계획 등이 포함되어야 합니다.<br>(오마이컴퍼니의 기존 프로젝트 참고) </p>
+								<p class="txt_guide">IR자료에는 투자핵심정보, 기업과 사업에 대한 소개, 투자금 사용 계획 등이 포함되어야 합니다.<br>(iCrowd의 기존 프로젝트 참고) </p>
 							</li>
 						</ol>
 					</div>
@@ -200,7 +200,7 @@
 						<ol class="list_guide">
 							<li>
 								<h3 class="tit_list">1) 프로젝트 오픈 전</h3>
-								<p class="txt_guide">프로젝트 오픈 전 투자자들이 발행 기업의 정보를 충분히 검토할 수 있도록 온라인 IR을 오마이컴퍼니 홈페이지에 미리 게시할 수 있으며, 해당 프로젝트의 사전예약서비스를 통해 프로젝트 오픈 알림받기를 신청한 투자자들에게는 투자가 시작될 시 가장 먼저 알려드립니다.</p>
+								<p class="txt_guide">프로젝트 오픈 전 투자자들이 발행 기업의 정보를 충분히 검토할 수 있도록 온라인 IR을 iCrowd 홈페이지에 미리 게시할 수 있으며, 해당 프로젝트의 사전예약서비스를 통해 프로젝트 오픈 알림받기를 신청한 투자자들에게는 투자가 시작될 시 가장 먼저 알려드립니다.</p>
 							</li>
 							<li>
 								<h3 class="tit_list">2) 프로젝트 오픈 후</h3>
@@ -308,15 +308,15 @@
 								<li id="mkrInvFaq51" class="tit_down"> <!-- 활성화 클래스 : down  -->
 									<em class="tit_accor">크라우드펀딩 진행 절차는 어떻게 되나요?</em>
 									<div class="cont_accor">
-										<p>-오마이컴퍼니의 증권형 크라우드펀딩 진행절차는 크게 5단계로 구분됩니다.<br /><br /><img src="/uploads/editorImages/2018/editorImg_20180128082812768.png" alt="" width="680" height="195" /></p>
-<p>- 투자받기를 원하시면 오마이컴퍼니의 홈페이지 상단의<strong> 프로젝트 신청 &gt; 증권형</strong> 을 선택해주세요. 사업자등록증, 법인등기부등본, 재무자료, 사업계획서 등의 기초자료를 첨부하여 투자 신청을 진행해주세요.</p>
+										<p>-iCrowd의 증권형 크라우드펀딩 진행절차는 크게 5단계로 구분됩니다.<br /><br /><img src="/uploads/editorImages/2018/editorImg_20180128082812768.png" alt="" width="680" height="195" /></p>
+<p>- 투자받기를 원하시면 iCrowd의 홈페이지 상단의<strong> 프로젝트 신청 &gt; 증권형</strong> 을 선택해주세요. 사업자등록증, 법인등기부등본, 재무자료, 사업계획서 등의 기초자료를 첨부하여 투자 신청을 진행해주세요.</p>
 								    </div>
 								</li>
 								
 								<li id="mkrInvFaq52" class="tit_down"> <!-- 활성화 클래스 : down  -->
 									<em class="tit_accor">펀딩 진행을 위해 발행기업이 준비해야 하는 것들은 무엇인가요?</em>
 									<div class="cont_accor">
-										<p>- 펀딩 진행이 확정되면 오마이컴퍼니는 발행기업의 사실확인을 하고, 발행기업은 몇 가지 구비서류와 함께 온라인 IR을 준비하면 됩니다.</p>
+										<p>- 펀딩 진행이 확정되면 iCrowd는 발행기업의 사실확인을 하고, 발행기업은 몇 가지 구비서류와 함께 온라인 IR을 준비하면 됩니다.</p>
 <p>&nbsp;</p>
 <p><strong>1.투자받기 신청시</strong></p>
 <p>발행인 기본정보입력 및 첨부서류(사업자등록증, 법인등기부등본, 사업계획서, 재무제표 및 기타 첨부서류(벤처기업확인서, 기업소개자료 등)</p>
@@ -330,7 +330,7 @@
 <p>⓺ 회계감사인의 감사의견서</p>
 <p>⑦ 대표이사 확인서, 임원확인서 및 기타 투자판단에 영향을 미칠 수 있는 서류</p>
 <p>&nbsp;</p>
-<p>펀딩 진행이 확정되면 오마이컴퍼니에서 개별적으로 준비사항에 대해 상세하게 안내드릴 예정입니다.</p>
+<p>펀딩 진행이 확정되면 iCrowd에서 개별적으로 준비사항에 대해 상세하게 안내드릴 예정입니다.</p>
 								    </div>
 								</li>
 								
@@ -344,7 +344,7 @@
 								<li id="mkrInvFaq54" class="tit_down" > <!-- 활성화 클래스 : down  -->
 									<em class="tit_accor">펀딩 진행 여부를 결정하는데 적용되는 절차와 심사기준은 무엇인가요?</em>
 									<div class="cont_accor">
-										<p>- 오마이컴퍼니는&nbsp;프로젝트 신청한 기업이 제출한 자료를 토대로 내부심사를 거쳐 최종 펀딩 진행여부를 결정합니다. 내부 심사는 법적 요건 및 재무 상황 등을 고려해 판단하며, 보다 상세한 내용이 궁금하시다면 오마이컴퍼니(omc@ohmycompany.com / 02-388-2556)로 문의주시기 바랍니다.</p>
+										<p>- iCrowd는&nbsp;프로젝트 신청한 기업이 제출한 자료를 토대로 내부심사를 거쳐 최종 펀딩 진행여부를 결정합니다. 내부 심사는 법적 요건 및 재무 상황 등을 고려해 판단하며, 보다 상세한 내용이 궁금하시다면 iCrowd(omc@ohmycompany.com / 02-388-2556)로 문의주시기 바랍니다.</p>
 								    </div>
 								</li>
 								
@@ -372,7 +372,7 @@
 								<li id="mkrInvFaq58" class="tit_down"> <!-- 활성화 클래스 : down  -->
 									<em class="tit_accor">펀딩을 진행할 경우 소요되는 비용은 얼마나 되는지요?</em>
 									<div class="cont_accor">
-										<p>- 오마이컴퍼니에서 크라우드펀딩을 진행하게 될 경우 사실확인수수료, 온라인 등록비, 펀딩수수료 등의 비용이 발생합니다. 펀딩수수료의 경우 크라우드펀딩에 성공했을 경우에만 발행된 금액에 비례하여 책정됩니다. <br /><br />- 사실확인수수료와 온라인등록비는 선불의 개념으로 청약 개시 시점이전에 납부하셔야 하며, 펀딩이 중단되거나 실패한 경우에도 환불되지 않습니다. 보다 자세한 내용은 오마이컴퍼니로 문의해주시면 상세하게 안내드리도록 하겠습니다.</p>
+										<p>- iCrowd에서 크라우드펀딩을 진행하게 될 경우 사실확인수수료, 온라인 등록비, 펀딩수수료 등의 비용이 발생합니다. 펀딩수수료의 경우 크라우드펀딩에 성공했을 경우에만 발행된 금액에 비례하여 책정됩니다. <br /><br />- 사실확인수수료와 온라인등록비는 선불의 개념으로 청약 개시 시점이전에 납부하셔야 하며, 펀딩이 중단되거나 실패한 경우에도 환불되지 않습니다. 보다 자세한 내용은 iCrowd로 문의해주시면 상세하게 안내드리도록 하겠습니다.</p>
 								    </div>
 								</li>
 								
@@ -428,6 +428,7 @@
 
 		</div>
 		</main>
+		<%@ include file="/views/common/footer.jsp" %>
 	</div>
 
 </body>

@@ -177,8 +177,8 @@ $(document).ready(function(){
 						alt="공지사항 배경 이미지 입니다." class="img_rwd">
 				</div>
 				<div class="layer">
-					<h1 class="tit_comm">Funding</h1>
-					<p class="txt_comm"></p>
+					<h1 class="tit_comm">&nbsp;</h1>
+					&nbsp;<p class="txt_comm">&nbsp;</p>
 				</div>
 			</header>
 			<form id ="insertForm" method="post" id="frm">
@@ -461,7 +461,7 @@ $(document).ready(function(){
 	</div>
 	</main>
 
-
+<%@ include file="/views/common/footer.jsp" %>
 	</div>
 </body>
 </html>
