@@ -11,21 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.sp.admin.model.service.AdminService;
 
-@WebServlet("/updateInvRank.adm")
-public class UpdateInvRankServlet extends HttpServlet {
+@WebServlet("/updateRank2.adm")
+public class UpdateInvRankServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public UpdateInvRankServlet() {
+    public UpdateInvRankServlet2() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	System.out.println("투자자 등급 변경 서블릿 호출");
-	
-	int userId = Integer.parseInt(request.getParameter("user_id"));
+	System.out.println("미승인 서블릿 오니? 오니? 와줘");
+	int userId = Integer.parseInt(request.getParameter("user_id2"));
 	
 	System.out.println(userId);
-	int result = new AdminService().updateRank(userId);
+	
+int result = new AdminService().updateRank2(userId);
 	
 	String page = "";
 	
@@ -39,8 +39,6 @@ public class UpdateInvRankServlet extends HttpServlet {
 	}
 	RequestDispatcher view = request.getRequestDispatcher(page);
 	view.forward(request, response);
-	
-	
 	
 	
 	

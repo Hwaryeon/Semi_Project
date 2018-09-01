@@ -27,7 +27,7 @@ public class ProjectFileDownServlet extends HttpServlet {
 		System.out.println("펀딩 파일 다운로드 서블릿 ");
 	
 		int num = Integer.parseInt(request.getParameter("projectId"));
-		
+		System.out.println("num =" + num);
 		Attachment file = new AdminService().downloadFileAttachment(num);
 		
 		//폴더에서 파일을 읽을 스트림 생성

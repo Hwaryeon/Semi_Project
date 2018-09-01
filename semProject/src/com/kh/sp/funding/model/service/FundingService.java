@@ -109,14 +109,15 @@ public class FundingService {
 
 					pList3.add(pList2.get(i));
 				}
+				
 			}
 
-			for(int i=0; i<pList2.size(); i++){
+		/*	for(int i=0; i<pList2.size(); i++){
 				if(iArr[2] == pList2.get(i).getTotal_amount()){
 
 					pList3.add(pList2.get(i));
 				}
-			}
+			}*/
 		}
 		close(con);
 		return pList3;

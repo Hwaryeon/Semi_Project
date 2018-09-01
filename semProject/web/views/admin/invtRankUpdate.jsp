@@ -15,6 +15,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script> 
+
 <meta charset="UTF-8">
 <link
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
@@ -31,6 +33,40 @@
 	href="<%=request.getContextPath()%>/css/admin/admin.css">
 
 <style>
+
+
+	
+
+	
+	#confirm,#confirm2,#popCloseBtn,#popCloseBtn2{
+	width:100px;
+	height:30px;	border:1px solid;
+	background-color: #05a7e2;
+	color: #fff;
+	}
+	
+	#popupDiv,#popupDiv2 {
+    top : 0px;
+    position: absolute;
+    background: #fff;
+    width: 400px;
+    height: 220px;
+    display: none; 
+    text-align:center;
+    font-size:17pt;
+    }
+    
+    #popup_mask,#popup_mask2 { 
+        position: fixed;
+        width: 100%;
+        height: 1000px;
+        top: 0px;
+        left: 0px;
+         display: none; 
+         background-color:#000;
+         opacity: 0.8;
+    }
+	
 html {
 	margin-top: 86px;
 }
@@ -124,17 +160,18 @@ table tr td a {
 					</tr>
 				</thead>
 				<%for (Member m : rankList) {%>
-					<input type="hidden" id="userId" name="user_id" value="<%=m.getUserId()%>">
+					<input type="hidden" id="userId" name="user_id">
 				<tr>
 					<td><%= m.getUserId() %></td>
 					<td><%= m.getUserName() %></td>
 					<td><%= m.getInvestorGrade() %></td>
 					<td></td>
 					<td><button>파일 열람</button></td>
-					<td><a class='btn btn-info btn-xs' data-target="#myModal"
-						onClick="updateRank();" data-toggle="modal" href="#"><span
-							class="glyphicon glyphicon-edit"></span>승인</a> <a href="#"
-						class="btn btn-danger btn-xs"><span
+					<!-- data-target="#myModal"
+						onClick="updateRank();" data-toggle="modal" href="#" -->
+					<td><a id="confirmBtn"  class='btn btn-info btn-xs' name="yes"><span
+							class="glyphicon glyphicon-edit"></span>승인</a> <a 
+						class="btn btn-danger btn-xs" name="nob"><span
 							class="glyphicon glyphicon-remove"></span>미승인</a></td>
 				</tr>
 				
@@ -144,41 +181,7 @@ table tr td a {
 			</table>
 	</form>
 
-			<!--  <script>
-				$(function(){
-				<%for (Member m : rankList) {%>
-					$("table").append("<tr>");
-					
-					var user_id = <%=m.getUserId()%>;
-										$("#userId").val(user_id);
-					
-					
-					$("table tr").last().append("<td>" + '<%=m.getUserId()%>' + "</td>");
-					$("table tr").last().append("<td>" + '<%=m.getUserName()%>' + "</td>");
-					$("table tr").last().append("<td>" + '<%=m.getInvestorGrade()%>' + "</td>");
-					$("table tr").last().append("<td></td>");
-					$("table tr").last().append("<td>" + "<button>파일 열람</button>" + "</td>");
-					
-					 이렇게는 될리가 없구 
-					
-					 	$("table tr").last().append("<td>"+"<a class='btn btn-info btn-xs' data-target="#myModal"
-						onClick="updateRank();" data-toggle="modal" href="#">"+"<span
-							class="glyphicon glyphicon-edit">"+"</span>"+"승인"+"</a>"+" <a href="#"
-						class="btn btn-danger btn-xs">"+"<span
-							class="glyphicon glyphicon-remove">"+"+"</span>"+"미승인"+"</a>"+"</td>"); 
- 
-							$("table").append("</tr>");	
-
-							
-
-				
-				<%}%>
-		
-			});
-		</script>
-		-->
-
-
+	
 			<div>
 				<%-- 페이지처리 --%>
 				<div class="pageArea" align="center">
@@ -232,41 +235,107 @@ table tr td a {
 				</div>
 			</div>
 	</div>
-
-
-
 	</div>
-	<script>
-		$('.btn-xs').click(function(){
-			console.log("클릭");
-			var id = $(this).parent().parent().children().eq(0).text();
-			
-			console.log("id : " +id); 
-			$("#userId").val(id); 
-			$("#updateRankForm").submit(); 
+		<form id="updateRankForm2"
+			action="<%=request.getContextPath()%>/updateRank2.adm" method="get">
+					<input type="hidden" id="userId2" name="user_id2" >
 
-		});
+</form>
+
+
+  <div id ="popup_mask" ></div>
+    
+    <div id="popupDiv">
+    	
+    	<br><p><br>승인 처리하시겠습니까?<br></p>
+    	<hr>
+    	<br>
+    	<button id="confirm">승인</button>
+        <button id="popCloseBtn">취소</button>
+    </div>
+        
+        <div id ="popup_mask2" ></div>
+    
+    <div id="popupDiv2">
+    	
+    	<br><p><br>미승인 처리하시겠습니까?<br></p>
+    	<hr>
+    	<br>
+    	<button id="confirm2">미승인</button>
+        <button id="popCloseBtn2">취소</button>
+    </div>
+        
+    
+    <script>
+    
+    $(document).ready(function(){
+    	var id = null;
+        $("[name=yes]").click(function(event){   
+			id = $(this).parent().parent().children().eq(0).text();
+             $("#popupDiv").css({
+                "top": (($(window).height()-$("#popupDiv").outerHeight())/2+$(window).scrollTop())+"px",
+                "left": (($(window).width()-$("#popupDiv").outerWidth())/2+$(window).scrollLeft())+"px",
+            	
+             }); 
+            
+            $("#popup_mask").css("display","block"); 
+            $("#popupDiv").css("display","block"); 
+            
+            $("body").css("overflow","hidden");
+        });
+        
+        $("#popCloseBtn").click(function(event){
+            $("#popup_mask").css("display","none"); 
+            $("#popupDiv").css("display","none"); 
+            $("body").css("overflow","auto");
+        });
+        
+		    
+		    	$("#confirm").click(function(){
+		  		 	$("#userId").val(id); 
+
+					console.log("id : " +id); 
+					$("#updateRankForm").submit(); 
+
 		
+		    	});
+		    	 $("[name=nob]").click(function(event){   
+		  			
+			 			id = $(this).parent().parent().children().eq(0).text();
 
+		              $("#popupDiv2").css({
+		                 "top": (($(window).height()-$("#popupDiv2").outerHeight())/2+$(window).scrollTop())+"px",
+		                 "left": (($(window).width()-$("#popupDiv2").outerWidth())/2+$(window).scrollLeft())+"px",
+		             	
+		              }); 
+		             
+		             $("#popup_mask2").css("display","block"); 
+		             $("#popupDiv2").css("display","block"); 
+		             
+		             $("body2").css("overflow","hidden");
+		         });
+		         $("#popCloseBtn2").click(function(event){
+		             $("#popup_mask2").css("display","none"); 
+		             $("#popupDiv2").css("display","none"); 
+		             $("body2").css("overflow","auto");
+		         });
+		         
+		 		    
+		 		    	$("#confirm2").click(function(){
+				  		 	$("#userId2").val(id); 
+
+		 					console.log("id : " +id); 
+		 					$("#updateRankForm2").submit(); 
+
+		 				 
+		 		
+		     });
+    });
+    
+ 
+    </script>
 	
-		<%-- function updateRank(){
-		
-
-			
-
-			var user_id = <%=m.getUserId()%>;
-			var user_id = document.getElementById('userId').value;
-			/* $("#userId").val(user_id); */
-			console.log("user_id : " + user_id);
-			
-		
-		}; --%>
-	
-	</script>
-
-
-
-
 
 </body>
+
 </html>
