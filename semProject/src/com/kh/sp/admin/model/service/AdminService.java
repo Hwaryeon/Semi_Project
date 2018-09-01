@@ -370,5 +370,36 @@ public class AdminService {
 			
 			return null;
 		}
-	
+		public int updateRank2(int userId) {
+			Connection con = getConnection();
+			int result = new AdminDao().updateRank2(con, userId);
+			
+			if(result > 0 ){
+				commit(con);
+			}
+			else{
+				rollback(con);
+			}
+			
+			return result;
+		}
+		public int getInvdlineListCount() {
+			Connection con = getConnection();
+			
+			int listCount = new AdminDao().getDlineListCount(con);
+			
+			close(con);
+			  
+			return listCount;
+		}
+		public ArrayList<DetailMember> selectAlldlineList(int currentPage, int limit) {
+			Connection con = getConnection();
+			
+			ArrayList<DetailMember> DlineList = new AdminDao().selectDlineList(con, currentPage, limit);
+			
+			close(con);
+			
+			return DlineList;
+		
+		}
 }

@@ -557,9 +557,8 @@ cursor : pointer;
 								<li id="gstRewPay_li"><a href="/sp/views/admin/confirmProject.jsp"
 									class="link_depth">펀딩
 										심사</a></li>
-								<li id="gstRewFaq_li"><a href="/sp/views/admin/dlineProject.jsp"
-									class="link_depth">펀딩
-										마감 관리</a></li>
+								<li id="gstRewFaq_li" onclick="selectAllDlineProject();" class="link_depth">
+									펀딩 마감 관리</li>
 							</ul></li>
 							
 							<li id="gstRoot"><a href="guest.jsp#gstRewPay"
@@ -589,6 +588,9 @@ function invRankAll(){
 }
 function selectAllProject(){
 	location.href="<%=request.getContextPath()%>/selectAllProject.adm";
+}
+function selectAllDlineProject(){
+	location.href="<%=request.getContextPath()%>/dlineSelectAll.adm";
 }
 
 </script>
