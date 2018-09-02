@@ -228,7 +228,7 @@ $(document).ready(function(){
 								</div>
 							</div>
 							<div class="notice">
-								<div class="notice1">마감방식 선택</div>
+								<div class="notice1">최소 마감 달성률</div>
 								<div class="notice2">
 									<%-- <input type="radio" style="width: 16px; height: 16px;"
 										name="closeType" id="closeTypea" value="<%=productType1.getpCode() %>" /> <%=productType1.getpName() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -272,7 +272,8 @@ $(document).ready(function(){
 							<br>
 
 							<div class="boardType">
-								<div class="type1">지급률</div>
+
+								<div class="type1">채권 이자율</div>
 								<div class="type2">
 									<!-- <label><input type="radio"
 										style="width: 16px; height: 16px;" name="feeType"

@@ -224,10 +224,10 @@ textarea{
 							</div> 
 							<br><br>
 							<div style="margin-top: 91px;">
-							<span  class="fileTitle" style="float:left; margin-right:10px; width: 214px;">1번 첨부파일</span>
+							<span  class="fileTitle" style="float:left; margin-right:10px; width: 214px;">사업자 등록증</span>
 							
 							 <input style="float:left;" type="file" id="image_uploads" name="uploads2" accept=".jpg, .jpeg, .png" multiple>
-							<span  class="fileTitle" style="float:left; margin-right:10px; width: 214px;">2번 첨부파일</span>
+							<span  class="fileTitle" style="float:left; margin-right:10px; width: 214px;">재무제표</span>
 							 <input style="float:left;" type="file" id="image_uploads2" name="uploads3" accept=".pdf, .jpeg, .png" multiple>
 							</div>
 							<br>
