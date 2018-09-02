@@ -454,6 +454,7 @@ textarea{
     	$("#select").click(function(event){
     		
     		
+    		
     		<% if(loginUser.getUserClass().equals("general")) { %>
              $("#popupDiv").css({
                 "top": (($(window).height()-$("#popupDiv").outerHeight())/4+$(window).scrollTop())+"px",
