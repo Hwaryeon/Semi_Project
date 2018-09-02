@@ -185,7 +185,7 @@
 		margin-left : 250px;
 	}
 	#camount{
-		margin-left : 150px;
+		margin-left : 120px;
 	}
 </style>
 </head>

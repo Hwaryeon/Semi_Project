@@ -93,21 +93,31 @@ $(function(){
 							<div class="text-box">
 					
 					<h4 id="test1" >
-					이곳은 펀딩 설명하는 부분<br>
-					<label style="font-size:15px;">펀딩이랑 관련없지만 배너사진을 못구해서 넣어봄</label>
+					과학기술정보통신부와 소프트웨어정책연구소는 국내 산.학.연 전문가를<br>
+					<label style="font-size:15px;">모시고 'SW산업 전망 컨퍼런스 2018'을 개최합니다.</label>
 					</h4>
 			</div>
-							<img src="images/main/banner1.jpg" alt="main1" style="width: 100%; height:380px; ">
+							<img src="images/main/banner4.jpg" alt="main1" style="width: 100%; height:380px; ">
 						</div>
 
 						 <div class="item">
 							<div class="text-box">
 				<h4 id="test1" >
-					이것도 마찬가지<br>
-					<label style="font-size:15px;">아무 사진이나 넣어봄</label>
+					한국의 CES, MWC와 같은 국내 최고, 최대규모의<br>
+					<label style="font-size:15px;">ICT 전시회로, 차세대 첨단 산업을 주도하는 대표 전시회</label>
 					</h4>
 			</div>
-							<img src="images/main/banner3.jpg" alt="main2" style="width: 100%; height:380px;">
+							<img src="images/main/banner6.gif" alt="main2" style="width: 100%; height:380px;">
+						</div> 
+						
+						 <div class="item">
+							<div class="text-box">
+				<h4 id="test1" >
+					4차 산업 혁명 : 새로운 기회와 도전<br>
+					<label style="font-size:15px;">The 4th Industrial Revolution : New Opportunities and Challenges</label>
+					</h4>
+			</div>
+							<img src="images/main/banner5.png" alt="main2" style="width: 100%; height:380px;">
 						</div> 
 
 					</div>
@@ -162,22 +172,26 @@ $(function(){
 					</em>
 					<div class="progressbar-wrap">
                                    <dl>
-                                       <dt><span style="width:<% if(p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) < 100){ %>
-                                       <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %><% }else{%>100<% } %>%"></span></dt>
+                                           <% double num = p.getTotal_amount(); %>
+                                           <% num =  num * 100 / Integer.parseInt(p.getcAmount()); %>
+                                           <% num = Math.round(num); %>
+                                       <dt><span style="width:<% if(num < 100){ %>
+                                       <%= ((int)num) %><% }else{%>100<% } %>%"></span></dt>
                                        <dd>
-                                           <span class="percent"><%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %>%</span>
-                                           <%String str = String.format("%,d", p.getTotal_amount()); %>
+                                            <span class="percent">
+                                           
+                                           <%= num %>%
+                                            </span>
+                                            <%String str = String.format("%,d", p.getTotal_amount()); %>
                                            <span class="amount"><%=str %>원 달성</span>
                                            
-                                           	
                                            	<span class="days">
-											<% if(p.getOpenDate() < 1) { %>
+                                           	<% if(p.getOpenDate() < 1) { %>
                                            		0일 남음
                                            	<% }else{ %>
                                            	<%=p.getOpenDate() %>일 남음
                                            	<% } %>
-
-											</span>
+                                           	</span>
                                            
                                        </dd>
                                    </dl>
@@ -242,18 +256,19 @@ $(function(){
 					</em>
 					<div class="progressbar-wrap">
                                    <dl>
-                                       <dt><span style="width:<% if(p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) < 100){ %>
-                                       <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %><% }else{%>100<% } %>%"></span></dt>
-                                                                              <dd>
-                                           <span class="percent">
+                                           <% double num = p.getTotal_amount(); %>
+                                           <% num =  num * 100 / Integer.parseInt(p.getcAmount()); %>
+                                           <% num = Math.round(num); %>
+                                       <dt><span style="width:<% if(num < 100){ %>
+                                       <%= ((int)num) %><% }else{%>100<% } %>%"></span></dt>
+                                       <dd>
+                                            <span class="percent">
                                            
-                                           
-                                           <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %>%
+                                           <%= num %>%
                                             </span>
                                             <%String str = String.format("%,d", p.getTotal_amount()); %>
                                            <span class="amount"><%=str %>원 달성</span>
                                            
-                                           <%-- <%=p.getTotal_amount() %> --%>	
                                            	<span class="days">
                                            	<% if(p.getOpenDate() < 1) { %>
                                            		0일 남음
@@ -324,18 +339,19 @@ $(function(){
 					</em>
 					<div class="progressbar-wrap">
                                    <dl>
-                                       <dt><span style="width:<% if(p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) < 100){ %>
-                                       <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %><% }else{%>100<% } %>%"></span></dt>
+                                           <% double num = p.getTotal_amount(); %>
+                                           <% num =  num * 100 / Integer.parseInt(p.getcAmount()); %>
+                                           <% num = Math.round(num); %>
+                                       <dt><span style="width:<% if(num < 100){ %>
+                                       <%= ((int)num) %><% }else{%>100<% } %>%"></span></dt>
                                        <dd>
-                                           <span class="percent">
+                                            <span class="percent">
                                            
-                                           
-                                           <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %>%
+                                           <%= num %>%
                                             </span>
                                             <%String str = String.format("%,d", p.getTotal_amount()); %>
                                            <span class="amount"><%=str %>원 달성</span>
                                            
-                                           <%-- <%=p.getTotal_amount() %> --%>	
                                            	<span class="days">
                                            	<% if(p.getOpenDate() < 1) { %>
                                            		0일 남음
@@ -399,26 +415,26 @@ $(function(){
 					</em>
 					<div class="progressbar-wrap">
                                    <dl>
-                                       <dt><span style="width:<% if(p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) < 100){ %>
-                                       <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %><% }else{%>100<% } %>%"></span></dt>
+                                           <% double num = p.getTotal_amount(); %>
+                                           <% num =  num * 100 / Integer.parseInt(p.getcAmount()); %>
+                                           <% num = Math.round(num); %>
+                                       <dt><span style="width:<% if(num < 100){ %>
+                                       <%= ((int)num) %><% }else{%>100<% } %>%"></span></dt>
                                        <dd>
-                                           <span class="percent">
+                                            <span class="percent">
                                            
-                                           
-                                           <%= p.getTotal_amount() * 100 / Integer.parseInt(p.getcAmount()) %>%
+                                           <%= num %>%
                                             </span>
                                             <%String str = String.format("%,d", p.getTotal_amount()); %>
                                            <span class="amount"><%=str %>원 달성</span>
                                            
-                                           <%-- <%=p.getTotal_amount() %> --%>	
                                            	<span class="days">
-											<% if(p.getOpenDate() < 1) { %>
+                                           	<% if(p.getOpenDate() < 1) { %>
                                            		0일 남음
                                            	<% }else{ %>
                                            	<%=p.getOpenDate() %>일 남음
                                            	<% } %>
-
-											</span>
+                                           	</span>
                                            
                                        </dd>
                                    </dl>

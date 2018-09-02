@@ -32,6 +32,7 @@ public class FundingDao {
 			e.printStackTrace();
 		}
 	}
+	
 
 	public HashMap<String, Object> callType(Connection con) {
 
@@ -299,10 +300,10 @@ public class FundingDao {
 				p.setP_code(rset.getInt("p_code")+"");
 				p.setUser_id(rset.getInt("user_id"));
 				p.setP_name(rset.getString("p_name"));
-				p.setOpenDate(Math.round(rset.getInt("((r.START_DATE+p.OPEN_DATE)-sysdate)")));
+				p.setOpenDate(Math.round(rset.getInt("endDay")));
 				p.setcAmount(rset.getInt("CLOSING_AMOUNT")+"");
 				p.setP_intro(rset.getString("intro"));
-				p.setOpenDate(rset.getInt("((r.START_DATE+p.OPEN_DATE)-sysdate)"));
+				p.setOpenDate(rset.getInt("endDay"));
 				p.setCorporate_name(rset.getString("CORPORATE_NAME"));
 				p.setOrigin_name(rset.getString("ORIGIN_NAME"));
 				p.setChange_name(rset.getString("CHANGE_NAME"));

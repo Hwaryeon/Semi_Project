@@ -186,7 +186,7 @@ display: inline-block;
 				</thead>
 				<%for (Member m : rankList) {%>
 
-					<input type="hidden" id="userId" name="user_id">
+					<input type="hidden" id="user_id" name="user_id">
 					<input type="hidden" id="title" name="title">
 					<input type="hidden" id="msg" name="msg">
 
@@ -245,7 +245,7 @@ display: inline-block;
 	</div>
 	<form id="updateRankForm"
 			action="<%=request.getContextPath()%>/updateInvRank.adm" method="get">
-							<input type="hidden" id="user_Id" name="user_id" >
+							<input type="hidden" id="user_id" name="user_id" >
 		
 			</form>
 		<form id="updateRankForm2"
@@ -321,7 +321,7 @@ display: inline-block;
         
 		    
 		    	$("#confirm").click(function(){
-		  		 	$("#userId").val(id); 
+		  		 	$("#user_id").val(id); 
 		  		 	$("#title").val("투자자 등급 신청 처리가 완료되었습니다.");
 		  		 	$("#msg").val("투자자 등급 변경 승인 처리 되셨습니다.")
 

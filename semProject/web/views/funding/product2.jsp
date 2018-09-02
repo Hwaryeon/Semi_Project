@@ -220,7 +220,7 @@ ul.tabs li.current{
 	color:#222;
 }
 .tab-content{
-	display : none;
+	display : block;
 	background : white;
 	padding : 15px;
 }
@@ -352,7 +352,7 @@ textarea{
 
 <div class="contents">
 	 <div id="pic">
-		<img id="picture" src="/sp/thumbnail_uploadFiles/<%=hm.get("changeName")%>" width="550px" height="300px">
+		<img id="picture" src="/sp/thumbnail_uploadFiles/<%=hm.get("changeName")%>" width="550px" height="300px" style="width:550px; height:300px;">
 	</div>
 	<div id="text">
 		<br>
@@ -385,6 +385,7 @@ textarea{
 		<div id="tab-1" class="tab-content">
 			<div class="field_content article_intro" style="min-height:350px;">			
 							<%=hm.get("content")%>				
+							
 		</div>
 						
 			</div>

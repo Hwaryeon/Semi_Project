@@ -1049,7 +1049,7 @@ public DetailMember selectOneEnp(Connection con, int user_id) {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, startRow);
-	    	pstmt.setInt(2, endRow);
+	    	pstmt.setInt(2, endRow) ;
 	         
 			
 			rset = pstmt.executeQuery();
