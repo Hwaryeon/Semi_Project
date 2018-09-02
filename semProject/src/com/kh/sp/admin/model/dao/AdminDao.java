@@ -639,9 +639,8 @@ public ArrayList<CheckProject> selectAllProject(Connection con, int currentPage,
 		int startRow = (currentPage -1) * limit + 1;
 		int endRow = startRow + limit -1;
 
-		pstmt.setString(1, "enrollApproval");
-		pstmt.setInt(2, startRow);
-		pstmt.setInt(3, endRow);
+		pstmt.setInt(1, startRow);
+		pstmt.setInt(2, endRow);
 
 		rset = pstmt.executeQuery();
 
@@ -1711,4 +1710,72 @@ public DetailMember selectOneEnp(Connection con, int user_id) {
 		return file;
 	}
 
+	public int updateRank2(Connection con, int userId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "";
+		query = prop.getProperty("updateRank2");
+
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "wait");
+			pstmt.setInt(2, userId);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public int getDlineListCount(Connection con) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public ArrayList<DetailMember> selectDlineList(Connection con, int currentPage, int limit) {
+		ArrayList<DetailMember> dlineList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("selectAllDline");
+		System.out.println("제발 여기까진 와주라");
+		try {
+			pstmt= con.prepareStatement(query);
+
+			int startRow = (currentPage -1) * limit + 1;
+			int endRow = startRow + limit -1;
+
+			pstmt.setString(1,  "evaluate");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			dlineList = new ArrayList<DetailMember>();
+			rset = pstmt.executeQuery();
+			while(rset.next()){
+				DetailMember dm = new DetailMember();		
+			
+			/*	dm.setUserId(rset.getInt("user_id"));
+				dm.setUserName(rset.getString("user_name"));
+				dm.setInvestorGrade(rset.getString("investor_grade"));*/
+				
+				dlineList.add(dm);
+			};
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+		System.out.println("리스트는~" + dlineList);
+
+		return dlineList;
+	}
 }

@@ -253,18 +253,32 @@ element {
 			<td><%= cp.getPt_pName() %></td>
 			<td><%= cp.getP_interestRate() %>%</td>
 			<td><%= cp.getResult() %>%</td>
-			<% if(cp.getPr_status().equals("enrollApproval")){ %>
-			<td>펀딩모집중</td>
+<%-- 			<% if(cp.getPr_status().equals("enrollApproval")){ %>
+ --%>			<td>펀딩모집중</td>
 			<%
 			}
 			%>
+			<%	String status = null; 
+			switch(cp.getPr_status()){ %>
+			<% case "enrollApproval": status="펀딩모집"; break; 
+			case "enroll" : status="펀딩 심사 대기"; break;
+			case "end" : status="펀딩 마감 승인 대기"; break;
+			case "endApproval" : status="채권 발행"; break;
+			case "repay" : status="펀딩 종료"; break;
 			
+			
+			
+			%>
+
+			
+			
+			<% } %>
 			
 		
 		</tr>
-		<%
+		 <%
 		}
-		%>
+		%> 
 		</table>
 			
 		

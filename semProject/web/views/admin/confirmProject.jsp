@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,com.kh.sp.admin.model.vo.*"%>
+<%
+	ArrayList<DetailMember> confirmList = (ArrayList<DetailMember>) request.getAttribute("confirmList");
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +18,40 @@
  <meta charset= "UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"  href="<%=request.getContextPath()%>/css/admin/admin.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script> 
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
+#confirm,#confirm2,#popCloseBtn,#popCloseBtn2{
+	width:100px;
+	height:30px;	border:1px solid;
+	background-color: #05a7e2;
+	color: #fff;
+	}
+	
+	#popupDiv,#popupDiv2 {
+    top : 0px;
+    position: absolute;
+    background: #fff;
+    width: 400px;
+    height: 220px;
+    display: none; 
+    text-align:center;
+    font-size:17pt;
+    }
+    
+    #popup_mask,#popup_mask2 { 
+        position: fixed;
+        width: 100%;
+        height: 1000px;
+        top: 0px;
+        left: 0px;
+         display: none; 
+         background-color:#000;
+         opacity: 0.8;
+    }
+	
 html {
 	    margin-top: 86px;
 }
@@ -71,16 +112,27 @@ thead {
 						<th width="80%" colspan="3">프로젝트List</th><th width="22%"rowspan="2">승인여부</th>
 					</tr>
 					<tr>
-						<th>No</th><th >프로젝트 이름</th><th>첨부파일</th>
+						<th>사업자 ID</th><th>사업자 이름</th><th>프로젝트 ID</th><th>프로젝트 이름</th><th>첨부파일</th>
 					</tr>
 				</thead>
+				<%for (DetailMember dm : confirmList) {%>
+				<input type="hidden" id="userId" name="user_id">
 				<tr>
-						<td>1</td>
-						<td>세미프로젝트</td>
+						<td><%= dm.getUserId() %></td>
+						<td><%= dm.getUserName() %></td>
+						<td><%= dm.getP_pId() %></td>
+						<td><%= dm.getP_pName() %></td>
 						<td><button class="downBtn">파일 열람</button></td>
-						<td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span>승인</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>미승인</a></td>
+						<td class="text-center"><a class='btn btn-info btn-xs'name="yes"><span 
+						class="glyphicon glyphicon-edit"></span>승인</a><a href="#" 
+						class="btn btn-danger btn-xs" name="nob"><span
+						 class="glyphicon glyphicon-remove"></span>미승인</a></td>
 
 				</tr>
+				<%
+				}
+				%>
+				}
 				</table>
 				
 				<!-- 여기까지 -->

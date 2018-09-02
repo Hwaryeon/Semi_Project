@@ -37,6 +37,10 @@ public class MessageDao {
 		String query = prop.getProperty("sendMessage");
 		
 		try {
+			
+			
+			System.out.println("getReceive_id : " + m.getReceive_id());
+			System.out.println("getUser_id : " +m.getUser_id());
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, m.getReceive_id());
 			pstmt.setInt(2, m.getUser_id());

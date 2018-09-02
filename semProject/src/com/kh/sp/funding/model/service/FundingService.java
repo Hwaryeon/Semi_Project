@@ -109,6 +109,7 @@ public class FundingService {
 
 					pList3.add(pList2.get(i));
 				}
+				
 			}
 
 			for(int i=0; i<pList2.size(); i++){

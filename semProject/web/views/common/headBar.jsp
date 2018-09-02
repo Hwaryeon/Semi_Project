@@ -188,7 +188,7 @@
 </head>
 <body style="" style="width:1500px; overflow:hidden;" onload="webConnect();">
 	<div >
-		<div class="headr-wrap navbar navbar-default navbar-static-top" id="headr-wrap" style="width:100%; max-height:87px;">
+		<div class="headr-wrap navbar navbar-default navbar-static-top" id="headr-wrap" style="width:100%; max-height:87px; min-width: 1300px;">
 
 
 			<h1 class="lg" ><a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/common/logo.png" width="100" height="200" ></a></h1>

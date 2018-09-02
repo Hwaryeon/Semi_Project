@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 
-<%--  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> --%>
-<html>
+<%--   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+ --%>
+ <html>
 <head>
 <meta charset="UTF-8">
 <script
@@ -18,165 +19,172 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <title>프로젝트 신청</title>
-	<script
+<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-	<script src="<%=request.getContextPath()%>/js/common/scroll.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/common/scroll.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Jua"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
 <style>
-	
-	*{margin:0;padding:0;}
-	body{
-		background:#f5f5f5;
-	}
-	
-	#auth,#popCloseBtn{
-		width:100px;
-		height:30px;
-	}
-	#auth{
-		border:1px solid;
-		background-color: #05a7e2;
-		color: #fff;
-	}
-	#popCloseBtn{
-		border:1px solid;
-		color:#05a7e2;
-		background-color:#fff;
-	}
-	#popupDiv {
-    top : 0px;
-    position: absolute;
-    background: #fff;
-    width: 400px;
-    height: 220px;
-    display: none; 
-    text-align:center;
-    font-size:17pt;
-    }
-    
-    #popup_mask { 
-        position: fixed;
-        width: 100%;
-        height: 1000px;
-        top: 0px;
-        left: 0px;
-         display: none; 
-         background-color:#000;
-         opacity: 0.8;
-    }
-	
-	.title{
-		height:200px;
-		margin:30px;
-		font-size:25pt;
-		text-align:center;
-	}
-	.title #bold{
-		font-weight:bold;
-	}
 
-	 #header{
-		height:100px;
-		line-height:100px;
-		font-size:30px;
-		border-bottom:3px solid #000;
-		text-align:center;
-		background:white;
-		}
-	#footer{
-		border-top:1px solid #666;
-		height:70px;
-		line-height:70px;
-		text-align:center;
-	}
-	#content{
-		position:relative;
-		width:100%;
-		height:200px;
-		display:inline-block;
-		background:#f5f5f5;
-	}
-	.left{
-		position:absolute;
-		width:50%;
-		height:300px;
-		left:50px;
-	}
-	#application{
-		width:200px;
-		height:50px;
-		background-color: #05a7e2;
-		border-color:#bbb;
-		/* border:1px ; */
-		color: #fff;
-		margin-top: -10px;
-	}
 	
-	#bt2{
-		width:200px;
-		height:50px;
-		
-		border-color:#bbb;
-		/* position : relative;
+	* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #f5f5f5;
+}
+
+#login, #popCloseBtn {
+	width: 100px;
+	height: 30px;
+}
+
+#login {
+	border: 1px solid;
+	background-color: #05a7e2;
+	color: #fff;
+}
+
+#popCloseBtn {
+	border: 1px solid;
+	color: #05a7e2;
+	background-color: #fff;
+}
+
+#popupDiv {
+	top: 0px;
+	position: absolute;
+	background: #fff;
+	width: 400px;
+	height: 220px;
+	display: none;
+	text-align: center;
+	font-size: 17pt;
+}
+
+#popup_mask {
+	position: fixed;
+	width: 100%;
+	height: 1000px;
+	top: 0px;
+	left: 0px;
+	display: none;
+	background-color: #000;
+	opacity: 0.8;
+}
+
+.title {
+	height: 200px;
+	margin: 30px;
+	font-size: 25pt;
+	text-align: center;
+}
+
+.title #bold {
+	font-weight: bold;
+}
+
+#header {
+	height: 100px;
+	line-height: 100px;
+	font-size: 30px;
+	border-bottom: 3px solid #000;
+	text-align: center;
+	background: white;
+}
+
+#footer {
+	border-top: 1px solid #666;
+	height: 70px;
+	line-height: 70px;
+	text-align: center;
+}
+
+#content {
+	position: relative;
+	width: 100%;
+	height: 200px;
+	display: inline-block;
+	background: #f5f5f5;
+}
+
+.left {
+	position: absolute;
+	width: 50%;
+	height: 300px;
+	left: 50px;
+}
+
+.bt1 {
+	width: 200px;
+	height: 50px;
+	background-color: #05a7e2;
+	border-color: #bbb;
+	/* position : relative;
 		left : 500px;
 		top : 100px; */
-		color: #fff;
-		margin-top: -10px;
-	}
-	#content .pro{
-		width:50%;
-		
-		margin : 0 auto;
-	}
-	/* #content .btn{
-		width:595px;
-		border: 1px solid;
-		border-top: 0px solid;
-		margin:0 auto;
-	} */
-	#content .picture{
-		width:600px;
-		margin:0 auto;
-	}
-	.success{
-		font-size:30pt;
-		position : relative;
-		height:500px;
-		text-align:center;
-	}
-	#submit{
-		/* width: 18%;
+	color: #fff;
+	margin-top: -10px;
+}
+
+.bt2 {
+	width: 200px;
+	height: 50px;
+	border-color: #bbb;
+	color: #05a7e2;
+	/* position : relative; */
+	/* left: 900px;
+		top: 100px; */
+	background-color: #fff;
+	font-size: 400;
+	margin-top: -10px;
+}
+
+#content .pro {
+	width: 50%;
+	margin: 0 auto;
+}
+
+#content .btn {
+	width: 595px;
+	border: 1px solid;
+	border-top: 0px solid;
+	margin: 0 auto;
+}
+
+#content .picture {
+	width: 600px;
+	margin: 0 auto;
+}
+
+.success {
+	font-size: 30pt;
+	position: relative;
+	height: 500px;
+	text-align: center;
+}
+
+#submit {
+	/* width: 18%;
    	 	left: 210px;
     	position: absolute;
     	top: 110px; */
-    	float: left;
-    	margin-right: 20px;
-	}
-	#info{
-		/* width: 22%;
+	float: left;
+	margin-right: 40px;
+}
+
+#info {
+	/* width: 22%;
    	 	left: 800px;
     	position: absolute;
     	top: 110px; */
-	}
-	.img_rwd{
-		width:100%;
-		height:230px;
-	}
-	#sediv{
-		width:100%;
-		height:200px;
-		background:#E6E6E6;
-	}
-	#down{
-		position:absolute;
-		left:100px;
-	}
-	#down2{
-		position:absolute;
-		right:180px;
-	}
+	
+}
 </style>
 </head>
 <body>
@@ -200,17 +208,30 @@
 		<img src="<%=request.getContextPath()%>/images/common/projectinfo.PNG" id="firstim"></div>
 </div>
 
-	<div id="sediv">
-		<div id="down" style="margin-left:70px; margin-top:73px; float:left;" >
-			<div id="submit">프로젝트를 신청하시겠습니까?</div>
-			<button id="application" class="bt1" type="button" style="border-radius: 1px;">프로젝트 신청하기</button>			
-		</div>
+  
+  <div style="min-width:1000px;">
+	<hr style="width: 100%;">
+	<section id="content"
+		style="position: relative;  min-height: 200px; display: inline-block; background: #f5f5f5; margin-left: 147px; min-width: 1250px;">
+		<div style="min-width:800px;width: 1400px;">
+			<div style="margin-left: 70px; margin-top: 73px; float: left;">
+				<div id="submit">프로젝트를 신청하시겠습니까?</div>
+				<button id="popOpenBtn" class="bt1" type="button">프로젝트 신청하기</button>
+			</div>
+
+			<div style="float: left; margin-left: 2%; margin-top: 73px;">
+				<div id="info" style="float: left; margin-left: 40px;">프로젝트 신청
+					전에 규정을 읽어보세요</div>
+				<button class="form-control btn btn-danger" id="bt2" data-toggle="modal" data-target="#myModal" style="float:left; margin-left:20px;">규정 알아보기</button>
 		
-		<div id="down2"style="float:left; margin-left: 70px; margin-top: 73px;">	
-			<div id="info" style="float:left; margin-left:20px;">프로젝트 신청 전에 규정을 읽어보세요</div>
-			<button class="form-control btn btn-danger" id="bt2" data-toggle="modal" data-target="#myModal" style="float:left; margin-left:20px;">규정 알아보기</button>
+			</div>
 		</div>
-	</div>
+	</section>
+</div>
+  
+  
+  
+  
     <div id ="popup_mask" ></div>
     
     <div id="popupDiv">
@@ -268,6 +289,7 @@
  	 </div>
  	 
    <script>
+
     
     $(document).ready(function(){
     	$("#application").click(function(event){
@@ -305,7 +327,17 @@
       	});
    
     </script>
-    
-<%@ include file="/views/common/footer.jsp" %>
+
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<!-- <footer id="footer">
+	Copyright (C) 2018 
+</footer>  -->
+	<%@ include file="/views/common/footer.jsp"%>
+
 </body>
 </html>

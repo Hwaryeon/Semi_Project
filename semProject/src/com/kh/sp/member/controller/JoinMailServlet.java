@@ -68,7 +68,6 @@ public class JoinMailServlet extends HttpServlet {
 		        protected PasswordAuthentication getPasswordAuthentication() { 
 		        return new PasswordAuthentication(username, password); 
 		        }});
-		        System.out.println("??");
 		        try{
 		            Message message = new MimeMessage(session); 
 		            message.setFrom(new InternetAddress(username));// 
