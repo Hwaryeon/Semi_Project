@@ -87,16 +87,11 @@ public class WriteBoardServlet extends HttpServlet {
 					System.out.println("originFiles : " + name);
 				}
 			}
-
 			
 			Board board = new Board(title, text, uId, noticeYn, noticeType);
 			
-			
-			//Attachment객체 생성해서 arrayList객체 생성
 			ArrayList<Attachment> fileList = new ArrayList<Attachment>();
-			//전송순서 역순으로 파일이 list에 저장되기 때문에 반복문을 역으로 수행
 			
-			System.out.println("originFiles Size : " + originFiles.size());
 			
 			for(int i=originFiles.size() -1; i >=0; i--){
 				Attachment at = new Attachment();
@@ -105,29 +100,21 @@ public class WriteBoardServlet extends HttpServlet {
 				at.setOriginName(originFiles.get(i));
 				at.setChangeName(saveFiles.get(i));
 				
-				System.out.println("filepath : " + at.getFilePath());
-				System.out.println("oriFiles : " + at.getOriginName());
-				System.out.println("saveFiles : " + at.getChangeName());
-				
 				fileList.add(at);
 				
 			}
 			
 			int result = 0;
-			//Service로 전송
 				result = new BoardService().insertAttachment(board, fileList, count, uId);
 			
 			if(result >0){
 				response.sendRedirect("/sp/allBoard");
 			}else{
-				//실패시 저장된 사진 삭제
 				for(int i=0; i < saveFiles.size(); i++){
-					//파일시스템 에 저장된 이름으로 파일 객체 생성함
 					File failedFile = new File(savePath + saveFiles.get(i));
 					failedFile.delete();
 				}
 				
-				//에러페이지로 forward
 				request.setAttribute("msg", "공지사항 등록 실패!");
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 				

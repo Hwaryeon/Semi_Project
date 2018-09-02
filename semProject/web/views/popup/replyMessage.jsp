@@ -175,7 +175,7 @@ button {
 			  </div>
 			  
 			   <div class="form-group">
-			    <label for="inputEmail3" class="col-sm-2 control-label">문의내용</label>
+			    <label for="inputEmail3" class="col-sm-2 control-label">답장내용</label>
 			    <div class="col-sm-10">
 			      <textarea style="resize: none;" id="msg" name="msg" class="form-control" rows="5" placeholder="내용"></textarea>
 			    </div>

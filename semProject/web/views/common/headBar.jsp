@@ -388,11 +388,11 @@ function onMessage(event) {
 				if(data > 0){
 					document.getElementById('getServerTestBtn').className="blinking";
 					document.getElementById('newMsgArea').style.display="";
+					alert("읽지않은 메세지가 있습니다.")
 				}else{
 					document.getElementById('getServerTestBtn').className="";
 					document.getElementById('newMsgArea').style.display="none";
 				}
-				
 			},
 			error:function(data){
 				console.log("실패");
