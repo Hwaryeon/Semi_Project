@@ -376,9 +376,9 @@ public class FundingDao {
 				pList.remove(i);
 			}
 		}
-		for(int i=0; i<pList.size(); i++){
+		/*for(int i=0; i<pList.size(); i++){
 			System.out.println(i+" : " + pList.get(i));
-		}
+		}*/
 		
 		return pList;
 	}

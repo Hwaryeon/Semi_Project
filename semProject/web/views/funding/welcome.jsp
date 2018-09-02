@@ -115,14 +115,15 @@
 		margin:0 auto;
 	}
 	.input li{
-		width:350px;
-		height:350px;
+		width:20%;
+		height:280px;
 		margin:10px;
 		margin-right:15px;
 		margin-left:15px;
 		display: inline-block;
 		text-align:center;
 		border: 1px solid green;
+		
 	}
 	.thumbnailArea {
 		width:760px;
@@ -147,8 +148,44 @@
 		opacity:0.8;
 	}
 	#mainpic{
-		width:80%;
-		height:300px;
+		width:100%;
+		height:230px;
+	}
+	#lim{
+		width:100%; 
+		height:60%;
+	}
+	#intro{
+		font-size : 10pt;
+		font-weight : bold;
+	}
+	#maindi{
+		width:100%;
+		height:80px;
+		background:#fff;
+		text-align:center;
+		font-weight: 400;
+		font-size: 1.75em;
+	}
+	.impic{
+		background:#fff;
+	
+	}
+	#mainsp{
+		position: absolute;
+    	left: 570px;
+    	top: 330px;
+	}
+	#sort{
+		width:40px;
+		background-color:#038dc7;
+		color:#fff;
+		text-align:center;
+		margin-top:10px;
+		margin-left : 240px;
+	}
+	#camount{
+		margin-left : 130px;
 	}
 </style>
 </head>
@@ -157,20 +194,64 @@
 	
 	<%@ include file="../common/headBar.jsp"%>
 	
-	<br><br><br><br>
-	<div class>
-		<!-- <button class="prev" type="button"><img src="../images/left.png" alt=""/></button>
-		<ul>
-			<li><img src="../../images/coffee.png" alt=""/></li>
-			<<li><img src="images/summer.jpg" alt=""/></li>
-			<li><img src="images/summer.jpg" alt=""/></li>
-			<li><img src="images/summer.jpg" alt=""/></li>
-		</ul>
-		<button class="next" type="button"><img src="../images/right.png" alt=""/></button> -->
+	<br><br><br>
+	<div class="impic">
 		<img id="mainpic" src="images/common/img_media_news1.jpg">
 	</div>
 		
-	<!-- <div class="sort">
+	<div id="maindi">
+		
+		<span id="mainsp">성장 유망 기업의 투자자가 되어보세요.</span>
+	</div>
+<div class="productArea">
+ 	<br>
+ 	
+ 	
+ 	<ul class="input" id="p_list" align="center">
+ 	<% for(int i = 0; i <list.size(); i++){
+ 			HashMap<String,Object> hmap = list.get(i);
+ 		%>
+					<li class="p_list2" id="p<%=i%>">
+						<img src="/sp/thumbnail_uploadFiles/<%=hmap.get("changeName")%>" id = "lim">
+						<hr>
+						<input type="hidden" value="<%=hmap.get("pId")%>">
+						<span id="intro"><%=hmap.get("intro")%></span><br>
+						
+						<div id="sort">채권</div>
+						
+						<span id="camount">목표금액 \<%=hmap.get("closingAmount")%></span>
+					</li>
+					 
+ 		<% } %>	
+ 	</ul>
+</div>
+<br><br>
+<% if(loginUser != null ) {  %>
+	<input type="hidden" id="loginId" name="loginId" value="<%=loginUser.getUserId()%>"> 
+<% }else{ %>
+	<input type="hidden" id="loginId" name="loginId" value="-1"> 
+<% } %>
+<script>
+	 $(function(){
+		$(".p_list2").click(function(){
+			/* var num = $(this).children().children().eq(1).val(); */
+			
+			var user = document.getElementById('loginId').value;
+			
+			if(user == -1){
+				alert("로그인이 필요한 기능입니다.");
+			}else{
+				var num = $(this).children().eq(2).val();
+				location.href="<%=request.getContextPath()%>/SelectNews.pm?num=" + num;	
+			}
+		});
+	});
+</script>
+<%@ include file="/views/common/footer.jsp" %>
+</body>
+
+</html>
+<!-- <div class="sort">
 		<div class="box1">
 			<select style=height:40px;>
 				<option value="test1">선택1</option>
@@ -186,37 +267,3 @@
 			</select>
 		</div>			
 	</div> -->
-<div class="productArea">
- 	<br>
- 	<h2 align="center">제품list</h2>
- 	
- 	<ul class="input" id="p_list" align="center">
- 	<% for(int i = 0; i <list.size(); i++){
- 			HashMap<String,Object> hmap = list.get(i);
- 		%>
-					<li class="p_list2" id="p<%=i%>">
-					<img src="/sp/thumbnail_uploadFiles/<%=hmap.get("changeName")%>" width="300px" height="186px">
-					<input value="<%=hmap.get("pId")%>">
-					<br><br><br><%=hmap.get("intro") %> <br><%=hmap.get("pId")%> </li>
-					
- 		<% } %>	
- 	</ul>
-</div>
-<script>
-	 $(function(){
-		$(".p_list2").click(function(){
-			/* var num = $(this).children().children().eq(1).val(); */
-			var num = $(this).children().eq(1).val();
-			location.href="<%=request.getContextPath()%>/SelectNews.pm?num=" + num;
-		});
-	});
-</script>
-</body>
-
-<!-- <footer id="footer">
-	iCrowd | 사업자등록번호 : 851-87-00622 | 서울 강남 제2014-01호 | 대표자 : 김정태<br>
-서울특별시 강남구 테헤란로14길 6 남도빌딩 | 1544-9970 | iCrowd_admin@icrowd.com
-<hr>
-Copyright(c) 2018 All Right Reserved
-</footer> -->
-</html>

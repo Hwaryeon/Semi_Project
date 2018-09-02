@@ -12,12 +12,11 @@
 </head>
 <body>
 <a onclick="kakao();"><img class="btn-img" src="<%= request.getContextPath() %>/images/member/kakao.png"></a>
-<!-- <a id="kakao-login-btn" onclick="kakao();"></a> -->
 <a href="http://developers.kakao.com/logout"></a>
 <script type='text/javascript'>
 function kakao(){
 
-    Kakao.init('dcb5abf4c9dd11f3923f2dd46c0680c2');
+    Kakao.init('1c7e132f07aaf56ced7ff2c1e03c3320');
   
     Kakao.Auth.loginForm({
       /* container: '#kakao-login-btn', */
@@ -28,16 +27,10 @@ function kakao(){
          Kakao.API.request({
 
        url: '/v1/user/me',
-
        
        success: function(res) {
     	 //alert(JSON.stringify(res)); //<---- kakao.api.request 
     	  
-    	  <%-- location.href="<%= request.getContextPath() %>/snsLogin.ka?email=" + res.kaccount_email + 
-			"&id=" + res.id + "&nickname=" + res.properties.nickname + "&accessToken=" + authObj.access_token
-			+ "&refreshToken=" + authObj.refresh_token; 
-			
-    	  location.href="<%= request.getContextPath() %>/snsLogin.ka?res=" +JSON.stringify(res); --%> 
 			$("#id").val(res.id);
 			$("#email").val(res.kaccount_email);
 			$("#nickname").val(res.properties.nickname);
@@ -47,18 +40,11 @@ function kakao(){
 			$("#loginSubmit").submit();
 
              //alert(JSON.stringify(authObj)); //
-
              //console.log(res.id);//
-
              //console.log(res.kaccount_email);//
-
              //console.log(res.properties['nickname']);//
-
-                   
          // res.properties.nickname;
-
          //console.log(authObj.access_token);//
-   
              //alert(authObj.refresh_token);
              
            }
@@ -70,7 +56,6 @@ function kakao(){
          alert(JSON.stringify(err));
       }
     });
-  //]]>
 }
 </script>
 <form id="loginSubmit" action="<%= request.getContextPath() %>/snsLogin.ka" method="post">

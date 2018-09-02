@@ -32,7 +32,10 @@ public class InsertApplicationServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		System.out.println("등급신천 서류 제출 서블릿");
+		
 		if(ServletFileUpload.isMultipartContent(request)){
+			System.out.println("등급신천 서류 제출 서블릿2");
 			//System.out.println("이것은 멀티파트콘텐츠다");
 			//전송 파일에 대한 용량 제한 : 10MB
 			int maxSize = 1024*1024*10;

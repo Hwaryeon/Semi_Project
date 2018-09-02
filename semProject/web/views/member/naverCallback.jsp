@@ -18,13 +18,6 @@
   // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
   function naverSignInCallback() {
 	  
-		<%-- var email = naver_id_login.getProfileData('email');
-		var nickName = naver_id_login.getProfileData('nickname');
-	    var accessToken = naver_id_login.oauthParams.access_token;
-	    var refreshToken = naver_id_login.oauthParams.refresh_token;
-	    
-        location.href="<%= request.getContextPath() %>/snsLogin.na?email=" + email  
-	              + "&nickname=" + nickName + "&accessToken=" + accessToken; --%>
 	              
 	    //alert(naver_id_login.getProfileData('refresh_token'));
         $("#id").val(naver_id_login.getProfileData('id'));

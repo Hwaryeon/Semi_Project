@@ -54,16 +54,17 @@ public class InsertPayment extends HttpServlet {
 		if(result > 0) {
 			
 			System.out.println("등록성공");
-			page = "views/myPage/PaymentBackground.jsp";
+			response.sendRedirect(request.getContextPath() + "/SelectList.tn");
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 등록 실패!!");
 			
 			System.out.println("실패");
 		}
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
+		/*RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);*/
 	}
+		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
