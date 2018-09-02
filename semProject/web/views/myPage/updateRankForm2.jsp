@@ -62,7 +62,7 @@
 	<h2 align="center" class="cmntitle">전문투자자 신청하기</h2>
 
 	<div class="container">
-		<form class="form-update" action="<%=request.getContextPath() %>/insert.urf?userid='+<%= loginUser.getUserId() %>&ptype=2" method="post">
+		<form class="form-update" action="<%=request.getContextPath() %>/insert.urf?userid=<%= loginUser.getUserId() %>&ptype=2&userEmail=<%= loginUser.getEmail() %>" method="post" encType="multipart/form-data">
 			<table align="center">
 				<tr>
 					<td colspan="3" align="center">
