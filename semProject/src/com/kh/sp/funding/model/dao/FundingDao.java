@@ -217,7 +217,7 @@ public class FundingDao {
 			rset = pstmt.executeQuery();
 
 			while(rset.next()){
-
+					
 				for(int i=0; i < pList.size(); i++){
 					if(rset.getInt("p_id") == pList.get(i).getP_id()){
 						pList.get(i).setTotal_amount(rset.getInt("sum(ir.price)"));
@@ -318,6 +318,7 @@ public class FundingDao {
 			close(pstmt);
 		}
 
+		System.out.println("main : " + pList.size());
 
 		return pList;
 	}
@@ -357,30 +358,33 @@ public class FundingDao {
 			close(stmt);
 		}
 
-
-		/*if(pList.size() > 0){
-			pList.remove(pList.size()-1);
-
-		}*/
-		
-		/*for(int i=0; i<pList.size(); i++){
-			System.out.println(i+" : " + pList.get(i));
-		}*/
 		for(int i=0; i < pList.size(); i++){
 			if(pList.get(i).getTotal_amount() <= 0){
 				pList.remove(i);
 			}
 		}
-		for(int i=0; i < pList.size(); i++){
-			if(pList.get(i).getTotal_amount() <= 0){
-				pList.remove(i);
+		
+		int chk = 0;
+		
+		for(int i=0; i <pList.size(); i++){
+			if(pList.get(i).getTotal_amount() > 0){
+				
+				for(int j=0; j < hotList.size(); j++){
+					if(pList.get(i).getP_id() == hotList.get(j).getP_id()){
+						chk = 1;
+					}
+				}
+
+				if(chk != 1){
+					hotList.add(pList.get(i));
+				}
+				chk = 0;
 			}
 		}
-		/*for(int i=0; i<pList.size(); i++){
-			System.out.println(i+" : " + pList.get(i));
-		}*/
 		
-		return pList;
+		System.out.println("hotList : " +hotList.size());
+		
+		return hotList;
 	}
 
 	public ArrayList<Product> closeFundingList(Connection con) {
