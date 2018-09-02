@@ -116,7 +116,7 @@
 	}
 	.input li{
 		width:20%;
-		height:280px;
+		height:300px;
 		margin:10px;
 		margin-right:15px;
 		margin-left:15px;
@@ -173,7 +173,7 @@
 	}
 	#mainsp{
 		position: absolute;
-    	left: 570px;
+    	left: 520px;
     	top: 330px;
 	}
 	#sort{
@@ -182,10 +182,10 @@
 		color:#fff;
 		text-align:center;
 		margin-top:10px;
-		margin-left : 240px;
+		margin-left : 250px;
 	}
 	#camount{
-		margin-left : 130px;
+		margin-left : 150px;
 	}
 </style>
 </head>

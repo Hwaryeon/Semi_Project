@@ -29,8 +29,8 @@
 <style>
 
 #auth,#popCloseBtn{
-		width:100px;
-		height:30px;
+		width:150px;
+		height:40px;
 	}
 	#auth{
 		border:1px solid;
@@ -118,11 +118,11 @@
 
 .contents{
 	width : 70%;
-	height:300px;
+	
 	background-color: #fff;
 	margin-left : auto;
 	margin-right: auto;
-	height : 400px;
+	height : 420px;
 	border : 1px solid #eee;
 	box-shadow: 5px 5px 5px 0 #D8D8D8;
 }
@@ -130,8 +130,8 @@
 	/* width : 80%;
 	height: 70%; */
 	display : inline-block;
-	margin-top: 40px;
-	margin-left : 10px;
+	margin-top: 20px;
+	margin-left : 30px;
 
 }
 #pic{
@@ -149,29 +149,30 @@
 #p1{
 	float:left;
 	font-weight: bold;
-	font-size : 15pt;
+	font-size : 18pt;
 	margin-right:140px;
 	color:#464646;
 }
 #p2{
 	float: left;
     font-weight: bold;
-    font-size: 15pt;
+    font-size: 18pt;
     color:#464646;
-    margin-right:150px;
+    margin-right:50px;
 }
 #p3{
 	float: left;
     font-weight: bold;
-    font-size: 15pt;
+    font-size: 18pt;
     color:#464646;
 }
 #p4{
 	float: left;
     font-weight: bold;
-    font-size: 15pt;
+    font-size: 18pt;
     color:#464646;
-    margin-right:150px;
+    margin-right:300px;
+    
 }
 #bar{
 	width:90%;
@@ -180,10 +181,10 @@
 }
 #select{
 		width:350px;
-		height:40px;
+		height:45px;
 	    cursor: pointer;
 	    position : absolute;
-	    left:870px;
+	    left:880px;
 	    background-color:#05a7e2;
 	    color: #fff;
 	    border : 1px solid white;
@@ -210,12 +211,12 @@ ul.tabs li{
 	background: none;
 	color: #222;
 	display: inline-block;
-	padding : 10px 20px;
+	padding : 12px 20px;
 	cursor:pointer;
 }
 
 ul.tabs li.current{
-	background: #ededed;
+	background: #fff;
 	color:#222;
 }
 .tab-content{
@@ -255,7 +256,7 @@ ul.tabs li.current{
 	color:#fff;
 	text-align:center;
 	margin-top:20px;
-	margin-left:320px;
+	margin-left:360px;
 }
 .notitle{
 	width:0px;
@@ -324,6 +325,20 @@ textarea{
 #ps1{
 	pont-size:10pt;
 }
+#confirm{
+	border : 1px solid;
+	background-color : #05a7e2;
+	color:#fff;
+	width:150px;
+	height:40px;
+}
+#popCloseBtn2{
+	border : 1px solid;
+	background-color : #fff;
+	color:#05a7e2;
+	width:150px;
+	height:40px;
+}
 </style>
 
 
@@ -347,11 +362,10 @@ textarea{
 		<p id="p1"><%=hm.get("count")%>명 참여</p>
 		<p id="p2"><%=hm.get("sum")%>/목표액 <%=hm.get("closingAmount")%> 원</p>
 		<p id="p4"><%=hm.get("persentage")%>%달성</p>
-		<p id="p3">투자마감(마감일 2018-xx-xx xx:00)</p>
+		<p id="p3">D-<%=hm.get("openDate")%></p>
 		
-		<!-- <div id="bar"></div> -->
-		<!-- <div style=color:green;>xxx%</div> -->
-		<br><br><br><br><br><br><br>
+		
+		<br><br><br><br><br><br><br><br>
 		<button id="select" type="button">투자하기</button>
 		<br>
 	</div>
@@ -363,10 +377,7 @@ textarea{
 <div class="integration">
 		<div id="top_bar">
 		<ul class="tabs">
-			<!-- <li class="notitle"></li> -->
-			<li class="tab-link current" data-tab="tab-1">상품 정보</li>
-			<li class="tab-link" data-tab="tab-2">상품 소식</li>
-			<li class="tab-link" data-tab="tab-3">투자자 게시판</li>
+			<li id="tab-link current" data-tab="tab-1" style="font-size:20pt;">상품 정보</li>
 		</ul>
 		
 		<hr>
@@ -377,54 +388,7 @@ textarea{
 		</div>
 						
 			</div>
-		<div id="tab-2" class="tab-content current">
 		
-		</div>
-		<div class="container">
-	<%if(newsList != null) {%>
-		 <% for(int i = 0; i < newsList.size(); i++){
- 			HashMap<String,Object> h = newsList.get(i);
- 		%>
-			<table class="table table-striped">
-				<thead>
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>상품명</th>
-					<th>날짜</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr>
-					<td><%=h.get("writtingNo") %></td>
-					<td><%=h.get("title") %></td>
-					<td><%=hm.get("pName") %></td>
-					<td><%=h.get("registDate") %></td>
-				</tr>
-				</tbody>
-			</table>
-			<% } %>
-			<%} %>
-			<hr/> 
-			<%if(loginUser != null && loginUser.getUserId()==0){ %>
-			<button id="write">글쓰기</button>
-			<% } %>
-			<!-- <div class="text-center">
-				<ul class="pagination">
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-				</ul>
-			</div> -->
-		</div>				
-		</div>				
-		
-		<div id="tab-3" class="tab-content">
-			투자자 게시판
-		</div>
-		</div>
 
 
 <div id ="popup_mask" ></div>
@@ -599,3 +563,53 @@ textarea{
 						</div>		
 					</div>
 				</div>	 -->
+				
+				<%-- <%if(newsList != null) {%>
+		 <% for(int i = 0; i < newsList.size(); i++){
+ 			HashMap<String,Object> h = newsList.get(i);
+ 		%>
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>상품명</th>
+					<th>날짜</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td><%=h.get("writtingNo") %></td>
+					<td><%=h.get("title") %></td>
+					<td><%=hm.get("pName") %></td>
+					<td><%=h.get("registDate") %></td>
+				</tr>
+				</tbody>
+			</table>
+			<% } %>
+			<%} %>
+			<hr/> 
+			<%if(loginUser != null && loginUser.getUserId()==0){ %>
+			<button id="write">글쓰기</button>
+			<% } %>
+			 <div class="text-center">
+				<ul class="pagination">
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+				</ul>
+			</div> 
+		</div>				
+		</div>		 --%>	
+		<!-- <div id="tab-2" class="tab-content current">
+		
+		</div>
+		<div class="container">
+	
+		
+		<div id="tab-3" class="tab-content">
+			투자자 게시판
+		</div>
+		</div>	 -->
