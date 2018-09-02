@@ -341,7 +341,7 @@ public class ProductDao {
 		
 		return list;
 	}
-	public HashMap<String, Object> selectNewsList2(Connection con, int num) {
+	public HashMap<String, Object> selectNewsList2(Connection con, int num, int num2) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		HashMap<String, Object> hm = null;
@@ -381,6 +381,9 @@ public class ProductDao {
 				hm.put("filePath",rset.getString("file_path"));
 				hm.put("userId",rset.getInt("user_id"));
 				hm.put("pType",rset.getInt("p_type"));
+				hm.put("count",num2);
+				hm.put("sum",rset.getInt("amount")*num2);
+				hm.put("persentage",(int)(rset.getInt("amount")*num2/(float)rset.getInt("closing_amount")*100));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -392,4 +395,61 @@ public class ProductDao {
 		return hm;
 	}
 	
+	/*public HashMap<String,Object> selectiNum2(Connection con, int pId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		HashMap<String,Object> h = null;
+		
+		String query = prop.getProperty("selectNews");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pId);
+			rset = pstmt.executeQuery();
+			
+			h = new HashMap<String,Object>();
+			while(rset.next()) {
+				h.put("count",rset.getInt("COUNT(P_ID)"));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+			
+		}
+				
+		return h;
+	}*/
+	public int selectn(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int numI = 0;
+		
+		String query = prop.getProperty("selectInum");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				numI = rset.getInt("COUNT(P_ID)");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+			
+		}
+				
+		return numI;
 	}
+	}
+	
