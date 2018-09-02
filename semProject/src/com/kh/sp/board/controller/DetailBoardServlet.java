@@ -26,9 +26,6 @@ public class DetailBoardServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-	
-		System.out.println("detail 호출");
-		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 	
@@ -42,11 +39,6 @@ public class DetailBoardServlet extends HttpServlet {
 		PageNP np = new BoardService().npBoard(wNum);
 	
 		HashMap<String, Object> hmap= new BoardService().selectOneAttachment(num);
-		
-		/*System.out.println("np" + np);*/
-		
-		System.out.println("hmap : " + hmap);
-		
 		
 		String page = "views/board/boardRead.jsp";
 		request.setAttribute("board", b);

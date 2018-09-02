@@ -374,8 +374,6 @@ function send(){
 // 서버로부터 메시지를 받을 때 수행할 메소드
 function onMessage(event) {
 	
-	console.log("이거되냐?");
-	
 	var message = event.data;
 	
 	$(document).ready(function() { 

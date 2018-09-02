@@ -36,9 +36,6 @@ public class ViewMainServlet extends HttpServlet {
 
 		if(list.size() > 0){
 
-			
-		/*if(list.size() > 0){*/
-
 			request.setAttribute("list", list);
 			request.setAttribute("newFList", newFList);
 			request.setAttribute("mainFList", mainFList);
