@@ -441,9 +441,10 @@ textarea{
 <div id ="popup_mask2" ></div>
     
     <div id="popupDiv2">
+    	<br>
     	<div> 투자 상품 명 : <%=hm.get("pName") %></div>
     	<div> 투자 금액 : <%=hm.get("amount") %>원</div>
-    	  
+    	<hr>
     	<button id="confirm">결제 확인</button>
     	<button id="popCloseBtn2">취소</button>
     </div> 
