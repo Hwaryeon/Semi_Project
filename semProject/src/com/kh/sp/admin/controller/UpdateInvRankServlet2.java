@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.sp.admin.model.service.AdminService;
+import com.kh.sp.message.model.service.MessageService;
+import com.kh.sp.message.model.vo.Message;
 
 @WebServlet("/updateRank2.adm")
 public class UpdateInvRankServlet2 extends HttpServlet {
@@ -25,13 +27,27 @@ public class UpdateInvRankServlet2 extends HttpServlet {
 	
 	System.out.println(userId);
 	
-int result = new AdminService().updateRank2(userId);
+	int result = new AdminService().updateRank2(userId);
 	
 	String page = "";
 	
 	if(result > 0){
-		page = "selectAllRank.adm";
-		request.setAttribute("msg", "성공성공");
+		
+		String title = request.getParameter("title2");
+		String msg = request.getParameter("msg2");
+		
+		Message m = new Message();
+		m.setReceive_id(userId);
+		m.setTitle(title);
+		m.setMsg(msg);
+		m.setUser_id(0);
+		
+		result = new MessageService().sendMessage(m);
+
+		if(result > 0){
+			page = "selectAllRank.adm";
+			request.setAttribute("msg", "성공성공");
+		}
 		 
 	}else{
 		page ="views/common/errorPage.jsp";

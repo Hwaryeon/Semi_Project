@@ -117,8 +117,17 @@ public class MypageDetailDao {
 				pstmt.setString(1, fileList.get(i).getOriginName());
 				pstmt.setString(2, fileList.get(i).getChangeName());
 				pstmt.setString(3, fileList.get(i).getFilePath());
-				pstmt.setInt(4, ptype);
-				pstmt.setInt(5, userid);
+				
+				if(i==0){
+					//등급신청할때 제출하는 파일 1번
+					pstmt.setInt(4, 5);
+				}else{
+					//등급신청할때 제출하는 파일 2번
+					pstmt.setInt(4, 6);
+				}
+				
+				pstmt.setInt(5, ptype);
+				pstmt.setInt(6, userid);
 
 				result = pstmt.executeUpdate();
 			}
