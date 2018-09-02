@@ -8,8 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.sp.member.model.vo.Member;
@@ -489,8 +487,7 @@ private Properties prop = new Properties();
 			
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, "500/1000");
-			pstmt.setString(2, "대기");
-			pstmt.setString(3, userId);
+			pstmt.setString(2, userId);
 			
 			result = pstmt.executeUpdate();
 			
