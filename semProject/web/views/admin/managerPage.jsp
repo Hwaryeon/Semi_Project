@@ -33,9 +33,14 @@
 	href="<%=request.getContextPath()%>/css/admin/admin.css">
 
 <style>
+
+
 #sortBtn {
-	width: 60px;
-}
+    width: 80px;
+    background:#3276b1;
+    color:white;
+    font-size:15px;
+    }
 
 #search2 {
 	float: right;
@@ -166,6 +171,30 @@ html {
 element {
 	background: white;
 }
+/* 페이징 처리 CSS부분*/
+.pageArea a {
+display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin: 0 2px;
+    border: 1px solid #d6d6d6;
+    font-size: .75em;
+    line-height: 32px;
+    color: #999; 
+    text-align: center;
+    vertical-align: top;
+    cursor:pointer;
+}
+/* .pageArea {
+    margin: 40px 0;
+    text-align: center;
+    margin-top: 200px;
+} */
+.pageArea a:hover{
+          color: #999; 
+       }
+       
+       
 </style>
 </head>
 
@@ -174,7 +203,7 @@ element {
 	<%@ include file="../common/headBar.jsp"%>
 	<div id="omcWrap" style="min-width: 1400px;">
 		<div id="cMain">
-			<header class="head_banner" style="margin-bottom: 65px;">
+			<header class="head_banner" style="margin-bottom:-35px;">
 				<div class="hero">
 					<img src="<%=request.getContextPath()%>/images/common/admin.jpg"
 						style="width: 100%;" alt="공지사항 배경 이미지 입니다." class="img_rwd">
@@ -292,6 +321,7 @@ element {
 		</script> --%>
 				</div>
 				<div>
+				<!-- 
 					<%-- 페이지처리 --%>
 					<div class="pageArea" align="center">
 						<button
@@ -343,7 +373,37 @@ element {
 
 					</div>
 				</div>
-			</div>
+			</div> -->
+			
+			  <%-- 페이지처리 --%>
+
+        <div class="pageArea" id="datePaging" align="center">
+			<a onclick="location.href='<%=request.getContextPath() %>/selectAllMember.adm?currentPage=1'" class="link_fst">
+			<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
+			<% if (currentPage <= 1) { %>
+				<a disabled class="link_prev"><</a>&#160;
+			<% } else { %>
+				<a onclick="location.href='<%=request.getContextPath() %>/selectAllMember.adm?currentPage=<%=currentPage -1 %>'" class="link_prev"><</a>&#160;
+			<% } %>
+			
+			<% for(int p = startPage;p<= endPage;p++) { 
+					if(p==currentPage) { %>
+						<a disabled class="link_page" style="background:lightgray;"><%= p %></a>
+			<% 		} else { %>
+						<a onclick="location.href='<%=request.getContextPath()%>/selectAllMember.adm?currentPage=<%=p %>'" class="link_page"><%= p %></a>
+			<%  	} %>
+			<% } %>
+			
+			<% if(currentPage >= maxPage) { %>
+				&#160;<a disabled class="link_next">></a>&#160;
+			<% } else { %>
+				&#160;<a onclick="location.href='<%=request.getContextPath()%>/selectAllMember.adm?currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
+			<% } %>
+			<a onclick="location.href='<%=request.getContextPath()%>/selectAllMember.adm?currentPage=<%=maxPage%>'" class="link_lst">>></a>
+		</div>
+        
+		
+			
 			<form id="selectOne"
 				action="<%=request.getContextPath()%>/selectOneMember.adm"
 				method="post">

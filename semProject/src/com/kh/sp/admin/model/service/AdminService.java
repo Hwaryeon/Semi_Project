@@ -219,6 +219,13 @@ public class AdminService {
 
 		return dm;
 	}
+	public DetailMember selectOneInv2(int user_id) {
+		Connection con = getConnection();
+		DetailMember dm2 = new AdminDao().selectOneInv2(con, user_id);
+		close(con);
+
+		return dm2;
+	}
 	//사업자일 때, 회원 상세보기 정태
 	public DetailMember selectOneEnp(int user_id) {
 		Connection con = getConnection();
@@ -363,10 +370,10 @@ public class AdminService {
 			close(con);
 			return listCount;
 		}
-		public Attachment downloadFileAttachment(int num) {
+		public Attachment userDownloadFileAttachment(int num) {
 			Connection con = getConnection();
 			
-			Attachment file = new AdminDao().downloadFileAttachment(con, num);
+			Attachment file = new AdminDao().userDownloadFileAttachment(con, num);
 			
 			return null;
 		}
@@ -392,7 +399,7 @@ public class AdminService {
 			  
 			return listCount;
 		}
-		public ArrayList<DetailMember> selectAlldlineList(int currentPage, int limit) {
+		public ArrayList<DetailMember> selectAllDlineList(int currentPage, int limit) {
 			Connection con = getConnection();
 			
 			ArrayList<DetailMember> DlineList = new AdminDao().selectDlineList(con, currentPage, limit);
@@ -402,4 +409,78 @@ public class AdminService {
 			return DlineList;
 		
 		}
+		public int updateDline(int p_Id) {
+			Connection con = getConnection();
+			int result = new AdminDao().updateDline(con, p_Id);
+			
+			if(result > 0 ){
+				commit(con);
+			}
+			else{
+				rollback(con);
+			}
+			
+			return result;
+		}
+		public int updateDline2(int p_Id) {
+			Connection con = getConnection();
+			int result = new AdminDao().updateDline2(con, p_Id);
+			
+			if(result > 0 ){
+				commit(con);
+			}
+			else{
+				rollback(con);
+			}
+			
+			return result;
+		}
+		public ArrayList<DetailMember> selectAllConfirm(int currentPage, int limit) {
+			Connection con = getConnection();
+			
+			ArrayList<DetailMember> confirmList = new AdminDao().selectConfirmList(con, currentPage, limit);
+			
+			close(con);
+			
+			return confirmList;
+		
+		}
+		public int getConfirmListCount() {
+
+		Connection con = getConnection();
+		
+		int listCount = new AdminDao().getConfirmListCount(con);
+		
+		close(con);
+		  
+		return listCount;
+	
+	}
+		public int updateConfirm(int p_Id) {
+			Connection con = getConnection();
+			int result = new AdminDao().updateConfirm(con, p_Id);
+			
+			if(result > 0 ){
+				commit(con);
+			}
+			else{
+				rollback(con);
+			}
+			
+			return result;
+		}
+		public int updateConfirm2(int p_Id) {
+			Connection con = getConnection();
+			int result = new AdminDao().updateConfirm2(con, p_Id);
+			
+			if(result > 0 ){
+				commit(con);
+			}
+			else{
+				rollback(con);
+			}
+			
+			return result;
+		}
+		
 }

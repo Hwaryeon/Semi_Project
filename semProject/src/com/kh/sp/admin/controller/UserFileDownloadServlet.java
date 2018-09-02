@@ -4,7 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -15,20 +14,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.sp.admin.model.service.AdminService;
 import com.kh.sp.board.model.vo.Attachment;
 
-@WebServlet("/pFileDown")
-public class ProjectFileDownServlet extends HttpServlet {
+@WebServlet("/uFileDown")
+public class UserFileDownloadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ProjectFileDownServlet() {
+    public UserFileDownloadServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("펀딩 파일 다운로드 서블릿 ");
 
-		int num = Integer.parseInt(request.getParameter("p_id3"));
+		int num = Integer.parseInt(request.getParameter("user_id4"));
 		System.out.println("num =" + num);
-		Attachment file = new AdminService().downloadFileAttachment(num);
+		Attachment file = new AdminService().userDownloadFileAttachment(num);
 		
 		//폴더에서 파일을 읽을 스트림 생성
 		BufferedInputStream buf = null;
@@ -58,14 +57,13 @@ public class ProjectFileDownServlet extends HttpServlet {
 		}
 		downOut.close();
 		buf.close();
-		
-		
-	
-		
-		
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

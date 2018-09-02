@@ -14,16 +14,16 @@ import com.kh.sp.admin.model.service.AdminService;
 import com.kh.sp.admin.model.vo.DetailMember;
 import com.kh.sp.admin.model.vo.PageInfo;
 
-@WebServlet("/dlineSelectAll.adm")
-public class SelectAllDlineProjectServlet extends HttpServlet {
+@WebServlet("/confirmSelectAll.adm")
+public class selectAllConfirmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public SelectAllDlineProjectServlet() {
+    public selectAllConfirmServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	System.out.println("마감관리 셀렉트올 오니?");
+	System.out.println("셀렉트올 컨펌 프로젝트 서블릿 올까?");
 	int currentPage;
 	int limit;
 	int maxPage;
@@ -39,7 +39,7 @@ currentPage = 1;
 	}
 	
 	
-	int listCount = new AdminService().getInvdlineListCount();
+	int listCount = new AdminService().getConfirmListCount();
 	
 	limit = 10;
 	
@@ -56,27 +56,26 @@ currentPage = 1;
 	
 	PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 	
-	ArrayList<DetailMember> dlineList = new AdminService().selectAllDlineList(currentPage, limit);
+	ArrayList<DetailMember> confirmList = new AdminService().selectAllConfirm(currentPage, limit);
 	
 	System.out.println("pi :" + pi);
-	System.out.println("dlineList : " + dlineList);
+	System.out.println("dlineList : " + confirmList);
 	
 	String page = "";
 	
-	if(dlineList != null){
+	if(confirmList != null){
 		System.out.println("마감 해줘야하는 사람들~");
-		page = "views/admin/dlineProject.jsp";
-		request.setAttribute("dlineList", dlineList);
+		page = "views/admin/confirmProject.jsp";
+		request.setAttribute("confirmList", confirmList);
 		request.setAttribute("pi", pi);
 	}else{
 		page="views/common/errorPage.jsp";
-		request.setAttribute("msg", "마감관리 조회 실패");
+		request.setAttribute("msg", "심사관리 조회 실패");
 	}
 	RequestDispatcher view = request.getRequestDispatcher(page);
 	view.forward(request, response);
 }
-	
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

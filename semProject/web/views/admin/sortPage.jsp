@@ -35,9 +35,11 @@ html {
 	    margin-top: 86px;
 }
 #sortBtn {
-	width: 60px;
-}
-
+    width: 80px;
+    background:#3276b1;
+    color:white;
+    font-size:15px;
+    }
 #search2 {
 	float: right;
 	margin-top: 9px;
@@ -166,6 +168,28 @@ html {
 element {
 	background: white;
 }
+/* 페이징 처리 CSS부분*/
+.pageArea a {
+display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin: 0 2px;
+    border: 1px solid #d6d6d6;
+    font-size: .75em;
+    line-height: 32px;
+    color: #999; 
+    text-align: center;
+    vertical-align: top;
+    cursor:pointer;
+}
+/* .pageArea {
+    margin: 40px 0;
+    text-align: center;
+    margin-top: 200px;
+} */
+.pageArea a:hover{
+          color: #999; 
+       }
 </style>
 </head>
 
@@ -249,45 +273,36 @@ element {
 				</tr>
 				<% } %>
 			</table>
+	  <%-- 페이지처리 --%>
 
-
-
-			<%-- 페이지처리 --%>
-			<div class="pageArea" align="center">
+        <div class="pageArea" id="datePaging" align="center">
+			<a onclick="location.href='<%=request.getContextPath() %>//sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=1'" class="link_fst">
+			<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
+			<% if (currentPage <= 1) { %>
+				<a disabled class="link_prev"><</a>&#160;
+			<% } else { %>
+				<a onclick="location.href='<%=request.getContextPath() %>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=<%=currentPage -1 %>'" class="link_prev"><</a>&#160;
+			<% } %>
 			
+			<% for(int p = startPage;p<= endPage;p++) { 
+					if(p==currentPage) { %>
+						<a disabled class="link_page" style="background:lightgray;"><%= p %></a>
+			<% 		} else { %>
+						<a onclick="location.href='<%=request.getContextPath()%>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=<%=p %>'" class="link_page"><%= p %></a>
+			<%  	} %>
+			<% } %>
 			
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=1'"><<</button>
-				<% if(currentPage <= 1){ %>
-				<button disabled><</button>
-				<% }else{ %>
-				
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=<%=currentPage - 1%>'"><</button>
-				<% } %>
-				<% for(int p = startPage; p <= endPage; p++){
-				 if(p == currentPage){
-			%>
-				<button disabled><%= p %></button>
-				<%   }else{ %>
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=<%= p %>'"><%= p %></button>
-				<%   } %>
-
-				<% } %>
-
-				<% if(currentPage >= maxPage){ %>
-				<button disabled>></button>
-				<% }else{ %>
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=<%= currentPage + 1%>'">></button>
-				<% } %>
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=<%= maxPage %>'">>></button>
-
-			</div>
+			<% if(currentPage >= maxPage) { %>
+				&#160;<a disabled class="link_next">></a>&#160;
+			<% } else { %>
+				&#160;<a onclick="location.href='<%=request.getContextPath()%>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
+			<% } %>
+			<a onclick="location.href='<%=request.getContextPath()%>/sortMember.adm?sort=<%=request.getParameter("sort")%>&currentPage=<%=maxPage%>'" class="link_lst">>></a>
 		</div>
-	</div>
+        
+
+
+		
 
 </body>
 </html>

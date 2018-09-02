@@ -42,9 +42,13 @@ public class SelectOneMemberServlet extends HttpServlet {
 			}
 		}else if(user_class.equals("investor")){
 			DetailMember dm = new AdminService().selectOneInv(user_id);
-			if(dm != null){
+			System.out.println("첫번째dm = " + dm);
+			DetailMember dm2 = new AdminService().selectOneInv2(user_id);
+			System.out.println("두번째dm2 = " + dm2);
+			if(dm != null && dm2 != null){
 				page = "views/admin/searchInvMember.jsp";
 				request.setAttribute("dm", dm);
+				request.setAttribute("dm2", dm2);
 			}else{
 				page = "views/common/errorPage.jsp";
 				request.setAttribute("msg", "회원 상세 조회 실패");
