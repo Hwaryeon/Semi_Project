@@ -29,8 +29,11 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <style>
 #sortBtn {
-	width: 60px;
-}
+    width: 80px;
+    background:#3276b1;
+    color:white;
+    font-size:15px;
+    }
 
 #search2 {
 	float: right;
@@ -150,6 +153,30 @@ th, td {
 	height: 50px;
 }
 
+/* 페이징 처리 CSS부분*/
+.pageArea a {
+display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin: 0 2px;
+    border: 1px solid #d6d6d6;
+    font-size: .75em;
+    line-height: 32px;
+    color: #999; 
+    text-align: center;
+    vertical-align: top;
+    cursor:pointer;
+}
+/* .pageArea {
+    margin: 40px 0;
+    text-align: center;
+    margin-top: 200px;
+} */
+.pageArea a:hover{
+          color: #999; 
+       }
+       
+       
 /*
  나중에 지워야 할 것
  */
@@ -165,12 +192,28 @@ element {
 </head>
 <body>
 	<%@ include file="../common/headBar.jsp" %>
-	
-	<%@ include file="../common/sideMenu2.jsp" %>
-	<div>
-		<div id="text">
-			<h2>회원관리 > 블랙리스트 관리</h2>
-			<br>
+	<div id="omcWrap" style="min-width: 1400px;">
+		<div id="cMain">
+			<header class="head_banner" style="margin-bottom:-35px;">
+				<div class="hero">
+					<img src="<%=request.getContextPath()%>/images/common/admin.jpg"
+						style="width: 100%;" alt="공지사항 배경 이미지 입니다." class="img_rwd">
+				</div>
+				<div class="layer">
+					<!-- <h1 class="tit_comm">Manager</h1>
+							<p class="txt_comm">관리자 페이지</p> -->
+				</div>
+			</header>
+
+
+
+			<%@ include file="../common/sideMenu2.jsp"%>
+			<div>
+			
+				<div id="text" style="margin-left: 90px;">
+					<h2 id="web-font">
+						<b>회원 관리 > 블랙리스트 관리</b>
+					</h2>
 			
 
 			<!-- 여기는 검색 form   -->
@@ -226,58 +269,31 @@ element {
 			
 		<div>
 			<%-- 페이지처리 --%>
-			<div class="pageArea" align="center">
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/blackSelectAll.adm?currentPage=1'"><<</button>
-				<%
-					if (currentPage <= 1) {
-				%>
-				<button disabled><</button>
-				<%
-					} else {
-				%>
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/blackSelectAll.adm?currentPage=<%=currentPage - 1%>'"><</button>
-				<%
-					}
-				%>
-				<%
-					for (int p = startPage; p <= endPage; p++) {
-						if (p == currentPage) {
-				%>
-				<button disabled><%=p%></button>
-				<%
-					} else {
-				%>
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/blackSelectAll.adm?currentPage=<%=p%>'"><%=p%></button>
-				<%
-					}
-				%>
-
-				<%
-					}
-				%>
-
-				<%
-					if (currentPage >= maxPage) {
-				%>
-				<button disabled>></button>
-				<%
-					} else {
-				%>
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/blackSelectAll.adm?currentPage=<%=currentPage + 1%>'">></button>
-				<%
-					}
-				%>
-				<button
-					onclick="location.href='<%=request.getContextPath()%>/blackSelectAll.adm?currentPage=<%=maxPage%>'">>></button>
-
-			</div>
-		</div>
-	</div>
 		
+		  <div class="pageArea" id="datePaging" align="center">
+			<a onclick="location.href='<%=request.getContextPath() %>/blackSelectAll.adm?currentPage=1'" class="link_fst">
+			<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
+			<% if (currentPage <= 1) { %>
+				<a disabled class="link_prev"><</a>&#160;
+			<% } else { %>
+				<a onclick="location.href='<%=request.getContextPath() %>/blackSelectAll.adm?currentPage=<%=currentPage -1 %>'" class="link_prev"><</a>&#160;
+			<% } %>
+			
+			<% for(int p = startPage;p<= endPage;p++) { 
+					if(p==currentPage) { %>
+						<a disabled class="link_page" style="background:lightgray;"><%= p %></a>
+			<% 		} else { %>
+						<a onclick="location.href='<%=request.getContextPath()%>/blackSelectAll.adm?currentPage=<%=p %>'" class="link_page"><%= p %></a>
+			<%  	} %>
+			<% } %>
+			
+			<% if(currentPage >= maxPage) { %>
+				&#160;<a disabled class="link_next">></a>&#160;
+			<% } else { %>
+				&#160;<a onclick="location.href='<%=request.getContextPath()%>/blackSelectAll.adm?currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
+			<% } %>
+			<a onclick="location.href='<%=request.getContextPath()%>/blackSelectAll.adm?currentPage=<%=maxPage%>'" class="link_lst">>></a>
+		</div>
 		</div>
 	
 	

@@ -818,8 +818,76 @@ public int searchProjectListCount(Connection con, String text) {
 }
 //투자자 일 때 상세 정보 메소드
 public DetailMember selectOneInv(Connection con, int user_id) {
-	return null;
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+
+	DetailMember dm = null;
+
+	String query = prop.getProperty("selectOneInv1");
+
+	try {
+		pstmt = con.prepareStatement(query);
+		pstmt.setInt(1, user_id);
+		pstmt.setInt(2, user_id);
+	
+		
+		rset = pstmt.executeQuery();
+
+		if(rset.next()) {
+			dm = new DetailMember();
+
+			dm.setUserId(rset.getInt("user_id"));
+			dm.setInvestorGrade(rset.getString("investor_grade"));
+			dm.setUserName(rset.getString("user_name"));
+			dm.setNickName(rset.getString("nick_name"));
+			dm.setEmail(rset.getString("email"));
+			dm.setPhone(rset.getString("phone"));
+			dm.setEnrollDate(rset.getDate("enroll_date"));
+			dm.setCount(rset.getInt("count"));
+
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+		close(rset);
+	}
+	System.out.println("객체 dm1 은 ? = " + dm);
+	return dm;
 }
+
+public DetailMember selectOneInv2(Connection con, int user_id) {
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+
+	DetailMember dm2 = null;
+
+	String query = prop.getProperty("selectOneInv2");
+
+	try {
+		pstmt = con.prepareStatement(query);
+		pstmt.setInt(1, user_id);
+		
+		
+		rset = pstmt.executeQuery();
+
+		if(rset.next()) {
+			dm2 = new DetailMember();
+
+			dm2.setTotalInvest(rset.getInt("total_invest"));
+		
+
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+		close(rset);
+	}
+	System.out.println("객체 dm2 은 ? = " + dm2);
+	return dm2;
+}
+
 //사업자 일 때 상세 정보 메소드
 public DetailMember selectOneEnp(Connection con, int user_id) {
 	PreparedStatement pstmt = null;
@@ -1735,9 +1803,32 @@ public DetailMember selectOneEnp(Connection con, int user_id) {
 	}
 
 	public int getDlineListCount(Connection con) {
-		// TODO Auto-generated method stub
-		return 0;
+		Statement stmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("dlineCount");
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(stmt);
+			close(rset);
+
+		}
+
+
+		return listCount;
 	}
+	
 
 	public ArrayList<DetailMember> selectDlineList(Connection con, int currentPage, int limit) {
 		ArrayList<DetailMember> dlineList = null;
@@ -1745,25 +1836,29 @@ public DetailMember selectOneEnp(Connection con, int user_id) {
 		ResultSet rset = null;
 
 		String query = prop.getProperty("selectAllDline");
-		System.out.println("제발 여기까진 와주라");
+		System.out.println("selectAllDline Dao입니다");
 		try {
 			pstmt= con.prepareStatement(query);
 
 			int startRow = (currentPage -1) * limit + 1;
 			int endRow = startRow + limit -1;
 
-			pstmt.setString(1,  "evaluate");
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, endRow);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			
 			dlineList = new ArrayList<DetailMember>();
 			rset = pstmt.executeQuery();
 			while(rset.next()){
 				DetailMember dm = new DetailMember();		
-			
-			/*	dm.setUserId(rset.getInt("user_id"));
-				dm.setUserName(rset.getString("user_name"));
-				dm.setInvestorGrade(rset.getString("investor_grade"));*/
+				//P_ID, P_NAME, test,  CORPORATE_NAME, CLOSING_AMOUNT, RESULT , FEE
+				
+				dm.setP_pId(rset.getInt("p_id"));
+				dm.setP_pName(rset.getString("p_name"));
+				dm.setTest(rset.getDate("test"));
+				dm.setCorporateName(rset.getString("corporate_name"));
+				dm.setP_closingAmount(rset.getInt("closing_amount"));
+				dm.setResult(rset.getString("result"));
+				dm.setFee(rset.getString("fee"));
 				
 				dlineList.add(dm);
 			};
@@ -1774,8 +1869,212 @@ public DetailMember selectOneEnp(Connection con, int user_id) {
 			close(pstmt);
 			close(rset);
 		}
-		System.out.println("리스트는~" + dlineList);
+		System.out.println("마감리스트는~" + dlineList);
 
 		return dlineList;
 	}
+
+	public int updateDline(Connection con, int p_Id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "";
+		query = prop.getProperty("updateDline");
+
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, p_Id);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public int updateDline2(Connection con, int p_Id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "";
+		query = prop.getProperty("updateDline2");
+
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, p_Id);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public ArrayList<DetailMember> selectConfirmList(Connection con, int currentPage, int limit) {
+		ArrayList<DetailMember> confirmList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("selectAllConfirm");
+		System.out.println("selectAllDline Dao입니다");
+		try {
+			pstmt= con.prepareStatement(query);
+
+			int startRow = (currentPage -1) * limit + 1;
+			int endRow = startRow + limit -1;
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			confirmList = new ArrayList<DetailMember>();
+			rset = pstmt.executeQuery();
+			while(rset.next()){
+				DetailMember dm = new DetailMember();		
+				
+				dm.setUserId(rset.getInt("user_id"));
+				dm.setUserName(rset.getString("user_name"));
+				dm.setP_pId(rset.getInt("p_id"));
+				dm.setP_pName(rset.getString("p_name"));
+			
+				confirmList.add(dm);
+			};
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+		}
+		System.out.println("심사리스트는~" + confirmList);
+
+		return confirmList;
+	}
+
+	public int getConfirmListCount(Connection con) {
+		Statement stmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("confirmCount");
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(stmt);
+			close(rset);
+
+		}
+
+
+		return listCount;
+	}
+
+	public int updateConfirm(Connection con, int p_Id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "";
+		query = prop.getProperty("updateConfirm");
+
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, p_Id);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public int updateConfirm2(Connection con, int p_Id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "";
+		query = prop.getProperty("updateConfirm2");
+
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, p_Id);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public Attachment userDownloadFileAttachment(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Attachment file = null;
+		
+		String query = prop.getProperty("userFileDownload");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				file = new Attachment();
+				file.setUserId(rset.getString("user_id"));
+				file.setUserName(rset.getString("user_name"));
+				file.setInvestorGrade(rset.getString("investor_grade"));
+				file.setFid(rset.getInt("fid"));
+//				file.setpType(rset.getInt("p_type"));
+				file.setStatus(rset.getString("status"));
+				
+				
+			}
+			
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		
+		
+		
+		return file;
+	}
+
+	
+	
 }

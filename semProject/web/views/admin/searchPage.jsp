@@ -121,7 +121,28 @@ th, td {
 	background: white;
 	text-align: center;
 }
-
+/* 페이징 처리 CSS부분*/
+.pageArea a {
+display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin: 0 2px;
+    border: 1px solid #d6d6d6;
+    font-size: .75em;
+    line-height: 32px;
+    color: #999; 
+    text-align: center;
+    vertical-align: top;
+    cursor:pointer;
+}
+/* .pageArea {
+    margin: 40px 0;
+    text-align: center;
+    margin-top: 200px;
+} */
+.pageArea a:hover{
+          color: #999; 
+       }
 /* #box {
 	position: absolute;
 	display: inline;
@@ -250,35 +271,33 @@ element {
 				<% } %>
 			</table>
 
+	  <%-- 페이지처리 --%>
 
-
-			<div class= "pageArea" align="center">
-			<button onclick="location.href='<%=request.getContextPath()%>/searchMember.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=1'"><<</button>
-			<% if(currentPage <= 1){ %>
-			<button disabled><</button>	
-			<% }else{ %>
-			<button onclick="location.href='<%=request.getContextPath()%>/searchMember.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=currentPage - 1%>'"><</button>
-			<% } %>
-			<% for(int p = startPage; p <= endPage; p++){ 
-				 if(p == currentPage){
-			%>
-				    <button disabled><%= p %></button>
-			<%   }else{ %>
-			        <button onclick="location.href='<%=request.getContextPath()%>/searchMember.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%= p %>'"><%= p %></button>
-			<%   } %>
-				
+        <div class="pageArea" id="datePaging" align="center">
+			<a onclick="location.href='<%=request.getContextPath() %>/searchMember.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=1'" class="link_fst">
+			<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
+			<% if (currentPage <= 1) { %>
+				<a disabled class="link_prev"><</a>&#160;
+			<% } else { %>
+				<a onclick="location.href='<%=request.getContextPath() %>/searchMember.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=currentPage -1 %>'" class="link_prev"><</a>&#160;
 			<% } %>
 			
-			<% if(currentPage >= maxPage){ %>
-				<button disabled>></button>
-			<% }else{ %>
-				<button onclick="location.href='<%=request.getContextPath()%>/searchMember.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%= currentPage + 1%>'">></button>
+			<% for(int p = startPage;p<= endPage;p++) { 
+					if(p==currentPage) { %>
+						<a disabled class="link_page" style="background:lightgray;"><%= p %></a>
+			<% 		} else { %>
+						<a onclick="location.href='<%=request.getContextPath()%>/searchMember.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=p %>'" class="link_page"><%= p %></a>
+			<%  	} %>
 			<% } %>
-			<button onclick="location.href='<%=request.getContextPath()%>/searchMember.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%= maxPage %>'">>></button>
 			
-	
-	</div>
+			<% if(currentPage >= maxPage) { %>
+				&#160;<a disabled class="link_next">></a>&#160;
+			<% } else { %>
+				&#160;<a onclick="location.href='<%=request.getContextPath()%>/searchMember.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
+			<% } %>
+			<a onclick="location.href='<%=request.getContextPath()%>/searchMember.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=maxPage%>'" class="link_lst">>></a>
 		</div>
-	</div> 
+        
+
 </body>
 </html>

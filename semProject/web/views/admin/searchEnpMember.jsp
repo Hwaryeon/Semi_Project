@@ -51,11 +51,12 @@ th, td {
 	display: inline;
 }
 
-#sortBox {
-	display: inline;
-	width: 50%;
-	height: 30%;
-}
+#sortBtn {
+    width: 80px;
+    background:#3276b1;
+    color:white;
+    font-size:15px;
+    }
 
 #text {
 	margin-top: 13px;
@@ -151,8 +152,8 @@ th, td {
 		<br> <br> <br> <br> <br> 
 		<br> <br>
 		<div class="btn-box">
-			<button class="adminBtn"
-				onclick="location.href='admin/managerPage.jsp'">돌아가기</button>
+					<button class="adminBtn" onclick="back();">돌아가기</button>
+
 			&nbsp;
 			<button type="button" id="blackBtn" class="adminBtn"
 				data-toggle="modal" data-target="#myModal">블랙리스트 추가하기</button>
@@ -193,6 +194,10 @@ th, td {
 		</form>
 	</div>
 	<script>
+	function back(){
+		location.href="<%=request.getContextPath()%>/selectAllMember.adm";
+	}
+	
 	function insertBlackList() {
 			var user_id =<%=dm.getUserId()%>;
 			

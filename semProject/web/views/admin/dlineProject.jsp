@@ -21,7 +21,12 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"  href="<%=request.getContextPath()%>/css/admin/admin.css">
 <style>
-
+#sortBtn {
+    width: 80px;
+    background:#3276b1;
+    color:white;
+    font-size:15px;
+    }
 	#confirm,#confirm2,#popCloseBtn,#popCloseBtn2{
 	width:100px;
 	height:30px;	border:1px solid;
@@ -85,6 +90,28 @@ td, th {
 	border: 2px solid;
 	border-color: darkgray;
 }
+/* 페이징 처리 CSS부분*/
+.pageArea a {
+display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin: 0 2px;
+    border: 1px solid #d6d6d6;
+    font-size: .75em;
+    line-height: 32px;
+    color: #999; 
+    text-align: center;
+    vertical-align: top;
+    cursor:pointer;
+}
+/* .pageArea {
+    margin: 40px 0;
+    text-align: center;
+    margin-top: 200px;
+} */
+.pageArea a:hover{
+          color: #999; 
+       }
 </style>
 </head>
 <body>
@@ -109,7 +136,7 @@ td, th {
 						<th width="80%" colspan="7">프로젝트List</th><th width="22%"rowspan="2">승인여부</th>
 					</tr>
 					<tr>
-						<th>프로젝트 id</th><th>프로젝트 이름</th><th>마감날짜</th><th>업체명</th><th>목표금액</th><th>달성금액</th><th>달성률</th><th>수수료</th>
+						<th>프로젝트 id</th><th>프로젝트 이름</th><th>마감날짜</th><th>업체명</th><th>목표금액</th><th>달성률</th><th>마감방식</th>
 					</tr>
 				</thead>
 				<% for(DetailMember dm : dlineList) {%>
@@ -121,14 +148,13 @@ td, th {
 						<td><%= dm.getTest() %></td>
 						<td><%= dm.getCorporateName() %></td>
 						<td><%= dm.getP_closingAmount() %></td>
-						<td><%= dm.getFinalResult() %></td>
 						<td><%= dm.getResult() %></td>
-						<td><%= dm.getI_pId() %></td>
-						<td class="text-center"><a id="confirmBtn" name="yse" class=
+						<td><%= dm.getFee()%></td>
+						<td class="text-center"><a id="confirmBtn" name="yes" class=
 						'btn btn-info btn-xs'><span 
 						class="glyphicon glyphicon-edit"></span>승인</a> 
 						<a class="btn btn-danger btn-xs" name="nob">
-						<span class="glyphicon glyphicon-remove"></span>미승인</a></td>
+						<span class="glyphicon glyphicon-remove"></span>일괄환불</a></td>
 				</tr>
 				<% 
 				}
@@ -136,60 +162,35 @@ td, th {
 				</table>
 				</form>
 		<div>
-				<%-- 페이지처리 --%>
-				<div class="pageArea" align="center">
-					<button
-						onclick="location.href='<%=request.getContextPath()%>/selectAllRank.adm.adm?currentPage=1'"><<</button>
-					<%
-							if (currentPage <= 1) {
-						%>
-					<button disabled><</button>
-					<%
-							} else {
-						%>
-					<button
-						onclick="location.href='<%=request.getContextPath()%>/selectAllRank.adm.adm?currentPage=<%=currentPage - 1%>'"><</button>
-					<%
-							}
-						%>
-					<%
-							for (int p = startPage; p <= endPage; p++) {
-								if (p == currentPage) {
-						%>
-					<button disabled><%=p%></button>
-					<%
-							} else {
-						%>
-					<button
-						onclick="location.href='<%=request.getContextPath()%>/selectAllRank.adm?currentPage=<%=p%>'"><%=p%></button>
-					<%
-							}
-						%>
+			  <%-- 페이지처리 --%>
 
-					<%
-							}
-						%>
-
-					<%
-							if (currentPage >= maxPage) {
-						%>
-					<button disabled>></button>
-					<%
-							} else {
-						%>
-					<button
-						onclick="location.href='<%=request.getContextPath()%>/selectAllRank.adm?currentPage=<%=currentPage + 1%>'">></button>
-					<%
-							}
-						%>
-					<button
-						onclick="location.href='<%=request.getContextPath()%>/selectAllRank.adm?currentPage=<%=maxPage%>'">>></button>
-
-				</div>
-			</div>
-	</div>
-	</div>
-	</div>
+        <div class="pageArea" id="datePaging" align="center">
+			<a onclick="location.href='<%=request.getContextPath() %>/dlineSelectAll.adm?currentPage=1'" class="link_fst">
+			<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
+			<% if (currentPage <= 1) { %>
+				<a disabled class="link_prev"><</a>&#160;
+			<% } else { %>
+				<a onclick="location.href='<%=request.getContextPath() %>/dlineSelectAll.adm?currentPage=<%=currentPage -1 %>'" class="link_prev"><</a>&#160;
+			<% } %>
+			
+			<% for(int p = startPage;p<= endPage;p++) { 
+					if(p==currentPage) { %>
+						<a disabled class="link_page" style="background:lightgray;"><%= p %></a>
+			<% 		} else { %>
+						<a onclick="location.href='<%=request.getContextPath()%>/dlineSelectAll.adm?currentPage=<%=p %>'" class="link_page"><%= p %></a>
+			<%  	} %>
+			<% } %>
+			
+			<% if(currentPage >= maxPage) { %>
+				&#160;<a disabled class="link_next">></a>&#160;
+			<% } else { %>
+				&#160;<a onclick="location.href='<%=request.getContextPath()%>/dlineSelectAll.adm?currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
+			<% } %>
+			<a onclick="location.href='<%=request.getContextPath()%>/dlineSelectAll.adm?currentPage=<%=maxPage%>'" class="link_lst">>></a>
+		</div>
+        
+        
+			
 		<form id="dlineForm2"
 			action="<%=request.getContextPath()%>/dlineProject2.adm" method="get">
 			<input type="hidden" id="p_Id2" name="p_id2">
@@ -210,10 +211,10 @@ td, th {
     
     <div id="popupDiv2">
     	
-    	<br><p><br>미승인 처리하시겠습니까?<br></p>
+    	<br><p><br>환불 처리하시겠습니까?<br></p>
     	<hr>
     	<br>
-    	<button id="confirm2">미승인</button>
+    	<button id="confirm2">환불</button>
         <button id="popCloseBtn2">취소</button>
     </div>
         
@@ -247,7 +248,7 @@ td, th {
 		  		 	$("#p_Id").val(p_id); 
 
 					console.log("p_id : " +p_id); 
-					$("#updateRankForm").submit(); 
+					$("#dlineForm").submit(); 
 
 		
 		    	});
@@ -277,7 +278,7 @@ td, th {
 				  		 	$("#p_Id2").val(p_id); 
 
 		 					console.log("p_id : " +p_id); 
-		 					$("#updateRankForm2").submit(); 
+		 					$("#dlineForm2").submit(); 
 
 		 				 
 		 		

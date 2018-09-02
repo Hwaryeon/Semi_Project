@@ -35,8 +35,11 @@
 
 <style>
 #sortBtn {
-	width: 60px;
-}
+    width: 80px;
+    background:#3276b1;
+    color:white;
+    font-size:15px;
+    }
 
 #search2 {
 	float: right;
@@ -121,7 +124,28 @@ th, td {
 	color: black;
 	text-align: center;
 }
-
+/* 페이징 처리 CSS부분*/
+.pageArea a {
+display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin: 0 2px;
+    border: 1px solid #d6d6d6;
+    font-size: .75em;
+    line-height: 32px;
+    color: #999; 
+    text-align: center;
+    vertical-align: top;
+    cursor:pointer;
+}
+/* .pageArea {
+    margin: 40px 0;
+    text-align: center;
+    margin-top: 200px;
+} */
+.pageArea a:hover{
+          color: #999; 
+       }
 /* #box {
 	position: absolute;
 	display: inline;
@@ -184,7 +208,7 @@ element {
 
 		<div id="text" style="margin-left: 90px;">
 				<h2 id="web-font">
-			<h3>펀딩 관리 > 펀딩 조회</h3><br>
+			<h3>펀딩 관리 > 펀딩 조회</h3>
 			
 			<!--  여기는 정렬 form -->
 		<form action="<%=request.getContextPath()%>/sortProject.adm"
@@ -226,8 +250,7 @@ element {
 							</div>
 						</div>
 
-					</form>
-					
+				
 					
 				<br><br><br>
 				
@@ -260,11 +283,8 @@ element {
 			<td><%= cp.getPt_pName() %></td>
 			<td><%= cp.getP_interestRate() %>%</td>
 			<td><%= cp.getResult() %>%</td>
-			<% if(cp.getPr_status().equals("enrollApproval")){ %>
-			<td>펀딩모집중</td>
-			<%
-			}
-			%>
+			 			<td><%= cp.getPr_status() %>
+
 			
 			
 		
@@ -273,61 +293,37 @@ element {
 		}
 		%>
 		</table>
+				</form>
+					</form>
+					
+			  <%-- 페이지처리 --%>
+
+        <div class="pageArea" id="datePaging" align="center">
+			<a onclick="location.href='<%=request.getContextPath() %>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=1'" class="link_fst">
+			<span class="fa fa-angle-double-left" aria-hidden="true"><<</span></a>&#160;
+			<% if (currentPage <= 1) { %>
+				<a disabled class="link_prev"><</a>&#160;
+			<% } else { %>
+				<a onclick="location.href='<%=request.getContextPath() %>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=currentPage -1 %>'" class="link_prev"><</a>&#160;
+			<% } %>
 			
+			<% for(int p = startPage;p<= endPage;p++) { 
+					if(p==currentPage) { %>
+						<a disabled class="link_page" style="background:lightgray;"><%= p %></a>
+			<% 		} else { %>
+						<a onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=p %>'" class="link_page"><%= p %></a>
+			<%  	} %>
+			<% } %>
+			
+			<% if(currentPage >= maxPage) { %>
+				&#160;<a disabled class="link_next">></a>&#160;
+			<% } else { %>
+				&#160;<a onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=currentPage + 1%>'" class="link_next">></a>&#160;
+			<% } %>
+			<a onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=maxPage%>'" class="link_lst">>></a>
+		</div>
+        
 		
-		
-	<%-- 페이지처리 --%>
-					<div class="pageArea" align="center">
-						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=1'"><<</button>
-						<%
-							if (currentPage <= 1) {
-						%>
-						<button disabled><</button>
-						<%
-							} else {
-						%>
-						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=currentPage - 1%>'"><</button>
-						<%
-							}
-						%>
-						<%
-							for (int p = startPage; p <= endPage; p++) {
-								if (p == currentPage) {
-						%>
-						<button disabled><%=p%></button>
-						<%
-							} else {
-						%>
-						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=p%>'"><%=p%></button>
-						<%
-							}
-						%>
-
-						<%
-							}
-						%>
-
-						<%
-							if (currentPage >= maxPage) {
-						%>
-						<button disabled>></button>
-						<%
-							} else {
-						%>
-						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=currentPage + 1%>'">></button>
-						<%
-							}
-						%>
-						<button
-							onclick="location.href='<%=request.getContextPath()%>/selectAllProject.adm?searchValue=<%=request.getParameter("searchValue")%>&currentPage=<%=maxPage%>'">>></button>
-
-					</div>
-				</div>
-			</div>
 		</div>
 			</div>
 	

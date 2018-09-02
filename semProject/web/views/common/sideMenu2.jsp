@@ -553,11 +553,10 @@ cursor : pointer;
 					class="link_cont">펀딩 관리</a>
 					
 							<ul class="lnb_depth">
-						<li id="9 6b bgvt6 vg6tfvg7"class="link_depth" onclick="selectAllProject();">펀딩 조회</li>
-								<li id="gstRewPay_li"><a href="/sp/views/admin/confirmProject.jsp"
-									class="link_depth">펀딩
-										심사</a></li>
-								<li id="gstRewFaq_li" onclick="selectAllDlineProject();" class="link_depth">
+						<li id="9 6b bgvt6 vg6tfvg7" class="link_depth" onclick="selectAllProject();">펀딩 조회</li>
+								<li id="gstRewPay_li" class="link_depth" onclick="selectAllConfirmProject();">
+									펀딩 심사</li>
+								<li id="gstRewFaq_li" onclick="selectAllDlineProject()" class="link_depth">
 									펀딩 마감 관리</li>
 							</ul></li>
 							
@@ -592,7 +591,13 @@ function selectAllProject(){
 function selectAllDlineProject(){
 	location.href="<%=request.getContextPath()%>/dlineSelectAll.adm";
 }
+function selectAllConfirmProject(){
+	location.href="<%=request.getContextPath()%>/confirmSelectAll.adm";
+}
+function dlineUpdate(){
+	location.href="<%=request.getContextPath()%>/endUpdate.adm";
 
+}
 </script>
 </body>
 </html>

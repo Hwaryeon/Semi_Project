@@ -17,11 +17,32 @@ public class Attachment implements Serializable{
 	private String status;
 	private String userId;
 	private int pType;
+	private String userName;
+	private String investorGrade;
 	
-
 	public Attachment(){}
 
 	
+	public String getUserName() {
+		return userName;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+	public String getInvestorGrade() {
+		return investorGrade;
+	}
+
+
+	public void setInvestorGrade(String investorGrade) {
+		this.investorGrade = investorGrade;
+	}
+
+
 	public String getUserId() {
 		return userId;
 	}
@@ -123,7 +144,8 @@ public class Attachment implements Serializable{
 
 
 	public Attachment(int fid, int bid, String originName, String changeName, String filePath, String upload,
-			Date uploadDate, int fileLevel, int downloadCount, String status, String userId, int pType) {
+			Date uploadDate, int fileLevel, int downloadCount, String status, String userId, int pType, String userName,
+			String investorGrade) {
 		super();
 		this.fid = fid;
 		this.bid = bid;
@@ -137,6 +159,8 @@ public class Attachment implements Serializable{
 		this.status = status;
 		this.userId = userId;
 		this.pType = pType;
+		this.userName = userName;
+		this.investorGrade = investorGrade;
 	}
 
 
@@ -145,10 +169,11 @@ public class Attachment implements Serializable{
 		return "Attachment [fid=" + fid + ", bid=" + bid + ", originName=" + originName + ", changeName=" + changeName
 				+ ", filePath=" + filePath + ", upload=" + upload + ", uploadDate=" + uploadDate + ", fileLevel="
 				+ fileLevel + ", downloadCount=" + downloadCount + ", status=" + status + ", userId=" + userId
-				+ ", pType=" + pType + "]";
+				+ ", pType=" + pType + ", userName=" + userName + ", investorGrade=" + investorGrade + "]";
 	}
 
-	
+
+
 	
 	
 	

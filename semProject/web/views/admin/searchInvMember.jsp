@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8" import="com.kh.sp.admin.model.vo.*"%>
 <%
 	DetailMember dm = (DetailMember) request.getAttribute("dm");
+DetailMember dm2 = (DetailMember) request.getAttribute("dm2");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -50,11 +52,12 @@ th, td {
 	display: inline;
 }
 
-#sortBox {
-	display: inline;
-	width: 50%;
-	height: 30%;
-}
+#sortBtn {
+    width: 80px;
+    background:#3276b1;
+    color:white;
+    font-size:15px;
+    }
 
 #text {
 	margin-top: 13px;
@@ -103,31 +106,43 @@ th, td {
 				<thead>
 					<tr>
 						<th>아이디</th>
-						<th>회원구분</th>
 						<th>투자자등급</th>
 						<th>이름</th>
 						<th>별명</th>
 						<th width="260px">이메일</th>
-						<th width="200px">연락처</th>
 						
 					</tr>
 					</thead>
+					<tr>
+						<td><span><%=dm.getUserId() %></span></td>
+						<td><span><%=dm.getInvestorGrade() %></span></td>
+						<td><span><%=dm.getUserName() %></span></td>
+						<td><span><%=dm.getNickName() %></span></td>
+						<td><span><%=dm.getEmail() %></span></td>
+					</tr>
+					
 				</table>
 				<br><br><br><br><br>
 				<table align="center" border="1">
 				<thead>
 					<tr>
-						<th rowspan="2" width="300px">주소</th>
+						<th width="200px">연락처</th>
+						<th rowspan="2">가입일</th>
 						<th rowspan="2">투자횟수</th>
 						<th rowspan="2">총 투자금액</th>
-						<th rowspan="2">가입일</th>
 					</tr>
 				</thead>
+				<tr>
+					<td><span><%=dm.getPhone() %></span></td>
+					<td><span><%=dm.getEnrollDate() %></span></td>
+					<td><span><%=dm.getCount() %></span></td>
+					<td><span><%=dm2.getTotalInvest() %></span></td>
+				</tr>
 			</table>
 				</form>
 			<br><br><br><br><br><br><br>
 	<div class="btn-box">
-			<button class="adminBtn" onclick="location.href='admin/managerPage.jsp'">돌아가기</button>
+			<button class="adminBtn" onclick="back();">돌아가기</button>
 			&nbsp;
 			<button type="button" id="blackBtn" class="adminBtn"
 				data-toggle="modal" data-target="#myModal">블랙리스트 추가하기</button>
@@ -168,7 +183,12 @@ th, td {
 			</div>
 		</form>
 	</div>
+
 	<script>
+	
+	function back(){
+		location.href="<%=request.getContextPath()%>/selectAllMember.adm";
+	}
 	function insertBlackList() {
 			var user_id =<%=dm.getUserId()%>;
 			
