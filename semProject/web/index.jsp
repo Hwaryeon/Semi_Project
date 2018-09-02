@@ -8,7 +8,7 @@ ArrayList<Product> hotFList = (ArrayList<Product>)request.getAttribute("hotFList
 ArrayList<Product> closeFList = (ArrayList<Product>)request.getAttribute("closeFList");
 String msg = (String)request.getAttribute("msg");
 %>    
- 
+  
 <!DOCTYPE html>
 <html>
 <head>
