@@ -34,14 +34,31 @@ public class ViewMainServlet extends HttpServlet {
 		ArrayList<Product> closeFList = new FundingService().closeFundingList();
 		
 
-		if(list.size() > 0){
+		ArrayList<Product> mainFList2 =new ArrayList<Product>();
+		
+		int chk = 0;
+		
+		for(int i=0; i <mainFList.size(); i++){
+			if(mainFList.get(i).getTotal_amount() > 0){
+				
+				for(int j=0; j < mainFList2.size(); j++){
+					if(mainFList.get(i).getP_id() == mainFList2.get(j).getP_id()){
+						chk = 1;
+					}
+				}
 
-			
-		/*if(list.size() > 0){*/
+				if(chk != 1){
+					mainFList2.add(mainFList.get(i));
+				}
+				chk = 0;
+			}
+		}
+		
+		if(list.size() > 0){
 
 			request.setAttribute("list", list);
 			request.setAttribute("newFList", newFList);
-			request.setAttribute("mainFList", mainFList);
+			request.setAttribute("mainFList", mainFList2);
 			request.setAttribute("hotFList", hotFList);
 			request.setAttribute("closeFList", closeFList);
 			

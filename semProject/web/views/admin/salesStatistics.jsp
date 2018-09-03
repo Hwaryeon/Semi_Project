@@ -267,19 +267,54 @@ $(function(){
             	     str1 = str1.trim();
             	     str2 = str2.trim();
             	     str3 = str3.trim();
-
-            	     String num1 = str1.split(",")[0];
-            	     String num2 = str1.split(",")[1];
-            	     String plus = num1+num2;
-            	     int price1 = Integer.parseInt(plus);
-            	     String num3 = str2.split(",")[0];
-            	     String num4 = str2.split(",")[1];
-            	     String plus2 = num3+num4;
-            	     int price2 = Integer.parseInt(plus2);
-            	     String num5 = str3.split(",")[0];
-            	     String num6 = str3.split(",")[1];
-            	     String plus3 = num5+num6;
-            	     int price3 = Integer.parseInt(plus3);%>
+            	     
+            	     int count = 0;
+            	     int price1 = 0;
+            	     for(int j = 0; j < str1.length(); j++){
+            	    	 if(str1.charAt(j) == ','){
+            	    		 count++;
+            	    	 }
+            	     }
+            	     if(count==0){
+            	    	 price1 = Integer.parseInt(str1);
+            	     }else{
+            	    	 String num1 = str1.split(",")[0];
+                	     String num2 = str1.split(",")[1];
+                	     String plus = num1+num2;
+                	     price1 = Integer.parseInt(plus);
+            	     }
+            	     
+            	     count = 0;
+            	     int price2 = 0;
+            	     for(int j = 0; j < str2.length(); j++){
+            	    	 if(str2.charAt(j) == ','){
+            	    		 count++;
+            	    	 }
+            	     }
+            	     if(count==0){
+            	    	 price2 = Integer.parseInt(str2);
+            	     }else{
+            	    	 String num3 = str2.split(",")[0];
+                	     String num4 = str2.split(",")[1];
+                	     String plus2 = num3+num4;
+                	     price2 = Integer.parseInt(plus2);
+            	     }
+            	     
+            	     count = 0;
+            	     int price3 = 0;
+            	     for(int j = 0; j < str3.length(); j++){
+            	    	 if(str3.charAt(j) == ','){
+            	    		 count++;
+            	    	 }
+            	     }
+            	     if(count==0){
+            	    	 price3 = Integer.parseInt(str3);
+            	     }else{
+            	    	 String num5 = str3.split(",")[0];
+                	     String num6 = str3.split(",")[1];
+                	     String plus3 = num5+num6;
+                	     price3 = Integer.parseInt(plus3);
+            	     }%>
                    <%if(i == 0){%>
                   ['<%= list.get(i).getTerm() %>',<%=price1%>,<%=price2%>,<%=price3%>]
                   <%}else{%>

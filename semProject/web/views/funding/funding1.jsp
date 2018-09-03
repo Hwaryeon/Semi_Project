@@ -268,7 +268,7 @@ textarea{
 				</div>
 				
 				<div class="text2">
-					<span class="title">6. 투자금 사용 계획</span> <br> <span
+					<span class="title">6. 펀딩 한 단위 가격</span> <br> <span
 						style="margin-left: 25px;"> <textarea name="amount" cols="78" rows="5"
 							style="resize: none"></textarea>
 					</span>
@@ -286,7 +286,7 @@ textarea{
     				내부 심사를 거쳐 프로젝트를 승인합니다.<br>
     				 </p>
     			<hr>
-    			<button id="login">>확인</button>
+    			<button id="login">확인</button>
         		<!-- <button id="popCloseBtn">취소</button> -->
     				</div>
 			</form>			

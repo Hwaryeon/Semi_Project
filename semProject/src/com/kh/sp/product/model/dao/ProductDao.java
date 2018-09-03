@@ -212,7 +212,7 @@ public class ProductDao {
 			pstmt.setInt(1, investId);
 			pstmt.setString(2, i.getStatus());
 			pstmt.setString(3, i.getPrice()+"");
-			pstmt.setString(4, i.getStatus());
+	/*		pstmt.setString(4, i.getStatus());*/
 			
 			result2 = pstmt.executeUpdate();
 			

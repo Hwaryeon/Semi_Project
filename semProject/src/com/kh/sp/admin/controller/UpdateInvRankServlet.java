@@ -24,9 +24,10 @@ public class UpdateInvRankServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	System.out.println("투자자 등급 변경 서블릿 호출");
 	
-	int userId = Integer.parseInt(request.getParameter("user_id"));
+	System.out.println("userId : " + request.getParameter("user_id2"));
 	
-	System.out.println("user_id : " + userId);
+	int userId = Integer.parseInt(request.getParameter("user_id2"));
+	
 	int result = new AdminService().updateRank(userId);
 	
 	String page = "";

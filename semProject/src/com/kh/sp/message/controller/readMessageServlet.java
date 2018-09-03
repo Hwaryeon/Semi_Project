@@ -23,7 +23,7 @@ public class readMessageServlet extends HttpServlet {
 	
 		System.out.println("메시지 읽기 서블릿 ");
 		
-		int msgId = Integer.parseInt(request.getParameter("num")); 		// 임시로 설정
+		int msgId = Integer.parseInt(request.getParameter("num")); 		
 		
 		String type = request.getParameter("type");
 		
@@ -33,8 +33,6 @@ public class readMessageServlet extends HttpServlet {
 	
 		request.setAttribute("message", m);
 		request.setAttribute("type", type);
-		
-		/*System.out.println(m);*/
 		
 		request.getRequestDispatcher("views/popup/readMessage.jsp").forward(request, response);
 		

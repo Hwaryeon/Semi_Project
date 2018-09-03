@@ -67,7 +67,7 @@ private Properties prop = new Properties();
 				loginUser.setStatus(rset.getString("status"));
 				loginUser.setPwdStatus(rset.getString("pwd_status"));
 				loginUser.setPlatformId(rset.getString("platform_id"));
-				loginUser.setGradingStatus("grading_status");
+				loginUser.setGradingStatus(rset.getString("grading_status"));
                  
 				System.out.println(loginUser);
 			}
@@ -150,7 +150,7 @@ private Properties prop = new Properties();
 				m.setStatus(rset.getString("status"));
 				m.setPwdStatus(rset.getString("pwd_status"));
 				m.setPlatformId(rset.getString("platform_id"));
-				m.setGradingStatus("grading_status");
+				m.setGradingStatus(rset.getString("grading_status"));
 			}
 			
 			
@@ -252,7 +252,7 @@ private Properties prop = new Properties();
 				loginUser.setStatus(rset.getString("status"));
 				loginUser.setPwdStatus(rset.getString("pwd_status"));
 				loginUser.setPlatformId(rset.getString("platform_id"));
-				loginUser.setGradingStatus("grading_status");
+				loginUser.setGradingStatus(rset.getString("grading_status"));
 			}
 			
 		} catch (SQLException e) {
@@ -300,7 +300,7 @@ private Properties prop = new Properties();
 				m.setStatus(rset.getString("status"));
 				m.setPwdStatus(rset.getString("pwd_status"));
 				m.setPlatformId(rset.getString("platform_id"));
-				m.setGradingStatus("grading_status");
+				m.setGradingStatus(rset.getString("grading_status"));
 			}
 			
 		} catch (SQLException e) {

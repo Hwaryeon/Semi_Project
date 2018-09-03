@@ -190,13 +190,19 @@ element {
 
 </style>
 </head>
-<header class="head_banner" style="margin-bottom: 65px;">
-		<div class="hero">
-			<img src="<%=request.getContextPath()%>/images/common/admin.jpg"
-				style="width: 100%;" alt="공지사항 배경 이미지 입니다." class="img_rwd">
-		</div>
-		<div class="layer">
-			<!-- <h1 class="tit_comm">Manager</h1>
+
+<body>
+	<%@ include file="../common/headBar.jsp" %>
+	<div id="omcWrap" style="min-width: 1400px;">
+		<div id="cMain">
+			<header class="head_banner" style="margin-bottom: 63px;">
+				<div class="hero">
+					<img src="<%=request.getContextPath()%>/images/common/admin.jpg"
+						style="width: 100%;" alt="공지사항 배경 이미지 입니다." class="img_rwd">
+				</div>
+				<div class="layer">
+					<!-- <h1 class="tit_comm">Manager</h1>
+
 							<p class="txt_comm">관리자 페이지</p> -->
 		</div>
 	</header>

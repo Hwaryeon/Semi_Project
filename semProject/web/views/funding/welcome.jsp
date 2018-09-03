@@ -116,7 +116,7 @@
 	}
 	.input li{
 		width:20%;
-		height:280px;
+		height:300px;
 		margin:10px;
 		margin-right:15px;
 		margin-left:15px;
@@ -173,7 +173,7 @@
 	}
 	#mainsp{
 		position: absolute;
-    	left: 570px;
+    	left: 520px;
     	top: 330px;
 	}
 	#sort{
@@ -182,10 +182,10 @@
 		color:#fff;
 		text-align:center;
 		margin-top:10px;
-		margin-left : 240px;
+		margin-left : 250px;
 	}
 	#camount{
-		margin-left : 130px;
+		margin-left : 120px;
 	}
 </style>
 </head>
@@ -215,8 +215,26 @@
 						<img src="/sp/thumbnail_uploadFiles/<%=hmap.get("changeName")%>" id = "lim">
 						<hr>
 						<input type="hidden" value="<%=hmap.get("pId")%>">
+						<%-- <span id="intro"><%=hmap.get("intro")%></span><br> --%>
+						
+						<% String str = (String)hmap.get("intro"); %>
+							
+							<%-- <% if(str.length() > 20){%>
+						<span id="intro">제목길어서 짤림</span><br>
+						
+						<% else { %>
+						
+						<% } %> --%>
+						
+						
+						<% if(str.length() > 25) { %>
+							<% String str2 = str.substring(0,24); %>
+						
+							<span id="intro"><%= str2 %> ... </span><br>
+						<% }else{ %>
 						<span id="intro"><%=hmap.get("intro")%></span><br>
 						
+						<% } %>
 						<div id="sort">채권</div>
 						
 						<span id="camount">목표금액 \<%=hmap.get("closingAmount")%></span>

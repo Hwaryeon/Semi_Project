@@ -374,8 +374,6 @@ function send(){
 // 서버로부터 메시지를 받을 때 수행할 메소드
 function onMessage(event) {
 	
-	console.log("이거되냐?");
-	
 	var message = event.data;
 	
 	$(document).ready(function() { 
@@ -390,11 +388,11 @@ function onMessage(event) {
 				if(data > 0){
 					document.getElementById('getServerTestBtn').className="blinking";
 					document.getElementById('newMsgArea').style.display="";
+					alert("읽지않은 메세지가 있습니다.")
 				}else{
 					document.getElementById('getServerTestBtn').className="";
 					document.getElementById('newMsgArea').style.display="none";
 				}
-				
 			},
 			error:function(data){
 				console.log("실패");

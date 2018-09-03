@@ -110,6 +110,14 @@ public class ListMessageServlet extends HttpServlet {
 		ArrayList<Message> list2 = null;	
 			
 			list2 = new MessageService().listMsg2(currentPage, limit, user_id);
+			
+			
+			for(int i=0; i<list.size(); i++){
+				System.out.println(i+" : " +list.get(i));
+			}
+			for(int i=0; i<list2.size(); i++){
+				System.out.println(i +"2 : " +list2.get(i));
+			}
 		String page = "views/popup/messageList.jsp";
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);

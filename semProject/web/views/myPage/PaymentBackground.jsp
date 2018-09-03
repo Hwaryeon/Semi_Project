@@ -8,7 +8,7 @@
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
-%>
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +19,9 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <style>
+.paging_comm a {
+    cursor:pointer;
+}
 .cmntitle {
 		margin-top:10%;
 		font-size:20px;
