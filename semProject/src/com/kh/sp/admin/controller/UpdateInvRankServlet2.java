@@ -23,6 +23,8 @@ public class UpdateInvRankServlet2 extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	System.out.println("미승인 서블릿 오니? 오니? 와줘");
+	
+	
 	int userId = Integer.parseInt(request.getParameter("user_id2"));
 	
 	System.out.println(userId);
@@ -45,7 +47,7 @@ public class UpdateInvRankServlet2 extends HttpServlet {
 		result = new MessageService().sendMessage(m);
 
 		if(result > 0){
-			page = "selectAllRank.adm";
+			page = "invRankSelectAll.adm";
 			request.setAttribute("msg", "성공성공");
 		}
 		 

@@ -23,7 +23,7 @@ public class updateDlineServlet extends HttpServlet {
 	System.out.println("승인 처리 서블릿 가즈아");
 	int p_Id = Integer.parseInt(request.getParameter("p_id"));
 	
-	System.out.println(p_Id);
+	System.out.println("p_Id :" + p_Id);
 int result = new AdminService().updateDline(p_Id);
 	
 	String page = "";

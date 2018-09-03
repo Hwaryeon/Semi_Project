@@ -148,7 +148,7 @@ table tr td a {
 			action="<%=request.getContextPath()%>/pFileDown" method="post">
 							<input type="hidden" id="p_Id3" name="p_id3">
 	
-
+</form>
 		
 		
 				
@@ -178,12 +178,11 @@ table tr td a {
 				<td><%=dm.getP_pId()%></td>
 				<td><%=dm.getP_pName()%></td>
 				<td><button class="downBtn" onclick="openFile();">파일 다운로드</button></td>
-				<td><button class="downBtn2" onclick="openFile2();">파일 다운로드</button></td>
-					</form>
+				<td><button class="downBtn2" onclick="openFile();">파일 다운로드</button></td>
 					
 				
 				<td class="text-center"><a class='btn btn-info btn-xs'
-					name="yes"><span class="glyphicon glyphicon-edit"></span>승인</a><a
+					name="yes"><span class="glyphicon glyphicon-edit"></span>승인</a> <a
 					class="btn btn-danger btn-xs" name="nob"><span
 						class="glyphicon glyphicon-remove"></span>미승인</a></td>
 
@@ -254,7 +253,6 @@ table tr td a {
 
 
 
-	</div>
 	</div>
 	<form id="confirmProjectForm"
 		action="<%=request.getContextPath()%>/confirmProject.adm" method="get">

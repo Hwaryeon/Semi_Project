@@ -14,30 +14,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.sp.admin.model.service.AdminService;
 import com.kh.sp.board.model.vo.Attachment;
 
-/**
- * Servlet implementation class UserFileDownloadServlet1
- */
-@WebServlet("/uFileDown1")
-public class UserFileDownloadServlet1 extends HttpServlet {
+@WebServlet("/uFileDown2")
+public class UserFileDownloadServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserFileDownloadServlet1() {
+    public UserFileDownloadServlet2() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("펀딩 파일 다운로드 서블릿 ");
+		System.out.println("등급서류 다운로드 서블릿2 ");
 
-		int num = Integer.parseInt(request.getParameter("user_id4"));
+		int num = Integer.parseInt(request.getParameter("user_id3"));
 		System.out.println("num =" + num);
-		Attachment file = new AdminService().downloadFileAttachment(num);
+		Attachment file = new AdminService().userDownloadFileAttachment(num);
 		
 		//폴더에서 파일을 읽을 스트림 생성
 		BufferedInputStream buf = null;

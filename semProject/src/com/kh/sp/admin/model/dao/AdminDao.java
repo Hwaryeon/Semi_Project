@@ -108,6 +108,7 @@ public class AdminDao {
 			int startRow = (currentPage -1) * limit + 1;
 			int endRow = startRow + limit -1;
 
+		
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 
@@ -198,14 +199,10 @@ public class AdminDao {
 		String query4 = prop.getProperty("sortNick_name");
 		String query5 = prop.getProperty("sortEmail");
 		String query6 = prop.getProperty("sortPhone");
-
-
-		System.out.println("출력좀되라");
-		System.out.println("여기출력되는거 맞아?");
+		
 		System.out.println(sort);
 
 		try {
-
 
 			if(sort.equals("user_id")){
 				pstmt = con.prepareStatement(query1);
@@ -500,10 +497,10 @@ public class AdminDao {
 		
 		return 0;
 	}
-public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int limit) {
+public ArrayList<DetailMember> selectInvRankList(Connection con, int currentPage, int limit) {
 		
 		
-		ArrayList<Member> rankList = null;
+		ArrayList<DetailMember> rankList = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
@@ -515,20 +512,22 @@ public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int 
 			int startRow = (currentPage -1) * limit + 1;
 			int endRow = startRow + limit -1;
 
-			pstmt.setString(1,  "evaluate");
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, endRow);
+
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			
-			rankList = new ArrayList<Member>();
+			rankList = new ArrayList<DetailMember>();
 			rset = pstmt.executeQuery();
 			while(rset.next()){
-				Member m = new Member();		
+				DetailMember dm = new DetailMember();		
 			
-				m.setUserId(rset.getInt("user_id"));
-				m.setUserName(rset.getString("user_name"));
-				m.setInvestorGrade(rset.getString("investor_grade"));
+				dm.setUserId(rset.getInt("user_id"));
+				dm.setUserName(rset.getString("user_name"));
+				dm.setInvestorGrade(rset.getString("investor_grade"));
+				dm.setF_id(rset.getInt("fid"));
 				
-				rankList.add(m);
+				
+				rankList.add(dm);
 			};
 
 		} catch (SQLException e) {
@@ -553,7 +552,6 @@ public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int 
 		try {
 			pstmt = con.prepareStatement(query);
 			
-			pstmt.setString(1, "evaluate");
 			
 			
 			rset =	pstmt.executeQuery();
@@ -582,7 +580,7 @@ public ArrayList<Member> selectInvRankList(Connection con, int currentPage, int 
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "wait");
+			pstmt.setString(1, "evaluate");
 			pstmt.setInt(2, userId);
 			
 			result = pstmt.executeUpdate();
@@ -1787,8 +1785,7 @@ public DetailMember selectOneEnp(Connection con, int user_id) {
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "wait");
-			pstmt.setInt(2, userId);
+			
 			
 			result = pstmt.executeUpdate();
 			
@@ -1857,7 +1854,7 @@ public DetailMember selectOneEnp(Connection con, int user_id) {
 				dm.setTest(rset.getDate("test"));
 				dm.setCorporateName(rset.getString("corporate_name"));
 				dm.setP_closingAmount(rset.getInt("closing_amount"));
-				dm.setResult(rset.getString("result"));
+				dm.setResult(rset.getInt("result"));
 				dm.setFee(rset.getString("fee"));
 				
 				dlineList.add(dm);
@@ -2039,42 +2036,40 @@ public DetailMember selectOneEnp(Connection con, int user_id) {
 		
 		Attachment file = null;
 		
-		String query = prop.getProperty("userFileDownload");
+		String query = prop.getProperty("downloadAttachment");
 		
-		try {
+		try { 
 			pstmt = con.prepareStatement(query);
+			
 			pstmt.setInt(1, num);
+			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()){
 				file = new Attachment();
-				file.setUserId(rset.getString("user_id"));
-				file.setUserName(rset.getString("user_name"));
-				file.setInvestorGrade(rset.getString("investor_grade"));
+				
 				file.setFid(rset.getInt("fid"));
-//				file.setpType(rset.getInt("p_type"));
+				file.setBid(rset.getInt("bid"));
+				file.setOriginName(rset.getString("origin_name"));
+				file.setChangeName(rset.getString("change_name"));
+				file.setFilePath(rset.getString("file_path"));
+				file.setUploadDate(rset.getDate("upload_date"));
+				file.setFileLevel(rset.getInt("file_level"));
+				file.setDownloadCount(rset.getInt("download_count"));
 				file.setStatus(rset.getString("status"));
 				
 				
 			}
 			
-			
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
-			close(rset);
 			close(pstmt);
-			
+			close(rset);
 		}
 		
 		
 		
-		
 		return file;
+		}
 	}
-
-	
-	
-}

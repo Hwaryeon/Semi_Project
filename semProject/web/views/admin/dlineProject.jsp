@@ -148,7 +148,7 @@ display: inline-block;
 						<td><%= dm.getTest() %></td>
 						<td><%= dm.getCorporateName() %></td>
 						<td><%= dm.getP_closingAmount() %></td>
-						<td><%= dm.getResult() %></td>
+						<td><%= dm.getResult() %>%</td>
 						<td><%= dm.getFee()%></td>
 						<td class="text-center"><a id="confirmBtn" name="yes" class=
 						'btn btn-info btn-xs'><span 

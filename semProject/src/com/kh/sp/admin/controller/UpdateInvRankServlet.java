@@ -47,7 +47,7 @@ public class UpdateInvRankServlet extends HttpServlet {
 		result = new MessageService().sendMessage(m);
 
 		if(result > 0){
-			page = "selectAllRank.adm";
+			page = "invRankSelectAll.adm";
 			request.setAttribute("msg", "성공성공");
 		}
 		 

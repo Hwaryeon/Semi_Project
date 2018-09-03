@@ -199,6 +199,7 @@ display: inline-block;
 </head>
 
 
+
 <body>
 	<%@ include file="../common/headBar.jsp"%>
 	<div id="omcWrap" style="min-width: 1400px;">
@@ -210,20 +211,16 @@ display: inline-block;
 				</div>
 				<div class="layer">
 					<!-- <h1 class="tit_comm">Manager</h1>
+
 							<p class="txt_comm">관리자 페이지</p> -->
-				</div>
-			</header>
-
-
-
-			<%@ include file="../common/sideMenu2.jsp"%>
-			<div>
-			
-				<div id="text" style="margin-left: 90px;">
-					<h2 id="web-font">
-						<b>회원 관리 > 회원 조회</b>
-					</h2>
-					<br>
+		</div>
+	</header>
+	<body>
+		<%@ include file="../common/headBar.jsp"%>
+	
+	<%@ include file="../common/sideMenu2.jsp"%>
+	<div id="text">
+		<h2>회원관리 > 회원 조회</h2>
 					<!-- 여기는 정렬 form  -->
 					<form action="<%=request.getContextPath()%>/sortMember.adm"
 						method="get">
@@ -283,16 +280,13 @@ display: inline-block;
 						%>
 						<tr>
 
-							<%-- <input type="hidden" name="userId" id="userId"
-								value="<%=m.getUserId()%>"> --%>
 							<td><%=m.getUserId()%></td>
-							<td name="user_class"><%=m.getUserClass()%></td>
-							<%-- <input type="hidden" name="userClass" id="userClass"
-								value="<%=m.getUserClass()%>"> --%>
-							<td><%=m.getUserName()%></td>
+							<td><%=m.getUserClass()%></td>
+							<td><%=m.getUserName() %></td>
 							<td><%=m.getNickName()%></td>
 							<td><%=m.getEmail()%></td>
 							<td><%=m.getPhone()%></td>
+							
 						</tr>
 						<%
 							}

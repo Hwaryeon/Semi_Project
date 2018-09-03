@@ -24,7 +24,7 @@ public class ProjectFileDownServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("펀딩 파일 다운로드 서블릿 ");
+		System.out.println("펀딩 파일 다운로드 서블릿1 ");
 
 		int num = Integer.parseInt(request.getParameter("p_id3"));
 		System.out.println("num =" + num);

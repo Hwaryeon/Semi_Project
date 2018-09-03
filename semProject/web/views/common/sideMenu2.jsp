@@ -583,7 +583,7 @@ function blackList(){
 	location.href="<%=request.getContextPath()%>/blackSelectAll.adm";
 }
 function invRankAll(){
-	location.href="<%=request.getContextPath()%>/selectAllRank.adm";
+	location.href="<%=request.getContextPath()%>/invRankSelectAll.adm";
 }
 function selectAllProject(){
 	location.href="<%=request.getContextPath()%>/selectAllProject.adm";
