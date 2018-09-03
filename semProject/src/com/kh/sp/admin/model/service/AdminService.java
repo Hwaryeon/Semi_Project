@@ -142,10 +142,10 @@ public class AdminService {
 		return listCount;
 	}
 	//투자자 등급 변경 요청자 출력 메소드 정태
-	public ArrayList<Member> selectInvRankList(int currentPage, int limit) {
+	public ArrayList<DetailMember> selectInvRankList(int currentPage, int limit) {
 		Connection con = getConnection();
 		
-		ArrayList<Member> rankList = new AdminDao().selectInvRankList(con, currentPage, limit);
+		ArrayList<DetailMember> rankList = new AdminDao().selectInvRankList(con, currentPage, limit);
 		
 		close(con);
 		
@@ -375,7 +375,7 @@ public class AdminService {
 			
 			Attachment file = new AdminDao().userDownloadFileAttachment(con, num);
 			
-			return null;
+			return file;
 		}
 		public int updateRank2(int userId) {
 			Connection con = getConnection();
@@ -481,6 +481,10 @@ public class AdminService {
 			}
 			
 			return result;
+		}
+		public Attachment downloadFileAttachment(int num) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 		
 }

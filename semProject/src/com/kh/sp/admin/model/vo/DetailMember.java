@@ -7,9 +7,11 @@ public class DetailMember implements java.io.Serializable{
 	    private int productCount;		//한 사업자가 개설한 펀딩 수
 	    private int finalResult;	//한 사업자가 받은 투자 금액
 	    private Date test;			//마감날짜
-		private String result; 		//달성률
+		private int result; 		//달성률
 		private int totalInvest;	//투자자가 투자한 총 금액
 		private int count;			//투자한 횟수
+		private int f_id;			//첨부파일 종류
+		
 		
 	    private int userId;
 	    private String platformType;
@@ -69,6 +71,22 @@ public class DetailMember implements java.io.Serializable{
 	    
 		public int getTotalInvest() {
 			return totalInvest;
+		}
+
+
+
+
+
+		public int getF_id() {
+			return f_id;
+		}
+
+
+
+
+
+		public void setF_id(int f_id) {
+			this.f_id = f_id;
 		}
 
 
@@ -521,12 +539,18 @@ public class DetailMember implements java.io.Serializable{
 		}
 
 
-		public String getResult() {
+
+
+
+		public int getResult() {
 			return result;
 		}
 
 
-		public void setResult(String result) {
+
+
+
+		public void setResult(int result) {
 			this.result = result;
 		}
 
@@ -534,8 +558,8 @@ public class DetailMember implements java.io.Serializable{
 
 
 
-		public DetailMember(String fee, int productCount, int finalResult, Date test, String result, int totalInvest,
-				int count, int userId, String platformType, String refreshToken, String email, String userPwd,
+		public DetailMember(String fee, int productCount, int finalResult, Date test, int result, int totalInvest,
+				int count, int f_id, int userId, String platformType, String refreshToken, String email, String userPwd,
 				String userName, String nickName, String phone, String investorGrade, String investmentLimit,
 				String businessLicenseNo, String corporateRegistrationNo, String corporateName, String address,
 				String userClass, Date enrollDate, String status, String pwdStatus, String platformId,
@@ -551,6 +575,7 @@ public class DetailMember implements java.io.Serializable{
 			this.result = result;
 			this.totalInvest = totalInvest;
 			this.count = count;
+			this.f_id = f_id;
 			this.userId = userId;
 			this.platformType = platformType;
 			this.refreshToken = refreshToken;
@@ -599,24 +624,26 @@ public class DetailMember implements java.io.Serializable{
 		public String toString() {
 			return "DetailMember [fee=" + fee + ", productCount=" + productCount + ", finalResult=" + finalResult
 					+ ", test=" + test + ", result=" + result + ", totalInvest=" + totalInvest + ", count=" + count
-					+ ", userId=" + userId + ", platformType=" + platformType + ", refreshToken=" + refreshToken
-					+ ", email=" + email + ", userPwd=" + userPwd + ", userName=" + userName + ", nickName=" + nickName
-					+ ", phone=" + phone + ", investorGrade=" + investorGrade + ", investmentLimit=" + investmentLimit
-					+ ", businessLicenseNo=" + businessLicenseNo + ", corporateRegistrationNo="
-					+ corporateRegistrationNo + ", corporateName=" + corporateName + ", address=" + address
-					+ ", userClass=" + userClass + ", enrollDate=" + enrollDate + ", status=" + status + ", pwdStatus="
-					+ pwdStatus + ", platformId=" + platformId + ", gradingStatus=" + gradingStatus + ", b_reason="
-					+ b_reason + ", b_enrollDate=" + b_enrollDate + ", ir_iRecordId=" + ir_iRecordId + ", ir_investId="
-					+ ir_investId + ", ir_payClass=" + ir_payClass + ", ir_payDate=" + ir_payDate + ", i_investId="
-					+ i_investId + ", i_userId=" + i_userId + ", i_pId=" + i_pId + ", p_pId=" + p_pId + ", p_pCode="
-					+ p_pCode + ", p_userId=" + p_userId + ", p_pName=" + p_pName + ", p_openDate=" + p_openDate
-					+ ", p_closingAmount=" + p_closingAmount + ", p_interestRate=" + p_interestRate + ", p_repayDate="
-					+ p_repayDate + ", p_amount=" + p_amount + "]";
+					+ ", f_id=" + f_id + ", userId=" + userId + ", platformType=" + platformType + ", refreshToken="
+					+ refreshToken + ", email=" + email + ", userPwd=" + userPwd + ", userName=" + userName
+					+ ", nickName=" + nickName + ", phone=" + phone + ", investorGrade=" + investorGrade
+					+ ", investmentLimit=" + investmentLimit + ", businessLicenseNo=" + businessLicenseNo
+					+ ", corporateRegistrationNo=" + corporateRegistrationNo + ", corporateName=" + corporateName
+					+ ", address=" + address + ", userClass=" + userClass + ", enrollDate=" + enrollDate + ", status="
+					+ status + ", pwdStatus=" + pwdStatus + ", platformId=" + platformId + ", gradingStatus="
+					+ gradingStatus + ", b_reason=" + b_reason + ", b_enrollDate=" + b_enrollDate + ", ir_iRecordId="
+					+ ir_iRecordId + ", ir_investId=" + ir_investId + ", ir_payClass=" + ir_payClass + ", ir_payDate="
+					+ ir_payDate + ", i_investId=" + i_investId + ", i_userId=" + i_userId + ", i_pId=" + i_pId
+					+ ", p_pId=" + p_pId + ", p_pCode=" + p_pCode + ", p_userId=" + p_userId + ", p_pName=" + p_pName
+					+ ", p_openDate=" + p_openDate + ", p_closingAmount=" + p_closingAmount + ", p_interestRate="
+					+ p_interestRate + ", p_repayDate=" + p_repayDate + ", p_amount=" + p_amount + "]";
 		}
 
 
 
-	
+
+
+
 
 	
 	    

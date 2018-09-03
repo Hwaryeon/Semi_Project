@@ -26,7 +26,7 @@ public class UpdateInvRankServlet extends HttpServlet {
 	
 	int userId = Integer.parseInt(request.getParameter("user_id"));
 	
-	System.out.println(userId);
+	System.out.println("user_id : " + userId);
 	int result = new AdminService().updateRank(userId);
 	
 	String page = "";
@@ -46,7 +46,7 @@ public class UpdateInvRankServlet extends HttpServlet {
 		result = new MessageService().sendMessage(m);
 
 		if(result > 0){
-			page = "selectAllRank.adm";
+			page = "invRankSelectAll.adm";
 			request.setAttribute("msg", "성공성공");
 		}
 		 

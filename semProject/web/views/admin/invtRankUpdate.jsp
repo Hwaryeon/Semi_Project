@@ -3,7 +3,7 @@
 	import="java.util.*, com.kh.sp.member.model.vo.*, 
 	com.kh.sp.admin.model.vo.*"%>
 <%
-	ArrayList<Member> rankList = (ArrayList<Member>) request.getAttribute("rankList");
+	ArrayList<DetailMember> rankList = (ArrayList<DetailMember>) request.getAttribute("rankList");
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -184,17 +184,15 @@ display: inline-block;
 						<th>증빙서류2</th>
 					</tr>
 				</thead>
-				<%for (Member m : rankList) {%>
-
-					<input type="hidden" id="userId" name="user_id">
-					<input type="hidden" id="title" name="title">
-					<input type="hidden" id="msg" name="msg">
-
+				<%for (DetailMember dm : rankList) {%>
+					<input type="hidden" id="user_Id4" name="user_id4">
 				<tr>
-					<td><%= m.getUserId() %></td>
-					<td><%= m.getUserName() %></td>
-					<td><%= m.getInvestorGrade() %></td>
-					<td></td>
+					<input type="hidden" id="f_id" name="f_id" value="<%=dm.getF_id() %>">
+				
+					<td><%= dm.getUserId() %></td>
+					<td><%= dm.getUserName() %></td>
+					<td><%= dm.getInvestorGrade() %></td>
+					<td>QI</td>
 					<td><button class="downBtn" onclick="openFile();">파일 다운로드</button></td>
 					<td><button class="downBtn2" onclick="openFile2();">파일 다운로드</button></td>
 					
@@ -245,17 +243,16 @@ display: inline-block;
 	</div>
 	<form id="updateRankForm"
 			action="<%=request.getContextPath()%>/updateInvRank.adm" method="get">
-							<input type="hidden" id="user_Id" name="user_id" >
+							<input type="hidden" id="user_id" name="user_id" >
+							<input type="hidden" id="title" name="title">
+							<input type="hidden" id="msg" name="msg"> 
 		
 			</form>
 		<form id="updateRankForm2"
 			action="<%=request.getContextPath()%>/updateRank2.adm" method="get">
-
-					<input type="hidden" id="userId2" name="user_id2" >
-					<input type="hidden" id="title2" name="title">
-					<input type="hidden" id="msg2" name="msg">
-
-
+					<input type="hidden" id="user_id2" name="user_id2" >
+					<input type="hidden" id="title2" name="title2">
+							<input type="hidden" id="msg2" name="msg2"> 
 </form>
 
 
@@ -283,19 +280,7 @@ display: inline-block;
         
     
     <script>
-    $(document).ready(function(){
-		function openFile(){
-			$('#pFile').attr("action", "<%=request.getContextPath()%>/uFileDown");
-			$('#pFile').submit();
-		}
-		
-		function openFile1(){
-			$('#pFile').attr("action", "<%=request.getContextPath()%>/uFileDown1");
-			$('#pFile').submit();
-		}
-		
-		
-	});
+  
     
     $(document).ready(function(){
     	var id = null;
@@ -321,10 +306,9 @@ display: inline-block;
         
 		    
 		    	$("#confirm").click(function(){
-		  		 	$("#userId").val(id); 
-		  		 	$("#title").val("투자자 등급 신청 처리가 완료되었습니다.");
-		  		 	$("#msg").val("투자자 등급 변경 승인 처리 되셨습니다.")
-
+		  		 	$("#user_id").val(id); 
+					$("#title").val("등급 변경신청이 완료되었습니다.");
+					$("#msg").val("등급 변경이 승인되셨습니다.");
 					console.log("id : " +id); 
 					$("#updateRankForm").submit(); 
 
@@ -353,10 +337,9 @@ display: inline-block;
 		         
 		 		    
 		 		    	$("#confirm2").click(function(){
-				  		 	$("#userId2").val(id); 
-				  		 	$("#title2").val("투자자 등급 신청 처리가 완료되었습니다.");
-				  		 	$("#msg2").val("투자자 등급 변경 미승인 처리 되셨습니다.")
-
+				  		 	$("#user_id2").val(id); 
+				  		 	$("#title2").val("등급 변경신청이 완료되었습니다.");
+							$("#msg2").val("등급 변경이 미승인되셨습니다.");
 		 					console.log("id : " +id); 
 		 					$("#updateRankForm2").submit(); 
 
@@ -364,24 +347,22 @@ display: inline-block;
 		 		
 		     });
     });
-    $('.downBtn').click(function(event) {
+   
+    $(document).ready(function(){
+		function openFile(){
+			$('#pFile').attr("action", "<%=request.getContextPath()%>/uFileDown");
+			$('#pFile').submit();
+		}
 		
-		var user_id = $(this).parent().parent().children().eq(0).text();
-
-		console.log(p_id);
-		$("#user_Id3").val(user_id);
-
+		function openFile1(){
+			$('#pFile').attr("action", "<%=request.getContextPath()%>/uFileDown1");
+			$('#pFile').submit();
+		}
+		
+		
 	});
-	
-	$('.downBtn2').click(function(event) {
-	
-		var user_id = $(this).parent().parent().children().eq(0).text();
-
-		console.log(user_id);
-		$("#user_Id3").val(user_id);
-
-	});
- 
+    
+    
     </script>
 	
 

@@ -23,8 +23,7 @@ public class ProjectFileDownloadServlet2 extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("펀딩 파일 다운로드 서블릿 ");
-
+		System.out.println("펀딩 파일 다운로드 서블릿2");
 		int num = Integer.parseInt(request.getParameter("p_Id4"));
 		System.out.println("num =" + num);
 		Attachment file = new AdminService().downloadFileAttachment(num);

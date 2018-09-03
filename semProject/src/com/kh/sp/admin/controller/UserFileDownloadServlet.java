@@ -23,11 +23,11 @@ public class UserFileDownloadServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("펀딩 파일 다운로드 서블릿 ");
+		System.out.println("등급서류 다운로드 서블릿1 ");
 
-		int num = Integer.parseInt(request.getParameter("user_id4"));
-		System.out.println("num =" + num);
-		Attachment file = new AdminService().userDownloadFileAttachment(num);
+		int f_id = Integer.parseInt(request.getParameter("f_id"));
+		System.out.println("f_id =" + f_id);
+		Attachment file = new AdminService().userDownloadFileAttachment(f_id);
 		
 		//폴더에서 파일을 읽을 스트림 생성
 		BufferedInputStream buf = null;
@@ -36,6 +36,9 @@ public class UserFileDownloadServlet extends HttpServlet {
 		ServletOutputStream downOut = null;
 		
 		downOut = response.getOutputStream();
+		
+		System.out.println("path : " + file.getFilePath());
+		System.out.println("name : " + file.getChangeName());
 		
 		File downFile = new File(file.getFilePath() + file.getChangeName());
 		
