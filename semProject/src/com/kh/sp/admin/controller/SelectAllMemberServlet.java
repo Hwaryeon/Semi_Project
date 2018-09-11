@@ -79,6 +79,8 @@ public class SelectAllMemberServlet extends HttpServlet {
 			
 		}
 		
+		/*RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);*/
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 	

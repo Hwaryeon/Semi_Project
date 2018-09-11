@@ -207,7 +207,6 @@ element {
 		</div>
 	</header>
 	<body>
-		<%@ include file="../common/headBar.jsp"%>
 	
 	<%@ include file="../common/sideMenu2.jsp"%>
 	<div id="text">

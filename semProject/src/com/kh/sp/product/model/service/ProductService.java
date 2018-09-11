@@ -106,9 +106,11 @@ Connection con = getConnection();
 	public HashMap<String,Object> selectiNum2(int pId) {
 		
 		Connection con = getConnection();
-		HashMap<String,Object> h = new ProductDao().selectiNum2(con,pId);
+		/*HashMap<String,Object> h = new ProductDao().selectiNum2(con,pId);*/
 		
-		return h;
+		
+		/*return h;*/
+		return null;
 	}
 }
 

@@ -580,7 +580,7 @@ public ArrayList<DetailMember> selectInvRankList(Connection con, int currentPage
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "evaluate");
+			pstmt.setString(1, "wait");
 			pstmt.setInt(2, userId);
 			
 			result = pstmt.executeUpdate();

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.sp.admin.model.service.AdminService;
+import com.kh.sp.admin.model.vo.DetailMember;
 import com.kh.sp.admin.model.vo.PageInfo;
 import com.kh.sp.member.model.vo.Member;
 
@@ -57,7 +58,7 @@ currentPage = 1;
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		ArrayList<Member> rankList = new AdminService().selectInvRankList(currentPage, limit);
+		ArrayList<DetailMember> rankList = new AdminService().selectInvRankList(currentPage, limit);
 		
 		System.out.println("pi :" + pi);
 		System.out.println("rankList : " + rankList);
