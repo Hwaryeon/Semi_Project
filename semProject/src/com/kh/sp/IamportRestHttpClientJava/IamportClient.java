@@ -25,7 +25,6 @@ import com.kh.sp.IamportRestHttpClientJava.response.Payment;
 
 public class IamportClient {
 	private static final String API_URL = "https://api.iamport.kr";
-	// private static final String API_URL = "http://localhost:8888";
 	private String api_key = null;
 	private String api_secret = null;
 	private HttpClient client = null;
