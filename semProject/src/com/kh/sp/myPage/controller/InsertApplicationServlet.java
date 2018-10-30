@@ -24,6 +24,8 @@ import com.oreilly.servlet.MultipartRequest;
 /**
  * Servlet implementation class InsertApplicationServlet
  */
+
+//投資者格付け申請用の書類を提出するservlet
 @WebServlet("/insert.urf")
 public class InsertApplicationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,44 +34,32 @@ public class InsertApplicationServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("등급신천 서류 제출 서블릿");
-		
 		if(ServletFileUpload.isMultipartContent(request)){
-			System.out.println("등급신천 서류 제출 서블릿2");
-			//System.out.println("이것은 멀티파트콘텐츠다");
-			//전송 파일에 대한 용량 제한 : 10MB
+			
+			//転送するファイルの容量制限：　10MB
 			int maxSize = 1024*1024*10;
 			
 			String root = request.getSession().getServletContext().getRealPath("/");
-			//System.out.println("경로 : " + root);
+			
 			String savePath = root + "updateRanking_uploadFiles\\";
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
-			//저장할 파일의 이름을 저장할 arrayList
+			//保存するファイルの名前を保存する arrayList
 			ArrayList<String> saveFiles = new ArrayList<String>();
-			//원본파일 이름 저장할 arrayList
+			//原本ファイル名を保存する arrayList
 			ArrayList<String> originFiles = new ArrayList<String>();
-			//파일이 전송된 이름을 반환
+			//ファイルが転送された名前をreturn
 			Enumeration<String> files = multiRequest.getFileNames();
 			
-			//각 파일의 정보를 구해온 후 DB에 저장할 목적의 데이터를 꺼내준다.
+			//各ファイルの情報を入手した後,DBに保存する目的のデータを取り出す。
 			while(files.hasMoreElements()) { 
 				String name = files.nextElement();
-				
 				saveFiles.add(multiRequest.getFilesystemName(name));
 				originFiles.add(multiRequest.getOriginalFileName(name));
 			}
-			//String userId = request.getParameter("userid");
-			//String ptype = request.getParameter("ptype");
 			int userId = Integer.parseInt(request.getParameter("userid"));
 			int ptype = Integer.parseInt(request.getParameter("ptype"));
 			String userEmail = request.getParameter("userEmail");
-			System.out.println("UserId : " + userId);
-			System.out.println("ptype : " + ptype);
-			System.out.println("userEmail : " + userEmail);
-			
-			//Member m = new Member();
-			//m.setUserId(userId);
 			
 			ArrayList<Attachment>fileList = new ArrayList<Attachment>();
 			
@@ -79,10 +69,6 @@ public class InsertApplicationServlet extends HttpServlet {
 				at.setFilePath(savePath);
 				at.setOriginName(originFiles.get(i));
 				at.setChangeName(saveFiles.get(i));
-				
-				System.out.println("filepath : " + at.getFilePath());
-				System.out.println("originFiles : " + at.getOriginName());
-				System.out.println("saveFiles : " + at.getChangeName());
 				
 				fileList.add(at);
 			}
@@ -105,11 +91,7 @@ public class InsertApplicationServlet extends HttpServlet {
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
