@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.kh.sp.member.model.service.MemberService;
 import com.kh.sp.member.model.vo.Member;
 
+//ユーザー個人情報を修正
 @WebServlet("/update.me")
 public class UpdateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,34 +33,34 @@ public class UpdateUserServlet extends HttpServlet {
 		
 		Member m = new Member();
 		
-		m.setEmail(userEmail);//이메일
-		m.setUserName(userName);//이름
-		m.setNickName(nickname);//닉네임
+		//requestから情報をもらって修正する
+		m.setEmail(userEmail);
+		m.setUserName(userName);
+		m.setNickName(nickname);
 		if(platform.equals("email")) {
 			String password = request.getParameter("userPwd");
 			if(!(password.equals(""))){
 				m.setUserPwd(password);
 			}
 		}
-		m.setPhone(phone);//전화번호
-		m.setUserId(Integer.parseInt(userId));//유저아이디
-		m.setPlatformType(platform);//플랫폼타입
+		m.setPhone(phone);
+		m.setUserId(Integer.parseInt(userId));
+		m.setPlatformType(platform);
 		
 		int result = new MemberService().updateMember(m);
 		Member m2 = new MemberService().checkEmail(userEmail);
-		//처리 결과에 따른 뷰 페이지 결정
+
 		String page = "";
 				
+		//修正に成功した時
 		if(result > 0) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", m2);
 			page = "views/myPage/mypageIndex.jsp";
 			request.setAttribute("msg", "회원 정보 수정에 성공하였습니다.");
-			//response.sendRedirect("views/myPage/mypageIndex.jsp");
-		} else {
+		} else { //修正に失敗した時
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "회원 정보 수정에 실패하였습니다!!");
-			//뷰 페이지로 전달
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
@@ -67,7 +68,6 @@ public class UpdateUserServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
