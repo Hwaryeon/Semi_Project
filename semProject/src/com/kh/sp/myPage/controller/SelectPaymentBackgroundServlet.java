@@ -55,7 +55,6 @@ public class SelectPaymentBackgroundServlet extends HttpServlet {
 		if (maxPage < endPage) {
 			endPage = maxPage;
 		}
-		
 		// ページの情報を公有する vo　Objectを作る
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		ArrayList<MypageDetail> list = new MypageDetailService().selectListPayment(userId, currentPage, limit, userClass);
