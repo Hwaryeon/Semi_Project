@@ -15,13 +15,14 @@ import com.kh.sp.myPage.model.vo.MypageDetail;
 
 import static com.kh.sp.common.JDBCTemplate.*;
 
+//マイページのDataBase Access Object
 public class MypageDetailDao {
 
 	private Properties prop = new Properties();
 
 	public MypageDetailDao() {
+		//クエリー文を読む
 		String fileName = MypageDetailDao.class.getResource("/sql/myPage/myPage-query.properties").getPath();
-		// System.out.println("파일이름 : " + fileName);
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (IOException e) {
@@ -29,8 +30,8 @@ public class MypageDetailDao {
 		}
 	}
 
-	public ArrayList<MypageDetail> selectList(Connection con, int userId, int currentPage, int limit,
-			String userClass) {
+	//参加しているプロジェクトのListを照会
+	public ArrayList<MypageDetail> selectList(Connection con, int userId, int currentPage, int limit, String userClass) {
 		ArrayList<MypageDetail> list = new ArrayList<MypageDetail>();
 
 		ResultSet rset = null;
@@ -40,11 +41,8 @@ public class MypageDetailDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, userId);// userId
-			System.out.println("currentPage : " + currentPage);
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			System.out.println("startRow : " + startRow);
-			System.out.println("endRow : " + endRow);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
 
@@ -57,7 +55,6 @@ public class MypageDetailDao {
 				list.add(mpd);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
@@ -66,8 +63,8 @@ public class MypageDetailDao {
 		return list;
 	}
 
-	public ArrayList<MypageDetail> selectList2(Connection con, int userId, int currentPage, int limit,
-			String userClass) {
+	//作ったプロジェクトのListを照会
+	public ArrayList<MypageDetail> selectList2(Connection con, int userId, int currentPage, int limit, String userClass) {
 		ArrayList<MypageDetail> list = new ArrayList<MypageDetail>();
 
 		ResultSet rset = null;
@@ -77,11 +74,8 @@ public class MypageDetailDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, userId);// userId
-			System.out.println("currentPage : " + currentPage);
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			System.out.println("startRow : " + startRow);
-			System.out.println("endRow : " + endRow);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
 
@@ -94,7 +88,6 @@ public class MypageDetailDao {
 				list.add(mpd);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
@@ -102,7 +95,7 @@ public class MypageDetailDao {
 		}
 		return list;
 	}
-
+	//投資者格付け申請用の書類を提出するDataBase Access Object
 	public int insertAttachment(Connection con, ArrayList<Attachment> fileList, int userid, int ptype) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -119,10 +112,8 @@ public class MypageDetailDao {
 				pstmt.setString(3, fileList.get(i).getFilePath());
 				
 				if(i==0){
-					//등급신청할때 제출하는 파일 1번
 					pstmt.setInt(4, 5);
 				}else{
-					//등급신청할때 제출하는 파일 2번
 					pstmt.setInt(4, 6);
 				}
 				
@@ -132,7 +123,6 @@ public class MypageDetailDao {
 				result = pstmt.executeUpdate();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
@@ -140,7 +130,8 @@ public class MypageDetailDao {
 
 		return result;
 	}
-
+	
+	//書類を確認した後投資者等級を変えるmethod
 	public int updateGradingStatus(Connection con, int userid) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -161,6 +152,7 @@ public class MypageDetailDao {
 		return result;
 	}
 
+	//リストの数をcount（投資者）
 	public int getListCount(Connection con, int userId, String userclass) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -188,6 +180,7 @@ public class MypageDetailDao {
 		return result;
 	}
 	
+	//リストの数をcount(事業者)
 	public int getListCount2(Connection con, int userId, String userclass) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -215,6 +208,7 @@ public class MypageDetailDao {
 		return result;
 	}
 
+	//投資者の決済内約の数をcount
 	public int getListCountPayment(Connection con, int userId, String userClass) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -241,6 +235,7 @@ public class MypageDetailDao {
 		return result;
 	}
 	
+	//事業者の決済内約の数をcount
 	public int getListCountPayment2(Connection con, int userId, String userClass) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -268,6 +263,7 @@ public class MypageDetailDao {
 		return result;
 	}
 
+	//投資者の決済内約をDBから出す。
 	public ArrayList<MypageDetail> selectListPayment(Connection con, int userId, int currentPage, int limit,
 			String userClass) {
 		ArrayList<MypageDetail> list = new ArrayList<MypageDetail>();
@@ -279,11 +275,8 @@ public class MypageDetailDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, userId);// userId
-			// System.out.println("currentPage : " + currentPage);
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			// System.out.println("startRow : " + startRow);
-			// System.out.println("endRow : " + endRow);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
 
@@ -298,7 +291,6 @@ public class MypageDetailDao {
 				list.add(mpd);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
@@ -307,6 +299,7 @@ public class MypageDetailDao {
 		return list;
 	}
 
+	//事業者の決済内約をDBから出す。
 	public ArrayList<MypageDetail> selectListPayment2(Connection con, int userId, int currentPage, int limit,
 			String userClass) {
 		ArrayList<MypageDetail> list = new ArrayList<MypageDetail>();
@@ -318,11 +311,8 @@ public class MypageDetailDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, userId);// userId
-			// System.out.println("currentPage : " + currentPage);
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			// System.out.println("startRow : " + startRow);
-			// System.out.println("endRow : " + endRow);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
 
@@ -337,7 +327,6 @@ public class MypageDetailDao {
 				list.add(mpd);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
