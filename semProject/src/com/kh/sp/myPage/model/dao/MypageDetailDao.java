@@ -208,7 +208,7 @@ public class MypageDetailDao {
 		return result;
 	}
 
-	//投資者の決済内約の数をcount
+	//投資者の決済内訳の数をcount
 	public int getListCountPayment(Connection con, int userId, String userClass) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -235,7 +235,7 @@ public class MypageDetailDao {
 		return result;
 	}
 	
-	//事業者の決済内約の数をcount
+	//事業者の決済内訳の数をcount
 	public int getListCountPayment2(Connection con, int userId, String userClass) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -263,7 +263,7 @@ public class MypageDetailDao {
 		return result;
 	}
 
-	//投資者の決済内約をDBから出す。
+	//投資者の決済内訳をDBから出す。
 	public ArrayList<MypageDetail> selectListPayment(Connection con, int userId, int currentPage, int limit,
 			String userClass) {
 		ArrayList<MypageDetail> list = new ArrayList<MypageDetail>();
@@ -299,7 +299,7 @@ public class MypageDetailDao {
 		return list;
 	}
 
-	//事業者の決済内約をDBから出す。
+	//事業者の決済内訳をDBから出す。
 	public ArrayList<MypageDetail> selectListPayment2(Connection con, int userId, int currentPage, int limit,
 			String userClass) {
 		ArrayList<MypageDetail> list = new ArrayList<MypageDetail>();
